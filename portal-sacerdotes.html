@@ -1056,17 +1056,194 @@
                     <div class="dashboard-content flex-1 p-6 md:p-10 bg-white/30">
                         <!-- Tab: Parish Solicitudes -->
                         <div id="tab-parish-solicitudes" class="dashboard-tab-content" style="display: block;">
-                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-2">Solicitudes Parroquiales</h3>
-                            <p class="font-body text-[14px] text-slate-warm mb-6">Trámites y solicitudes de la parroquia o rectoría ante la Curia Metropolitana de Maracaibo.</p>
-                            
-                            <div class="p-8 text-center border border-gold-antique/30 rounded-2xl bg-gold-antique/5 max-w-xl mx-auto my-6 animate-fadeIn">
-                                <div class="text-4xl text-gold-antique mb-3">
-                                    <i class="ti ti-tool"></i>
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <h3 class="font-display text-[20px] font-bold text-crimson-deep">Solicitudes Parroquiales</h3>
+                                    <p class="font-body text-[13px] text-slate-warm">Trámites y solicitudes de la parroquia o rectoría ante la Curia Metropolitana de Maracaibo.</p>
                                 </div>
-                                <h4 class="font-display text-[18px] font-bold text-crimson-deep mb-2">Sección de Trámites en Desarrollo</h4>
-                                <p class="font-body text-[14px] text-slate-warm leading-relaxed">
-                                    Este módulo de trámites oficiales para las parroquias y rectorías se encuentra actualmente en fase de especificación y desarrollo por el despacho de la Cancillería.
-                                </p>
+                                <button id="btn-new-parish-request" onclick="showNewParishRequestForm()" class="bg-crimson-deep text-white px-5 py-2.5 rounded-xl font-label text-[13px] font-bold hover:bg-primary transition-all shadow-md flex items-center gap-2">
+                                    <i class="ti ti-plus"></i> Nueva Solicitud
+                                </button>
+                            </div>
+
+                            <!-- Summary cards (Parish Stats) -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                                <div class="bg-white/50 p-4 rounded-xl border border-outline-variant/20 shadow-sm flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-crimson-deep/10 text-crimson-deep flex items-center justify-center font-bold text-lg"><i class="ti ti-folders"></i></div>
+                                    <div>
+                                        <div class="text-[11px] text-slate-warm/70 font-semibold uppercase tracking-wider font-label">Total Trámites</div>
+                                        <div id="stat-parish-req-total" class="font-display font-bold text-[18px] text-slate-warm">0</div>
+                                    </div>
+                                </div>
+                                <div class="bg-white/50 p-4 rounded-xl border border-outline-variant/20 shadow-sm flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-gold-antique/10 text-gold-antique flex items-center justify-center font-bold text-lg"><i class="ti ti-clock"></i></div>
+                                    <div>
+                                        <div class="text-[11px] text-slate-warm/70 font-semibold uppercase tracking-wider font-label font-label">Pendientes</div>
+                                        <div id="stat-parish-req-pending" class="font-display font-bold text-[18px] text-slate-warm">0</div>
+                                    </div>
+                                </div>
+                                <div class="bg-white/50 p-4 rounded-xl border border-outline-variant/20 shadow-sm flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-green-600/10 text-green-600 flex items-center justify-center font-bold text-lg"><i class="ti ti-circle-check"></i></div>
+                                    <div>
+                                        <div class="text-[11px] text-slate-warm/70 font-semibold uppercase tracking-wider font-label">Aprobadas</div>
+                                        <div id="stat-parish-req-approved" class="font-display font-bold text-[18px] text-slate-warm">0</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- List View -->
+                            <div id="parish-requests-list-view">
+                                <div class="overflow-x-auto bg-white/50 rounded-2xl border border-outline-variant/20 shadow-sm">
+                                    <table class="w-full text-left border-collapse text-[13px]">
+                                        <thead>
+                                            <tr class="bg-crimson-deep/5 border-b border-outline-variant/20 text-slate-warm font-label font-bold">
+                                                <th class="p-4">Código</th>
+                                                <th class="p-4">Trámite</th>
+                                                <th class="p-4">Interesado</th>
+                                                <th class="p-4">Fecha</th>
+                                                <th class="p-4">Estado</th>
+                                                <th class="p-4">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="parish-requests-table-body">
+                                            <!-- Dynamically populated -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Details View (hidden by default) -->
+                            <div id="parish-request-details-view" style="display: none;" class="bg-white/50 p-6 rounded-2xl border border-outline-variant/20 shadow-sm animate-fadeIn">
+                                <div class="flex justify-between items-center border-b border-outline-variant/20 pb-4 mb-6">
+                                    <h4 class="font-display text-[18px] font-bold text-crimson-deep flex items-center gap-2">
+                                        <i class="ti ti-file-text"></i> Detalle de Solicitud: <span id="parish-det-id" class="text-gold-antique">REQ-XXXX</span>
+                                    </h4>
+                                    <button onclick="hideParishRequestDetails()" class="text-slate-warm hover:text-crimson-deep font-label text-[13px] font-bold flex items-center gap-1">
+                                        <i class="ti ti-arrow-left"></i> Volver al Listado
+                                    </button>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                    <div>
+                                        <p class="font-body text-[13px] text-slate-warm mb-2"><strong>Tipo de Trámite:</strong> <span id="parish-det-type" class="text-on-surface font-semibold">-</span></p>
+                                        <p class="font-body text-[13px] text-slate-warm mb-2"><strong>Interesado:</strong> <span id="parish-det-interesado" class="text-on-surface font-semibold">-</span></p>
+                                        <p class="font-body text-[13px] text-slate-warm mb-2"><strong>Cédula Interesado:</strong> <span id="parish-det-cedula" class="text-on-surface font-semibold">-</span></p>
+                                        <p class="font-body text-[13px] text-slate-warm mb-2"><strong>Fecha de Solicitud:</strong> <span id="parish-det-date" class="text-on-surface">-</span></p>
+                                    </div>
+                                    <div>
+                                        <p class="font-body text-[13px] text-slate-warm mb-2"><strong>Estado:</strong> <span id="parish-det-status" class="inline-block px-2 py-0.5 rounded text-xs font-bold font-mono">-</span></p>
+                                        <p id="parish-det-feedback-container" class="font-body text-[13px] text-slate-warm mb-2" style="display: none;"><strong>Respuesta de la Curia:</strong> <span id="parish-det-feedback" class="text-crimson-deep italic block mt-1 bg-crimson-deep/5 p-3 rounded-lg border border-crimson-deep/10">-</span></p>
+                                    </div>
+                                </div>
+                                <div class="border-t border-outline-variant/10 pt-4">
+                                    <h5 class="font-label text-[12px] font-bold text-slate-warm uppercase tracking-wider mb-2">Motivo y Datos Adicionales</h5>
+                                    <div id="parish-det-details" class="font-body text-[13px] text-slate-warm bg-surface-container-low p-4 rounded-xl border border-outline-variant/10 whitespace-pre-line leading-relaxed">
+                                        -
+                                    </div>
+                                </div>
+                                <div id="parish-det-file-section" class="mt-4 border-t border-outline-variant/10 pt-4" style="display: none;">
+                                    <h5 class="font-label text-[12px] font-bold text-slate-warm uppercase tracking-wider mb-2">Documentos Adjuntados</h5>
+                                    <div class="flex items-center gap-3 bg-warm-ivory/40 border border-outline-variant/30 p-3 rounded-xl max-w-md">
+                                        <i class="ti ti-file-zip text-2xl text-gold-antique"></i>
+                                        <div class="flex-1 min-w-0">
+                                            <div id="parish-det-file-name" class="text-[12px] font-semibold text-slate-warm truncate">archivo.zip</div>
+                                        </div>
+                                        <a id="parish-det-file-download" href="#" target="_blank" class="bg-crimson-deep text-white p-2 rounded-lg hover:bg-primary transition-colors flex items-center justify-center">
+                                            <i class="ti ti-download text-[16px]"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Approved Document Output Section (if Chancellor approved it) -->
+                                <div id="parish-det-doc-section" class="mt-6 border-t-2 border-gold-antique/30 pt-6" style="display: none;">
+                                    <h5 class="font-display text-[15px] font-bold text-crimson-deep mb-2 flex items-center gap-2">
+                                        <i class="ti ti-circle-check-filled text-green-600"></i> Documento Oficial Emitido
+                                    </h5>
+                                    <p class="font-body text-[12px] text-slate-warm mb-3">La Cancillería ha emitido y certificado el documento oficial de su trámite. Puede descargarlo a continuación.</p>
+                                    <div class="flex items-center gap-3 bg-green-50 border border-green-200 p-3 rounded-xl max-w-md">
+                                        <i class="ti ti-file-certificate text-2xl text-green-600"></i>
+                                        <div class="flex-1 min-w-0">
+                                            <div id="parish-det-doc-name" class="text-[12px] font-semibold text-green-800 truncate">documento_firmado.pdf</div>
+                                        </div>
+                                        <a id="parish-det-doc-download" href="#" target="_blank" class="bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center">
+                                            <i class="ti ti-download text-[16px]"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- New Request Form (hidden by default) -->
+                            <div id="parish-new-request-view" style="display: none;" class="bg-white/50 p-6 md:p-8 rounded-2xl border border-outline-variant/20 shadow-sm animate-fadeIn">
+                                <div class="flex justify-between items-center border-b border-outline-variant/20 pb-4 mb-6">
+                                    <h4 class="font-display text-[18px] font-bold text-crimson-deep flex items-center gap-2">
+                                        <i class="ti ti-file-plus"></i> Nueva Solicitud de Trámite
+                                    </h4>
+                                    <button onclick="hideNewParishRequestForm()" class="text-slate-warm hover:text-crimson-deep font-label text-[13px] font-bold flex items-center gap-1">
+                                        <i class="ti ti-x"></i> Cancelar
+                                    </button>
+                                </div>
+
+                                <form id="form-parish-new-request" class="space-y-6" onsubmit="event.preventDefault(); handleNewParishRequest(event)">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        <div class="form-group flex flex-col">
+                                            <label for="parish-req-category" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Categoría del Trámite</label>
+                                            <select id="parish-req-category" onchange="onParishCategoryChange()" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" required>
+                                                <option value="" disabled selected>Seleccione una categoría...</option>
+                                                <option value="Bautismo">Bautismo</option>
+                                                <option value="Confirmación">Confirmación</option>
+                                                <option value="Matrimoniales">Matrimoniales</option>
+                                                <option value="Dispensas Matrimoniales">Dispensas Matrimoniales</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="form-group flex flex-col">
+                                            <label for="parish-req-type" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Tipo de Documento / Trámite</label>
+                                            <select id="parish-req-type" onchange="onParishTypeChange()" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" required disabled>
+                                                <option value="" disabled selected>Seleccione un trámite...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Requirements Display Panel -->
+                                    <div id="parish-req-requirements-box" style="display: none;" class="p-5 border border-gold-antique/30 rounded-xl bg-gold-antique/5 animate-fadeIn">
+                                        <h5 class="font-display text-[13.5px] font-bold text-crimson-deep mb-2 flex items-center gap-1.5">
+                                            <i class="ti ti-clipboard-list text-gold-antique text-[18px]"></i> Requisitos de Cancillería Obligatorios:
+                                        </h5>
+                                        <ul id="parish-req-requirements-list" class="list-disc list-inside space-y-1.5 font-body text-[12.5px] text-slate-warm pl-2">
+                                            <!-- Populated dynamically -->
+                                        </ul>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        <div class="form-group flex flex-col">
+                                            <label for="parish-req-interesado" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Nombre Completo del Interesado / Solicitante</label>
+                                            <input type="text" id="parish-req-interesado" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. Juan Andrés Pérez Gómez" required>
+                                        </div>
+                                        
+                                        <div class="form-group flex flex-col">
+                                            <label for="parish-req-cedula" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Cédula de Identidad del Interesado (Opcional si es menor)</label>
+                                            <input type="text" id="parish-req-cedula" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. V-25.123.456 o Menor">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group flex flex-col">
+                                        <label for="parish-req-details" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Datos del Sacramento / Información Detallada (Lugar, fechas, celebrantes, testigos)</label>
+                                        <textarea id="parish-req-details" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" rows="4" placeholder="Indique fechas aproximadas, nombres de padrinos, testigos, sacerdotes celebrantes, errores a corregir en caso de correcciones, o cualquier dato que facilite la investigación..." required style="resize: vertical; font-family: var(--font-body);"></textarea>
+                                    </div>
+
+                                    <div class="form-group flex flex-col">
+                                        <label class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Seleccionar archivos adjuntos requeridos (PDF, imágenes o archivo ZIP conteniendo todo - Máx 5MB)</label>
+                                        <div class="border-2 border-dashed border-outline-variant/60 hover:border-crimson-deep/60 p-6 rounded-xl text-center bg-surface/30 hover:bg-warm-ivory/30 transition-all cursor-pointer group relative">
+                                            <span class="material-symbols-outlined text-3xl text-slate-warm mb-1 group-hover:text-crimson-deep transition-colors">upload_file</span>
+                                            <p class="font-label text-[12.5px] text-slate-warm">Seleccionar archivo adjunto o arrastrar aquí (PDF, PNG, JPG, ZIP - Máx 5MB)</p>
+                                            <p id="parish-req-file-info" class="text-[11px] text-gold-antique font-semibold mt-1 hidden"></p>
+                                            <input type="file" id="parish-req-file" onchange="onParishFileSelected(this)" class="absolute inset-0 opacity-0 cursor-pointer" accept=".pdf,.png,.jpg,.jpeg,.zip" required>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="w-full bg-crimson-deep text-white py-3.5 rounded-xl font-bold font-label text-[14px] hover:bg-primary hover:shadow-lg active:scale-95 transition-all uppercase tracking-wider flex items-center justify-center gap-2">
+                                        <i class="ti ti-send text-[18px]"></i> Enviar Solicitud a la Cancillería
+                                    </button>
+                                </form>
                             </div>
                         </div>
 
@@ -2537,6 +2714,9 @@
         const el = document.getElementById('db-badge-parish');
         if (el) el.textContent = label;
 
+        // Load parish requests
+        await loadParishRequests();
+
         // Reset to first tab
         const sidebar = document.querySelector('#view-parish-dashboard .dashboard-sidebar');
         const firstBtn = sidebar.querySelector('button');
@@ -3138,24 +3318,69 @@
                             .select('*')
                             .eq('email', targetEmail)
                             .single();
-                        if (data) priestUser = data;
+                        if (data) {
+                            priestUser = data;
+                        } else {
+                            // Try loading from parroquias
+                            const { data: parishData } = await supabaseClient
+                                .from('parroquias')
+                                .select('*')
+                                .eq('email', targetEmail)
+                                .single();
+                            if (parishData) {
+                                priestUser = {
+                                    isParish: true,
+                                    name: parishData.name,
+                                    email: parishData.email,
+                                    phone: parishData.phone,
+                                    charge: "Parroquia / Rectoría",
+                                    parish: parishData.name,
+                                    direccion: parishData.address || ""
+                                };
+                            }
+                        }
                     } catch (e) {
                         console.error("Error al cargar perfil en admin view:", e);
                     }
                 } else {
                     priestUser = db.users.find(u => u.email && u.email.toLowerCase() === targetEmail);
+                    if (!priestUser && db.parroquias) {
+                        const parishData = db.parroquias.find(p => p.email && p.email.toLowerCase() === targetEmail);
+                        if (parishData) {
+                            priestUser = {
+                                isParish: true,
+                                name: parishData.name,
+                                email: parishData.email,
+                                phone: parishData.phone,
+                                charge: "Parroquia / Rectoría",
+                                parish: parishData.name,
+                                direccion: parishData.address || ""
+                            };
+                        }
+                    }
                 }
             }
 
             if (priestUser) {
-                document.getElementById('adm-prof-cedula').textContent = priestUser.cedula || 'No especificado';
-                document.getElementById('adm-prof-birthdate').textContent = priestUser.birth_date ? formatDateToLocale(priestUser.birth_date) : 'No especificado';
-                document.getElementById('adm-prof-phone').textContent = priestUser.phone || 'No especificado';
-                document.getElementById('adm-prof-orddate').textContent = priestUser.ordination_date ? formatDateToLocale(priestUser.ordination_date) : 'No especificado';
-                document.getElementById('adm-prof-ordbishop').textContent = priestUser.ordaining_bishop || 'No especificado';
-                document.getElementById('adm-prof-diocesis').textContent = priestUser.diocesis || 'No especificado';
-                document.getElementById('adm-prof-charge').textContent = priestUser.charge || 'No especificado';
-                document.getElementById('adm-prof-parish').textContent = priestUser.parish || 'No especificado';
+                if (priestUser.isParish) {
+                    document.getElementById('adm-prof-cedula').textContent = 'N/A (Parroquia)';
+                    document.getElementById('adm-prof-birthdate').textContent = 'N/A';
+                    document.getElementById('adm-prof-phone').textContent = priestUser.phone || 'No especificado';
+                    document.getElementById('adm-prof-orddate').textContent = 'N/A';
+                    document.getElementById('adm-prof-ordbishop').textContent = 'N/A';
+                    document.getElementById('adm-prof-diocesis').textContent = 'Maracaibo';
+                    document.getElementById('adm-prof-charge').textContent = priestUser.charge || 'Parroquia / Rectoría';
+                    document.getElementById('adm-prof-parish').textContent = priestUser.name;
+                } else {
+                    document.getElementById('adm-prof-cedula').textContent = priestUser.cedula || 'No especificado';
+                    document.getElementById('adm-prof-birthdate').textContent = priestUser.birth_date ? formatDateToLocale(priestUser.birth_date) : 'No especificado';
+                    document.getElementById('adm-prof-phone').textContent = priestUser.phone || 'No especificado';
+                    document.getElementById('adm-prof-orddate').textContent = priestUser.ordination_date ? formatDateToLocale(priestUser.ordination_date) : 'No especificado';
+                    document.getElementById('adm-prof-ordbishop').textContent = priestUser.ordaining_bishop || 'No especificado';
+                    document.getElementById('adm-prof-diocesis').textContent = priestUser.diocesis || 'No especificado';
+                    document.getElementById('adm-prof-charge').textContent = priestUser.charge || 'No especificado';
+                    document.getElementById('adm-prof-parish').textContent = priestUser.parish || 'No especificado';
+                }
             } else {
                 document.getElementById('adm-prof-cedula').textContent = 'No registrado';
                 document.getElementById('adm-prof-birthdate').textContent = 'No registrado';
@@ -3556,6 +3781,477 @@
         } else {
             switchView('view-priest-dashboard');
         }
+    }
+
+    // ── CANCILLERÍA DOCUMENTS REQUIREMENTS & PARISH REQUESTS SYSTEM ──
+    const CANCILLERIA_REQUISITOS = {
+        "Bautismo": {
+            "Inserción de Partida de Bautismo": [
+                "Constancia Original de la Parroquia (Iglesia) de NO aparecer el Certificado de Bautismo (Firmada y Sellada por el Sacerdote de la Parroquia).",
+                "Partida de Nacimiento del Bautizado (Original y Copia).",
+                "Cédula de identidad del Bautizado (si es el caso) (Original y Copia).",
+                "Es necesario un (1) Testigo (Padres, Padrinos, Familiar Cercano (uno de ellos)) con original y copia de su cédula de identidad.",
+                "Datos Ciertos o Aproximados del lugar, fecha, Padrinos, (fotos, recuerdos), Celebrante del Sacramento."
+            ],
+            "Corrección de Partida de Bautismo": [
+                "Certificado de Bautismo Original (con el error o errores) (Carta explicativa o de presentación).",
+                "Partida de Nacimiento del Bautizado (Original y Copia).",
+                "Cédula de identidad del Bautizado (si es el caso) (Original y Copia)."
+            ],
+            "Celebración de Bautismo de Adultos": [
+                "Carta del Párroco solicitando la Autorización del Arzobispo Metropolitano de Maracaibo.",
+                "Cédula de identidad del o los Interesados (Original y Copia)."
+            ],
+            "Justificativo de Bautismo (Personas Mayores de 60 años)": [
+                "Partida de Nacimiento del Bautizado (Original y Copia).",
+                "Cédula de identidad del Bautizado (Original y Copia).",
+                "Es necesario un (1) Testigo (Padres, Padrinos, Familiar Cercano (uno de ellos)) con original y copia de su cédula.",
+                "Datos Ciertos o Aproximados del lugar, fecha, Padrinos, y Celebrante del Sacramento."
+            ]
+        },
+        "Confirmación": {
+            "Inserción de Partida de Confirmación": [
+                "Constancia Original de la Parroquia (Iglesia) de NO aparecer el Certificado de Confirmación (Firmada y Sellada por el Sacerdote de la Parroquia).",
+                "Partida de Nacimiento del Confirmado (Original y Copia).",
+                "Cédula de identidad del Confirmando (si es el caso) (Original y Copia).",
+                "Es necesario un (1) Testigo (Padres, Padrinos, Familiar Cercano (uno de ellos)) con original y copia de su cédula.",
+                "Datos Ciertos o Aproximados del lugar, fecha, Padrinos, (fotos, recuerdos), Celebrante del Sacramento."
+            ],
+            "Corrección de Partida de Confirmación": [
+                "Certificado de Confirmación Original (con el error o errores) (Firmada y Sellada por el Sacerdote de la Parroquia).",
+                "Partida de Nacimiento del Confirmado (Original y Copia).",
+                "Cédula de identidad del Confirmado (si es el caso) (Original y Copia)."
+            ],
+            "Justificativo de Confirmación (en caso de NO aparecer registro)": [
+                "Partida de Nacimiento del Confirmado (Original y Copia).",
+                "Cédula de identidad del Confirmado (Original y Copia).",
+                "Es necesario un (1) Testigo (Padres, Padrinos, Familiar Cercano (uno de ellos)) con original y copia de su cédula de identidad.",
+                "Datos Ciertos o Aproximados del lugar, fecha, Padrinos, (fotos, recuerdos), Celebrante del Sacramento."
+            ],
+            "Compromiso del Sacramento de la Confirmación": [
+                "Solicitud del Párroco para dicho compromiso.",
+                "Cédulas de identidad de los Interesados (original y copia)."
+            ]
+        },
+        "Matrimoniales": {
+            "Atestado de Libertad y Soltería": [
+                "Es necesario dos (2) Testigos, que conozcan a la persona interesada por lo menos (10 años) con original y copia de sus cédulas.",
+                "Cédula de identidad del Interesado (original y copia).",
+                "Datos Ciertos del lugar de habitación del interesado, lugar de la celebración, fecha, Celebrante del Sacramento."
+            ],
+            "Licencia Matrimonial Canon 1071": [
+                "Constancia Original de la Parroquia (Iglesia) solicitando la Licencia (Firmada y Sellada por el Sacerdote de la Parroquia).",
+                "Cédula de identidad de los Interesados (original y copia).",
+                "El trámite lo realizan los interesados."
+            ],
+            "Dispensa de Proclamas": [
+                "Constancia Original de la Parroquia (Iglesia) solicitando la o las proclamas (Firmada y Sellada por el Sacerdote de la Parroquia).",
+                "Cédula de identidad de los Interesados (original y copia)."
+            ]
+        },
+        "Dispensas Matrimoniales": {
+            "Impedimento por Disparidad de Culto (NO bautizado por la Iglesia Católica)": [
+                "Constancia Original de la Parroquia (Iglesia) solicitando la Dispensa por parte del Arzobispo Metropolitano de Maracaibo (Firmada y Sellada por el Sacerdote de la Parroquia).",
+                "Cédula de identidad de los Interesados (original y copia).",
+                "El trámite lo realizan los interesados."
+            ],
+            "Impedimento por Mixta Religión": [
+                "Constancia Original de la Parroquia (Iglesia) solicitando la Dispensa por parte del Arzobispo Metropolitano de Maracaibo (Firmada y Sellada por el Sacerdote de la Parroquia).",
+                "Cédula de identidad de los Interesados (original y copia).",
+                "El trámite lo realizan los interesados."
+            ],
+            "Impedimento por Parentesco de Consanguinidad": [
+                "Constancia Original de la Parroquia (Iglesia) solicitando la Dispensa por parte del Arzobispo Metropolitano de Maracaibo (Firmada y Sellada por el Sacerdote de la Parroquia).",
+                "Cédula de identidad de los Interesados (original y copia).",
+                "El trámite lo realizan los interesados."
+            ]
+        }
+    };
+
+    let parishRequestsCache = [];
+
+    async function loadParishRequests() {
+        const tbody = document.getElementById('parish-requests-table-body');
+        if (!tbody) return;
+        
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--gris-medio); padding: 1.5rem;"><i class="ti ti-loader animate-spin"></i> Cargando solicitudes...</td></tr>`;
+
+        let list = [];
+
+        if (isSupabase) {
+            try {
+                // Filter by priest_email because that stores the parish's email (bypassing FK constraints on email column)
+                const { data, error } = await supabaseClient
+                    .from('tramites')
+                    .select('*')
+                    .eq('priest_email', currentUser.email);
+
+                if (error) {
+                    console.error("Error al leer trámites parroquiales en Supabase:", error);
+                    tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--grana); padding: 1.5rem;">Fallo al conectar con la base de datos Supabase.</td></tr>`;
+                    return;
+                }
+                list = (data || []).map(mapRequestFields);
+            } catch (err) {
+                console.error("Excepción al leer trámites parroquiales en Supabase:", err);
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--grana); padding: 1.5rem;">Error al recuperar datos.</td></tr>`;
+                return;
+            }
+        } else {
+            // LocalStorage fallback
+            list = db.requests.filter(r => r.priestEmail && r.priestEmail.toLowerCase() === currentUser.email.toLowerCase());
+        }
+
+        // Cache the list
+        parishRequestsCache = list;
+
+        // Stats counters
+        const total = list.length;
+        const pending = list.filter(r => r.status === 'Pendiente').length;
+        const approved = list.filter(r => r.status === 'Aprobado').length;
+
+        document.getElementById('stat-parish-req-total').textContent = total;
+        document.getElementById('stat-parish-req-pending').textContent = pending;
+        document.getElementById('stat-parish-req-approved').textContent = approved;
+
+        if (total === 0) {
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--gris-medio); padding: 2rem;">No posee ninguna solicitud registrada hasta la fecha.</td></tr>`;
+            return;
+        }
+
+        list.sort((a, b) => b.id.localeCompare(a.id));
+
+        tbody.innerHTML = '';
+        list.forEach(r => {
+            let badgeClass = 'badge-pending';
+            let stateText = 'Pendiente';
+
+            if (r.status === 'Aprobado') {
+                badgeClass = 'badge-approved';
+                stateText = 'Aprobado';
+            } else if (r.status === 'Rechazado') {
+                badgeClass = 'badge-rejected';
+                stateText = 'Rechazado';
+            }
+
+            // Extract Interested Person name from Subject or fallback to N/A
+            let interesado = 'N/A';
+            if (r.subject && r.subject.includes(' - ')) {
+                interesado = r.subject.split(' - ')[1];
+            } else if (r.details && r.details.includes('Interesado: ')) {
+                const match = r.details.match(/Interesado:\s*([^\n]+)/);
+                if (match) interesado = match[1].trim();
+            }
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><strong>${r.id}</strong></td>
+                <td>${r.type}</td>
+                <td>${interesado}</td>
+                <td>${r.date}</td>
+                <td><span class="badge-status ${badgeClass}"><i class="ti ti-point-filled"></i> ${stateText}</span></td>
+                <td>
+                    <button onclick="viewParishRequestDetails('${r.id}')" class="btn-table-action">
+                        <i class="ti ti-eye"></i> Ver Detalle
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function showNewParishRequestForm() {
+        const form = document.getElementById('form-parish-new-request');
+        if (form) form.reset();
+        
+        const fileInfo = document.getElementById('parish-req-file-info');
+        if (fileInfo) {
+            fileInfo.classList.add('hidden');
+            fileInfo.textContent = '';
+        }
+        
+        document.getElementById('parish-requests-list-view').style.display = 'none';
+        document.getElementById('parish-request-details-view').style.display = 'none';
+        document.getElementById('parish-new-request-view').style.display = 'block';
+
+        // Reset inputs
+        const catSelect = document.getElementById('parish-req-category');
+        const typeSelect = document.getElementById('parish-req-type');
+        catSelect.value = "";
+        typeSelect.innerHTML = '<option value="" disabled selected>Seleccione un trámite...</option>';
+        typeSelect.disabled = true;
+        document.getElementById('parish-req-requirements-box').style.display = 'none';
+    }
+
+    function hideNewParishRequestForm() {
+        document.getElementById('parish-new-request-view').style.display = 'none';
+        document.getElementById('parish-requests-list-view').style.display = 'block';
+    }
+
+    function onParishCategoryChange() {
+        const category = document.getElementById('parish-req-category').value;
+        const typeSelect = document.getElementById('parish-req-type');
+        const reqBox = document.getElementById('parish-req-requirements-box');
+        
+        typeSelect.innerHTML = '<option value="" disabled selected>Seleccione un trámite...</option>';
+        reqBox.style.display = 'none';
+
+        if (category && CANCILLERIA_REQUISITOS[category]) {
+            typeSelect.disabled = false;
+            Object.keys(CANCILLERIA_REQUISITOS[category]).forEach(type => {
+                const opt = document.createElement('option');
+                opt.value = type;
+                opt.textContent = type;
+                typeSelect.appendChild(opt);
+            });
+        } else {
+            typeSelect.disabled = true;
+        }
+    }
+
+    function onParishTypeChange() {
+        const category = document.getElementById('parish-req-category').value;
+        const type = document.getElementById('parish-req-type').value;
+        const reqBox = document.getElementById('parish-req-requirements-box');
+        const reqList = document.getElementById('parish-req-requirements-list');
+
+        reqList.innerHTML = '';
+
+        if (category && type && CANCILLERIA_REQUISITOS[category] && CANCILLERIA_REQUISITOS[category][type]) {
+            reqBox.style.display = 'block';
+            CANCILLERIA_REQUISITOS[category][type].forEach(reqText => {
+                const li = document.createElement('li');
+                li.textContent = reqText;
+                reqList.appendChild(li);
+            });
+        } else {
+            reqBox.style.display = 'none';
+        }
+    }
+
+    function onParishFileSelected(input) {
+        const infoEl = document.getElementById('parish-req-file-info');
+        if (input.files && input.files.length > 0) {
+            const file = input.files[0];
+            const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+            infoEl.textContent = `Archivo seleccionado: ${file.name} (${sizeMB} MB)`;
+            infoEl.classList.remove('hidden');
+        } else {
+            infoEl.classList.add('hidden');
+            infoEl.textContent = '';
+        }
+    }
+
+    async function handleNewParishRequest(e) {
+        e.preventDefault();
+        const category = document.getElementById('parish-req-category').value;
+        const type = document.getElementById('parish-req-type').value;
+        const interesado = document.getElementById('parish-req-interesado').value.trim();
+        const cedula = document.getElementById('parish-req-cedula').value.trim();
+        const detailsInput = document.getElementById('parish-req-details').value.trim();
+        
+        const fileInput = document.getElementById('parish-req-file');
+        let fileContent = "";
+        let fileName = "";
+        if (fileInput && fileInput.files && fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            if (file.size > 5 * 1024 * 1024) {
+                alert("El archivo adjunto supera el límite de 5MB.");
+                return;
+            }
+            try {
+                fileContent = await readFileAsDataURL(file);
+                fileName = file.name;
+            } catch (err) {
+                console.error("Error al procesar archivo adjunto:", err);
+                alert("Error al procesar el archivo seleccionado.");
+                return;
+            }
+        } else {
+            alert("Por favor adjunte la documentación requerida para este trámite.");
+            return;
+        }
+
+        const today = new Date().toISOString().split('T')[0];
+        let newId = "";
+
+        if (isSupabase) {
+            try {
+                const { count, error } = await supabaseClient
+                    .from('tramites')
+                    .select('*', { count: 'exact', head: true });
+                newId = "REQ-" + ((count || 0) + 1001);
+            } catch (err) {
+                console.error("Error counting requests:", err);
+                newId = "REQ-" + (Date.now().toString().slice(-4));
+            }
+        } else {
+            newId = "REQ-" + (db.requests.length + 1001);
+        }
+
+        const subject = `[Parroquia] Solicitud de ${type} - ${interesado}`;
+        const fullDetails = `Interesado: ${interesado}\nCédula: ${cedula || 'No especificada'}\n\nDatos del Sacramento / Descripción:\n${detailsInput}`;
+
+        const newReq = {
+            id: newId,
+            email: currentUser.email,
+            priestName: currentUser.name,
+            priestEmail: currentUser.email,
+            type: type,
+            date: today,
+            subject: subject,
+            parish: currentUser.name,
+            details: fullDetails,
+            status: "Pendiente",
+            feedback: "",
+            documentContent: "",
+            institution: category,
+            priestFileContent: fileContent,
+            priestFileName: fileName
+        };
+
+        if (isSupabase) {
+            // Bypass foreign key constraints by leaving email column as NULL
+            const { error } = await supabaseClient
+                .from('tramites')
+                .insert([{
+                    id: newId,
+                    email: null,
+                    priest_name: currentUser.name,
+                    priest_email: currentUser.email,
+                    type: type,
+                    date: today,
+                    subject: subject,
+                    parish: currentUser.name,
+                    details: fullDetails,
+                    status: "Pendiente",
+                    feedback: "",
+                    document_content: "",
+                    institution: category,
+                    priest_file_content: fileContent,
+                    priest_file_name: fileName
+                }]);
+
+            if (error) {
+                console.error("Error al registrar trámite parroquial en Supabase:", error);
+                alert("Error al enviar la solicitud en la base de datos.");
+                return;
+            }
+        } else {
+            db.requests.push(newReq);
+            saveLocalDB();
+        }
+
+        const subjectMail = `[Arquidiócesis] Confirmación de Trámite Parroquial ${newId}`;
+        const mailBody = `
+            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f5; border-radius: 8px;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h2 style="color: #00235b; margin: 0; font-family: sans-serif;">Portal de Parroquias</h2>
+                    <p style="color: #8c7853; font-weight: 600; margin: 5px 0 0 0;">Arquidiócesis de Maracaibo</p>
+                </div>
+                <p>Estimados representantes de la <strong>${currentUser.name}</strong>,</p>
+                <p>Confirmamos la recepción exitosa de su solicitud de trámite. A continuación los datos registrados:</p>
+                <div style="background-color: #f8fafc; padding: 15px; border-radius: 6px; border: 1px solid #e2e8f0; margin: 20px 0;">
+                    <p style="margin: 0 0 8px 0;"><strong>Código de Trámite:</strong> ${newId}</p>
+                    <p style="margin: 0 0 8px 0;"><strong>Tipo de Documento:</strong> ${type}</p>
+                    <p style="margin: 0 0 8px 0;"><strong>Categoría:</strong> ${category}</p>
+                    <p style="margin: 0 0 8px 0;"><strong>Interesado:</strong> ${interesado}</p>
+                    <p style="margin: 0 0 8px 0;"><strong>Cédula Interesado:</strong> ${cedula || 'Menor / No especificada'}</p>
+                    <p style="margin: 0 0 8px 0;"><strong>Fecha de Registro:</strong> ${today}</p>
+                    <p style="margin: 8px 0 0 0; padding-top: 8px; border-top: 1px dashed #e2e8f0;"><strong>Motivo de la Solicitud:</strong></p>
+                    <p style="margin: 5px 0 0 0; color: #556987; font-style: italic; white-space: pre-line;">${fullDetails}</p>
+                </div>
+                <p>La solicitud se encuentra en estado <strong>Pendiente</strong> y será evaluada por el Arzobispado. Les notificaremos por correo electrónico una vez que se emita la resolución oficial.</p>
+                <hr style="border: 0; border-top: 1px solid #e2e8f5; margin: 30px 0 15px 0;">
+                <p style="text-align: center; color: #7a8bad; font-size: 0.8em; margin: 0;">Portal de Parroquias | Arquidiócesis de Maracaibo</p>
+            </div>
+        `;
+        showToastMail(currentUser.email, subjectMail, mailBody);
+
+        hideNewParishRequestForm();
+        await loadParishRequests();
+    }
+
+    function viewParishRequestDetails(reqId) {
+        const req = parishRequestsCache.find(r => r.id === reqId);
+        if (!req) return;
+
+        document.getElementById('parish-det-id').textContent = req.id;
+        document.getElementById('parish-det-type').textContent = req.type;
+        
+        let interesado = 'N/A';
+        if (req.subject && req.subject.includes(' - ')) {
+            interesado = req.subject.split(' - ')[1];
+        } else if (req.details && req.details.includes('Interesado: ')) {
+            const match = req.details.match(/Interesado:\s*([^\n]+)/);
+            if (match) interesado = match[1].trim();
+        }
+
+        let cedula = 'No especificada';
+        if (req.details && req.details.includes('Cédula: ')) {
+            const match = req.details.match(/Cédula:\s*([^\n]+)/);
+            if (match) cedula = match[1].trim();
+        }
+
+        document.getElementById('parish-det-interesado').textContent = interesado;
+        document.getElementById('parish-det-cedula').textContent = cedula;
+        document.getElementById('parish-det-date').textContent = req.date;
+
+        const statusEl = document.getElementById('parish-det-status');
+        statusEl.textContent = req.status;
+        statusEl.className = 'inline-block px-2 py-0.5 rounded text-xs font-bold font-mono ' + 
+            (req.status === 'Aprobado' ? 'bg-green-600/15 text-green-600 border border-green-600/25' : 
+             req.status === 'Rechazado' ? 'bg-red-600/15 text-red-600 border border-red-600/25' : 
+             'bg-gold-antique/15 text-gold-antique border border-gold-antique/25');
+
+        const feedbackContainer = document.getElementById('parish-det-feedback-container');
+        if (req.feedback) {
+            feedbackContainer.style.display = 'block';
+            document.getElementById('parish-det-feedback').textContent = req.feedback;
+        } else {
+            feedbackContainer.style.display = 'none';
+        }
+
+        document.getElementById('parish-det-details').textContent = req.details;
+
+        const fileSection = document.getElementById('parish-det-file-section');
+        if (req.priestFileContent) {
+            fileSection.style.display = 'block';
+            const fName = req.priestFileName || 'documentacion_adjunta';
+            document.getElementById('parish-det-file-name').textContent = fName;
+            const downloadLink = document.getElementById('parish-det-file-download');
+            downloadLink.href = req.priestFileContent;
+            downloadLink.download = fName;
+        } else {
+            fileSection.style.display = 'none';
+        }
+
+        const docSection = document.getElementById('parish-det-doc-section');
+        if (req.documentFileContent || req.documentContent) {
+            docSection.style.display = 'block';
+            const fName = req.documentFileName || `Certificado_Oficial_${req.id}.pdf`;
+            document.getElementById('parish-det-doc-name').textContent = fName;
+            
+            const docDownloadLink = document.getElementById('parish-det-doc-download');
+            if (req.documentFileContent) {
+                docDownloadLink.href = req.documentFileContent;
+                docDownloadLink.download = fName;
+            } else {
+                docDownloadLink.href = `javascript:renderDocument('${req.id}')`;
+                docDownloadLink.removeAttribute('download');
+            }
+        } else {
+            docSection.style.display = 'none';
+        }
+
+        document.getElementById('parish-requests-list-view').style.display = 'none';
+        document.getElementById('parish-new-request-view').style.display = 'none';
+        document.getElementById('parish-request-details-view').style.display = 'block';
+    }
+
+    function hideParishRequestDetails() {
+        document.getElementById('parish-request-details-view').style.display = 'none';
+        document.getElementById('parish-requests-list-view').style.display = 'block';
     }
 
     // Initialize on page load
