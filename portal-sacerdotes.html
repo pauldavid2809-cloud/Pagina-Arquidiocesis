@@ -968,6 +968,11 @@
                                     </a>
                                 </div>
 
+                                <!-- Multi-files container for new dynamic upload -->
+                                <div id="adm-priest-multi-files-section" style="display: none;" class="my-2 space-y-2">
+                                    <!-- Populated dynamically -->
+                                </div>
+
                                 <!-- Priest's ministerial profile data -->
                                 <div class="mt-4 pt-4 border-t border-outline-variant/10">
                                     <h5 class="font-label text-[12px] text-gold-antique font-bold uppercase tracking-wider mb-3 flex items-center gap-1.5">
@@ -1203,17 +1208,17 @@
                                         </div>
                                     </div>
 
-                                    <!-- Requirements Display Panel -->
+                                    <!-- Requirements Display Panel with File Uploads One-by-One -->
                                     <div id="parish-req-requirements-box" style="display: none;" class="p-5 border border-gold-antique/30 rounded-xl bg-gold-antique/5 animate-fadeIn">
-                                        <h5 class="font-display text-[13.5px] font-bold text-crimson-deep mb-2 flex items-center gap-1.5">
-                                            <i class="ti ti-clipboard-list text-gold-antique text-[18px]"></i> Requisitos de Cancillería Obligatorios:
+                                        <h5 class="font-display text-[13.5px] font-bold text-crimson-deep mb-3 flex items-center gap-1.5">
+                                            <i class="ti ti-clipboard-list text-gold-antique text-[18px]"></i> Requisitos y Adjuntos (Subir uno a uno):
                                         </h5>
-                                        <ul id="parish-req-requirements-list" class="list-disc list-inside space-y-1.5 font-body text-[12.5px] text-slate-warm pl-2">
-                                            <!-- Populated dynamically -->
-                                        </ul>
+                                        <div id="parish-req-requirements-list" class="space-y-3 font-body text-[12.5px] text-slate-warm">
+                                            <!-- Dynamically populated with requirements and file inputs -->
+                                        </div>
                                     </div>
 
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
                                         <div class="form-group flex flex-col">
                                             <label for="parish-req-interesado" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Nombre Completo del Interesado / Solicitante</label>
                                             <input type="text" id="parish-req-interesado" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. Juan Andrés Pérez Gómez" required>
@@ -1225,19 +1230,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group flex flex-col">
+                                    <div class="form-group flex flex-col mt-5 mb-5">
                                         <label for="parish-req-details" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Datos del Sacramento / Información Detallada (Lugar, fechas, celebrantes, testigos)</label>
                                         <textarea id="parish-req-details" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" rows="4" placeholder="Indique fechas aproximadas, nombres de padrinos, testigos, sacerdotes celebrantes, errores a corregir en caso de correcciones, o cualquier dato que facilite la investigación..." required style="resize: vertical; font-family: var(--font-body);"></textarea>
-                                    </div>
-
-                                    <div class="form-group flex flex-col">
-                                        <label class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Seleccionar archivos adjuntos requeridos (PDF, imágenes o archivo ZIP conteniendo todo - Máx 5MB)</label>
-                                        <div class="border-2 border-dashed border-outline-variant/60 hover:border-crimson-deep/60 p-6 rounded-xl text-center bg-surface/30 hover:bg-warm-ivory/30 transition-all cursor-pointer group relative">
-                                            <span class="material-symbols-outlined text-3xl text-slate-warm mb-1 group-hover:text-crimson-deep transition-colors">upload_file</span>
-                                            <p class="font-label text-[12.5px] text-slate-warm">Seleccionar archivo adjunto o arrastrar aquí (PDF, PNG, JPG, ZIP - Máx 5MB)</p>
-                                            <p id="parish-req-file-info" class="text-[11px] text-gold-antique font-semibold mt-1 hidden"></p>
-                                            <input type="file" id="parish-req-file" onchange="onParishFileSelected(this)" class="absolute inset-0 opacity-0 cursor-pointer" accept=".pdf,.png,.jpg,.jpeg,.zip" required>
-                                        </div>
                                     </div>
 
                                     <button type="submit" class="w-full bg-crimson-deep text-white py-3.5 rounded-xl font-bold font-label text-[14px] hover:bg-primary hover:shadow-lg active:scale-95 transition-all uppercase tracking-wider flex items-center justify-center gap-2">
@@ -3295,15 +3290,53 @@
         const fileSection = document.getElementById('adm-priest-file-section');
         const fileNameSpan = document.getElementById('adm-priest-file-name');
         const fileDownloadLink = document.getElementById('adm-priest-file-download');
+        const multiFilesSection = document.getElementById('adm-priest-multi-files-section');
 
         if (req.priestFileContent) {
-            fileSection.style.display = 'flex';
-            const fName = req.priestFileName || 'archivo_adjunto';
-            fileNameSpan.textContent = fName;
-            fileDownloadLink.href = req.priestFileContent;
-            fileDownloadLink.download = fName;
+            // Check if it's a JSON array of multiple files
+            if (req.priestFileContent.startsWith('[')) {
+                fileSection.style.display = 'none';
+                multiFilesSection.style.display = 'block';
+                multiFilesSection.innerHTML = '';
+                try {
+                    const files = JSON.parse(req.priestFileContent);
+                    files.forEach(f => {
+                        const fileRow = document.createElement('div');
+                        fileRow.className = "p-3 bg-slate-100 rounded-xl border border-outline-variant/30 flex items-center justify-between flex-wrap gap-4 font-body text-[13px] text-slate-warm";
+                        fileRow.innerHTML = `
+                            <div class="flex items-center gap-2 flex-1 min-w-0">
+                                <i class="ti ti-paperclip text-slate-warm text-[18px]"></i>
+                                <div class="truncate">
+                                    <div class="font-bold text-on-surface truncate">${f.fileName}</div>
+                                    <div class="text-[10px] text-slate-warm/60 truncate">${f.requirement}</div>
+                                </div>
+                            </div>
+                            <a href="${f.content}" download="${f.fileName}" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg font-bold font-label text-[11px] transition-all flex items-center gap-1.5 shadow-sm">
+                                <i class="ti ti-download"></i> Descargar
+                            </a>
+                        `;
+                        multiFilesSection.appendChild(fileRow);
+                    });
+                } catch (err) {
+                    console.error("Error parsing admin multi-files:", err);
+                    fileSection.style.display = 'flex';
+                    multiFilesSection.style.display = 'none';
+                    const fName = req.priestFileName || 'archivo_adjunto';
+                    fileNameSpan.textContent = fName;
+                    fileDownloadLink.href = req.priestFileContent;
+                    fileDownloadLink.download = fName;
+                }
+            } else {
+                fileSection.style.display = 'flex';
+                multiFilesSection.style.display = 'none';
+                const fName = req.priestFileName || 'archivo_adjunto';
+                fileNameSpan.textContent = fName;
+                fileDownloadLink.href = req.priestFileContent;
+                fileDownloadLink.download = fName;
+            }
         } else {
             fileSection.style.display = 'none';
+            multiFilesSection.style.display = 'none';
         }
 
         (async () => {
@@ -4009,6 +4042,8 @@
         }
     }
 
+    let parishAttachedFiles = {};
+
     function onParishTypeChange() {
         const category = document.getElementById('parish-req-category').value;
         const type = document.getElementById('parish-req-type').value;
@@ -4016,29 +4051,81 @@
         const reqList = document.getElementById('parish-req-requirements-list');
 
         reqList.innerHTML = '';
+        parishAttachedFiles = {}; // Reset files cache
 
         if (category && type && CANCILLERIA_REQUISITOS[category] && CANCILLERIA_REQUISITOS[category][type]) {
             reqBox.style.display = 'block';
-            CANCILLERIA_REQUISITOS[category][type].forEach(reqText => {
-                const li = document.createElement('li');
-                li.textContent = reqText;
-                reqList.appendChild(li);
+            CANCILLERIA_REQUISITOS[category][type].forEach((reqText, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = "p-3 bg-white/40 border border-outline-variant/30 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-3 text-left";
+                
+                const textCol = document.createElement('div');
+                textCol.className = "flex-1";
+                
+                const textP = document.createElement('p');
+                textP.className = "text-[12.5px] font-semibold text-slate-warm leading-snug";
+                textP.textContent = reqText;
+                
+                textCol.appendChild(textP);
+                
+                const uploadCol = document.createElement('div');
+                uploadCol.className = "shrink-0 flex items-center gap-2";
+                
+                const statusSpan = document.createElement('span');
+                statusSpan.id = `file-status-${index}`;
+                statusSpan.className = "text-[11px] text-gold-antique font-semibold hidden truncate max-w-[150px]";
+                
+                const label = document.createElement('label');
+                label.className = "cursor-pointer bg-crimson-deep text-white px-3.5 py-1.5 rounded-lg text-xs font-bold hover:bg-primary transition-colors flex items-center gap-1.5 shadow-sm";
+                label.innerHTML = '<i class="ti ti-upload text-[14px]"></i> Adjuntar';
+                
+                const fileInput = document.createElement('input');
+                fileInput.type = "file";
+                fileInput.className = "hidden";
+                fileInput.accept = ".pdf,.png,.jpg,.jpeg,.zip";
+                fileInput.dataset.reqName = reqText;
+                fileInput.addEventListener('change', async (e) => {
+                    const file = fileInput.files[0];
+                    if (file) {
+                        if (file.size > 5 * 1024 * 1024) {
+                            alert("El archivo adjunto supera el límite de 5MB.");
+                            fileInput.value = "";
+                            statusSpan.classList.add('hidden');
+                            statusSpan.textContent = "";
+                            delete parishAttachedFiles[index];
+                            return;
+                        }
+                        statusSpan.textContent = file.name;
+                        statusSpan.classList.remove('hidden');
+                        
+                        try {
+                            const content = await readFileAsDataURL(file);
+                            parishAttachedFiles[index] = {
+                                requirement: reqText,
+                                fileName: file.name,
+                                content: content
+                            };
+                        } catch (err) {
+                            console.error("Error reading file:", err);
+                            alert("Error al procesar el archivo.");
+                        }
+                    } else {
+                        statusSpan.classList.add('hidden');
+                        statusSpan.textContent = "";
+                        delete parishAttachedFiles[index];
+                    }
+                });
+                
+                label.appendChild(fileInput);
+                uploadCol.appendChild(statusSpan);
+                uploadCol.appendChild(label);
+                
+                itemDiv.appendChild(textCol);
+                itemDiv.appendChild(uploadCol);
+                reqList.appendChild(itemDiv);
             });
         } else {
             reqBox.style.display = 'none';
-        }
-    }
-
-    function onParishFileSelected(input) {
-        const infoEl = document.getElementById('parish-req-file-info');
-        if (input.files && input.files.length > 0) {
-            const file = input.files[0];
-            const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
-            infoEl.textContent = `Archivo seleccionado: ${file.name} (${sizeMB} MB)`;
-            infoEl.classList.remove('hidden');
-        } else {
-            infoEl.classList.add('hidden');
-            infoEl.textContent = '';
         }
     }
 
@@ -4050,27 +4137,14 @@
         const cedula = document.getElementById('parish-req-cedula').value.trim();
         const detailsInput = document.getElementById('parish-req-details').value.trim();
         
-        const fileInput = document.getElementById('parish-req-file');
-        let fileContent = "";
-        let fileName = "";
-        if (fileInput && fileInput.files && fileInput.files.length > 0) {
-            const file = fileInput.files[0];
-            if (file.size > 5 * 1024 * 1024) {
-                alert("El archivo adjunto supera el límite de 5MB.");
-                return;
-            }
-            try {
-                fileContent = await readFileAsDataURL(file);
-                fileName = file.name;
-            } catch (err) {
-                console.error("Error al procesar archivo adjunto:", err);
-                alert("Error al procesar el archivo seleccionado.");
-                return;
-            }
-        } else {
-            alert("Por favor adjunte la documentación requerida para este trámite.");
+        const filesArray = Object.values(parishAttachedFiles);
+        if (filesArray.length === 0) {
+            alert("Por favor adjunte al menos uno de los documentos requeridos para este trámite.");
             return;
         }
+        
+        const fileContent = JSON.stringify(filesArray);
+        const fileName = filesArray.map(f => f.fileName).join(', ');
 
         const today = new Date().toISOString().split('T')[0];
         let newId = "";
