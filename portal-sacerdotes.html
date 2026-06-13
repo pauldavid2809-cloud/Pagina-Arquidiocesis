@@ -480,11 +480,20 @@
                         <label for="login-email" class="font-label text-[13px] font-bold text-slate-warm block mb-1.5">Correo Electrónico</label>
                         <input type="email" id="login-email" class="w-full bg-warm-ivory/50 border-b-2 border-outline-variant focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. pauldavid2809@gmail.com" required>
                     </div>
-                    <div id="container-login-parish" style="display: none;">
-                        <label for="login-parish" class="font-label text-[13px] font-bold text-slate-warm block mb-1.5">Seleccione su Parroquia</label>
-                        <select id="login-parish" class="w-full bg-warm-ivory/50 border-b-2 border-outline-variant focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg">
-                            <option value="" disabled selected>Seleccione...</option>
-                        </select>
+                    <div id="container-login-parish" style="display: none;" class="relative">
+                        <label for="login-parish-search" class="font-label text-[13px] font-bold text-slate-warm block mb-1.5">Seleccione su Parroquia</label>
+                        <div class="relative">
+                            <input type="text" id="login-parish-search" class="w-full bg-warm-ivory/50 border-b-2 border-outline-variant focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 pr-10 transition-colors font-body text-[14px] rounded-t-lg cursor-pointer" placeholder="Escriba para buscar o seleccione..." autocomplete="off">
+                            <button type="button" id="btn-toggle-parish-dropdown" class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-warm/70 hover:text-crimson-deep transition-colors">
+                                <i class="ti ti-chevron-down text-[18px]"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" id="login-parish" value="">
+                        
+                        <!-- Dropdown list -->
+                        <div id="login-parish-dropdown" class="absolute z-[100] left-0 right-0 mt-1 max-h-60 overflow-y-auto bg-white border border-outline-variant/30 rounded-lg shadow-xl hidden divide-y divide-slate-100">
+                            <!-- Items populated dynamically -->
+                        </div>
                     </div>
                     <div>
                         <label for="login-password" class="font-label text-[13px] font-bold text-slate-warm block mb-1.5">Contraseña</label>
@@ -2107,19 +2116,138 @@
         populateParishDropdown();
     }
 
+    let activeParishDropdownIndex = -1;
+    
     function populateParishDropdown() {
-        const select = document.getElementById('login-parish');
-        if (!select) return;
+        const dropdown = document.getElementById('login-parish-dropdown');
+        const searchInput = document.getElementById('login-parish-search');
+        const toggleBtn = document.getElementById('btn-toggle-parish-dropdown');
+        const hiddenInput = document.getElementById('login-parish');
         
-        select.innerHTML = '<option value="" disabled selected>Seleccione su Parroquia...</option>';
+        if (!dropdown || !searchInput || !hiddenInput) return;
         
-        const sorted = [...(db.parroquias || [])].sort((a, b) => a.name.localeCompare(b.name));
-        sorted.forEach(p => {
-            const opt = document.createElement('option');
-            opt.value = p.code;
-            opt.textContent = `${p.name} (${p.code})`;
-            select.appendChild(opt);
+        // Sort parishes by code order (natural sorting PZ1-1, PZ1-2... PZ9-5, RZ...)
+        const parishes = [...(db.parroquias || [])].sort((a, b) => a.code.localeCompare(b.code, undefined, { numeric: true }));
+        
+        function renderItems(filterText = "") {
+            dropdown.innerHTML = "";
+            const cleanFilterText = filterText.toLowerCase().trim();
+            
+            const filtered = parishes.filter(p => {
+                if (!cleanFilterText) return true;
+                const nameMatch = p.name && p.name.toLowerCase().includes(cleanFilterText);
+                const codeMatch = p.code && p.code.toLowerCase().includes(cleanFilterText);
+                const parrocoMatch = (p.parroco || "").toLowerCase().includes(cleanFilterText);
+                const zoneMatch = p.zone && p.zone.toLowerCase().includes(cleanFilterText);
+                return nameMatch || codeMatch || parrocoMatch || zoneMatch;
+            });
+            
+            if (filtered.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = "px-4 py-3 text-slate-warm/50 text-center text-[13px]";
+                empty.textContent = "No se encontraron parroquias";
+                dropdown.appendChild(empty);
+                return;
+            }
+            
+            filtered.forEach(p => {
+                const item = document.createElement('div');
+                item.className = "px-4 py-2.5 hover:bg-slate-50 cursor-pointer transition-colors text-left";
+                
+                const topRow = document.createElement('div');
+                topRow.className = "flex justify-between items-start gap-2";
+                
+                const nameSpan = document.createElement('span');
+                nameSpan.className = "font-bold text-slate-warm text-[13px] leading-snug";
+                nameSpan.textContent = p.name;
+                
+                const codeSpan = document.createElement('span');
+                codeSpan.className = "shrink-0 px-1.5 py-0.5 text-[10px] font-bold bg-gold-antique/10 text-gold-antique border border-gold-antique/20 rounded uppercase";
+                codeSpan.textContent = p.code;
+                
+                topRow.appendChild(nameSpan);
+                topRow.appendChild(codeSpan);
+                
+                const bottomRow = document.createElement('div');
+                bottomRow.className = "text-[11px] text-slate-warm/60 mt-0.5";
+                bottomRow.textContent = p.parroco || "Párroco por confirmar";
+                
+                item.appendChild(topRow);
+                item.appendChild(bottomRow);
+                
+                item.addEventListener('click', () => {
+                    searchInput.value = `${p.name} (${p.code})`;
+                    hiddenInput.value = p.code;
+                    dropdown.classList.add('hidden');
+                    if (toggleBtn) toggleBtn.innerHTML = '<i class="ti ti-chevron-down text-[18px]"></i>';
+                });
+                
+                dropdown.appendChild(item);
+            });
+        }
+        
+        // Initial render
+        renderItems();
+        
+        // Input filter handler
+        searchInput.addEventListener('input', (e) => {
+            dropdown.classList.remove('hidden');
+            if (toggleBtn) toggleBtn.innerHTML = '<i class="ti ti-chevron-up text-[18px]"></i>';
+            if (!e.target.value) {
+                hiddenInput.value = "";
+            }
+            renderItems(e.target.value);
         });
+        
+        // Toggle dropdown on search input click
+        searchInput.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isHidden = dropdown.classList.contains('hidden');
+            if (isHidden) {
+                dropdown.classList.remove('hidden');
+                if (toggleBtn) toggleBtn.innerHTML = '<i class="ti ti-chevron-up text-[18px]"></i>';
+                renderItems(searchInput.value);
+            } else {
+                dropdown.classList.add('hidden');
+                if (toggleBtn) toggleBtn.innerHTML = '<i class="ti ti-chevron-down text-[18px]"></i>';
+            }
+        });
+        
+        // Toggle dropdown on chevron click
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isHidden = dropdown.classList.contains('hidden');
+                if (isHidden) {
+                    dropdown.classList.remove('hidden');
+                    toggleBtn.innerHTML = '<i class="ti ti-chevron-up text-[18px]"></i>';
+                    renderItems(searchInput.value);
+                    searchInput.focus();
+                } else {
+                    dropdown.classList.add('hidden');
+                    toggleBtn.innerHTML = '<i class="ti ti-chevron-down text-[18px]"></i>';
+                }
+            });
+        }
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !dropdown.contains(e.target) && (!toggleBtn || !toggleBtn.contains(e.target))) {
+                dropdown.classList.add('hidden');
+                if (toggleBtn) toggleBtn.innerHTML = '<i class="ti ti-chevron-down text-[18px]"></i>';
+            }
+        });
+        
+        // Listen to form reset to reset custom select state
+        const form = document.getElementById('form-login');
+        if (form) {
+            form.addEventListener('reset', () => {
+                hiddenInput.value = "";
+                searchInput.value = "";
+                if (toggleBtn) toggleBtn.innerHTML = '<i class="ti ti-chevron-down text-[18px]"></i>';
+                setTimeout(() => renderItems(""), 10);
+            });
+        }
     }
 
     function saveLocalDB() {
@@ -2830,8 +2958,8 @@
             return;
         }
 
-        // Sort alphabetically by name
-        list.sort((a, b) => a.name.localeCompare(b.name));
+        // Sort by code order (natural sorting PZ1-1, PZ1-2... PZ9-5, RZ...)
+        list.sort((a, b) => a.code.localeCompare(b.code, undefined, { numeric: true }));
 
         tbody.innerHTML = '';
         list.forEach(p => {
