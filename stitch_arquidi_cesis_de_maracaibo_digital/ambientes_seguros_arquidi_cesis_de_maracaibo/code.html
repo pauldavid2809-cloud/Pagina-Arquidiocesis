@@ -1,0 +1,398 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Ambientes Seguros | Arquidiócesis de Maracaibo</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Poppins (Body) and placeholders for Rotis Sans Serif -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Note: Rotis Sans Serif is a premium font often requiring local hosting or specific CDN. 
+         Assuming the environment provides it or it falls back to sans-serif as requested. -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#baeaff",
+                    "on-primary-container": "#ff8888",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#7a1a22",
+                    "on-surface-variant": "#574241",
+                    "tertiary-container": "#004558",
+                    "secondary": "#775a00",
+                    "secondary-fixed": "#ffdf98",
+                    "surface-dim": "#dbdad5",
+                    "crimson-deep": "#7A1A22",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#fbf9f4",
+                    "inverse-surface": "#30312e",
+                    "surface-container": "#f0eee9",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "slate-warm": "#4A4543",
+                    "surface-container-highest": "#e4e2dd",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004d62",
+                    "primary": "#5b000f",
+                    "inverse-on-surface": "#f2f1ec",
+                    "secondary-container": "#fece57",
+                    "primary-fixed": "#ffdad8",
+                    "on-secondary-fixed": "#251a00",
+                    "background": "#fbf9f4",
+                    "inverse-primary": "#ffb3b1",
+                    "on-tertiary-container": "#6db4d0",
+                    "tertiary-fixed-dim": "#89d0ed",
+                    "on-primary-fixed-variant": "#842229",
+                    "primary-fixed-dim": "#ffb3b1",
+                    "on-secondary-container": "#735700",
+                    "lake-azure": "#87CEEB",
+                    "surface-variant": "#e4e2dd",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "surface-container-low": "#f5f3ee",
+                    "tertiary": "#002d3b",
+                    "surface-tint": "#a43a3e",
+                    "secondary-fixed-dim": "#eec14b",
+                    "outline": "#8a7170",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#001f29",
+                    "on-background": "#1b1c19",
+                    "on-primary-fixed": "#410008",
+                    "on-surface": "#1b1c19",
+                    "outline-variant": "#ddc0be",
+                    "surface-container-high": "#eae8e3",
+                    "warm-ivory": "#F9F7F2",
+                    "surface": "#fbf9f4",
+                    "gold-antique": "#C59B27"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-md": "1rem",
+                    "stack-lg": "2rem",
+                    "stack-sm": "0.5rem",
+                    "section-gap": "5rem",
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "display": ["Rotis Sans Serif", "sans-serif"],
+                    "headline": ["Rotis Sans Serif", "sans-serif"],
+                    "body": ["Poppins", "sans-serif"],
+                    "label": ["Poppins", "sans-serif"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .bento-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(74, 69, 67, 0.08);
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 z-50 w-full h-20 bg-surface/85 backdrop-blur-md border-b border-warm-ivory/20 shadow-sm transition-all duration-300">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto h-full">
+<div class="flex items-center gap-4"><a href="/" class="flex items-center gap-3 group">
+  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcpho83H0knJv5ABHkZKqidkVeb8mbk0heP18c5oJxxlySqtDccFiy33yZEUNTotAEtoWtVvIFhxS68XoOdyqOqsH_nR1T11N1Bvj7ajDgnKNMUvchdZCllnb2WpPH5m6Iagrk462GKWkBkX5RQJcc3NUbhvrdFYBBO_ejREg-Jgt22irp3kuXkZwZU0W6q9SYsH7hDCpjwm43C2FjYkMgE6vCSMi-N7e_Vcu-sKQPup0kpWWWc_RhQW-z5bcruSARhA" alt="Logo Arquidiócesis de Maracaibo" class="h-10 w-auto object-contain">
+  <div class="flex flex-col justify-center">
+    <span class="font-headline font-bold text-crimson-deep text-label-lg leading-none uppercase tracking-wider">Arquidiócesis</span>
+    <span class="font-headline font-bold text-crimson-deep text-label-lg leading-none uppercase tracking-wider">De Maracaibo</span>
+  </div>
+</a></div>
+<nav class="hidden md:flex items-center gap-stack-lg">
+<a class="font-label text-label-lg text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Arquidiócesis</a>
+<a class="font-label text-label-lg text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Pastoral</a>
+<a class="font-label text-label-lg text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Cancillería</a>
+<a class="font-label text-label-lg text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Noticias</a>
+<a class="font-label text-label-lg text-crimson-deep border-b-2 border-gold-antique pb-1 font-bold" href="#">Ambientes Seguros</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="hidden md:block px-6 py-2 bg-crimson-deep text-on-primary rounded-lg font-label text-label-lg hover:opacity-90 transition-all">Portal Clero</button>
+<span class="material-symbols-outlined text-crimson-deep cursor-pointer" style="font-size: 28px;">account_circle</span>
+<button class="md:hidden text-crimson-deep" onclick="toggleMobileNav()">
+<span class="material-symbols-outlined" style="font-size: 32px;">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative min-h-[614px] flex items-center justify-center pt-20 overflow-hidden">
+<div class="absolute inset-0 bg-crimson-deep">
+<img alt="Protección y Cuidado" class="w-full h-full object-cover mix-blend-overlay opacity-40" data-alt="A serene and safe architectural interior of a modern cathedral with high ceilings and soft, diffused sunlight streaming through stained glass windows. The atmosphere is solemn, protective, and spiritually peaceful, utilizing a palette of deep crimsons, warm ivories, and golden highlights to evoke a sense of absolute security and institutional care." src="https://lh3.googleusercontent.com/aida/AP1WRLsZitbTvjkn3VP-beitcOHZGo1ETNEWo0RI-5NF6lLsoMaYlAH6-QsVcgimOAcBe6_YOIENd5JiZPkisFxewpgeXiJCD3wabWKXVSWgo-A95Q-oFtvLhJipBamEP0kNJTZ9uGopmxSBthRuTG9s-au7MC7Io7DwvWAQBq3TeWaLCNXJ5enSNZGuutKwSsb_-g8KgW9vbIFzWaj9PutiANw7npCTcyg6vjPetVDKllBu6eq0YGIYQZtxzgA">
+</div>
+<div class="relative z-10 max-w-container-max mx-auto px-margin-mobile md:px-gutter text-center">
+<div class="animate-fade-in-up">
+<span class="inline-block px-4 py-1 mb-6 rounded-full border border-gold-antique text-gold-antique font-label text-label-lg bg-gold-antique/10">CAPAS</span>
+<h1 class="font-display text-display-lg text-white mb-6 md:text-headline-lg">Ambientes Seguros</h1>
+<p class="font-display text-body-lg md:text-headline-sm text-warm-ivory max-w-2xl mx-auto italic opacity-90">
+                "Comisión Arquidiocesana para la Promoción de Ambientes Seguros: Un compromiso inquebrantable con la dignidad humana."
+            </p>
+</div>
+</div>
+</section>
+<!-- Main Content: Bento Grid -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Policy Section -->
+<div class="md:col-span-8 bento-card glass-panel bg-white/70 border border-warm-ivory p-stack-lg rounded-xl flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-crimson-deep" style="font-size: 40px;">verified_user</span>
+<h2 class="font-headline text-headline-lg text-crimson-deep md:text-headline-sm">Cero Tolerancia a los Abusos</h2>
+</div>
+<p class="font-body text-body-lg text-slate-warm mb-8">
+                La Iglesia particular de Maracaibo está firmemente comprometida con la protección de menores y personas vulnerables. No solo es una obligación legal, sino un mandato moral y espiritual asegurar que cada espacio eclesial sea un refugio de paz y santidad.
+            </p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-stack-md">
+<div class="p-stack-md bg-surface-container rounded-lg border-l-4 border-gold-antique">
+<span class="material-symbols-outlined text-gold-antique mb-2">shield</span>
+<p class="font-label text-label-lg text-on-surface">Prevención Estricta</p>
+</div>
+<div class="p-stack-md bg-surface-container rounded-lg border-l-4 border-gold-antique">
+<span class="material-symbols-outlined text-gold-antique mb-2">school</span>
+<p class="font-label text-label-lg text-on-surface">Formación Integral</p>
+</div>
+<div class="p-stack-md bg-surface-container rounded-lg border-l-4 border-gold-antique">
+<span class="material-symbols-outlined text-gold-antique mb-2">volunteer_activism</span>
+<p class="font-label text-label-lg text-on-surface">Atención a Víctimas</p>
+</div>
+</div>
+</div>
+<!-- Image Support -->
+<div class="md:col-span-4 rounded-xl overflow-hidden shadow-lg h-full min-h-[300px]">
+<img alt="Compromiso con la protección" class="w-full h-full object-cover" data-alt="A close-up shot of two hands holding a small, delicate clay figure in a protective gesture, symbolizing care and safeguarding. The lighting is warm and cinematic, emphasizing textures and a sense of human connection and vulnerability. The background is a soft-focus warm ivory, keeping the focus on the act of protection." src="https://lh3.googleusercontent.com/aida/AP1WRLucOPIAGQcu5tPtKwe7wy7b8v7n1YpHM6fbDeLUFJ9fjHRTysuZbEU4JS0SEYmLJewrh8gSFzFFgoeN8UrfHIAHhCpkgzx3FQWwqQRiPphLhA1_x79QFnzJpROojX2N2Pjaow1bpwuFAVkJ86XDf2O54vguN7udemTODg7kysPu99tyZSbMT4YtQ2902wy07UqHzp5lsitFpGQAf2ETDsABtv1qzKY57D0jPhCnj2dyPDjWDIPVEZ5Oqg">
+</div>
+<!-- CAPAS Commission Info -->
+<div class="md:col-span-4 bg-crimson-deep text-white p-stack-lg rounded-xl flex flex-col justify-between">
+<div>
+<h3 class="font-headline text-headline-sm mb-4 text-primary-fixed">La Comisión CAPAS</h3>
+<p class="font-body text-body-md opacity-90 mb-6">
+                    Equipo multidisciplinario encargado de supervisar los protocolos de seguridad, realizar auditorías constantes y capacitar a todos los agentes de pastoral en el territorio arquidiocesano.
+                </p>
+</div>
+<ul class="space-y-3">
+<li class="flex items-center gap-2 font-label text-label-lg"><span class="material-symbols-outlined text-gold-antique">check_circle</span> Auditoría de Parroquias</li>
+<li class="flex items-center gap-2 font-label text-label-lg"><span class="material-symbols-outlined text-gold-antique">check_circle</span> Manuales de Convivencia</li>
+<li class="flex items-center gap-2 font-label text-label-lg"><span class="material-symbols-outlined text-gold-antique">check_circle</span> Apoyo Psicológico</li>
+</ul>
+</div>
+<!-- Contact & Reporting -->
+<div class="md:col-span-8 bento-card bg-warm-ivory border-2 border-crimson-deep/10 p-stack-lg rounded-xl relative overflow-hidden" id="contacto">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<span class="material-symbols-outlined" style="font-size: 160px;">mail</span>
+</div>
+<div class="relative z-10">
+<h3 class="font-headline text-headline-lg text-crimson-deep mb-2 md:text-headline-md">Canal de Denuncias</h3>
+<p class="font-body text-body-md text-slate-warm mb-8 max-w-lg">
+                    Si usted o alguien que conoce ha sido víctima de cualquier tipo de abuso en el entorno eclesial, ponemos a su disposición canales confidenciales y directos.
+                </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+<div class="flex flex-col gap-2">
+<label class="font-label text-label-lg text-crimson-deep">Contacto Directo</label>
+<a class="font-headline text-headline-sm text-slate-warm hover:text-crimson-deep transition-colors underline decoration-gold-antique underline-offset-8" href="mailto:ambientesseguros@arquimcb.org">
+                            ambientesseguros@arquimcb.org
+                        </a>
+</div>
+<div class="flex items-end">
+<button class="w-full md:w-auto px-8 py-4 bg-crimson-deep text-on-primary rounded-lg font-label text-label-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">description</span>
+                            Descargar Formulario de Reporte
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Document List -->
+<div class="md:col-span-12 glass-panel bg-surface-container-high/50 p-stack-lg rounded-xl border border-outline-variant/30">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<h3 class="font-headline text-headline-md text-on-surface">Recursos y Documentación</h3>
+<p class="font-label text-label-lg text-slate-warm">Documentos oficiales de la Santa Sede y la Arquidiócesis.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<a class="flex items-center p-stack-md bg-white rounded-lg hover:bg-warm-ivory transition-all group" href="#">
+<span class="material-symbols-outlined text-crimson-deep mr-4">description</span>
+<div class="flex-grow">
+<p class="font-label text-label-lg text-on-surface group-hover:text-crimson-deep">Motu Proprio "Vos estis lux mundi"</p>
+<p class="font-label text-label-md text-slate-warm opacity-70">Papa Francisco</p>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">download</span>
+</a>
+<a class="flex items-center p-stack-md bg-white rounded-lg hover:bg-warm-ivory transition-all group" href="#">
+<span class="material-symbols-outlined text-crimson-deep mr-4">policy</span>
+<div class="flex-grow">
+<p class="font-label text-label-lg text-on-surface group-hover:text-crimson-deep">Protocolo Arquidiocesano 2024</p>
+<p class="font-label text-label-md text-slate-warm opacity-70">Documento PDF (2.4MB)</p>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">download</span>
+</a>
+<a class="flex items-center p-stack-md bg-white rounded-lg hover:bg-warm-ivory transition-all group" href="#">
+<span class="material-symbols-outlined text-crimson-deep mr-4">gavel</span>
+<div class="flex-grow">
+<p class="font-label text-label-lg text-on-surface group-hover:text-crimson-deep">Normas de Conducta para el Clero</p>
+<p class="font-label text-label-md text-slate-warm opacity-70">Actualizado Enero 2024</p>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">download</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+<!-- Detailed Section: Education & Formation -->
+<section class="bg-surface-container-low py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+<div class="flex flex-col md:flex-row gap-stack-lg items-center">
+<div class="w-full md:w-1/2">
+<h2 class="font-headline text-headline-lg text-crimson-deep mb-6">Formación Permanente</h2>
+<p class="font-body text-body-lg text-slate-warm mb-8">
+                    La prevención nace del conocimiento. Todos nuestros sacerdotes, diáconos, religiosos y voluntarios laicos participan en jornadas obligatorias de sensibilización y capacitación psicológica para detectar señales de riesgo.
+                </p>
+<div class="space-y-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-gold-antique/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-gold-antique">group</span>
+</div>
+<div>
+<h4 class="font-label text-label-lg text-on-surface">Talleres para Catequistas</h4>
+<p class="font-body text-slate-warm/80 text-sm">Herramientas pedagógicas seguras para el trato con menores.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-gold-antique/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-gold-antique">psychology</span>
+</div>
+<div>
+<h4 class="font-label text-label-lg text-on-surface">Apoyo Profesional</h4>
+<p class="font-body text-slate-warm/80 text-sm">Alianza con psicólogos y expertos en derecho canónico.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2">
+<div class="relative rounded-2xl overflow-hidden shadow-2xl">
+<img alt="Formación CAPAS" class="w-full h-auto aspect-video object-cover" data-alt="A brightly lit, modern conference room where a diverse group of people in semi-formal attire are engaged in a professional workshop. The atmosphere is intellectual and collaborative, with large windows showing a clean city skyline in the background. The color tone is warm and professional, emphasizing the serious nature of the educational commitment." src="https://lh3.googleusercontent.com/aida/AP1WRLtc_sXPFlfy2tiU9f01zBoApgK_7MxdAJOYj3PsRX4y9Bxb-qgcK-TyOLQnMSbFpLC4Z-uxRFq7LjtzXaWUXM1QIzUGJOW8EWIrMPi531TkTWSCP6ES5isZdeG2xheV4IV9HBuyWV-nAyy3bs-uFgPu_9obqz_Pk-a9JVGDmg6js1_jMLRnxa_gdzcYcdH02JZAeq0rmgtFnIGcCfMwWxMqeM15_jUtLT2Lr8kI6uk_ch-igLuDRslTds8">
+<div class="absolute inset-0 bg-gradient-to-t from-crimson-deep/40 to-transparent"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-stack-lg bg-surface-container-highest border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<h4 class="font-headline text-headline-sm text-crimson-deep mb-4">Arquidiócesis</h4>
+<p class="font-body text-body-md text-on-surface opacity-80 mb-4">Soberana e Intelectual. Sirviendo a la fe de nuestro pueblo marabino.</p>
+</div>
+<div class="md:col-span-1">
+<h5 class="font-label text-label-lg text-on-surface mb-4">Enlaces Rápidos</h5>
+<ul class="space-y-2">
+<li class=""><a class="font-label text-label-lg text-slate-warm hover:text-crimson-deep underline underline-offset-4 decoration-gold-antique" href="#">Privacidad</a></li>
+<li class=""><a class="font-label text-label-lg text-slate-warm hover:text-crimson-deep" href="#">Términos</a></li>
+<li class=""><a class="font-label text-label-lg text-slate-warm hover:text-crimson-deep" href="#">Ambientes Seguros</a></li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<h5 class="font-label text-label-lg text-on-surface mb-4">Contacto</h5>
+<p class="font-body text-body-md text-on-surface opacity-80">Av. 4 con calle 95, frente a la Plaza Bolívar.<br>Maracaibo, Estado Zulia.</p>
+</div>
+<div class="md:col-span-1">
+<h5 class="font-label text-label-lg text-on-surface mb-4">Boletín Sagrado</h5>
+<div class="flex gap-2">
+<input class="w-full bg-white border-none rounded-lg p-2 text-sm focus:ring-1 focus:ring-crimson-deep font-body" placeholder="Correo electrónico" type="email">
+<button class="bg-gold-antique text-white p-2 rounded-lg"><span class="material-symbols-outlined">send</span></button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-12 pt-8 border-t border-outline-variant/20 text-center">
+<p class="font-body text-body-md text-on-surface opacity-60">© 2024 Arquidiócesis de Maracaibo. Todos los derechos reservados. Sagrado Modernismo.</p>
+</div>
+</footer>
+<!-- Mobile Navigation Overlay -->
+<div class="fixed inset-0 z-[60] bg-surface-bright/95 backdrop-blur-xl hidden transform transition-transform duration-300 translate-x-full" id="mobileNav">
+<div class="p-stack-lg flex flex-col h-full">
+<div class="flex justify-between items-center mb-12">
+<span class="font-headline text-headline-md text-crimson-deep">Menú</span>
+<button onclick="toggleMobileNav()"><span class="material-symbols-outlined text-crimson-deep" style="font-size: 32px;">close</span></button>
+</div>
+<nav class="flex flex-col gap-8">
+<a class="font-headline text-headline-sm text-on-surface" href="#">Arquidiócesis</a>
+<a class="font-headline text-headline-sm text-on-surface" href="#">Pastoral</a>
+<a class="font-headline text-headline-sm text-on-surface" href="#">Cancillería</a>
+<a class="font-headline text-headline-sm text-on-surface" href="#">Noticias</a>
+<a class="font-headline text-headline-sm text-crimson-deep" href="#">Ambientes Seguros</a>
+</nav>
+<div class="mt-auto">
+<button class="w-full py-4 bg-crimson-deep text-white rounded-xl font-label text-label-lg">Portal Clero</button>
+</div>
+</div>
+</div>
+<script>
+    function toggleMobileNav() {
+        const nav = document.getElementById('mobileNav');
+        if (nav.classList.contains('hidden')) {
+            nav.classList.remove('hidden');
+            setTimeout(() => nav.classList.remove('translate-x-full'), 10);
+        } else {
+            nav.classList.add('translate-x-full');
+            setTimeout(() => nav.classList.add('hidden'), 300);
+        }
+    }
+
+    // Atmosphere interaction
+    document.querySelectorAll('.bento-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.querySelector('.material-symbols-outlined')?.classList.add('scale-110');
+        });
+        card.addEventListener('mouseleave', () => {
+            card.querySelector('.material-symbols-outlined')?.classList.remove('scale-110');
+        });
+    });
+</script>
+
+
+
+
+
+
+</body></html>

@@ -1,0 +1,91 @@
+
+**Zona 1: Chiquinquirá** (8 parroquias)
+- `img/templos/PZ1-1.webp` → PARROQUIA EL SAGRARIO LA CATEDRAL DE LOS SANTOS APÓSTOLES PEDRO Y PABLO
+- `img/templos/PZ1-2.webp` → PARROQUIA SANTA LUCIA
+- `img/templos/PZ1-3.webp` → PARROQUIA SANTA BÁRBARA
+- `img/templos/PZ1-4.webp` → PARROQUIA SAN JUAN DE DIOS Y BASÍLICA SANTUARIO DE NTRA. SRA. DE CHIQUINQUIRÁ
+- `img/templos/PZ1-5.webp` → PARROQUIA SAN BENITO DE PALERMO
+- `img/templos/PZ1-6.webp` → PARROQUIA NTRA. SRA. DE LA ASUNCIÓN
+- `img/templos/PZ1-7.webp` → PARROQUIA NTRA. SRA. DE LA MEDALLA MILAGROSA
+- `img/templos/PZ1-8.webp` → PARROQUIA SANTO CRISTO DE ARANZA
+
+**Zona 2: Sagrado Corazón** (9 parroquias)
+- `img/templos/PZ2-1.webp` → PARROQUIA SAN JOSÉ
+- `img/templos/PZ2-2.webp` → PARROQUIA SAN ALFONSO MARÍA DE LIGORIO
+- `img/templos/PZ2-3.webp` → PARROQUIA NTRA. SRA. DEL PERPETUO SOCORRO
+- `img/templos/PZ2-4.webp` → PARROQUIA NTRA. SRA. DE LA CONSOLACIÓN
+- `img/templos/PZ2-5.webp` → PARROQUIA NTRA. SRA. DEL ROSARIO
+- `img/templos/PZ2-6.webp` → PARROQUIA SAN JUDAS TADEO
+- `img/templos/PZ2-7.webp` → SAN ANTONIO MARÍA CLARET
+- `img/templos/PZ2-8.webp` → PARROQUIA NTRA. SRA. DE LAS MERCEDES
+- `img/templos/PZ2-9.webp` → PARROQUIA SAGRADO CORAZÓN DE JESÚS
+
+**Zona 3: La Sagrada Familia** (10 parroquias)
+- `img/templos/PZ3-1.webp` → PARROQUIA NTRA. SRA. DE LOURDES (MARACAIBO)
+- `img/templos/PZ3-2.webp` → PARROQUIA SAN MIGUEL ARCÁNGEL
+- `img/templos/PZ3-3.webp` → PARROQUIA LA SAGRADA FAMILIA
+- `img/templos/PZ3-4.webp` → PARROQUIA NTRA. SRA. DEL CARMEN (MARACAIBO)
+- `img/templos/PZ3-5.webp` → PARROQUIA SAN PEDRO APÓSTOL
+- `img/templos/PZ3-6.webp` → PARROQUIA SAN MARTÍN DE PORRES
+- `img/templos/PZ3-7.webp` → PARROQUIA SANTA TERESITA DEL NIÑO JESÚS
+- `img/templos/PZ3-8.webp` → PARROQUIA NIÑA MARÍA
+- `img/templos/PZ3-9.webp` → PARROQUIA SAN IGNACIO DE LOYOLA
+- `img/templos/PZ3-10.webp` → SAN TARSICIO
+
+**Zona 4: Nuestra Señora de Coromoto** (11 parroquias)
+- `img/templos/PZ4-1.webp` → PARROQUIA SANTA MÓNICA –LA CONCEPCIÓN
+- `img/templos/PZ4-2.webp` → PARROQUIA NTRA. SRA. DE COROMOTO
+- `img/templos/PZ4-3.webp` → PARROQUIA SAN PABLO APÓSTOL
+- `img/templos/PZ4-4.webp` → PARROQUIA NUESTRO SEÑOR JESUCRISTO REY
+- `img/templos/PZ4-5.webp` → PARROQUIA EL BUEN PASTOR
+- `img/templos/PZ4-6.webp` → PARROQUIA NTRA. SRA. DE LA PAZ
+- `img/templos/PZ4-7.webp` → PARROQUIA LA RESURRECCIÓN DEL SEÑOR
+- `img/templos/PZ4-8.webp` → PARROQUIA SAN ISIDRO LABRADOR
+- `img/templos/PZ4-9.webp` → PARROQUIA SANTÍSIMO SACRAMENTO
+- `img/templos/PZ4-10.webp` → PARROQUIA SANTA INÉS
+- `img/templos/PZ4-11.webp` → PARROQUIA San Juan Crisóstomo y San Juan Pablo II (Parroquia Universitaria)
+
+**Zona 5: San Francisco** (10 parroquias)
+- `img/templos/PZ5-1.webp` → PARROQUIA NTRA. DE GUADALUPE
+- `img/templos/PZ5-2.webp` → PARROQUIA JESÚS NAZARENO
+- `img/templos/PZ5-3.webp` → PARROQUIA SANTÍSIMO SALVADOR
+- `img/templos/PZ5-4.webp` → PARROQUIA SANTÍSIMO CRISTO DE SAN FRANCISCO
+- `img/templos/PZ5-5.webp` → PARROQUIA SAN JUAN BAUTISTA
+- `img/templos/PZ5-6.webp` → PARROQUIA SANTO DOMINGO DE GUZMÁN
+- `img/templos/PZ5-7.webp` → PARROQUIA SAN FELIPE NERI
+- `img/templos/PZ5-8.webp` → PARROQUIA NTRA. SRA. DE LA DEL COBRE
+- `img/templos/PZ5-9.webp` → PARROQUIA TRANSFIGURACIÓN DEL SEÑOR
+- `img/templos/PZ5-10.webp` → PARROQUIA SANTA MARIANA DE JESÚS
+
+**Zona 6: Fátima** (8 parroquias)
+- `img/templos/PZ6-1.webp` → PARROQUIA NTRA. SRA. DE FÁTIMA
+- `img/templos/PZ6-2.webp` → PARROQUIA SAN RAMÓN NONATO
+- `img/templos/PZ6-3.webp` → PARROQUIA LA SANTÍSIMA TRINIDAD
+- `img/templos/PZ6-4.webp` → PARROQUIA NTRA. SRA. DE LA CANDELARIA
+- `img/templos/PZ6-5.webp` → PARROQUIA SANTA ROSA DE LIMA – Santa Rita de Casia
+- `img/templos/PZ6-6.webp` → PARROQUIA SAN BARTOLOMÉ. (Ziruma)
+- `img/templos/PZ6-7.webp` → PARROQUIA SAN ONOFRE
+- `img/templos/PZ6-8.webp` → PARROQUIA SAN JUAN BOSCO Sede del curso propedéutico
+
+**Zona 7: San Bartolomé Apóstol** (11 parroquias)
+- `img/templos/PZ7-1.webp` → PARROQUIA SAN RAFAEL ARCÁNGEL EL MOJAN
+- `img/templos/PZ7-3.webp` → PARROQUIA NTRA. SRA. DE LOURDES (ISLA DE TOAS)
+- `img/templos/PZ7-6.webp` → PARROQUIA MARÍA AUXILIADORA (SANTA CRUZ DE MARA)
+- `img/templos/PZ7-7.webp` → PARROQUIA LA INMACULADA CONCEPCIÓN (CARRASQUERO)
+- `img/templos/PZ7-9.webp` → PARROQUIA NTRA. SEÑORA DE COROMOTO Y SAN JOSE OBRERO (LA SIERRITA)
+- `img/templos/PZ7-10.webp` → PARROQUIA JESÚS REDENTOR (TAMARE)
+- `img/templos/PZ7-2.webp` → PARROQUIA SAN BARTOLOMÉ APÓSTOL. (SINAMAICA)
+- `img/templos/PZ7-8.webp` → PARROQUIA SAN JOSÉ DE PARAGUAIPOA
+- `img/templos/PZ7-4.webp` → PARROQUIA EL SAGRADO CORAZÓN DE JESÚS- GUARERO
+- `img/templos/PZ7-5.webp` → PARROQUIA SANTA MARÍA (GUANA)
+- `img/templos/PZ7-11.webp` → Parroquia Personal Eclesiástica de Ntra. Sra. Del Carmen. (erección 15/09/2010
+
+**Zona 8: La Inmaculada Concepción** (5 parroquias)
+- `img/templos/PZ8-1.webp` → PARROQUIA LA INMACULADA CONCEPCIÓN (LA CAÑADA DE URDANETA)
+- `img/templos/PZ8-2.webp` → PARROQUIA NTRA. SRA. DEL CARMEN (EL CARMELO) (LA CAÑADA DE URDANETA)
+- `img/templos/PZ8-3.webp` → PARROQUIA NTRA. SRA. DE CHIQUINQUIRÁ (LA ENSENADA)
+- `img/templos/PZ8-4.webp` → SAN ANTONIO DE PADUA Y NTRA. SRA. VIRGEN DE LOS PARRALES
+- `img/templos/PZ8-5.webp` → PARROQUIA PURÍSIMA MADRE DE DIOS Y SAN BENITO DE PALERMO Jorge Enrique Rodríguez González.
+
+**TOTAL: 72 imágenes de templos**
++ `img/foto_templo.webp` → Imagen genérica de respaldo

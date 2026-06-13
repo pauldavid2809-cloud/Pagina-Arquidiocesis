@@ -1,0 +1,1123 @@
+<!DOCTYPE html><html class="light" lang="es">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Vida Consagrada | Arquidiócesis de Maracaibo</title>
+<meta content="Delegación de Vida Consagrada de la Arquidiócesis de Maracaibo. Comunidades religiosas, órdenes contemplativas e institutos seculares de nuestra región." name="description">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/stitch-config.js"></script>
+<!-- Core Styles -->
+<link href="css/stitch-core.css" rel="stylesheet">
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .bento-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(122,26,34,0.12);
+  }
+  .vc-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .vc-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px rgba(122,26,34,0.1);
+  }
+  .tab-btn {
+    transition: all 0.2s ease;
+  }
+  .tab-btn.active {
+    background: #7A1A22;
+    color: white;
+    border-color: #7A1A22;
+  }
+  .tab-btn:not(.active) {
+    background: white;
+    color: #4A4543;
+    border-color: #ddc0be;
+  }
+  .tab-btn:not(.active):hover {
+    background: #F9F7F2;
+    color: #7A1A22;
+    border-color: #C59B27;
+  }
+  #vcSearch:focus {
+    outline: none;
+    border-color: #C59B27;
+    box-shadow: 0 0 0 3px rgba(197,155,39,0.15);
+  }
+  .section-divider {
+    height: 3px;
+    background: linear-gradient(90deg, #7A1A22, #C59B27, transparent);
+    border-radius: 2px;
+    margin-bottom: 2rem;
+  }
+  .conver-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(197,155,39,0.04) 100%);
+    border: 1px solid rgba(197,155,39,0.25);
+  }
+  .gender-badge-m {
+    background: rgba(122,26,34,0.08);
+    color: #7A1A22;
+    border: 1px solid rgba(122,26,34,0.15);
+  }
+  .gender-badge-f {
+    background: rgba(197,155,39,0.08);
+    color: #775a00;
+    border: 1px solid rgba(197,155,39,0.2);
+  }
+  .gender-badge-d {
+    background: rgba(74,69,67,0.06);
+    color: #4A4543;
+    border: 1px solid rgba(74,69,67,0.12);
+  }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body">
+
+<div id="stitch-navbar"></div>
+
+<!-- Hero Section -->
+<header class="relative py-24 bg-surface overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,rgba(197,155,39,0.08)_0%,transparent_65%)]"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-crimson-deep/3 blur-3xl"></div>
+  </div>
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter relative z-10 text-center reveal">
+    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-container/30 border border-crimson-deep/10 mb-6">
+      <span class="material-symbols-outlined text-gold-antique text-sm" style="font-variation-settings:'FILL' 1;">auto_awesome</span>
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Directorio Institucional</span>
+    </span>
+    <h1 class="font-headline text-headline-lg md:text-display-lg text-crimson-deep mb-6 leading-tight">Vida Consagrada</h1>
+    <div class="h-1 w-20 bg-gold-antique mx-auto mb-6"></div>
+    <p class="font-body text-lg text-slate-warm max-w-2xl mx-auto italic">
+      "Presencia, oración y testimonio evangélico de las comunidades religiosas y carismas que enriquecen nuestra Iglesia local."
+    </p>
+  </div>
+</header>
+
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-stack-lg">
+
+  <!-- Introduction: Asymmetric Layout -->
+  <section class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center mb-section-gap reveal">
+    <div class="md:col-span-7">
+      <div class="relative rounded-2xl overflow-hidden shadow-xl group">
+        <img alt="Órdenes Religiosas en el Zulia"
+             class="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"
+             src="img/icon_vida.webp"
+             onerror="this.src='https://placehold.co/800x420/7A1A22/ffffff?text=Vida+Consagrada'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+        <div class="absolute bottom-6 left-6">
+          <span class="inline-block px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full text-white text-sm font-label tracking-wide">CONVER Maracaibo</span>
+        </div>
+      </div>
+    </div>
+    <div class="md:col-span-5 space-y-6">
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Nuestra Riqueza Espiritual</span>
+      <h2 class="font-headline text-headline-lg text-crimson-deep leading-tight">Riqueza de Carismas en la Región</h2>
+      <div class="w-16 h-1 bg-gold-antique"></div>
+      <p class="font-body text-body-lg text-slate-warm leading-relaxed">
+        Nuestra iglesia local en Maracaibo se enriquece profundamente con la labor silenciosa, apostólica y caritativa de numerosas comunidades masculinas y femeninas de vida consagrada.
+      </p>
+      <p class="font-body text-body-md text-on-surface-variant leading-relaxed">
+        Imparten educación formal y técnica, atención médica y de salud, cuidado a los ancianos desamparados y una profunda espiritualidad de oración. Conozca las comunidades y carismas que siembran la semilla del Evangelio a través de su testimonio y entrega en nuestra arquidiócesis.
+      </p>
+    </div>
+  </section>
+
+  <!-- Junta Directiva CONVER -->
+  <section class="mb-section-gap reveal">
+    <div class="text-center mb-10">
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Gobierno Colegiado</span>
+      <h2 class="font-headline text-3xl text-crimson-deep mt-2 mb-3">Junta Directiva CONVER Maracaibo</h2>
+      <div class="h-1 w-20 bg-gold-antique mx-auto"></div>
+    </div>
+    <div class="conver-card rounded-2xl p-8 shadow-sm">
+      <h3 class="text-center font-label text-sm text-gold-antique tracking-widest uppercase mb-8">Conferencia de Religiosos y Religiosas de Maracaibo</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <!-- Presidente -->
+        <div class="bg-white/70 rounded-xl p-5 border border-warm-ivory shadow-sm">
+          <p class="text-xs font-label tracking-widest uppercase text-gold-antique font-bold mb-1">Presidente</p>
+          <h5 class="font-headline text-base text-crimson-deep font-semibold">Hno. José Manuel Burmes, FMS</h5>
+          <p class="text-sm text-slate-warm mt-1">Hermanos Maristas</p>
+        </div>
+        <!-- Vicepresidenta -->
+        <div class="bg-white/70 rounded-xl p-5 border border-warm-ivory shadow-sm">
+          <p class="text-xs font-label tracking-widest uppercase text-gold-antique font-bold mb-1">Vicepresidenta</p>
+          <h5 class="font-headline text-base text-crimson-deep font-semibold">Hna. Neyda Rojas, RMM</h5>
+          <p class="text-sm text-slate-warm mt-1">Religiosas Mercedarias Misioneras</p>
+        </div>
+        <!-- Secretaria -->
+        <div class="bg-white/70 rounded-xl p-5 border border-warm-ivory shadow-sm">
+          <p class="text-xs font-label tracking-widest uppercase text-gold-antique font-bold mb-1">Secretaria</p>
+          <h5 class="font-headline text-base text-crimson-deep font-semibold">Hna. Enedina Araque, HN</h5>
+          <p class="text-sm text-slate-warm mt-1">Hermanas de Nazareth</p>
+        </div>
+        <!-- Tesorero -->
+        <div class="bg-white/70 rounded-xl p-5 border border-warm-ivory shadow-sm">
+          <p class="text-xs font-label tracking-widest uppercase text-gold-antique font-bold mb-1">Tesorero</p>
+          <h5 class="font-headline text-base text-crimson-deep font-semibold">Hno. Alirio Osorio, CMF</h5>
+          <p class="text-sm text-slate-warm mt-1">Misioneros Claretianos</p>
+        </div>
+        <!-- Vocal I -->
+        <div class="bg-white/70 rounded-xl p-5 border border-warm-ivory shadow-sm">
+          <p class="text-xs font-label tracking-widest uppercase text-gold-antique font-bold mb-1">Vocal I</p>
+          <h5 class="font-headline text-base text-crimson-deep font-semibold">P. José Luis Guillén, C.M.</h5>
+          <p class="text-sm text-slate-warm mt-1">Padres Paúles / Vicentinos</p>
+        </div>
+        <!-- Vocal II -->
+        <div class="bg-white/70 rounded-xl p-5 border border-warm-ivory shadow-sm">
+          <p class="text-xs font-label tracking-widest uppercase text-gold-antique font-bold mb-1">Vocal II</p>
+          <h5 class="font-headline text-base text-crimson-deep font-semibold">Hna. Flor Mélida González, OP</h5>
+          <p class="text-sm text-slate-warm mt-1">Dominicas de la Presentación</p>
+        </div>
+        <!-- Vocal III -->
+        <div class="bg-white/70 rounded-xl p-5 border border-warm-ivory shadow-sm">
+          <p class="text-xs font-label tracking-widest uppercase text-gold-antique font-bold mb-1">Vocal III</p>
+          <h5 class="font-headline text-base text-crimson-deep font-semibold">Hna. María Elena Bravo</h5>
+          <p class="text-sm text-slate-warm mt-1">Orden de las Vírgenes Consagradas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search & Filters -->
+  <section class="mb-10 reveal">
+    <div class="max-w-xl mx-auto text-center mb-6">
+      <p class="font-label text-xs text-gold-antique tracking-widest uppercase mb-3">Buscador de Comunidades y Carismas</p>
+      <div class="relative">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-warm/60 text-xl">search</span>
+        <input type="text" id="vcSearch"
+               placeholder="Buscar congregación, sigla, miembro o dirección..."
+               class="w-full pl-12 pr-5 py-3.5 rounded-full border-2 border-outline-variant bg-white font-body text-sm shadow-sm focus:border-gold-antique transition-all">
+      </div>
+    </div>
+    <div class="flex gap-2 justify-center flex-wrap">
+      <button class="tab-btn active" data-filter="all">
+        <span class="flex items-center gap-2 px-5 py-2.5 rounded-full font-label text-sm font-semibold border-2 cursor-pointer">
+          <span class="material-symbols-outlined text-base">apps</span> Todas
+        </span>
+      </button>
+      <button class="tab-btn" data-filter="masculina">
+        <span class="flex items-center gap-2 px-5 py-2.5 rounded-full font-label text-sm font-semibold border-2 cursor-pointer">
+          <span class="material-symbols-outlined text-base">church</span> Masculinas
+        </span>
+      </button>
+      <button class="tab-btn" data-filter="femenina">
+        <span class="flex items-center gap-2 px-5 py-2.5 rounded-full font-label text-sm font-semibold border-2 cursor-pointer">
+          <span class="material-symbols-outlined text-base">volunteer_activism</span> Femeninas
+        </span>
+      </button>
+      <button class="tab-btn" data-filter="diocesana">
+        <span class="flex items-center gap-2 px-5 py-2.5 rounded-full font-label text-sm font-semibold border-2 cursor-pointer">
+          <span class="material-symbols-outlined text-base">brightness_5</span> Derecho Diocesano/Secular
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Directory Grid -->
+  <section id="directorio-seccion" class="mb-section-gap">
+
+    <!-- Masculinas Header -->
+    <div class="flex items-center gap-3 mb-6 reveal">
+      <span class="material-symbols-outlined text-gold-antique text-2xl" style="font-variation-settings:'FILL' 1;">church</span>
+      <h3 class="font-headline text-2xl text-crimson-deep">Comunidades Religiosas Masculinas</h3>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mb-12" id="vcGrid">
+
+      <!-- 1. OSA — Padres Agustinos -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="masculina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-m font-label text-xs font-bold tracking-widest uppercase">OSA</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Padres Agustinos</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Parroquia Perpetuo Socorro</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Av. 9B con calle 74, sector Tierra Negra. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04241354551" class="text-crimson-deep font-semibold hover:underline">0424-1354551</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">P. Oswaldo José Matheus González</strong> (Vicario Parroquial)</li>
+            <li>• <strong class="text-on-surface">Fray José Eleazar Vivas Vivas</strong> (Servicio de Pastoral)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2. OAR — Agustinos Recoletos -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="masculina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-m font-label text-xs font-bold tracking-widest uppercase">OAR</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Agustinos Recoletos</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Parroquia Consolación (Bella Vista), Parroquia Santa Rosa de Lima (Altos de Jalisco), Parroquia San Onofre (Cc. La Paraguita).</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04123670531" class="text-crimson-deep font-semibold hover:underline">0412-3670531</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">P. José Antonio Díaz Domínguez</strong> (Superior y Párroco de San Onofre)</li>
+            <li>• <strong class="text-on-surface">P. Ricardo Riaño</strong> (Párroco de Consolación)</li>
+            <li>• <strong class="text-on-surface">P. Adelmo Irene Bustamante</strong> (Párroco de Sta. Rosa de Lima)</li>
+            <li>• <strong class="text-on-surface">P. Juan Carlos Fernández</strong> (Vicario de Sta. Rosa de Lima)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. Mercedarios -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="masculina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-m font-label text-xs font-bold tracking-widest uppercase">Mercedarios</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Orden de la Merced</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Parroquia San Ramón Nonato (Monte Bello), Parroquia Ntra. Sra. de Fátima (18 de Octubre), Capilla Divina Misericordia.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04143466396" class="text-crimson-deep font-semibold hover:underline">0414-3466396</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">P. Ponc Antoni Capell Capell</strong> (Superior y Párroco de San Ramón)</li>
+            <li>• <strong class="text-on-surface">P. Francisco Ortiz Bran</strong> (Párroco de Fátima)</li>
+            <li>• <strong class="text-on-surface">P. Alejandro Rincón</strong> (Vicario de Fátima)</li>
+            <li>• <strong class="text-on-surface">P. Rubén Arias Molero</strong> (Vicario de San Ramón)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4. SJ — Jesuitas -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="masculina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-m font-label text-xs font-bold tracking-widest uppercase">SJ</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Compañía de Jesús</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Colegio Gonzaga</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Barrio San José, Av. 35 Los Postes Negros. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04128901601" class="text-crimson-deep font-semibold hover:underline">0412-8901601</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">P. José Francisco Aranguren Díaz</strong> (Superior de Comunidad)</li>
+            <li>• <strong class="text-on-surface">P. Gabriel de Jesús Sequera Herrera</strong> (Rector del Colegio Gonzaga)</li>
+            <li>• <strong class="text-on-surface">P. Edwin Steven Fernández Gómez</strong> (Coordinador Pastoral IUSF)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5. ICR — Rosminianos -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="masculina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-m font-label text-xs font-bold tracking-widest uppercase">ICR</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Padres Rosminianos</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Colegio Antonio Rosmini, Templo San Francisco de Asís (Milagro Norte), Rectoría San Antonio (Zapara), Ancianato Villa Serena.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04127697073" class="text-crimson-deep font-semibold hover:underline">0412-7697073</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">P. Pedro Enrique Paredes Ramírez</strong> (Superior)</li>
+            <li>• <strong class="text-on-surface">P. Giovanni Pacheco Abreú</strong> (Rector de Templo San Francisco)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6. MSC — Misioneros del Sagrado Corazón -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="masculina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-m font-label text-xs font-bold tracking-widest uppercase">MSC</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Misioneros del Sagrado Corazón</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Parroquia Ntra. Sra. de la Paz (La Victoria), Liceo Ntra. Sra. del Sagrado Corazón, Parroquia La Santa Cruz.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04121737628" class="text-crimson-deep font-semibold hover:underline">0412-1737628</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">P. Yonys Rafael Mendoza Canelón</strong> (Párroco de La Paz y Director Liceo)</li>
+            <li>• <strong class="text-on-surface">P. Thomas James Jordán</strong> (Vicario de La Paz)</li>
+            <li>• <strong class="text-on-surface">P. John Edward Jennings Healy</strong> (Vicario de La Santa Cruz)</li>
+            <li>• <strong class="text-on-surface">P. Eliel Araujo</strong> (Vicario de La Paz)</li>
+            <li>• <strong class="text-on-surface">Hno. Deiby Gregorio Fuenmayor Valera</strong> (Animador Pastoral)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 7. Paulinos — Sociedad de San Pablo -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="masculina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-m font-label text-xs font-bold tracking-widest uppercase">Paulinos</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Sociedad de San Pablo</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras locales:</strong> Parroquia San Judas Tadeo y Librería San Pablo. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04127128907" class="text-crimson-deep font-semibold hover:underline">0412-7128907</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">P. Andrés Afanador</strong> (Año Pastoral)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 8. Paúles — Congregación de la Misión -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="masculina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-m font-label text-xs font-bold tracking-widest uppercase">Paúles</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Congregación de la Misión</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Colegio San Vicente de Paul</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Av. 14A con calle 69, sector Tierra Negra. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04123751567" class="text-crimson-deep font-semibold hover:underline">0412-3751567</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">P. José Luis Guillen Araujo</strong> (Superior)</li>
+            <li>• <strong class="text-on-surface">Hno. Cruz Anselmo Castillo Sotelo</strong> (Encargado de Rectoría del Colegio)</li>
+            <li>• <strong class="text-on-surface">Héctor Darío Tertad Marval</strong> (Seminarista)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 9. SDB — Salesianos de Don Bosco -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="masculina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-m font-label text-xs font-bold tracking-widest uppercase">SDB</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Salesianos de Don Bosco</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Centro Don Bosco, Guajira</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Sector El Cero, El Molinete. Municipio Guajira.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04126199219" class="text-crimson-deep font-semibold hover:underline">0412-6199219</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">P. Manuel Neto Vieira Coelho</strong> (Director)</li>
+            <li>• <strong class="text-on-surface">P. Moisés Eduardo Meza Pérez</strong> (Pastoral de Comunidades)</li>
+            <li>• <strong class="text-on-surface">P. José Antonio Vega Álvarez</strong> (Confesor y Apoyo)</li>
+            <li>• <strong class="text-on-surface">Hno. Francisco José Niño Orta</strong> (Coordinador Pastoral Escolar)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 10. FMS — Hermanos Maristas -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="masculina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-m font-label text-xs font-bold tracking-widest uppercase">FMS</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Hermanos Maristas</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> E.T. Hermano Idelfonso Gutiérrez</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Calle 117 # 50-51A, Bello Monte. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04246782367" class="text-crimson-deep font-semibold hover:underline">0424-6782367</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hno. Dorindo Burgo</strong> (Director del Colegio Chiquinquirá)</li>
+            <li>• <strong class="text-on-surface">Hno. Ángel González</strong> (Pastoral Vocacional Nacional)</li>
+            <li>• <strong class="text-on-surface">Hno. José Manuel Burmes</strong> (Coord. Nacional Pastoral Juvenil)</li>
+            <li>• <strong class="text-on-surface">Hno. Duvan Correa</strong> (Profesor y Administrador)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 11. Escolapios -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="masculina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-m font-label text-xs font-bold tracking-widest uppercase">Escolapios</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Padres Escolapios</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> U.E.A. Nuestra Señora de Coromoto (Brisas del Sur) y Parroquia San Ignacio de Loyola (Barrio Los Andes).</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04120616901" class="text-crimson-deep font-semibold hover:underline">0412-0616901</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">P. Jesús Manuel Vásquez Crespo</strong> (Superior)</li>
+            <li>• <strong class="text-on-surface">P. Oscar de Jesús García</strong> (Párroco)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 12. CMF — Misioneros Claretianos -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="masculina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-m font-label text-xs font-bold tracking-widest uppercase">CMF</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Misioneros Claretianos</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Colegio Claret</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Calle 71 entre Av. 9 y 9B. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04148501212" class="text-crimson-deep font-semibold hover:underline">0414-8501212</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">P. Ronald A. Ramírez Vargas</strong> (Superior)</li>
+            <li>• <strong class="text-on-surface">Hno. Quiterio Izquierdo Huete</strong></li>
+            <li>• <strong class="text-on-surface">Hno. Alirio Osorio Monsalve</strong></li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /masculinas grid -->
+
+    <!-- Femeninas Header -->
+    <div class="flex items-center gap-3 mb-6 mt-10 reveal">
+      <span class="material-symbols-outlined text-gold-antique text-2xl" style="font-variation-settings:'FILL' 1;">volunteer_activism</span>
+      <h3 class="font-headline text-2xl text-crimson-deep">Comunidades Religiosas Femeninas</h3>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mb-12">
+
+      <!-- F1. OCD — Carmelitas Descalzas -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">OCD</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Carmelitas Descalzas</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Monasterio La Natividad del Señor (Contemplativas)</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Av. 3 con Padilla, N° 92A-02, Santa Lucía.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04246740449" class="text-crimson-deep font-semibold hover:underline">0424-6740449</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Dalba María de la S.F. Castillo</strong> (Vicaria)</li>
+            <li>• <strong class="text-on-surface">Hna. Adriana Isabel de la S.T. Arellano</strong> (Novicias)</li>
+            <li>• <strong class="text-on-surface">Hna. Nancy de la Cruz Romero Tovar</strong> (Sacristana)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F2. AR — Agustinas Recoletas -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">AR</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Agustinas Recoletas Corazón de Jesús</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Col. Inst. Carmela Valera, Casa Hogar Carmela Valera y Olla Solidaria.</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Calle 66A, entre Av. 10 y 11, sector La Estrella.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04246423529" class="text-crimson-deep font-semibold hover:underline">0424-6423529</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Jeannette del Carmen Polanco</strong> (Superiora y Dir.)</li>
+            <li>• <strong class="text-on-surface">Hna. María Jesús Serna Bermúdez</strong> (Capellanía y Pastoral)</li>
+            <li>• <strong class="text-on-surface">Hna. Yelly Gabriela Planchez Mejías</strong> (Internista Casa Hogar)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F3. HAD — Hermanas Ancianos Desamparados -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">HAD</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Hermanas Ancianos Desamparados</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Casa Hogar Santa Cruz Isidro</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Parroquia San Isidro. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04120614360" class="text-crimson-deep font-semibold hover:underline">0412-0614360</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Reyna Acuña</strong> (Superiora, Portería y Sacristía)</li>
+            <li>• <strong class="text-on-surface">Hna. Ester Becerra</strong> (Vicesuperiora y Cocina)</li>
+            <li>• <strong class="text-on-surface">Hna. María de los Ángeles Muñoz</strong> (Ecónoma y Enfermería)</li>
+            <li>• <strong class="text-on-surface">Hna. Teresa Silva</strong> (Enfermera de Mujeres)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F4. CDCJ — Carmelitas del Divino Corazón -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">CDCJ</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Carmelitas del Divino Corazón</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Guardería Beata María de San José, Comedor de Abuelos, Dispensario Ntra. Sra. del Carmen.</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Barrio Sur América Av. 54A # 149-75. San Francisco.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04246651676" class="text-crimson-deep font-semibold hover:underline">0424-6651676</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. María Isabel Romero Romero</strong> (Superiora)</li>
+            <li>• <strong class="text-on-surface">Hna. María Jesús Ojeda Saldivia</strong> (Directora Guardería)</li>
+            <li>• <strong class="text-on-surface">Hna. Rosa Inés Cedeño Méndez</strong> (Coordinadora)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F5. MDM — Misioneras del Divino Maestro -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">MDM</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Misioneras del Divino Maestro</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Colegio Divino Maestro (AVEC)</p>
+            <p><strong class="text-on-surface">Dirección:</strong> La Cañada de Urdaneta.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04142019021" class="text-crimson-deep font-semibold hover:underline">0414-2019021</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Meidy Milagros Leal Bohórquez</strong> (Directora)</li>
+            <li>• <strong class="text-on-surface">Hna. Josefina Coromoto Lara Rangel</strong> (Subdirectora)</li>
+            <li>• <strong class="text-on-surface">Hna. Yaneth Carolina Vásquez Fajardo</strong> (Coordinadora Pastoral)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F6. Nazaret — Hijas de la Sagrada Familia de Nazaret -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">Nazaret</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Hijas de la Sagrada Familia de Nazaret</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Colegio Nazaret (Av. 16 con 77, 5 de Julio, Maracaibo) y Colegio Ntra. Sra. del Carmen (El Moján).</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04149673637" class="text-crimson-deep font-semibold hover:underline">0414-9673637</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Adriana V. Quintero Pelayo</strong> (Superiora Colegio Nazaret)</li>
+            <li>• <strong class="text-on-surface">Hna. Enedina José Araque Soto</strong> (Superiora Col. El Moján)</li>
+            <li>• <strong class="text-on-surface">Hna. Diana M. Hernández Díaz</strong> (Pastoral Colegio Nazaret)</li>
+            <li>• <strong class="text-on-surface">Hna. María del Carmen Prado</strong> (Sacristana)</li>
+            <li>• <strong class="text-on-surface">Hna. Rosa M. González Galvis</strong> (Secretaria y Mantenimiento)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F7. OP — Dominicas de la Presentación -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">OP</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Dominicas de la Presentación</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Colegio La Presentación (Paraíso), U.E.P. Marie Poussepin (Sierra Maestra), Casa de la Misericordia.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04246949532" class="text-crimson-deep font-semibold hover:underline">0424-6949532</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Carmen Celia Lara Olarte</strong> (Priora de la Comunidad)</li>
+            <li>• <strong class="text-on-surface">Hna. Antonieta Camacho</strong> (Directora del Colegio)</li>
+            <li>• <strong class="text-on-surface">Hna. Dulce Darelys Cabrera Pérez</strong> (Pastoralista)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F8. OP-Rosa — Dominicas de Santa Rosa de Lima -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">OP-Rosa</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Dominicas de Santa Rosa de Lima</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Colegio Santo Domingo de Guzmán</p>
+            <p><strong class="text-on-surface">Dirección:</strong> La Cañada de Urdaneta.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04149785602" class="text-crimson-deep font-semibold hover:underline">0414-9785602</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Indira Carolina Laya Rodríguez</strong> (Madre Superiora)</li>
+            <li>• <strong class="text-on-surface">Hna. Carmen Julia Villa Franco</strong> (Directora del Colegio)</li>
+            <li>• <strong class="text-on-surface">Hna. Ylda Yamileth Mora Mora</strong> (Votos simples)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F9. ECR — Esclavas de Cristo Rey -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">ECR</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Esclavas de Cristo Rey</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Colegio Javier (Sierra Maestra) y Colegio Cristo Rey (La Coromoto, San Francisco).</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04246561901" class="text-crimson-deep font-semibold hover:underline">0424-6561901</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Ligia María García Rojas</strong> (Madre Superiora)</li>
+            <li>• <strong class="text-on-surface">Hna. Martha Libia Rodas Castaño</strong> (Subdirectora del Col. Cristo Rey)</li>
+            <li>• <strong class="text-on-surface">Hna. María Nohemy Molina Ramírez</strong> (Coord. Pastoral del Col. Cristo Rey)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F10. HDS — Hijas del Divino Salvador -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">HDS</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Hijas del Divino Salvador</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Liceo Divino Niño y Escuela Arquidiocesana Monseñor Pedro Arnoldo Aparicio.</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Calle 162, Urbanización San Francisco.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04246054240" class="text-crimson-deep font-semibold hover:underline">0424-6054240</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Carmen Sánchez</strong> (Superiora María Auxiliadora y Dir. Liceo)</li>
+            <li>• <strong class="text-on-surface">Hna. Josefa Graciela Acosta</strong> (Superiora Divino Niño y Dir. Escuela)</li>
+            <li>• <strong class="text-on-surface">Hna. María Julia Meléndez</strong> (Vicaria Comunidad M. Auxiliadora)</li>
+            <li>• <strong class="text-on-surface">Hna. Delmy Paniagua</strong> (Vicaria Comunidad Divino Niño)</li>
+            <li>• <strong class="text-on-surface">Hna. Martha Lorena Platero</strong> (Pastoral)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F11. HPM — Hermanas Pobres de Maiquetía -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">HPM</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Hermanas Pobres de Maiquetía</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Fundación Hogar San José de la Montaña (Adultos Mayores)</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Calle 85 Falcón, entre Av. 9B y 9C, Parroquia Bolívar.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04121788233" class="text-crimson-deep font-semibold hover:underline">0412-1788233</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Eliseth Evelin Ríos Zapata</strong> (Directora)</li>
+            <li>• <strong class="text-on-surface">Hna. Ana Rita Vergara</strong> (Enfermera de abuelos de 3era edad)</li>
+            <li>• <strong class="text-on-surface">Hna. María Antonia Mora Mora</strong></li>
+            <li>• <strong class="text-on-surface">Hna. Eleticia Eleuteria Reyes Reyes</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F12. RMM — Mercedarias Misioneras -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">RMM</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Mercedarias Misioneras</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Colegio La Merced</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Esquina Bella Vista con Av. Universidad. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04146383634" class="text-crimson-deep font-semibold hover:underline">0414-6383634</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Gisela Ángela López Urdaneta</strong> (Madre Superiora y Ecónoma delegación)</li>
+            <li>• <strong class="text-on-surface">Hna. Neyda Yolet Rojas Moreno</strong> (Secretaria delegación y Coord. Pastoral)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F13. MAR — Misioneras Agustinas Recoletas -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">MAR</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Misioneras Agustinas Recoletas</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Colegio Santa Rita</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Sabaneta calle 100, Av. 21. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04146720423" class="text-crimson-deep font-semibold hover:underline">0414-6720423</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Margarita Consolación Ruiz Colmenarez</strong> (Superiora)</li>
+            <li>• <strong class="text-on-surface">Hna. Delis Coromoto Romero Fernández</strong> (Directora del Colegio)</li>
+            <li>• <strong class="text-on-surface">Hna. María Lucelia Ramírez Cardona</strong> (Docente Bibliotecaria)</li>
+            <li>• <strong class="text-on-surface">Hna. Wenderlyng Yennicol Reyes López</strong> (Votos temporales)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F14. MCJ — Misioneras de Cristo Jesús -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">MCJ</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Misioneras de Cristo Jesús</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Pastoral infantil, recuperación nutritional, protección de NNA.</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Barrio Etnia Goajira, Av. 107 # 55-105. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04123938935" class="text-crimson-deep font-semibold hover:underline">0412-3938935</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Jeannette Makenga</strong> (Superiora)</li>
+            <li>• <strong class="text-on-surface">Hna. Indira Raona</strong> (Trabajo Social y Pastoral)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F15. RODA — Religiosas Oblatas al Divino Amor -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">RODA</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Religiosas Oblatas al Divino Amor</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> U.E.P. María Reina</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Barrio Los Pinos. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04146085747" class="text-crimson-deep font-semibold hover:underline">0414-6085747</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. María Leonor Ramírez Velandia</strong> (Madre Superiora)</li>
+            <li>• <strong class="text-on-surface">Hna. Martha Eugenia Vargas Arley</strong> (Directora del Colegio)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- F16. PR — Hermanas de la Providencia Rosminianas -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="femenina">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-f font-label text-xs font-bold tracking-widest uppercase">PR</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Pontificio</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Hnas. de la Providencia Rosminianas</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Colegio Antonio Rosmini y Escuela Los Pescadores.</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Av. Milagro Norte. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04147325900" class="text-crimson-deep font-semibold hover:underline">0414-7325900</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. María Victoria Romero Romero</strong> (Madre Superiora)</li>
+            <li>• <strong class="text-on-surface">Hna. Maritza Delgado</strong></li>
+            <li>• <strong class="text-on-surface">Hna. Angela Schiavi</strong></li>
+            <li>• <strong class="text-on-surface">Hna. María Yudita Barison</strong></li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /femeninas grid -->
+
+    <!-- Derecho Diocesano / Seculares Header -->
+    <div class="flex items-center gap-3 mb-6 mt-10 reveal">
+      <span class="material-symbols-outlined text-gold-antique text-2xl" style="font-variation-settings:'FILL' 1;">brightness_5</span>
+      <h3 class="font-headline text-2xl text-crimson-deep">Derecho Diocesano, Seculares y Otras</h3>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+
+      <!-- D1. IEM — Instituto Evangelizador Mariano -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="diocesana">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-d font-label text-xs font-bold tracking-widest uppercase">IEM</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Diocesano</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Instituto Evangelizador Mariano</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> U.E.P. Arquidiocesana Madre Laura</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Barrio el Callao, calle 170, Av. 49H. San Francisco.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04246019984" class="text-crimson-deep font-semibold hover:underline">0424-6019984</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Karina Milagros Fuenmayor Arenas</strong> (Madre Superiora)</li>
+            <li>• <strong class="text-on-surface">Hna. Milagros del Valle Gutiérrez Reyes</strong> (Hermana)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- D2. Ermitañas Eucarísticas -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="diocesana">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-d font-label text-xs font-bold tracking-widest uppercase">Ermitañas</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Derecho Diocesano</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Ermitañas Eucarísticas de V.M. y S.J.</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Colegio Arq. Santo Domingo de la Calzada</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Km 48 Vía Perijá, Azarajito. Cañada de Urdaneta.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <span class="text-slate-warm/60">No disponible</span></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Marlene Antonia López Gutiérrez</strong> (Votos Solemnes)</li>
+            <li>• <strong class="text-on-surface">Hna. Lutmila Margarita Cabrera Ochoa</strong> (Votos Solemnes)</li>
+            <li>• <strong class="text-on-surface">Hna. Iraliz del Carmen Morales Hurtado</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- D3. HCIM — Hijas del Corazón Inmaculado de María -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="diocesana">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-d font-label text-xs font-bold tracking-widest uppercase">HCIM</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Instituto Secular</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Hijas del Corazón Inmaculado de María</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> UEPA Ntra. Sra. de las Mercedes (Las Mercedes) y UEA Colegio San Rafael (Los Robles).</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04246938441" class="text-crimson-deep font-semibold hover:underline">0424-6938441</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Miembros:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Mayerling Aisbel Moreno González</strong> (Madre Superiora)</li>
+            <li>• <strong class="text-on-surface">Hna. Jesse Nikyoly Castro Hernández</strong></li>
+            <li>• <strong class="text-on-surface">Hna. Yusnaidy María Díaz Córdova</strong></li>
+            <li>• <strong class="text-on-surface">Hna. Dianelis Coromoto Alcántara Chourio</strong></li>
+            <li>• <strong class="text-on-surface">Hna. Sindy Carolina García Lugo</strong></li>
+            <li>• <strong class="text-on-surface">Hna. Yubisay María Díaz Córdova</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- D4. CJS — Comunidad Jesús el Señor -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="diocesana">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-d font-label text-xs font-bold tracking-widest uppercase">CJS</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Nueva Forma de Vida</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Comunidad Jesús el Señor</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obra Local:</strong> Cáritas Parroquial</p>
+            <p><strong class="text-on-surface">Dirección:</strong> Urbanización La Trinidad Av. 15H. Maracaibo.</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04126006981" class="text-crimson-deep font-semibold hover:underline">0412-6006981</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Comunidad:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. Nancy Margarita Vera Flores</strong></li>
+            <li>• <strong class="text-on-surface">Hna. Amarilys Coromoto Ibarra</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- D5. Vírgenes Consagradas -->
+      <div class="bento-card vc-card bg-white rounded-2xl border border-warm-ivory shadow-sm p-7 flex flex-col justify-between" data-category="diocesana">
+        <div>
+          <div class="flex justify-between items-start mb-4">
+            <span class="px-3 py-1.5 rounded-full gender-badge-d font-label text-xs font-bold tracking-widest uppercase">Vírgenes</span>
+            <span class="text-xs uppercase font-label tracking-wide text-slate-warm/60">Consagración Diocesana</span>
+          </div>
+          <h4 class="font-headline text-lg text-crimson-deep mb-4">Orden de las Vírgenes Consagradas</h4>
+          <div class="space-y-2 text-sm text-slate-warm mb-4">
+            <p><strong class="text-on-surface">Obras:</strong> Apostolado en Parroquia Santísimo Sacramento (Las Lomas) y Capilla del Hospital Madre Rafols (Circunvalación #2).</p>
+            <p><strong class="text-on-surface">Teléfono:</strong> <a href="tel:04143621291" class="text-crimson-deep font-semibold hover:underline">0414-3621291</a></p>
+          </div>
+        </div>
+        <div class="border-t border-warm-ivory pt-4 mt-2">
+          <p class="font-label text-xs text-gold-antique uppercase tracking-widest mb-3">Consagrada:</p>
+          <ul class="space-y-1.5 text-sm text-slate-warm">
+            <li>• <strong class="text-on-surface">Hna. María Elena Bravo Velásquez</strong> (Servicio de Pastoral)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /diocesana grid -->
+
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-primary-container rounded-3xl p-10 md:p-14 text-center text-white relative overflow-hidden reveal mb-section-gap">
+    <div class="absolute top-0 right-0 w-72 h-72 bg-white/5 rounded-full -mr-36 -mt-36 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-56 h-56 bg-gold-antique/10 rounded-full -ml-28 -mb-28 pointer-events-none"></div>
+    <div class="relative z-10">
+      <span class="material-symbols-outlined text-gold-antique text-4xl mb-4 block" style="font-variation-settings:'FILL' 1;">favorite</span>
+      <h2 class="font-headline text-3xl md:text-4xl mb-4 leading-tight">¿Sientes el llamado?</h2>
+      <p class="font-body text-white/80 max-w-2xl mx-auto mb-8 text-lg">
+        La vida consagrada es una respuesta de amor radical. Si deseas conocer más sobre estas comunidades o discernir tu vocación, estamos para acompañarte.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="pastoral.html" class="inline-flex items-center justify-center gap-2 bg-gold-antique hover:bg-secondary-fixed-dim text-white px-8 py-3.5 rounded-full font-label font-semibold transition-all shadow-lg">
+          <span class="material-symbols-outlined text-base">groups</span>
+          Ver Pastoral Vocacional
+        </a>
+        <a href="cancilleria.html" class="inline-flex items-center justify-center gap-2 border-2 border-white/30 hover:bg-white/10 text-white px-8 py-3.5 rounded-full font-label font-semibold transition-all">
+          <span class="material-symbols-outlined text-base">mail</span>
+          Solicitar Información
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="stitch-footer"></div>
+
+<script src="js/stitch-components.js"></script>
+<script>StitchLayout.init({ activePage: 'vida-consagrada' });</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const cards = document.querySelectorAll('.vc-card');
+    const searchInput = document.getElementById('vcSearch');
+
+    // Tab filtering
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          card.style.display = (filterValue === 'all' || cat === filterValue) ? 'flex' : 'none';
+        });
+
+        if (searchInput) searchInput.value = '';
+      });
+    });
+
+    // Search filtering
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const text = e.target.value.toLowerCase();
+
+        tabBtns.forEach(b => b.classList.remove('active'));
+        const allBtn = document.querySelector('.tab-btn[data-filter="all"]');
+        if (allBtn) allBtn.classList.add('active');
+
+        cards.forEach(card => {
+          const cardText = card.innerText.toLowerCase();
+          card.style.display = cardText.includes(text) ? 'flex' : 'none';
+        });
+      });
+    }
+  });
+</script>
+
+</body></html>

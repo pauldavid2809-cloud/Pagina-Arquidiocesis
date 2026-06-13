@@ -1,0 +1,373 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Seminario | Arquidiócesis de Maracaibo</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#baeaff",
+                    "on-primary-container": "#ff8888",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#7a1a22",
+                    "on-surface-variant": "#574241",
+                    "tertiary-container": "#004558",
+                    "secondary": "#775a00",
+                    "secondary-fixed": "#ffdf98",
+                    "surface-dim": "#dbdad5",
+                    "crimson-deep": "#7A1A22",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#fbf9f4",
+                    "inverse-surface": "#30312e",
+                    "surface-container": "#f0eee9",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "slate-warm": "#4A4543",
+                    "surface-container-highest": "#e4e2dd",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004d62",
+                    "primary": "#5b000f",
+                    "inverse-on-surface": "#f2f1ec",
+                    "secondary-container": "#fece57",
+                    "primary-fixed": "#ffdad8",
+                    "on-secondary-fixed": "#251a00",
+                    "background": "#fbf9f4",
+                    "inverse-primary": "#ffb3b1",
+                    "on-tertiary-container": "#6db4d0",
+                    "tertiary-fixed-dim": "#89d0ed",
+                    "on-primary-fixed-variant": "#842229",
+                    "primary-fixed-dim": "#ffb3b1",
+                    "on-secondary-container": "#735700",
+                    "lake-azure": "#87CEEB",
+                    "surface-variant": "#e4e2dd",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "surface-container-low": "#f5f3ee",
+                    "tertiary": "#002d3b",
+                    "surface-tint": "#a43a3e",
+                    "secondary-fixed-dim": "#eec14b",
+                    "outline": "#8a7170",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#001f29",
+                    "on-background": "#1b1c19",
+                    "on-primary-fixed": "#410008",
+                    "on-surface": "#1b1c19",
+                    "outline-variant": "#ddc0be",
+                    "surface-container-high": "#eae8e3",
+                    "warm-ivory": "#F9F7F2",
+                    "surface": "#fbf9f4",
+                    "gold-antique": "#C59B27"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "1rem",
+                    "stack-lg": "2rem",
+                    "stack-sm": "0.5rem",
+                    "section-gap": "5rem",
+                    "margin-mobile": "1rem",
+                    "gutter": "1.5rem",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "quote-editorial": ["Rotis Sans Serif", "sans-serif"],
+                    "label-md": ["Poppins", "sans-serif"],
+                    "display-lg": ["Rotis Sans Serif", "sans-serif"],
+                    "body-md": ["Poppins", "sans-serif"],
+                    "headline-lg-mobile": ["Rotis Sans Serif", "sans-serif"],
+                    "headline-lg": ["Rotis Sans Serif", "sans-serif"],
+                    "headline-md": ["Rotis Sans Serif", "sans-serif"],
+                    "body-lg": ["Poppins", "sans-serif"]
+            },
+            "fontSize": {
+                    "quote-editorial": ["22px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        @font-face {
+            font-family: 'Rotis Sans Serif';
+            src: local('Rotis Sans Serif'), local('RotisSansSerif');
+            /* Fallback to sans-serif if not installed on system */
+            font-display: swap;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glass-card {
+            background: rgba(251, 249, 244, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(221, 192, 190, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-surface/85 backdrop-blur-md dark:bg-surface-dim/80 docked full-width top-0 sticky z-50 shadow-sm dark:shadow-none border-b border-warm-ivory/20 h-20">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto h-full">
+<div class="flex items-center gap-3"><img alt="Logo Arquidiócesis de Maracaibo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHPQQGRyn1HUB6Kp6pCgRpio3Z9XQcf8YvYzg39tJIA6na-Xdr_YoJqVH3Bbk8PboxLYw3evuWs5SvBj1e8p8KP6eBbTxWXNnmNeP6bRzZvyggaskIXYGCbTvGqYhrSiojdld2MBnvqoEcfk7ERw4fw0qZNMBiVFGN7cy4KnB3XV2quITGHafdVEx7CBh2Tg-7yLewkTFeZFWda_dPquBKu9vTosZ1P8Lc1YHYkHll3ENlD-qzjUODNF_P3OKUkEsVuQ"><div class="flex flex-col justify-center"><span class="font-headline-md text-headline-md font-bold text-crimson-deep dark:text-primary-fixed tracking-wider leading-none uppercase">Arquidiócesis</span><span class="font-headline-md text-headline-md font-bold text-crimson-deep dark:text-primary-fixed tracking-wider leading-none uppercase">de Maracaibo</span></div></div>
+<nav class="hidden md:flex gap-8">
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Arquidiócesis</a>
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Pastoral</a>
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Cancillería</a>
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Noticias</a>
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Donaciones</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-crimson-deep text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:scale-95 transition-all">Portal Clero</button>
+<span class="material-symbols-outlined text-crimson-deep cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section: Narrative Introduction -->
+<section class="relative h-[716px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover brightness-[0.6]" data-alt="A serene and majestic interior view of a neoclassical seminary chapel in Maracaibo. The space is filled with soft, golden sunlight streaming through tall windows, illuminating dark wooden pews and a pristine marble altar. The atmosphere is profoundly spiritual and quiet, reflecting the sacred modernism style with warm ivory tones and deep crimson accents." src="https://lh3.googleusercontent.com/aida/AP1WRLvl0i2g_m7h9wMiHPh_Zt4hH5FIBs1P8jE8W281Y0SL-V0YHIvhPhMYaAKw5sjnbUKb34G0St8oQZ_lLgNXsYvasmnUvVYOTKF_Zc8xk6I9Xg3Rsd-vrMfqHhoEodBrNakZYVu5i_HRu2F2mgcJ_ak2UsitIah8KBypUxbi1P7-m9UeskRBEkanICN2aLDN00K1GDIvDlqpZOv81oISiLVWJgTIOMCsBg6wovQSVbywHPiIpPuRPy9AFqM">
+</div>
+<div class="relative z-10 text-center px-margin-mobile max-w-3xl fade-in-up">
+<h1 class="font-headline-lg text-[56px] md:text-[64px] text-white mb-stack-md leading-[1.1] font-bold">Corazón de Nuestra Iglesia Local</h1>
+<p class="font-quote-editorial text-2xl text-warm-ivory italic">"La mies es mucha y los obreros pocos."</p>
+<p class="font-body-lg text-body-lg text-warm-ivory/90 mt-stack-md font-light">Formando pastores con alma zuliana para el servicio del Reino de Dios.</p>
+</div>
+</section>
+<!-- Bento Section: Major Seminary & Propaedeutic -->
+<section class="py-section-gap px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="bento-grid">
+<!-- Main Feature: Seminario Mayor -->
+<div class="col-span-12 md:col-span-8 glass-card rounded-xl p-stack-lg shadow-sm flex flex-col md:flex-row gap-gutter items-center fade-in-up">
+<div class="w-full md:w-1/2">
+<img class="rounded-lg w-full h-64 object-cover" data-alt="Official coat of arms of the Major Seminary Santo Tomas de Aquino" src="https://lh3.googleusercontent.com/aida/AP1WRLs_ipccGkKcgWAvKbEV3J-dP3W113K27mppEcq3nIlEnzJcEN4DaEE4la4cR8Y9lbBjs3a-0eSp48HPwROViGQrffj-d_asu0QKGm4rm9jU150suBktSWVlNPtxsVcsAom9hC0CKZ-gNNHsXx-QIMEhfKSLF1PYK1RwcedFDmUji49X8eBmA4DOuCnUSBbkYv7Zd98QHUo8bz_2lBeiTRi1-Z82I1dEd0wb-FHSGHnQa_91V2QQC9_1lMI">
+</div>
+<div class="w-full md:w-1/2 space-y-stack-md">
+<div class="flex items-center gap-2">
+<span class="bg-gold-antique/20 text-gold-antique px-3 py-1 rounded-full font-label-md text-[12px] uppercase tracking-[0.1em] font-bold">Fundado en 1983</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-crimson-deep font-semibold">Seminario Mayor "Santo Tomás de Aquino"</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            El corazón de nuestra diócesis donde los futuros sacerdotes se forman pastoral, espiritual e intelectualmente para guiar al pueblo zuliano a través de las etapas de discipulado y configuración.
+                        </p>
+<div class="flex flex-col gap-2 pt-2">
+<div class="flex items-center gap-2 text-slate-warm">
+<span class="material-symbols-outlined text-gold-antique" data-icon="church">church</span>
+<span class="font-label-md text-label-md">Av. Bella Vista con Calle 86 Pichincha</span>
+</div>
+<div class="flex items-center gap-2 text-crimson-deep">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+<a class="font-label-md text-label-md hover:underline" href="mailto:amseminariomayor@gmail.com">amseminariomayor@gmail.com</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Card: Propaedeutic -->
+<div class="col-span-12 md:col-span-4 bg-crimson-deep text-on-primary rounded-xl p-stack-lg flex flex-col justify-between fade-in-up">
+<div>
+<h3 class="font-headline-md text-headline-md mb-stack-md text-white">Etapa Propedéutica</h3>
+<p class="font-body-md text-body-md opacity-90 leading-relaxed">
+                            La etapa inicial indispensable. Un año de discernimiento humano y cristiano para consolidar la fe y la vida comunitaria antes de la formación mayor.
+                        </p>
+</div>
+<div class="mt-stack-lg">
+<img class="rounded-lg w-full h-40 object-cover mix-blend-luminosity opacity-40" data-alt="Students in prayer" src="https://lh3.googleusercontent.com/aida/AP1WRLvibatuwEBHp5Ardu6Vax_7qu15G2dnP_SOvTTlfcTWhyoDc5wSLlD7q2eslP5tyKhhV3jabjGTSvzKwBTMwYEIrwwDnWSb4ecu4buumRqncvjo6be6uuw_eiDLZsuE5PIliNHTNzVZweGaPPxl3MjZPpywezhWz31m4uopV3FnZb1Mz6M7UU4nyJUVdrmEDYYwIawoztmMMW-kzH-16amaGMURVEfX7fsYxqWq5mwBSrqrNuw_k98eFRE">
+</div>
+</div>
+<!-- Narrative Break: Quotes -->
+<div class="col-span-12 py-stack-lg text-center fade-in-up">
+<h2 class="font-quote-editorial text-[28px] text-slate-warm max-w-2xl mx-auto italic leading-relaxed">
+                        "El seminario es el tiempo de la intimidad con el Maestro para aprender a ser pastores con olor a oveja."
+                    </h2>
+</div>
+<!-- Pastoral Vocacional: Asymmetric Layout -->
+<div class="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-gutter items-center fade-in-up">
+<div class="order-2 md:order-1 space-y-stack-md pr-0 md:pr-12">
+<h2 class="font-headline-lg text-headline-lg text-crimson-deep">Pastoral Vocacional</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                            Nuestra Pastoral Vocacional Arquidiocesana (PVA) anima y acompaña a los jóvenes en su proceso de discernimiento hacia la vida sacerdotal o consagrada.
+                        </p>
+<div class="space-y-4">
+<div class="flex items-start gap-4 p-4 rounded-lg hover:bg-warm-ivory transition-colors group">
+<div class="bg-gold-antique p-2 rounded-lg text-white">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Acompañamiento</h4>
+<p class="font-body-md text-body-md text-slate-warm">Encuentros mensuales y retiros para escuchar la voz del Señor.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 pt-4">
+<a class="flex items-center gap-2 bg-lake-azure/20 text-on-tertiary-fixed-variant px-6 py-3 rounded-full font-label-md text-label-md hover:bg-lake-azure/30 transition-all font-semibold" href="#">
+<span class="material-symbols-outlined" data-icon="smartphone">smartphone</span>
+                                @vocacionalmaracaibo
+                            </a>
+<a class="flex items-center gap-2 border border-outline-variant text-slate-warm px-6 py-3 rounded-full font-label-md text-label-md hover:bg-surface-container transition-all font-semibold" href="tel:04246012488">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+                                0424-6012488
+                            </a>
+</div>
+</div>
+<div class="order-1 md:order-2 relative">
+<div class="absolute -top-4 -left-4 w-24 h-24 bg-gold-antique/10 rounded-full blur-2xl"></div>
+<img class="rounded-2xl shadow-xl w-full h-[500px] object-cover" data-alt="Journey of vocational discernment" src="https://lh3.googleusercontent.com/aida/AP1WRLtkQWIceJpEgZxIoGXVq79qT6U3plF4dOViSgEF4qKoJ9euPTa4c476pFyT8n9tYaaR2MD-S6dkBAcP-xLDRDYgzBygV3KJpORv3CetQuvPEJyp-LhRnEYFW-QzfUxV9_UY3YFJgF60SWIdL3doRzy_YoEbso5APZJCeQtBTp0xlj6euA9iaN2haL_Z8efguYlVhttkbdvADgQJRD9N5wFbTbKMDsak7YvyhzB9IactPIzzjA5sSOFDwco">
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="bg-surface-container-high py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter text-center">
+<span class="material-symbols-outlined text-gold-antique text-5xl mb-stack-md" data-icon="church">church</span>
+<h2 class="font-headline-lg text-4xl md:text-5xl text-crimson-deep mb-stack-md">Apoya la formación sacerdotal</h2>
+<p class="font-body-lg text-body-lg text-slate-warm max-w-xl mx-auto mb-stack-lg leading-relaxed">
+                    Tu generosidad permite que nuestros seminaristas continúen sus estudios y preparación para servir a nuestras parroquias.
+                </p>
+<button class="bg-crimson-deep text-on-primary px-12 py-5 rounded-full font-headline-md text-2xl hover:scale-105 transition-transform shadow-lg font-medium tracking-tight">
+                    Donar Ahora
+                </button>
+</div>
+</section>
+</main>
+<!-- Side Navigation Bar (Mobile View) -->
+<div class="fixed inset-y-0 left-0 w-64 bg-warm-ivory dark:bg-inverse-surface z-[60] transform -translate-x-full transition-transform duration-300 md:hidden flex flex-col py-stack-lg shadow-lg" id="mobile-nav">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-crimson-deep/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-crimson-deep" data-icon="church">church</span>
+</div>
+<div>
+<h3 class="font-headline-md text-xl text-crimson-deep leading-none">Maracaibo</h3>
+</div>
+</div>
+<nav class="flex-1 space-y-2 px-4">
+<a class="flex items-center gap-3 p-3 rounded-lg bg-primary-container text-on-primary-container font-bold font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="church">church</span> Inicio
+            </a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/30 transition-transform hover:translate-x-1 font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span> Directorio
+            </a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/30 transition-transform hover:translate-x-1 font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span> Documentos
+            </a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/30 transition-transform hover:translate-x-1 font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="newspaper">newspaper</span> Noticias
+            </a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/30 transition-transform hover:translate-x-1 font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span> Donaciones
+            </a>
+</nav>
+<div class="px-4 pt-stack-lg border-t border-outline-variant/30 space-y-2">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Ajustes
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span> Salir
+            </a>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-stack-lg bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="space-y-4">
+<h4 class="font-headline-md text-2xl text-crimson-deep font-bold">Arquidiócesis</h4>
+<p class="font-body-md text-body-md text-on-surface opacity-80">
+                    Sede Episcopal de Maracaibo. Tradición, fe y servicio al pueblo de Dios en el Zulia.
+                </p>
+</div>
+<div>
+<h4 class="font-label-md text-[12px] font-bold mb-4 uppercase tracking-widest text-on-surface">Enlaces</h4>
+<ul class="space-y-2">
+<li class=""><a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep underline underline-offset-4 decoration-gold-antique transition-opacity" href="#">Privacidad</a></li>
+<li class=""><a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep underline underline-offset-4 decoration-gold-antique transition-opacity" href="#">Términos</a></li>
+<li class=""><a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep underline underline-offset-4 decoration-gold-antique transition-opacity" href="#">Ambientes Seguros</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-[12px] font-bold mb-4 uppercase tracking-widest text-on-surface">Instituciones</h4>
+<ul class="space-y-2">
+<li class=""><a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-opacity" href="#">Cancillería</a></li>
+<li class=""><a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-opacity" href="#">Portal del Clero</a></li>
+<li class=""><a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-opacity" href="#">Seminario Mayor</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-[12px] font-bold mb-4 uppercase tracking-widest text-on-surface">Contacto</h4>
+<p class="font-body-md text-body-md text-on-surface opacity-80 leading-relaxed">Av. 4 con calle 95, frente a la Plaza Bolívar. Maracaibo.</p>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-12 pt-8 border-t border-outline-variant/10 text-center">
+<p class="font-label-md text-[13px] text-on-surface opacity-60">
+                © 2024 Arquidiócesis de Maracaibo. Todos los derechos reservados. Sagrado Modernismo.
+            </p>
+</div>
+</footer>
+<script>
+        // Micro-interaction for revealing elements on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card, .bento-grid > div').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Toggle mobile nav (simulated for presentation)
+        let isMobileNavOpen = false;
+        const mobileNav = document.getElementById('mobile-nav');
+        
+        function toggleMobileNav() {
+            isMobileNavOpen = !isMobileNavOpen;
+            if (isMobileNavOpen) {
+                mobileNav.classList.remove('-translate-x-full');
+            } else {
+                mobileNav.classList.add('-translate-x-full');
+            }
+        }
+    </script>
+
+
+
+
+</body></html>

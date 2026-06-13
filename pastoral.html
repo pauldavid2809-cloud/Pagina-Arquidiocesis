@@ -1,0 +1,466 @@
+<!DOCTYPE html><html class="light" lang="es">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Secretariados Pastorales | Arquidiócesis de Maracaibo</title>
+<meta content="Vicaría de Pastoral de la Arquidiócesis de Maracaibo. Conozca los departamentos, comisiones y planes de evangelización de nuestra Iglesia local." name="description">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/stitch-config.js"></script>
+<!-- Core Styles -->
+<link href="css/stitch-core.css" rel="stylesheet">
+<style>
+  .hero-pastoral {
+    background: linear-gradient(135deg, rgba(91,0,15,0.92) 0%, rgba(122,26,34,0.85) 50%, rgba(197,155,39,0.4) 100%),
+                url('img/pastoral.webp') center/cover no-repeat;
+    min-height: 480px;
+  }
+  .dept-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .instagram-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 12px rgba(131, 58, 180, 0.3);
+  }
+  .instagram-badge:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+  .apostolado-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .apostolado-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(122, 26, 34, 0.1);
+  }
+  .apostolado-badge {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(135deg, #7A1A22, #C59B27);
+    color: white;
+    margin: 0 auto 1.25rem auto;
+    box-shadow: 0 4px 16px rgba(122,26,34,0.2);
+  }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body">
+
+<!-- Navbar injected by JS -->
+<div id="stitch-navbar"></div>
+
+<!-- ── HERO SECTION ──────────────────────────────────────────── -->
+<section class="hero-pastoral flex items-center justify-center relative overflow-hidden">
+  <!-- Decorative elements -->
+  <div class="absolute top-0 right-0 w-80 h-80 bg-gold-antique/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 bg-crimson-deep/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4 pointer-events-none"></div>
+
+  <div class="relative z-10 text-center px-6 py-20 max-w-4xl mx-auto animate-fade-in-up">
+    <span class="inline-block font-label text-sm text-gold-antique tracking-widest uppercase mb-4">Arquidiócesis de Maracaibo</span>
+    <h1 class="font-display text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
+      Secretariados<br><span class="text-gold-antique">Pastorales</span>
+    </h1>
+    <div class="h-1 w-24 bg-gold-antique mx-auto mb-6"></div>
+    <p class="font-body text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+      La Iglesia en salida, al encuentro del hermano a través de nuestra acción social y evangelizadora.
+    </p>
+  </div>
+</section>
+
+<!-- ── INTRO SECTION ─────────────────────────────────────────── -->
+<section class="bg-background py-16 md:py-20">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <!-- Image -->
+      <div class="reveal order-2 md:order-1">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+          <img
+            src="img/pastoral.webp"
+            alt="Acción Pastoral de la Arquidiócesis"
+            class="w-full h-80 md:h-[420px] object-cover"
+            onerror="this.src='https://placehold.co/600x420/7A1A22/ffffff?text=Pastoral'"
+          >
+          <!-- Overlay badge -->
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-crimson-deep/90 to-transparent p-6">
+            <p class="font-label text-white text-sm font-bold tracking-wide uppercase">Vicaría de Pastoral</p>
+            <p class="font-body text-white/75 text-xs mt-1">Arquidiócesis de Maracaibo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="reveal order-1 md:order-2">
+        <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Nuestra Misión</span>
+        <h2 class="font-headline text-headline-lg-mobile md:text-headline-md text-crimson-deep mt-3 mb-4 leading-tight">
+          Nuestra Vida Pastoral
+        </h2>
+        <div class="h-1 w-16 bg-gold-antique mb-6"></div>
+        <p class="font-body text-slate-warm text-body-lg leading-relaxed mb-6">
+          Nuestra labor se articula a través de múltiples secretariados y comisiones dedicados a velar por el bienestar espiritual y material de todo el pueblo de Dios en el Zulia.
+        </p>
+        <p class="font-body text-slate-warm text-body-md leading-relaxed">
+          Cada área pastoral responde a una necesidad específica de nuestra comunidad, trabajando en unidad bajo la guía del Arzobispo para llevar el Evangelio a todos los rincones de la Arquidiócesis.
+        </p>
+
+        <!-- Quick stats -->
+        <div class="grid grid-cols-3 gap-4 mt-8">
+          <div class="text-center p-4 bg-surface-container rounded-xl border border-outline-variant/10">
+            <p class="font-display text-2xl font-bold text-crimson-deep">4+</p>
+            <p class="font-label text-xs text-slate-warm mt-1 uppercase tracking-wide">Secretariados</p>
+          </div>
+          <div class="text-center p-4 bg-surface-container rounded-xl border border-outline-variant/10">
+            <p class="font-display text-2xl font-bold text-crimson-deep">6+</p>
+            <p class="font-label text-xs text-slate-warm mt-1 uppercase tracking-wide">Grupos</p>
+          </div>
+          <div class="text-center p-4 bg-surface-container rounded-xl border border-outline-variant/10">
+            <p class="font-display text-2xl font-bold text-crimson-deep">100+</p>
+            <p class="font-label text-xs text-slate-warm mt-1 uppercase tracking-wide">Parroquias</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECRETARIADOS / DEPARTAMENTOS SECTION ─────────────────── -->
+<section class="bg-surface-container-low py-16 md:py-20">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+
+    <!-- Section Header -->
+    <div class="text-center mb-12 reveal">
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Organización</span>
+      <h2 class="font-headline text-headline-lg-mobile md:text-headline-md text-crimson-deep mt-3">Contactos de los Secretariados</h2>
+      <div class="h-1 w-20 bg-gold-antique mx-auto mt-4"></div>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
+
+      <!-- Cáritas Maracaibo -->
+      <div class="reveal bento-card bg-white rounded-2xl shadow-md border border-outline-variant/10 p-7 flex flex-col">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="dept-icon bg-red-50 border border-red-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B53A48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-headline text-[17px] font-bold text-crimson-deep leading-tight">Cáritas Maracaibo</h3>
+            <p class="font-body text-xs text-slate-warm mt-0.5">Acción Social</p>
+          </div>
+        </div>
+        <p class="font-body text-slate-warm text-sm leading-relaxed mb-5 flex-1">
+          Acción social, asistencia integral y promoción humana en el Estado Zulia.
+        </p>
+        <div class="space-y-2.5 border-t border-outline-variant/10 pt-4">
+          <a href="tel:02610000000" class="flex items-center gap-2.5 text-sm text-slate-warm hover:text-crimson-deep transition-colors group">
+            <span class="material-symbols-outlined text-[16px] text-gold-antique">phone</span>
+            <span class="font-body group-hover:underline">0261-0000000</span>
+          </a>
+          <a href="mailto:caritas@arquidiocesisdemaracaibo.org" class="flex items-center gap-2.5 text-sm text-slate-warm hover:text-crimson-deep transition-colors group">
+            <span class="material-symbols-outlined text-[16px] text-gold-antique">mail</span>
+            <span class="font-body group-hover:underline break-all">caritas@arquidiocesisdemaracaibo.org</span>
+          </a>
+          <div class="flex items-center gap-2.5 text-sm text-slate-warm">
+            <span class="material-symbols-outlined text-[16px] text-gold-antique">location_on</span>
+            <span class="font-body">Sede Arzobispado, Maracaibo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pastoral Juvenil -->
+      <div class="reveal bento-card bg-white rounded-2xl shadow-md border border-outline-variant/10 p-7 flex flex-col">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="dept-icon bg-amber-50 border border-amber-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C59B27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-headline text-[17px] font-bold text-crimson-deep leading-tight">Pastoral Juvenil</h3>
+            <p class="font-body text-xs text-slate-warm mt-0.5">Jóvenes</p>
+          </div>
+        </div>
+        <p class="font-body text-slate-warm text-sm leading-relaxed mb-5 flex-1">
+          Acompañamiento y formación de los jóvenes católicos del Zulia.
+        </p>
+        <div class="space-y-2.5 border-t border-outline-variant/10 pt-4">
+          <a href="tel:04140000000" class="flex items-center gap-2.5 text-sm text-slate-warm hover:text-crimson-deep transition-colors group">
+            <span class="material-symbols-outlined text-[16px] text-gold-antique">phone</span>
+            <span class="font-body group-hover:underline">0414-0000000</span>
+          </a>
+          <a href="mailto:juvenil@arquidiocesisdemaracaibo.org" class="flex items-center gap-2.5 text-sm text-slate-warm hover:text-crimson-deep transition-colors group">
+            <span class="material-symbols-outlined text-[16px] text-gold-antique">mail</span>
+            <span class="font-body group-hover:underline">juvenil@arquidiocesis.org</span>
+          </a>
+          <div class="mt-3">
+            <a href="https://www.instagram.com/pjmaracaibo/" target="_blank" class="instagram-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              @pjmaracaibo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pastoral Familiar -->
+      <div class="reveal bento-card bg-white rounded-2xl shadow-md border border-outline-variant/10 p-7 flex flex-col">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="dept-icon bg-blue-50 border border-blue-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-headline text-[17px] font-bold text-crimson-deep leading-tight">Pastoral Familiar</h3>
+            <p class="font-body text-xs text-slate-warm mt-0.5">Familia y Matrimonio</p>
+          </div>
+        </div>
+        <p class="font-body text-slate-warm text-sm leading-relaxed mb-5 flex-1">
+          Acompañamiento y fortalecimiento del sacramento del matrimonio y la vida familiar.
+        </p>
+        <div class="space-y-2.5 border-t border-outline-variant/10 pt-4">
+          <a href="tel:04140000000" class="flex items-center gap-2.5 text-sm text-slate-warm hover:text-crimson-deep transition-colors group">
+            <span class="material-symbols-outlined text-[16px] text-gold-antique">phone</span>
+            <span class="font-body group-hover:underline">0414-0000000</span>
+          </a>
+          <a href="mailto:familiar@arquidiocesisdemaracaibo.org" class="flex items-center gap-2.5 text-sm text-slate-warm hover:text-crimson-deep transition-colors group">
+            <span class="material-symbols-outlined text-[16px] text-gold-antique">mail</span>
+            <span class="font-body group-hover:underline">familiar@arquidiocesis.org</span>
+          </a>
+          <div class="mt-3">
+            <a href="https://www.instagram.com/pfamiliarmaracaibo/" target="_blank" class="instagram-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              @pfamiliarmaracaibo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pastoral Educativa -->
+      <div class="reveal bento-card bg-white rounded-2xl shadow-md border border-outline-variant/10 p-7 flex flex-col">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="dept-icon bg-emerald-50 border border-emerald-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-headline text-[17px] font-bold text-crimson-deep leading-tight">Pastoral Educativa</h3>
+            <p class="font-body text-xs text-slate-warm mt-0.5">Educación y Valores</p>
+          </div>
+        </div>
+        <p class="font-body text-slate-warm text-sm leading-relaxed mb-5 flex-1">
+          Formación en valores y apoyo a las instituciones educativas católicas de la Arquidiócesis.
+        </p>
+        <div class="space-y-2.5 border-t border-outline-variant/10 pt-4">
+          <a href="tel:04240000000" class="flex items-center gap-2.5 text-sm text-slate-warm hover:text-crimson-deep transition-colors group">
+            <span class="material-symbols-outlined text-[16px] text-gold-antique">phone</span>
+            <span class="font-body group-hover:underline">0424-0000000</span>
+          </a>
+          <a href="mailto:educativa@arquidiocesisdemaracaibo.org" class="flex items-center gap-2.5 text-sm text-slate-warm hover:text-crimson-deep transition-colors group">
+            <span class="material-symbols-outlined text-[16px] text-gold-antique">mail</span>
+            <span class="font-body group-hover:underline">educativa@arquidiocesis.org</span>
+          </a>
+          <div class="flex items-center gap-2.5 text-sm text-slate-warm">
+            <span class="material-symbols-outlined text-[16px] text-gold-antique">location_on</span>
+            <span class="font-body">Sede Arzobispado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pastoral de la Comunicación -->
+      <div class="reveal bento-card bg-white rounded-2xl shadow-md border border-outline-variant/10 p-7 flex flex-col">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="dept-icon bg-purple-50 border border-purple-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 11.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.04 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.01 8.91A16 16 0 0 0 13 14.91l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.09z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-headline text-[17px] font-bold text-crimson-deep leading-tight">Comunicación</h3>
+            <p class="font-body text-xs text-slate-warm mt-0.5">Medios y Redes</p>
+          </div>
+        </div>
+        <p class="font-body text-slate-warm text-sm leading-relaxed mb-5 flex-1">
+          Difusión del Evangelio a través de medios de comunicación y redes sociales.
+        </p>
+        <div class="space-y-2.5 border-t border-outline-variant/10 pt-4">
+          <a href="tel:02617225351" class="flex items-center gap-2.5 text-sm text-slate-warm hover:text-crimson-deep transition-colors group">
+            <span class="material-symbols-outlined text-[16px] text-gold-antique">phone</span>
+            <span class="font-body group-hover:underline">0261-7225351</span>
+          </a>
+          <a href="mailto:iglesiamarabina@gmail.com" class="flex items-center gap-2.5 text-sm text-slate-warm hover:text-crimson-deep transition-colors group">
+            <span class="material-symbols-outlined text-[16px] text-gold-antique">mail</span>
+            <span class="font-body group-hover:underline">iglesiamarabina@gmail.com</span>
+          </a>
+          <div class="mt-3">
+            <a href="https://www.instagram.com/arquimcbo/" target="_blank" class="instagram-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              @arquimcbo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ¿Buscas otra Pastoral? -->
+      <div class="reveal bento-card bg-gradient-to-br from-crimson-deep to-primary rounded-2xl shadow-md p-7 flex flex-col items-center justify-center text-center">
+        <div class="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-4">
+          <span class="material-symbols-outlined text-2xl text-gold-antique">help_outline</span>
+        </div>
+        <h3 class="font-headline text-[17px] font-bold text-white mb-3">¿Buscas otra Pastoral?</h3>
+        <p class="font-body text-white/75 text-sm leading-relaxed mb-6">
+          Comunícate directamente con la Curia Arquidiocesana para más información sobre otras áreas (Salud, Penitenciaria, etc.).
+        </p>
+        <a href="mailto:iglesiamarabina@gmail.com" class="inline-flex items-center gap-2 bg-gold-antique text-white px-6 py-3 rounded-full font-label font-bold text-sm hover:brightness-110 transition-all active:scale-95">
+          <span class="material-symbols-outlined text-[18px]">mail</span>
+          Escribir a la Curia
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CARISMAS Y GRUPOS DE APOSTOLADO ───────────────────────── -->
+<section class="bg-background py-16 md:py-20">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+
+    <!-- Section Header -->
+    <div class="text-center mb-4 reveal">
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Diversidad Eclesial</span>
+      <h2 class="font-headline text-headline-lg-mobile md:text-headline-md text-crimson-deep mt-3">Carismas y Grupos de Apostolado</h2>
+      <div class="h-1 w-20 bg-gold-antique mx-auto mt-4 mb-4"></div>
+      <p class="font-body text-slate-warm text-body-lg max-w-2xl mx-auto">
+        Nuestra Arquidiócesis se enriquece con la diversidad de carismas suscitados por el Espíritu Santo.
+      </p>
+    </div>
+
+    <!-- Apostolado groups grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 reveal-stagger">
+
+      <!-- Cursillos de Cristiandad -->
+      <div class="reveal apostolado-card bg-white rounded-2xl shadow-md border border-outline-variant/10 p-7 text-center">
+        <div class="apostolado-badge">MCC</div>
+        <h3 class="font-headline text-[17px] font-bold text-crimson-deep mb-3">Cursillos de Cristiandad</h3>
+        <p class="font-body text-slate-warm text-sm leading-relaxed">
+          Movimiento de evangelización para transformar los ambientes desde el Evangelio.
+        </p>
+      </div>
+
+      <!-- Legión de María -->
+      <div class="reveal apostolado-card bg-white rounded-2xl shadow-md border border-outline-variant/10 p-7 text-center">
+        <div class="apostolado-badge">LM</div>
+        <h3 class="font-headline text-[17px] font-bold text-crimson-deep mb-3">Legión de María</h3>
+        <p class="font-body text-slate-warm text-sm leading-relaxed">
+          Apostolado laico mariano dedicado a la oración y el trabajo activo en las parroquias.
+        </p>
+      </div>
+
+      <!-- Renovación Carismática -->
+      <div class="reveal apostolado-card bg-white rounded-2xl shadow-md border border-outline-variant/10 p-7 text-center">
+        <div class="apostolado-badge">RCC</div>
+        <h3 class="font-headline text-[17px] font-bold text-crimson-deep mb-3">Renovación Carismática</h3>
+        <p class="font-body text-slate-warm text-sm leading-relaxed">
+          Corriente de gracia que promueve el encuentro vivo con Jesús en el Espíritu Santo.
+        </p>
+      </div>
+
+      <!-- Camino Neocatecumenal -->
+      <div class="reveal apostolado-card bg-white rounded-2xl shadow-md border border-outline-variant/10 p-7 text-center">
+        <div class="apostolado-badge">CN</div>
+        <h3 class="font-headline text-[17px] font-bold text-crimson-deep mb-3">Camino Neocatecumenal</h3>
+        <p class="font-body text-slate-warm text-sm leading-relaxed">
+          Itinerario de formación católica para redescubrir las riquezas del bautismo.
+        </p>
+      </div>
+
+      <!-- Encuentro Matrimonial -->
+      <div class="reveal apostolado-card bg-white rounded-2xl shadow-md border border-outline-variant/10 p-7 text-center">
+        <div class="apostolado-badge">EM</div>
+        <h3 class="font-headline text-[17px] font-bold text-crimson-deep mb-3">Encuentro Matrimonial</h3>
+        <p class="font-body text-slate-warm text-sm leading-relaxed">
+          Programa centrado en la comunicación profunda entre esposos y la familia católica.
+        </p>
+      </div>
+
+      <!-- Regnum Christi -->
+      <div class="reveal apostolado-card bg-white rounded-2xl shadow-md border border-outline-variant/10 p-7 text-center">
+        <div class="apostolado-badge">RC</div>
+        <h3 class="font-headline text-[17px] font-bold text-crimson-deep mb-3">Regnum Christi</h3>
+        <p class="font-body text-slate-warm text-sm leading-relaxed">
+          Movimiento eclesial que busca instaurar el Reino de Cristo en el corazón de las personas.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CALL TO ACTION ─────────────────────────────────────────── -->
+<section class="bg-surface-container-low py-16 md:py-20">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+    <div class="reveal bg-gradient-to-br from-crimson-deep via-primary to-crimson-deep rounded-3xl p-10 md:p-16 text-center shadow-2xl relative overflow-hidden">
+      <!-- Decorative elements -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-gold-antique/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-2xl translate-y-1/4 -translate-x-1/4 pointer-events-none"></div>
+
+      <div class="relative z-10">
+        <span class="font-label text-sm text-gold-antique tracking-widest uppercase mb-4 block">Únete a la misión</span>
+        <h2 class="font-display text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">
+          ¿Quieres participar en<br>nuestra acción pastoral?
+        </h2>
+        <div class="h-1 w-16 bg-gold-antique mx-auto mb-6"></div>
+        <p class="font-body text-white/75 text-body-lg max-w-xl mx-auto mb-8">
+          Contacta con la Vicaría de Pastoral o acércate a tu parroquia más cercana para descubrir cómo puedes servir a la comunidad.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="directorio.html" class="inline-flex items-center justify-center gap-2 bg-gold-antique text-white px-8 py-4 rounded-full font-label font-bold text-sm hover:brightness-110 transition-all active:scale-95">
+            <span class="material-symbols-outlined text-[18px]">map</span>
+            Ver Parroquias
+          </a>
+          <a href="mailto:iglesiamarabina@gmail.com" class="inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white px-8 py-4 rounded-full font-label font-bold text-sm hover:bg-white/10 transition-all">
+            <span class="material-symbols-outlined text-[18px]">mail</span>
+            Contactar Vicaría
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer injected by JS -->
+<div id="stitch-footer"></div>
+<script src="js/stitch-components.js"></script>
+<script>StitchLayout.init({ activePage: 'pastoral' });</script>
+</body></html>

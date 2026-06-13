@@ -1,0 +1,714 @@
+[
+  {
+    "name": "Mons. José Luis Azuaje Ayala",
+    "email": "cancilleria@arquidiocesisdemaracaibo.org",
+    "password": "canciller123",
+    "phone": "0412-0000000",
+    "role": "admin",
+    "parish": "Curia Metropolitana"
+  },
+  {
+    "name": "Pbro. Paul David",
+    "email": "pauldavid2809@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-2809280",
+    "role": "priest",
+    "parish": "Parroquia de Pruebas"
+  },
+  {
+    "name": "Pbro. Paul David (Alt)",
+    "email": "pauldd28@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-2809280",
+    "role": "priest",
+    "parish": "Parroquia de Pruebas"
+  },
+  {
+    "name": "Pbro. Néstor Primera",
+    "email": "nprimera40@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-7885662",
+    "role": "priest",
+    "parish": "El Sagrario – Catedral de los Santos Apóstoles Pedro y Pablo"
+  },
+  {
+    "name": "Pbro. Rafael Ángel Villalobos Carmona",
+    "email": "rafael.angel@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0414-3676212",
+    "role": "priest",
+    "parish": "Santa Lucía"
+  },
+  {
+    "name": "Pbro. José Gregorio Andrade Vecino",
+    "email": "santabarbaramaracaibo@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-7892388",
+    "role": "priest",
+    "parish": "Santa Bárbara"
+  },
+  {
+    "name": "Pbro. Nedward Jorge Andrade",
+    "email": "basilicachiquinquira@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-2889973",
+    "role": "priest",
+    "parish": "San Juan de Dios y Basílica Santuario de N.S. de Chiquinquirá. “Santuario Mariano del Zulia”"
+  },
+  {
+    "name": "Pbro. José Miguel Hernández",
+    "email": "basilicachiquinquira1@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-2889973",
+    "role": "priest",
+    "parish": "San Juan de Dios y Basílica Santuario de N.S. de Chiquinquirá. “Santuario Mariano del Zulia”"
+  },
+  {
+    "name": "Pbro. José Enrique Varela",
+    "email": "pquiasanbenitopalermo@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6620878",
+    "role": "priest",
+    "parish": "San Benito de Palermo"
+  },
+  {
+    "name": "Pbro. Jorge A. Dos Pasos",
+    "email": "pquiasanbenitopalermo1@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6620878",
+    "role": "priest",
+    "parish": "San Benito de Palermo"
+  },
+  {
+    "name": "Pbro. Renzo O. Gotera",
+    "email": "pquiasanbenitopalermo2@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6620878",
+    "role": "priest",
+    "parish": "San Benito de Palermo"
+  },
+  {
+    "name": "Pbro. Juan Pablo Hernández",
+    "email": "juan.pablo@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0261-7650404",
+    "role": "priest",
+    "parish": "N.S. de la Asunción"
+  },
+  {
+    "name": "Pbro. José Gregorio Montenegro Fereira",
+    "email": "monfercheo@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0424-6361306",
+    "role": "priest",
+    "parish": "N.S. de la Medalla Milagrosa"
+  },
+  {
+    "name": "Pbro. Alfonso Rodríguez",
+    "email": "alfonso_rodriguez@cantv.net",
+    "password": "sacerdote123",
+    "phone": "0414-6281643",
+    "role": "priest",
+    "parish": "Santo Cristo de Aranza"
+  },
+  {
+    "name": "Pbro. Roberto Segundo Morales Carruyo",
+    "email": "parroquiasanjosemcbo@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0424-6614822",
+    "role": "priest",
+    "parish": "San José"
+  },
+  {
+    "name": "Pbro. Jesús Colina",
+    "email": "jesus.colina@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0424-6153784",
+    "role": "priest",
+    "parish": "San Alfonso María de Ligorio"
+  },
+  {
+    "name": "R.P. Fray José Vivas Vivas, OSA",
+    "email": "parroquia.perpetuosocorro.mcbo@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-5147175",
+    "role": "priest",
+    "parish": "N.S. del Perpetuo Socorro"
+  },
+  {
+    "name": "R.P. Fray Oswaldo Matheus González, OSA",
+    "email": "parroquia.perpetuosocorro.mcbo1@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-5147175",
+    "role": "priest",
+    "parish": "N.S. del Perpetuo Socorro"
+  },
+  {
+    "name": "R.P. Fray Ricardo Riaño, OAR",
+    "email": "iglesialaconsolacion.mbo@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-7127606",
+    "role": "priest",
+    "parish": "N.S. de la Consolación"
+  },
+  {
+    "name": "Pbro. Max Gregorio Guerere Rodríguez",
+    "email": "elrosariomcbo@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0424-6293617",
+    "role": "priest",
+    "parish": "N.S. del Rosario"
+  },
+  {
+    "name": "Pbro. Andrés de Jesús Afanador Rodríguez",
+    "email": "andres.de@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0412-7128907",
+    "role": "priest",
+    "parish": "San Judas Tadeo"
+  },
+  {
+    "name": "Pbro. Ovidio Eduardo Duarte Torres",
+    "email": "licduarte@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-6275968",
+    "role": "priest",
+    "parish": "San Antonio María Claret"
+  },
+  {
+    "name": "Pbro. Lenín José Naranjo Flores (enero 2014)",
+    "email": "parroquialasmercedes@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-6467261",
+    "role": "priest",
+    "parish": "N.S. de las Mercedes"
+  },
+  {
+    "name": "Pbro. Edgar J. Doria M.",
+    "email": "edgarjose@cantv.net",
+    "password": "sacerdote123",
+    "phone": "0414-3612908",
+    "role": "priest",
+    "parish": "Sagrado Corazón de Jesús"
+  },
+  {
+    "name": "Pbro. Juan José Navarro Robertis",
+    "email": "juan.jose@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0416-5611244",
+    "role": "priest",
+    "parish": "N.S. de Lourdes (Maracaibo)"
+  },
+  {
+    "name": "Pbro. Pedro Colmenares",
+    "email": "pbropedrocolmenares@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0426-9655848",
+    "role": "priest",
+    "parish": "San Miguel Arcángel"
+  },
+  {
+    "name": "Pbro. Danilo González",
+    "email": "danilo.gonzalez@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0416-7611987",
+    "role": "priest",
+    "parish": "La Sagrada Familia"
+  },
+  {
+    "name": "Pbro. Eleuterio Segundo Cuevas Pereira",
+    "email": "parrnuestrasradelcarmenmcbo@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6844539",
+    "role": "priest",
+    "parish": "N.S. del Carmen (Maracaibo)"
+  },
+  {
+    "name": "Pbro. Enrique Rojas Peña",
+    "email": "kyke32@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-7539894",
+    "role": "priest",
+    "parish": "San Pedro Apóstol"
+  },
+  {
+    "name": "Pbro. Rafael López",
+    "email": "rafaelopez3303@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6266122",
+    "role": "priest",
+    "parish": "San Martín de Porres"
+  },
+  {
+    "name": "Pbro. José Andrés Bravo Henríquez",
+    "email": "padreabravo@yahoo.com",
+    "password": "sacerdote123",
+    "phone": "0414-6185341",
+    "role": "priest",
+    "parish": "Santa Teresita del Niño Jesús"
+  },
+  {
+    "name": "Pbro. José Pineda",
+    "email": "pjosepineda@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0424-6755405",
+    "role": "priest",
+    "parish": "Niña María"
+  },
+  {
+    "name": "R.P. Jesús Vásquez, SchP",
+    "email": "jesusvc55@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-0616901",
+    "role": "priest",
+    "parish": "San Ignacio de Loyola"
+  },
+  {
+    "name": "Pbro. Miguel Antonio Ospino",
+    "email": "mospino_martinez@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0416-0625909",
+    "role": "priest",
+    "parish": "San Tarsicio"
+  },
+  {
+    "name": "R.P. Francisco Ortiz Bran, O.de M.",
+    "email": "mcbofatima@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6715547",
+    "role": "priest",
+    "parish": "N.S. de Fátima"
+  },
+  {
+    "name": "R.P. Alejandro Rincón Quiroz, O.de M.",
+    "email": "mcbofatima1@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6715547",
+    "role": "priest",
+    "parish": "N.S. de Fátima"
+  },
+  {
+    "name": "R.P. Poncs Capell Capell, O.de M.",
+    "email": "sanramonnonato@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-3466396",
+    "role": "priest",
+    "parish": "San Ramón Nonato"
+  },
+  {
+    "name": "Pbro. Robert Alberto Álvarez Pérez",
+    "email": "robert.alberto@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0424-6704586",
+    "role": "priest",
+    "parish": "La Santísima Trinidad"
+  },
+  {
+    "name": "Pbro. Héctor de los Reyes Bermúdez C. (octubre 2014)",
+    "email": "hector.bermudez.c@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0416-1618046",
+    "role": "priest",
+    "parish": "N.S. de la Candelaria"
+  },
+  {
+    "name": "Pbro. Fr. Adelmo Irene, OAR",
+    "email": "fr..adelmo@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0424-1218537",
+    "role": "priest",
+    "parish": "Santa Rosa de Lima – Santa Rita de Casia"
+  },
+  {
+    "name": "Pbro. Wilmer Olano",
+    "email": "wilmer.olano@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0414-6920201",
+    "role": "priest",
+    "parish": "San Bartolomé (Ziruma)"
+  },
+  {
+    "name": "R.P. Fray José Antonio Díaz, OAR",
+    "email": "mcboparroquiasanonofre@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0424-6178408",
+    "role": "priest",
+    "parish": "San Onofre"
+  },
+  {
+    "name": "R.P. Fray Juan Carlos Fernández, OAR",
+    "email": "mcboparroquiasanonofre1@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0424-6178408",
+    "role": "priest",
+    "parish": "San Onofre"
+  },
+  {
+    "name": "Pbro. Dainer Prieto (Párroco",
+    "email": "sanjuanboscomcbo@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-3636962",
+    "role": "priest",
+    "parish": "San Juan Bosco (Sede del Curso Propedéutico)"
+  },
+  {
+    "name": "R.P. Pedro Castellano, OCarm",
+    "email": "fraypedrocarm@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0424-6747353",
+    "role": "priest",
+    "parish": "Santa Mónica – La Concepción"
+  },
+  {
+    "name": "Pbro. Jesús Sandoval",
+    "email": "jesus.sandoval@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0414-9617569",
+    "role": "priest",
+    "parish": "N.S. de Coromoto"
+  },
+  {
+    "name": "Pbro. Dr. Carlos José Reyes B.",
+    "email": "padrereye@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-2575199",
+    "role": "priest",
+    "parish": "San Pablo Apóstol"
+  },
+  {
+    "name": "Pbro. Leonardo Martínez",
+    "email": "p.n.s.jesucristorey@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6654756",
+    "role": "priest",
+    "parish": "Nuestro Señor Jesucristo Rey"
+  },
+  {
+    "name": "Pbro. Jorge David Sánchez Urdaneta (Adm. Parroquial 10/01/2026)",
+    "email": "jorgeservi0518@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0424-6219438",
+    "role": "priest",
+    "parish": "El Buen Pastor"
+  },
+  {
+    "name": "R.P. Yonys Mendoza, MSC",
+    "email": "yonysmendoza@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6316996",
+    "role": "priest",
+    "parish": "N.S. de la Paz"
+  },
+  {
+    "name": "Pbro. Dionni José Ríos Ríos (Adm. Parroquial 15/02/2026)",
+    "email": "dionni.jose@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0414-1640886",
+    "role": "priest",
+    "parish": "La Resurrección del Señor"
+  },
+  {
+    "name": "Pbro. Silverio Antonio Osorio Mora",
+    "email": "silverio.antonio@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0412-5142747",
+    "role": "priest",
+    "parish": "San Isidro Labrador"
+  },
+  {
+    "name": "Pbro. Ender Alexander Castillo Montoya (Administrador parroquial 15/11/2025)",
+    "email": "parroquiasmosacramento@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0424-2582491",
+    "role": "priest",
+    "parish": "Santísimo Sacramento"
+  },
+  {
+    "name": "Pbro. José Domingo Alvarado",
+    "email": "jose.domingo@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0414-6827366",
+    "role": "priest",
+    "parish": "Santa Inés"
+  },
+  {
+    "name": "Pbro. Andrés Bravo",
+    "email": "andres.bravo@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0414-6185341",
+    "role": "priest",
+    "parish": "San Juan Crisóstomo y San Juan Pablo II (Parroquia Universitaria)"
+  },
+  {
+    "name": "Pbro. Andry Sánchez",
+    "email": "sanchezaandry@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0424-6949290",
+    "role": "priest",
+    "parish": "N.S. de Guadalupe"
+  },
+  {
+    "name": "Pbro. Henry Tapia",
+    "email": "henrybenito1@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0416-9604224",
+    "role": "priest",
+    "parish": "Jesús Nazareno"
+  },
+  {
+    "name": "Pbro. Lcdo. Richard Garrillo",
+    "email": "joseanbarboza@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0261-7320042",
+    "role": "priest",
+    "parish": "Santísimo Salvador"
+  },
+  {
+    "name": "Pbro. Leonardo López",
+    "email": "pbrolopezquintero@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-0619083",
+    "role": "priest",
+    "parish": "Santísimo Cristo de San Francisco"
+  },
+  {
+    "name": "Pbro. Danilo Humberto Calderón Matheus",
+    "email": "danilo.humberto@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0424-6268956",
+    "role": "priest",
+    "parish": "San Juan Bautista"
+  },
+  {
+    "name": "Pbro. Raúl R. Montoya Medero",
+    "email": "stodomingogcatolicaparroquia@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6799880",
+    "role": "priest",
+    "parish": "Santo Domingo de Guzmán"
+  },
+  {
+    "name": "Pbro. Néstor Luis Pérez",
+    "email": "nestor.luis@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0424-6919517",
+    "role": "priest",
+    "parish": "San Felipe Neri"
+  },
+  {
+    "name": "Pbro. Francisco Antonio Niño Correa",
+    "email": "francisco.antonio@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0412-7683972",
+    "role": "priest",
+    "parish": "N.S. de la Caridad del Cobre"
+  },
+  {
+    "name": "Pbro. Engelbert Alfredo Jackson Carrasco",
+    "email": "engelbert.alfredo@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0414-6237799",
+    "role": "priest",
+    "parish": "Transfiguración del Señor"
+  },
+  {
+    "name": "Pbro. Carlos Quiva",
+    "email": "padrecarlosquiva@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-1285174",
+    "role": "priest",
+    "parish": "Santa Mariana de Jesús"
+  },
+  {
+    "name": "Pbro. Jorge Enrique Rodríguez González",
+    "email": "jorge.enrique@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0414-6513813",
+    "role": "priest",
+    "parish": "Purísima Madre de Dios y San Benito de Palermo"
+  },
+  {
+    "name": "Pbro. Raúl Moreno",
+    "email": "raulalfredo1963@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6326406",
+    "role": "priest",
+    "parish": "La Inmaculada Concepción (La Cañada de Urdaneta)"
+  },
+  {
+    "name": "Pbro. Hebert de Jesús Rivera Cañizález",
+    "email": "raulalfredo19631@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6326406",
+    "role": "priest",
+    "parish": "La Inmaculada Concepción (La Cañada de Urdaneta)"
+  },
+  {
+    "name": "Pbro. Daigel Medina",
+    "email": "daigelhml@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6483753",
+    "role": "priest",
+    "parish": "N.S. del Carmen (El Carmelo)"
+  },
+  {
+    "name": "Pbro. José del Carmen Chirinos (Adm. Parroquial)",
+    "email": "jose.del@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0414-6089719",
+    "role": "priest",
+    "parish": "N.S. de Chiquinquirá (La Ensenada)"
+  },
+  {
+    "name": "Pbro. Fabricio Medina",
+    "email": "fabricio.medina@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0414-6266325",
+    "role": "priest",
+    "parish": "San Antonio de Padua y N.S. Virgen de Los Parrales"
+  },
+  {
+    "name": "Pbro. Rafael Morales",
+    "email": "parroquiasanrafael@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0416-6667944",
+    "role": "priest",
+    "parish": "San Rafael Arcángel (El Moján)"
+  },
+  {
+    "name": "Pbro. Rafael Morales",
+    "email": "rafael.morales@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0416-6667944",
+    "role": "priest",
+    "parish": "N.S. de Lourdes (Isla de Toas)"
+  },
+  {
+    "name": "Pbro. Evelio Pérez",
+    "email": "evelio.perez@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0424-6288234",
+    "role": "priest",
+    "parish": "María Auxiliadora (Santa Cruz de Mara)"
+  },
+  {
+    "name": "Pbro. Yonder Javier Urdaneta Hiza (Adm. Parroquial 18/01/2026)",
+    "email": "yonder.javier@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0412-1670969",
+    "role": "priest",
+    "parish": "La Inmaculada Concepción (Carrasquero)"
+  },
+  {
+    "name": "Pbro. William Chiquinquirá Ortega Colmenares",
+    "email": "william.chiquinquira@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0424-6539582",
+    "role": "priest",
+    "parish": "N.S. de Coromoto y San José Obrero (La Sierrita)"
+  },
+  {
+    "name": "Pbro. José G. Sánchez (in solidum)",
+    "email": "pquia.jesusredentor@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0416-4617636",
+    "role": "priest",
+    "parish": "Jesús Redentor (Tamare)"
+  },
+  {
+    "name": "Pbro. Valentín Segundo Rodríguez López",
+    "email": "pquia.jesusredentor1@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0416-4617636",
+    "role": "priest",
+    "parish": "Jesús Redentor (Tamare)"
+  },
+  {
+    "name": "Pbro. Santos Xavier Silva Blanco (Adm. Parroquial)",
+    "email": "padresantosilva@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-1742378",
+    "role": "priest",
+    "parish": "San Bartolomé Apóstol (Sinamaica)"
+  },
+  {
+    "name": "Pbro. Eduardo José Daboin Bermúdez Diác. Francisco José Núñez Larez",
+    "email": "eduardodaboin1991@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0414-6690248",
+    "role": "priest",
+    "parish": "San José de Paraguaipoa"
+  },
+  {
+    "name": "Pbro. Germán Palmar",
+    "email": "german.palmar@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0412-7980355",
+    "role": "priest",
+    "parish": "El Sagrado Corazón de Jesús (Guarero)"
+  },
+  {
+    "name": "Pbro. Dilmer Báez",
+    "email": "else-oresmiluz@hotmail.com",
+    "password": "sacerdote123",
+    "phone": "0426-4604314",
+    "role": "priest",
+    "parish": "Santa María (Guana)"
+  },
+  {
+    "name": "Pbro. Santos Xavier Silva Blanco",
+    "email": "padresantosilva1@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-1742378",
+    "role": "priest",
+    "parish": "Parroquia Personal Eclesiástica N.S. del Carmen (añú)"
+  },
+  {
+    "name": "R.P. Pedro Enrique Paredes Ramírez, IC",
+    "email": "pedro.enrique@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0412-7697073",
+    "role": "priest",
+    "parish": "Rectoría San Francisco de Asís (Rosmini)"
+  },
+  {
+    "name": "Pbro. Laudi Zambrano",
+    "email": "laudi.zambrano@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0414-3618152",
+    "role": "priest",
+    "parish": "Rectoría Santo Tomás Moro"
+  },
+  {
+    "name": "R.P. Juan Esteban Padilla Ponce, O.H.",
+    "email": "familiajuandediana@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0424-6224357",
+    "role": "priest",
+    "parish": "Rectoría Hogar Clínica San Rafael"
+  },
+  {
+    "name": "Pbro. Evelio Pérez",
+    "email": "evelio.perez1@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0424-6288234",
+    "role": "priest",
+    "parish": "Rectoría La Santísima Cruz de Mara"
+  },
+  {
+    "name": "Pbro. Carlos Quiva",
+    "email": "padrecarlosquiva1@gmail.com",
+    "password": "sacerdote123",
+    "phone": "0412-1285174",
+    "role": "priest",
+    "parish": "Rectoría Jesús de la Buena Esperanza"
+  },
+  {
+    "name": "R.P. Pedro Enrique Paredes Ramírez, IC",
+    "email": "pedro.enrique1@arquidiocesisdemaracaibo.org",
+    "password": "sacerdote123",
+    "phone": "0412-7697073",
+    "role": "priest",
+    "parish": "Rectoría San Antonio de Padua"
+  }
+]

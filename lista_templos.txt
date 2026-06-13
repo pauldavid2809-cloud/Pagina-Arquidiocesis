@@ -1,0 +1,72 @@
+- `img/templos/PZ1-1.webp` para PARROQUIA EL SAGRARIO
+- `img/templos/PZ1-2.webp` para PARROQUIA SANTA LUCIA
+- `img/templos/PZ1-3.webp` para PARROQUIA SANTA BÁRBARA
+- `img/templos/PZ1-4.webp` para PARROQUIA SAN JUAN DE
+- `img/templos/PZ1-5.webp` para PARROQUIA SAN BENITO DE
+- `img/templos/PZ1-6.webp` para PARROQUIA NTRA
+- `img/templos/PZ1-7.webp` para PARROQUIA NTRA
+- `img/templos/PZ1-8.webp` para PARROQUIA SANTO CRISTO
+- `img/templos/PZ2-1.webp` para PARROQUIA SAN JOSÉ
+- `img/templos/PZ2-2.webp` para PARROQUIA SAN ALFONSO
+- `img/templos/PZ2-3.webp` para PARROQUIA NTRA
+- `img/templos/PZ2-4.webp` para PARROQUIA NTRA
+- `img/templos/PZ2-5.webp` para PARROQUIA NTRA
+- `img/templos/PZ2-6.webp` para PARROQUIA SAN JUDAS
+- `img/templos/PZ2-7.webp` para SAN ANTONIO MARÍA CLARET
+- `img/templos/PZ2-8.webp` para PARROQUIA NTRA
+- `img/templos/PZ2-9.webp` para PARROQUIA SAGRADO
+- `img/templos/PZ3-1.webp` para PARROQUIA NTRA
+- `img/templos/PZ3-2.webp` para PARROQUIA SAN MIGUEL
+- `img/templos/PZ3-3.webp` para PARROQUIA LA SAGRADA
+- `img/templos/PZ3-4.webp` para PARROQUIA NTRA
+- `img/templos/PZ3-5.webp` para PARROQUIA SAN PEDRO
+- `img/templos/PZ3-6.webp` para PARROQUIA SAN MARTÍN DE
+- `img/templos/PZ3-7.webp` para PARROQUIA SANTA TERESITA
+- `img/templos/PZ3-8.webp` para PARROQUIA NIÑA MARÍA
+- `img/templos/PZ3-9.webp` para PARROQUIA SAN IGNACIO DE
+- `img/templos/PZ3-10.webp` para SAN TARSICIO
+- `img/templos/PZ4-1.webp` para PARROQUIA SANTA MÓNICA
+- `img/templos/PZ4-2.webp` para PARROQUIA NTRA
+- `img/templos/PZ4-3.webp` para PARROQUIA SAN PABLO
+- `img/templos/PZ4-4.webp` para PARROQUIA NUESTRO SEÑOR
+- `img/templos/PZ4-5.webp` para PARROQUIA EL BUEN PASTOR
+- `img/templos/PZ4-6.webp` para PARROQUIA NTRA
+- `img/templos/PZ4-7.webp` para PARROQUIA LA RESURRECCIÓN
+- `img/templos/PZ4-8.webp` para PARROQUIA SAN ISIDRO
+- `img/templos/PZ5-1.webp` para PARROQUIA NTRA
+- `img/templos/PZ5-2.webp` para PARROQUIA JESÚS
+- `img/templos/PZ5-3.webp` para PARROQUIA SANTÍSIMO
+- `img/templos/PZ4-9.webp` para PARROQUIA SANTÍSIMO
+- `img/templos/PZ4-10.webp` para PARROQUIA SANTA INÉS
+- `img/templos/PZ4-11.webp` para PARROQUIA S
+- `img/templos/PZ5-4.webp` para PARROQUIA SANTÍSIMO
+- `img/templos/PZ5-5.webp` para PARROQUIA SAN JUAN
+- `img/templos/PZ5-6.webp` para PARROQUIA SANTO
+- `img/templos/PZ5-7.webp` para PARROQUIA SAN FELIPE
+- `img/templos/PZ5-8.webp` para PARROQUIA NTRA
+- `img/templos/PZ5-9.webp` para PARROQUIA
+- `img/templos/PZ5-10.webp` para PARROQUIA SANTA
+- `img/templos/PZ6-1.webp` para PARROQUIA NTRA
+- `img/templos/PZ6-2.webp` para PARROQUIA SAN RAMÓN
+- `img/templos/PZ6-3.webp` para PARROQUIA LA SANTÍSIMA
+- `img/templos/PZ6-4.webp` para PARROQUIA NTRA
+- `img/templos/PZ6-5.webp` para PARROQUIA SANTA ROSA DE
+- `img/templos/PZ6-6.webp` para PARROQUIA SAN
+- `img/templos/PZ6-7.webp` para PARROQUIA SAN ONOFRE
+- `img/templos/PZ6-8.webp` para PARROQUIA SAN JUAN
+- `img/templos/PZ7-1.webp` para PARROQUIA SAN RAFAEL
+- `img/templos/PZ7-3.webp` para PARROQUIA NTRA
+- `img/templos/PZ7-6.webp` para PARROQUIA MARÍA
+- `img/templos/PZ7-7.webp` para PARROQUIA LA
+- `img/templos/PZ7-9.webp` para PARROQUIA NTRA
+- `img/templos/PZ7-10.webp` para PARROQUIA JESÚS
+- `img/templos/PZ7-2.webp` para PARROQUIA SAN
+- `img/templos/PZ7-8.webp` para PARROQUIA SAN JOSÉ DE
+- `img/templos/PZ7-4.webp` para PARROQUIA EL SAGRADO
+- `img/templos/PZ7-5.webp` para PARROQUIA SANTA MARÍA
+- `img/templos/PZ7-11.webp` para P
+- `img/templos/PZ8-1.webp` para PARROQUIA LA
+- `img/templos/PZ8-2.webp` para PARROQUIA NTRA
+- `img/templos/PZ8-3.webp` para PARROQUIA NTRA
+- `img/templos/PZ8-4.webp` para SAN ANTONIO DE PADUA Y
+- `img/templos/PZ8-5.webp` para PARROQUIA PURÍSIMA

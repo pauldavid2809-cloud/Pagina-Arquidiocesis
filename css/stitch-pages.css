@@ -1,0 +1,207 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Stitch Design Bridge — inner pages
+   Maps legacy component classes to the Stitch / Geist design system
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@import url('_variables.css');
+
+:root {
+  --azul: #0a0524;
+  --azul-med: #211d3c;
+  --gualda: #635592;
+  --gualda-dark: #554783;
+  --grana: #ba1a1a;
+  --grana-light: #93000a;
+  --hueso: #fdf8ff;
+  --blanco: #ffffff;
+  --texto: #1c1a27;
+  --texto-soft: #48464d;
+  --surface-1: #f7f1ff;
+  --surface-2: #f1ebfe;
+  --gris-suave: #e5e0f3;
+  --gris-medio: #78767e;
+  --azul-glow: rgba(10, 5, 36, 0.08);
+  --blanco-80: rgba(255, 255, 255, 0.80);
+  --blanco-60: rgba(255, 255, 255, 0.60);
+  --font-display: 'Geist', system-ui, sans-serif;
+  --font-ui: 'Geist', system-ui, sans-serif;
+  --font-body: 'Geist', system-ui, sans-serif;
+  --font-accent: 'Geist', system-ui, sans-serif;
+  --primary: #0a0524;
+  --primary-dark: #0a0524;
+  --primary-light: #211d3c;
+  --secondary: #635592;
+  --secondary-dark: #554783;
+  --danger: #ba1a1a;
+  --bg: #fdf8ff;
+  --bg-white: #ffffff;
+  --text: #1c1a27;
+  --text-light: #48464d;
+  --border: #c9c5ce;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-card: 0 4px 24px rgba(10, 5, 36, 0.08);
+  --shadow-hover: 0 12px 40px rgba(10, 5, 36, 0.12);
+  --shadow-xl: 0 24px 64px rgba(10, 5, 36, 0.16);
+  --transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  --grad-azul: linear-gradient(135deg, #0a0524 0%, #211d3c 100%);
+}
+
+@import url('_components.css');
+
+/* ── Page headers (Stitch hero gradient) ── */
+.page-header,
+.page-hero {
+  background: radial-gradient(circle at top right, #e7deff 0%, #fdf8ff 60%);
+  padding: 7.5rem 1rem 3.5rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(201, 197, 206, 0.25);
+  position: relative;
+}
+
+.page-header h2,
+.page-hero h2,
+.page-header .container h2 {
+  font-family: 'Geist', system-ui, sans-serif !important;
+  color: #0a0524 !important;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 500;
+  font-style: normal !important;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.page-header p,
+.page-hero p {
+  color: #48464d !important;
+  font-size: 1.05rem;
+  margin-top: 0.75rem;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Directorio hero — Stitch palette */
+.dir-hero {
+  background: radial-gradient(circle at top right, #e7deff 0%, #fdf8ff 60%) !important;
+  border-bottom: 1px solid rgba(201, 197, 206, 0.25) !important;
+  padding-top: 7.5rem !important;
+}
+
+.dir-hero h2 {
+  font-family: 'Geist', system-ui, sans-serif !important;
+  color: #0a0524 !important;
+  font-weight: 500 !important;
+}
+
+.dir-hero p {
+  color: #48464d !important;
+}
+
+/* ── Main content area ── */
+main.container,
+.portal-main {
+  background: #fdf8ff;
+}
+
+.container {
+  width: min(92%, 1280px);
+}
+
+/* ── Cards & sections ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(157, 142, 207, 0.15) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 4px 24px rgba(10, 5, 36, 0.06) !important;
+}
+
+.glass-card:hover {
+  box-shadow: 0 12px 40px rgba(10, 5, 36, 0.1) !important;
+  transform: translateY(-4px);
+}
+
+.section-title {
+  font-family: 'Geist', system-ui, sans-serif !important;
+  color: #0a0524 !important;
+  font-weight: 500 !important;
+}
+
+.section-title::after {
+  background: #635592 !important;
+}
+
+.section-label {
+  color: #635592 !important;
+}
+
+.feature-text h2,
+.feature-text h3 {
+  font-family: 'Geist', system-ui, sans-serif !important;
+  color: #0a0524 !important;
+  font-weight: 500 !important;
+}
+
+.feature-image {
+  border-radius: 24px !important;
+  overflow: hidden;
+}
+
+/* ── Buttons ── */
+.btn-primary,
+.btn-nav-cta {
+  background: #0a0524 !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 16px rgba(10, 5, 36, 0.2) !important;
+}
+
+.btn-primary:hover,
+.btn-nav-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  border-color: #0a0524 !important;
+  color: #0a0524 !important;
+}
+
+/* ── Noticias page ── */
+.controls-bar {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(201, 197, 206, 0.25) !important;
+  top: 72px !important;
+}
+
+.pill.active,
+.filter-pills .pill.active {
+  background: #0a0524 !important;
+  color: #fff !important;
+}
+
+.news-card,
+.featured-card {
+  border-radius: 24px !important;
+  border: 1px solid rgba(157, 142, 207, 0.12) !important;
+}
+
+/* ── Portal sacerdotes ── */
+.auth-header {
+  background: linear-gradient(135deg, #0a0524 0%, #211d3c 100%) !important;
+}
+
+.auth-card,
+.portal-card,
+.dash-card {
+  border-radius: 20px !important;
+  border-color: rgba(201, 197, 206, 0.3) !important;
+}
+
+/* ── Hide legacy navbar/footer when stitch shell is active ── */
+body.stitch-layout .navbar,
+body.stitch-layout .footer {
+  display: none !important;
+}

@@ -1,0 +1,3440 @@
+<!DOCTYPE html><html class="light" lang="es">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Portal de Sacerdotes | Arquidiócesis de Maracaibo</title>
+<meta content="Plataforma digital de trámites del clero de la Arquidiócesis de Maracaibo. Acceso exclusivo para sacerdotes y personal de la Curia Metropolitana." name="description">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/stitch-config.js"></script>
+<!-- Core Styles -->
+<link href="css/stitch-core.css" rel="stylesheet">
+<!-- Tabler Icons for portal functionality -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+    /* ── Sacred Modernism — CSS Variables & Utility Styles ── */
+    :root {
+        --font-display: 'DM Sans', sans-serif;
+        --font-body: 'Poppins', sans-serif;
+        --color-crimson-deep: #7A1A22;
+        --color-gold-antique: #C59B27;
+        --color-slate-warm: #4A4543;
+        --color-warm-ivory: #F9F7F2;
+        --color-primary: #5b000f;
+    }
+
+    /* ── Custom Utilities ── */
+    .glass-panel {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(220, 200, 190, 0.2);
+    }
+
+    .portal-main {
+        min-height: calc(100vh - 80px);
+        padding: 4rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #fbf9f4 0%, #f0eee9 50%, #eae8e3 100%);
+    }
+
+    .portal-wrapper {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* ── Tab Switcher View State ── */
+    .view {
+        display: none;
+    }
+
+    .view.active {
+        display: block;
+        animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    /* ── Custom Scrollbar ── */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #fbf9f4;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #ddc0be;
+        border-radius: 10px;
+    }
+
+    /* ── Sidebar Menu Action State ── */
+    .sidebar-menu-btn {
+        background: transparent;
+        border: none;
+        color: var(--color-slate-warm);
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        font-family: var(--font-body);
+        font-weight: 500;
+    }
+
+    .sidebar-menu-btn:hover {
+        background: rgba(122, 26, 34, 0.05);
+        color: var(--color-crimson-deep);
+    }
+
+    .sidebar-menu-btn.active {
+        background: var(--color-crimson-deep);
+        color: #ffffff !important;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(122, 26, 34, 0.15);
+    }
+
+    .bento-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .bento-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(74, 69, 67, 0.08);
+    }
+
+    /* ── Status Badges ── */
+    .badge-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 9999px;
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .badge-pending {
+        background-color: rgba(197, 155, 39, 0.1);
+        color: var(--color-gold-antique);
+        border: 1px solid rgba(197, 155, 39, 0.2);
+    }
+
+    .badge-approved {
+        background-color: rgba(22, 163, 74, 0.1);
+        color: #16a34a;
+        border: 1px solid rgba(22, 163, 74, 0.2);
+    }
+
+    .badge-rejected {
+        background-color: rgba(122, 26, 34, 0.1);
+        color: var(--color-crimson-deep);
+        border: 1px solid rgba(122, 26, 34, 0.2);
+    }
+
+    /* ── Table Row Padding and Styling ── */
+    #priest-requests-table-body td,
+    #admin-requests-table-body td {
+        padding: 1.25rem 1rem;
+        vertical-align: middle;
+    }
+
+    #priest-requests-table-body tr,
+    #admin-requests-table-body tr {
+        transition: background-color 0.2s ease;
+    }
+    
+    #priest-requests-table-body tr:hover,
+    #admin-requests-table-body tr:hover {
+        background-color: rgba(197, 155, 39, 0.02);
+    }
+
+    .btn-table-action {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        background-color: var(--color-warm-ivory);
+        color: var(--color-crimson-deep);
+        border: 1px solid rgba(122, 26, 34, 0.15);
+        padding: 0.375rem 0.75rem;
+        border-radius: 8px;
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+
+    .btn-table-action:hover {
+        background-color: var(--color-crimson-deep);
+        color: #ffffff;
+        border-color: var(--color-crimson-deep);
+        box-shadow: 0 2px 6px rgba(122, 26, 34, 0.15);
+    }
+
+
+    /* ── Official Document Viewer (Certificates) ── */
+    .document-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #fffdf9;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        border: 1px solid #ebdcb9;
+        padding: 4.5rem 4rem;
+        position: relative;
+        font-family: 'Georgia', serif;
+        color: #2b2518;
+        line-height: 1.8;
+        font-size: 1.1rem;
+        border-radius: 4px;
+    }
+
+    @media (max-width: 576px) {
+        .document-container {
+            padding: 2.5rem 1.5rem;
+            font-size: 0.98rem;
+        }
+    }
+
+    .document-watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 320px;
+        height: 320px;
+        opacity: 0.03;
+        pointer-events: none;
+        background: url('img/logo-arquidiocesis.webp') no-repeat center center / contain;
+    }
+
+    .document-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+        border-bottom: 2px double #ebdcb9;
+        padding-bottom: 1.5rem;
+    }
+
+    .document-header img {
+        width: 75px;
+        height: 75px;
+        margin-bottom: 1rem;
+    }
+
+    .document-header h1 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin: 0;
+        color: #4a3e26;
+    }
+
+    .document-header h2 {
+        font-family: var(--font-display);
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin: 0.5rem 0 0 0;
+        color: #8c7853;
+        font-weight: 700;
+    }
+
+    .document-title {
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 2.5rem;
+        color: #5c4d31;
+        letter-spacing: 0.5px;
+    }
+
+    .document-body {
+        margin-bottom: 3.5rem;
+        text-align: justify;
+        white-space: pre-line;
+    }
+
+    .document-signatures {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 4rem;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .sig-block {
+        text-align: center;
+        flex: 1;
+        min-width: 220px;
+    }
+
+    .sig-block .sig-line {
+        border-top: 1px solid #ebdcb9;
+        margin-top: 3.5rem;
+        padding-top: 0.5rem;
+        font-family: var(--font-display);
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #4a3e26;
+    }
+
+    .sig-block .sig-title {
+        font-family: var(--font-display);
+        font-size: 0.78rem;
+        color: #8c7853;
+        text-transform: uppercase;
+    }
+
+    .sig-stamp {
+        position: relative;
+    }
+
+    .sig-stamp-seal {
+        position: absolute;
+        top: -55px;
+        left: 50%;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        border: 2px dashed #9c2b2b;
+        color: #9c2b2b;
+        font-family: var(--font-display);
+        font-size: 0.55rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.2px;
+        opacity: 0.75;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 10px rgba(0,0,0,0.02);
+        line-height: 1.2;
+        padding: 8px;
+        transform-origin: center;
+        transform: translateX(-50%) rotate(-12deg);
+    }
+
+    .sig-stamp-seal span {
+        display: block;
+    }
+
+    .document-footer {
+        margin-top: 4rem;
+        border-top: 1px solid #ebdcb9;
+        padding-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: var(--font-display);
+        font-size: 0.75rem;
+        color: #8c7853;
+    }
+
+    /* ── Email Toast Viewer (Dev/Demo) ── */
+    .toast-mail {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 420px;
+        max-width: calc(100vw - 40px);
+        background: #1e293b;
+        color: #f8fafc;
+        border-radius: 12px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        border: 1px solid #334155;
+        z-index: 9999;
+        overflow: hidden;
+        display: none;
+        flex-direction: column;
+        animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-mail-header {
+        background: #0f172a;
+        padding: 0.85rem 1.2rem;
+        font-family: var(--font-display);
+        font-size: 0.85rem;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #334155;
+        color: var(--color-gold-antique);
+    }
+
+    .toast-mail-header button {
+        background: transparent;
+        border: none;
+        color: #94a3b8;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: all 0.2s ease;
+    }
+
+    .toast-mail-header button:hover {
+        color: #f1f5f9;
+    }
+
+    .toast-mail-body {
+        padding: 1.2rem;
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        max-height: 300px;
+        overflow-y: auto;
+        line-height: 1.6;
+    }
+
+    .toast-mail-field {
+        margin-bottom: 0.75rem;
+        border-bottom: 1px solid #334155;
+        padding-bottom: 0.5rem;
+    }
+
+    .toast-mail-field strong {
+        color: #94a3b8;
+        font-family: var(--font-display);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+        from { transform: translateY(50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* ── Print Styles for Official Documents ── */
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        .document-container, .document-container * {
+            visibility: visible;
+        }
+        .document-container {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            border: none;
+            box-shadow: none;
+            background: white;
+            padding: 0;
+            margin: 0;
+        }
+        .no-print {
+            display: none !important;
+        }
+    }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body">
+
+<!-- Navbar injected by JS -->
+<div id="stitch-navbar"></div>
+
+<main class="portal-main">
+    <div class="portal-wrapper">
+
+        <!-- 1. VIEW: LOGIN -->
+        <div id="view-login" class="view active">
+            <div class="glass-panel max-w-md w-full p-10 rounded-2xl shadow-2xl border border-outline-variant/30 text-center mx-auto animate-fadeIn">
+                <div class="mb-6">
+                    <div class="mx-auto w-28 h-28 rounded-full shadow-lg border-4 border-gold-antique/20 overflow-hidden bg-white flex items-center justify-center p-2">
+                        <img src="img/logo-arquidiocesis.webp" alt="Escudo Curia" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/70x70/00235B/FFCC00?text=A'">
+                    </div>
+                </div>
+                <h2 class="font-display text-[26px] font-bold text-crimson-deep mb-1 leading-tight">Portal de Sacerdotes</h2>
+                <p class="text-slate-warm font-label text-[13px] tracking-wide mb-6">Plataforma Digital de Trámites e Iglesia Metropolitana</p>
+                
+                <div class="mb-6">
+                    <span id="db-badge-login" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-gold-antique/10 text-gold-antique border border-gold-antique/20">
+                        <i class="ti ti-database"></i> Evaluando...
+                    </span>
+                </div>
+
+                <div class="flex border-b border-outline-variant/30 mb-5 justify-center">
+                    <button type="button" id="tab-login-priest" onclick="setLoginType('priest')" class="px-5 py-2 font-label text-[14px] font-bold border-b-2 border-crimson-deep text-crimson-deep transition-all">Sacerdotes / Curia</button>
+                    <button type="button" id="tab-login-parish" onclick="setLoginType('parish')" class="px-5 py-2 font-label text-[14px] font-bold border-b-2 border-transparent text-slate-warm hover:text-crimson-deep transition-all">Parroquias</button>
+                </div>
+
+                <form id="form-login" class="space-y-5 text-left" onsubmit="event.preventDefault(); handleLogin(event)">
+                    <div id="container-login-email">
+                        <label for="login-email" class="font-label text-[13px] font-bold text-slate-warm block mb-1.5">Correo Electrónico</label>
+                        <input type="email" id="login-email" class="w-full bg-warm-ivory/50 border-b-2 border-outline-variant focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. pauldavid2809@gmail.com" required>
+                    </div>
+                    <div id="container-login-parish" style="display: none;">
+                        <label for="login-parish" class="font-label text-[13px] font-bold text-slate-warm block mb-1.5">Seleccione su Parroquia</label>
+                        <select id="login-parish" class="w-full bg-warm-ivory/50 border-b-2 border-outline-variant focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg">
+                            <option value="" disabled selected>Seleccione...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="login-password" class="font-label text-[13px] font-bold text-slate-warm block mb-1.5">Contraseña</label>
+                        <input type="password" id="login-password" class="w-full bg-warm-ivory/50 border-b-2 border-outline-variant focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="w-full bg-crimson-deep text-white py-3.5 rounded-xl font-bold font-label text-[14px] hover:bg-primary hover:shadow-lg active:scale-95 transition-all uppercase tracking-wider flex items-center justify-center gap-2">
+                        <i class="ti ti-login text-[18px]"></i> Ingresar al Portal
+                    </button>
+                </form>
+                
+                <div class="mt-6 pt-5 border-t border-outline-variant/30 flex flex-col gap-3 text-center">
+                    <a href="#" id="link-forgot-password" onclick="switchView('view-forgot')" class="text-slate-warm hover:text-crimson-deep font-label text-[13px] transition-colors font-medium">¿Olvidó su contraseña? Restablézcala con su correo</a>
+                    <a href="cancilleria.html" class="text-slate-warm hover:text-crimson-deep font-label text-[13px] transition-colors font-medium flex items-center justify-center gap-1">
+                        <i class="ti ti-arrow-left"></i> Volver a Cancillería
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. VIEW: PASSWORD RECOVERY -->
+        <div id="view-forgot" class="view">
+            <div class="glass-panel max-w-md w-full p-10 rounded-2xl shadow-2xl border border-outline-variant/30 text-center mx-auto animate-fadeIn">
+                <div class="mb-6">
+                    <div class="mx-auto w-28 h-28 rounded-full shadow-lg border-4 border-gold-antique/20 overflow-hidden bg-white flex items-center justify-center p-2">
+                        <img src="img/logo-arquidiocesis.webp" alt="Escudo Curia" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/70x70/00235B/FFCC00?text=A'">
+                    </div>
+                </div>
+                <h2 class="font-display text-[24px] font-bold text-crimson-deep mb-1 leading-tight">Restablecer Contraseña</h2>
+                <p class="text-slate-warm font-label text-[13px] tracking-wide mb-6">Verificación segura vía Correo Electrónico</p>
+                
+                <div class="auth-body text-left">
+                    <!-- Step 1: Enter email -->
+                    <div id="forgot-step-1" class="space-y-4">
+                        <div>
+                            <label for="forgot-email" class="font-label text-[13px] font-bold text-slate-warm block mb-1.5">Correo Electrónico</label>
+                            <input type="email" id="forgot-email" class="w-full bg-warm-ivory/50 border-b-2 border-outline-variant focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. pauldavid2809@gmail.com" required>
+                        </div>
+                        <button onclick="handleForgotStep1()" class="w-full bg-crimson-deep text-white py-3.5 rounded-xl font-bold font-label text-[14px] hover:bg-primary hover:shadow-lg active:scale-95 transition-all uppercase tracking-wider flex items-center justify-center gap-2">
+                            Verificar Correo <i class="ti ti-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Step 2: Send and validate code -->
+                    <div id="forgot-step-2" style="display: none;" class="space-y-4">
+                        <p class="font-body text-[13px] text-slate-warm leading-relaxed mb-4">
+                            El correo electrónico corresponde a la cuenta registrada. Se enviará un código de seguridad a: <br><strong id="masked-email" class="text-on-surface">sace*****@gmail.com</strong>.
+                        </p>
+                        <button id="btn-send-code" onclick="sendVerificationCode()" class="w-full bg-surface-container-highest hover:bg-surface-variant text-slate-warm py-3 rounded-xl font-bold font-label text-[13px] transition-all flex items-center justify-center gap-2 border border-outline-variant/20 shadow-sm">
+                            <i class="ti ti-mail-fast text-[18px]"></i> Enviar Código al Correo
+                        </button>
+                        <div>
+                            <label for="forgot-code" class="font-label text-[13px] font-bold text-slate-warm block mb-1.5">Código de Verificación (6 dígitos)</label>
+                            <input type="text" id="forgot-code" class="w-full bg-warm-ivory/50 border-b-2 border-outline-variant focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg text-center font-mono tracking-widest" placeholder="Ej. 123456" maxlength="6" disabled>
+                        </div>
+                        <button id="btn-verify-code" onclick="handleForgotStep2()" class="w-full bg-crimson-deep text-white py-3.5 rounded-xl font-bold font-label text-[14px] hover:bg-primary hover:shadow-lg active:scale-95 transition-all uppercase tracking-wider flex items-center justify-center gap-2" disabled>
+                            Verificar Código <i class="ti ti-shield-check"></i>
+                        </button>
+                    </div>
+
+                    <!-- Step 3: New password -->
+                    <div id="forgot-step-3" style="display: none;" class="space-y-4">
+                        <div>
+                            <label for="forgot-new-password" class="font-label text-[13px] font-bold text-slate-warm block mb-1.5">Nueva Contraseña</label>
+                            <input type="password" id="forgot-new-password" class="w-full bg-warm-ivory/50 border-b-2 border-outline-variant focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Mínimo 6 caracteres" required>
+                        </div>
+                        <div>
+                            <label for="forgot-confirm-password" class="font-label text-[13px] font-bold text-slate-warm block mb-1.5">Confirmar Nueva Contraseña</label>
+                            <input type="password" id="forgot-confirm-password" class="w-full bg-warm-ivory/50 border-b-2 border-outline-variant focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Repita la contraseña" required>
+                        </div>
+                        <button onclick="handleForgotStep3()" class="w-full bg-gold-antique hover:bg-secondary text-white py-3.5 rounded-xl font-bold font-label text-[14px] hover:shadow-lg active:scale-95 transition-all uppercase tracking-wider flex items-center justify-center gap-2">
+                            <i class="ti ti-key text-[18px]"></i> Guardar Nueva Contraseña
+                        </button>
+                    </div>
+
+                    <div class="mt-6 pt-5 border-t border-outline-variant/30 text-center">
+                        <a href="#" onclick="switchView('view-login')" class="text-slate-warm hover:text-crimson-deep font-label text-[13px] transition-colors font-medium">Regresar al Inicio de Sesión</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. VIEW: PRIEST DASHBOARD -->
+        <div id="view-priest-dashboard" class="view">
+            <div class="glass-panel rounded-3xl shadow-2xl border border-outline-variant/30 overflow-hidden flex flex-col min-h-[600px] mb-12">
+                <div class="dashboard-header bg-crimson-deep text-white p-6 md:p-8 flex justify-between items-center border-b-4 border-gold-antique flex-wrap gap-4">
+                    <div class="user-info">
+                        <h2 id="priest-welcome-name" class="font-display text-[22px] md:text-[26px] font-bold text-gold-antique">Pbro. Nombre Sacerdote</h2>
+                        <p class="font-body text-[13px] opacity-90 mt-1 flex items-center gap-2 flex-wrap">
+                            <span class="material-symbols-outlined text-sm">mail</span>
+                            <span id="priest-welcome-email">correo@sacerdote.com</span> 
+                            <span class="opacity-40">|</span> 
+                            <span>Rol: Sacerdote</span> 
+                            <span class="opacity-40">|</span> 
+                            <span id="db-badge-priest" class="inline-flex items-center gap-1 bg-white/10 text-gold-antique px-2 py-0.5 rounded border border-gold-antique/20 font-mono text-[10px] font-bold">DB</span>
+                        </p>
+                    </div>
+                    <div>
+                        <button onclick="handleLogout()" class="bg-primary hover:bg-black/20 text-white px-5 py-2.5 rounded-xl flex items-center gap-2 transition-all font-label text-[13px] font-bold shadow-md border border-white/10">
+                            <i class="ti ti-logout text-[16px]"></i> Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+                <div class="dashboard-layout flex flex-col md:flex-row flex-1">
+                    <aside class="dashboard-sidebar w-full md:w-[240px] shrink-0 bg-surface-container-low/50 border-r border-outline-variant/10 p-6 flex flex-col gap-2">
+                        <button class="sidebar-menu-btn active w-full text-left px-4 py-3 rounded-xl font-label text-[14px] flex items-center gap-3" onclick="switchDashboardTab('priest', 'tab-priest-list', this)">
+                            <i class="ti ti-files text-[18px]"></i> Mis Trámites
+                        </button>
+                        <button class="sidebar-menu-btn w-full text-left px-4 py-3 rounded-xl font-label text-[14px] flex items-center gap-3" onclick="switchDashboardTab('priest', 'tab-priest-new', this)">
+                            <i class="ti ti-file-plus text-[18px]"></i> Nueva Solicitud
+                        </button>
+                        <button class="sidebar-menu-btn w-full text-left px-4 py-3 rounded-xl font-label text-[14px] flex items-center gap-3" onclick="switchDashboardTab('priest', 'tab-priest-profile', this)">
+                            <i class="ti ti-user-cog text-[18px]"></i> Mi Perfil
+                        </button>
+                    </aside>
+                    
+                    <div class="dashboard-content flex-1 p-6 md:p-10 bg-white/30">
+                        <!-- Tab: Priest requests list -->
+                        <div id="tab-priest-list" class="dashboard-tab-content" style="display: block;">
+                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-2">Mis Solicitudes de Trámites</h3>
+                            <p class="font-body text-[14px] text-slate-warm mb-6">A continuación se muestran los trámites realizados. Puede consultar el estado de cada solicitud, la retroalimentación del Canciller y descargar los documentos firmados.</p>
+                            
+                            <div class="overflow-x-auto rounded-xl border border-outline-variant/20 shadow-sm bg-white">
+                                <table class="w-full border-collapse font-body text-[14px] text-left">
+                                    <thead>
+                                        <tr class="bg-surface-container-low text-on-surface font-label text-[13px] font-bold uppercase tracking-wider border-b border-outline-variant/20">
+                                            <th class="p-4">Código</th>
+                                            <th class="p-4">Tipo de Trámite</th>
+                                            <th class="p-4">Fecha Solicitud</th>
+                                            <th class="p-4">Estado</th>
+                                            <th class="p-4">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="priest-requests-table-body" class="divide-y divide-outline-variant/10 text-slate-warm">
+                                        <!-- Dynamically injected -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab: New request -->
+                        <div id="tab-priest-new" class="dashboard-tab-content" style="display: none;">
+                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-4">Nueva Solicitud de Trámite</h3>
+                            
+                            <!-- Incomplete profile warning block -->
+                            <div id="profile-warning-block" style="display: none;" class="p-8 text-center border border-gold-antique/30 rounded-2xl bg-gold-antique/5 max-w-xl mx-auto my-6 animate-pulse">
+                                <div class="text-4xl text-gold-antique mb-3">
+                                    <i class="ti ti-alert-triangle"></i>
+                                </div>
+                                <h4 class="font-display text-[18px] font-bold text-crimson-deep mb-2">Perfil Ministerial Incompleto</h4>
+                                <p class="font-body text-[14px] text-slate-warm leading-relaxed mb-6">
+                                    Para poder tramitar solicitudes ante la Curia Metropolitana, es un requisito obligatorio completar primero su información personal y ministerial en su perfil.
+                                </p>
+                                <button onclick="goToProfileTab()" class="inline-flex items-center gap-2 bg-crimson-deep text-white px-6 py-3 rounded-xl font-label text-[14px] font-bold hover:bg-primary transition-all shadow-md">
+                                    <i class="ti ti-user-cog"></i> Completar Mi Perfil
+                                </button>
+                            </div>
+ 
+                            <div id="request-form-container" style="display: block;">
+                                <form id="form-new-request" class="space-y-6" onsubmit="event.preventDefault(); handleNewRequest(event)">
+                                    <h4 class="font-label text-[13px] font-bold text-gold-antique uppercase tracking-widest border-b border-outline-variant/20 pb-2 flex items-center gap-2">
+                                        <i class="ti ti-info-circle text-[16px]"></i> Información Específica del Trámite
+                                    </h4>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        <div class="form-group flex flex-col">
+                                            <label for="req-type" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Tipo de documento</label>
+                                            <select id="req-type" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" required>
+                                                <option value="" disabled selected>Seleccione una opción...</option>
+                                                <option value="Licencia Ministerial">Licencia Ministerial (Prórroga/Renovación)</option>
+                                                <option value="Certificado de Idoneidad (Celebret)">Certificado de Idoneidad (Celebret)</option>
+                                                <option value="Constancia de Trabajo">Constancia de Trabajo</option>
+                                                <option value="Testimonio de Buena Conducta">Testimonio de Buena Conducta</option>
+                                                <option value="Otro">Otro (Especificar en el motivo)</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="form-group flex flex-col" style="display: none;">
+                                            <label for="req-subject" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Asunto / Título de la Solicitud</label>
+                                            <input type="text" id="req-subject" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" value="Solicitud de Trámite">
+                                        </div>
+
+                                        <div class="form-group flex flex-col">
+                                            <label for="req-parish" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Parroquia / Asignación Actual</label>
+                                            <input type="text" id="req-parish" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. Parroquia San Juan Bautista, Maracaibo" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group flex flex-col">
+                                        <label for="req-institution" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Institución destinataria</label>
+                                        <input type="text" id="req-institution" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Nombre de la entidad o diócesis ante la cual presentará el documento (ej. Banco Mercantil, Arquidiócesis de Bogotá)" required>
+                                    </div>
+
+                                    <div class="form-group flex flex-col">
+                                        <label for="req-details" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Motivo de la solicitud (Descripción detallada del propósito del documento)</label>
+                                        <textarea id="req-details" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" rows="5" placeholder="Redacte detalladamente el motivo y propósito de su solicitud dirigida a Mons. José Luis Azuaje Ayala..." required style="resize: vertical; font-family: var(--font-body);"></textarea>
+                                    </div>
+
+                                    <h4 class="font-label text-[13px] font-bold text-gold-antique uppercase tracking-widest border-b border-outline-variant/20 pb-2 mt-8 flex items-center gap-2">
+                                        <i class="ti ti-paperclip text-[16px]"></i> Documentos Adjuntos (según el caso - Opcional)
+                                    </h4>
+                                    <p class="font-body text-[12px] text-slate-warm leading-relaxed bg-surface-container-low p-4 rounded-xl border border-outline-variant/10">
+                                        • <strong>Identificación:</strong> Copia del RIF personal vigente y cédula.<br>
+                                        • <strong>Referencias:</strong> Referencia bancaria personal si es para fines financieros.<br>
+                                        • <strong>Sacerdotes externos:</strong> Si no pertenece a la Arquidiócesis de Maracaibo, debe adjuntar su credencial sacerdotal y la autorización firmada y sellada de su propio Obispo.
+                                    </p>
+                                    <div class="form-group flex flex-col">
+                                        <label for="req-file" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Seleccionar archivo adjunto (PDF, imágenes o archivo ZIP - Máx 5MB)</label>
+                                        <div class="border-2 border-dashed border-outline-variant/60 hover:border-crimson-deep/60 p-8 rounded-xl text-center bg-surface/30 hover:bg-warm-ivory/30 transition-all cursor-pointer group mb-6 relative">
+                                            <span class="material-symbols-outlined text-4xl text-slate-warm mb-2 group-hover:text-crimson-deep transition-colors">upload_file</span>
+                                            <p class="font-label text-[13px] text-slate-warm">Seleccionar archivo adjunto o arrastrar aquí (PDF, PNG, JPG, ZIP - Máx 5MB)</p>
+                                            <input type="file" id="req-file" class="absolute inset-0 opacity-0 cursor-pointer" accept=".pdf,.png,.jpg,.jpeg,.zip">
+                                        </div>
+                                    </div>
+
+                                    <div class="flex justify-end pt-4">
+                                        <button type="submit" class="bg-crimson-deep text-white px-8 py-3 rounded-xl font-bold font-label text-[14px] hover:bg-primary hover:shadow-lg active:scale-95 transition-all flex items-center gap-2 shadow-md uppercase tracking-wider">
+                                            <i class="ti ti-send text-[16px]"></i> Enviar Solicitud
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Tab: My ministerial profile -->
+                        <div id="tab-priest-profile" class="dashboard-tab-content" style="display: none;">
+                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-2">Mi Perfil Ministerial</h3>
+                            <p class="font-body text-[14px] text-slate-warm mb-6">Mantenga su información personal y de ministerio siempre actualizada. Esta información es obligatoria y se utilizará para validar sus trámites oficiales ante la Curia Metropolitana.</p>
+                            
+                            <form id="form-priest-profile" onsubmit="event.preventDefault(); handleSaveProfile(event)" class="space-y-6">
+                                <div class="profile-columns grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <!-- Column 1: Personal info -->
+                                    <div class="profile-col bg-white/50 p-6 rounded-2xl border border-outline-variant/20 shadow-sm flex flex-col gap-4">
+                                        <h4 class="font-display text-[16px] font-bold text-crimson-deep border-b-2 border-gold-antique/40 pb-2 mb-2 flex items-center gap-2">
+                                            <i class="ti ti-user text-[18px]"></i> Datos Personales
+                                        </h4>
+                                        
+                                        <div class="form-group flex flex-col">
+                                            <label for="prof-name" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Nombre Completo</label>
+                                            <input type="text" id="prof-name" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" required>
+                                        </div>
+                                        
+                                        <div class="form-group flex flex-col">
+                                            <label for="prof-cedula" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Documento de Identidad (Cédula)</label>
+                                            <input type="text" id="prof-cedula" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. V-12.345.678" required>
+                                        </div>
+                                        
+                                        <div class="form-group flex flex-col">
+                                            <label for="prof-birthdate" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Fecha de Nacimiento</label>
+                                            <input type="date" id="prof-birthdate" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" required>
+                                        </div>
+                                        
+                                        <div class="form-group flex flex-col">
+                                            <label for="prof-phone" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Número de Teléfono</label>
+                                            <input type="text" id="prof-phone" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. 0412-1234567" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Column 2: Ministry info -->
+                                    <div class="profile-col bg-white/50 p-6 rounded-2xl border border-outline-variant/20 shadow-sm flex flex-col gap-4">
+                                        <h4 class="font-display text-[16px] font-bold text-crimson-deep border-b-2 border-gold-antique/40 pb-2 mb-2 flex items-center gap-2">
+                                            <i class="ti ti-crown text-[18px]"></i> Datos del Ministerio
+                                        </h4>
+                                        
+                                        <div class="form-group flex flex-col">
+                                            <label for="prof-orddate" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Fecha de Ordenación</label>
+                                            <input type="date" id="prof-orddate" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" required>
+                                        </div>
+                                        
+                                        <div class="form-group flex flex-col">
+                                            <label for="prof-ordbishop" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Obispo Ordinante</label>
+                                            <input type="text" id="prof-ordbishop" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. Mons. José Luis Azuaje Ayala" required>
+                                        </div>
+                                        
+                                        <div class="form-group flex flex-col">
+                                            <label for="prof-diocesis" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Diócesis de Pertenencia</label>
+                                            <input type="text" id="prof-diocesis" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. Arquidiócesis de Maracaibo" required>
+                                        </div>
+                                        
+                                        <div class="form-group flex flex-col">
+                                            <label for="prof-parish" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Asignación Actual (Parroquia a la que pertenece)</label>
+                                            <input type="text" id="prof-parish" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. Parroquia San José" required>
+                                        </div>
+                                        
+                                        <div class="form-group flex flex-col">
+                                            <label for="prof-charge" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Cargo Eclesiástico (Ej. Párroco, administrador parroquial, vicario)</label>
+                                            <input type="text" id="prof-charge" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. Párroco" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-end pt-4">
+                                    <button type="submit" class="bg-crimson-deep text-white px-8 py-3 rounded-xl font-bold font-label text-[14px] hover:bg-primary hover:shadow-lg active:scale-95 transition-all flex items-center gap-2 shadow-md uppercase tracking-wider">
+                                        <i class="ti ti-device-floppy text-[16px]"></i> Guardar Perfil Ministerial
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                    <!-- 4. VIEW: CHANCELLOR (ADMIN) DASHBOARD -->
+        <div id="view-admin-dashboard" class="view">
+            <div class="glass-panel rounded-3xl shadow-2xl border border-outline-variant/30 overflow-hidden flex flex-col min-h-[600px] mb-12">
+                <div class="dashboard-header bg-gradient-to-r from-primary to-crimson-deep text-white p-6 md:p-8 flex justify-between items-center border-b-4 border-gold-antique flex-wrap gap-4">
+                    <div class="user-info">
+                        <h2 class="font-display text-[22px] md:text-[26px] font-bold text-gold-antique">Despacho de la Curia Metropolitana</h2>
+                        <p class="font-body text-[13px] opacity-90 mt-1 flex items-center gap-2 flex-wrap">
+                            <span class="material-symbols-outlined text-sm">shield_person</span>
+                            <span>Mons. José Luis Azuaje Ayala</span> 
+                            <span class="opacity-40">|</span> 
+                            <span>Arzobispo Metropolitano</span> 
+                            <span class="opacity-40">|</span> 
+                            <span id="db-badge-admin" class="inline-flex items-center gap-1 bg-white/10 text-gold-antique px-2 py-0.5 rounded border border-gold-antique/20 font-mono text-[10px] font-bold">DB</span>
+                        </p>
+                    </div>
+                    <div>
+                        <button onclick="handleLogout()" class="bg-primary hover:bg-black/20 text-white px-5 py-2.5 rounded-xl flex items-center gap-2 transition-all font-label text-[13px] font-bold shadow-md border border-white/10">
+                            <i class="ti ti-logout text-[16px]"></i> Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+                <div class="dashboard-layout flex flex-col md:flex-row flex-1">
+                    <aside class="dashboard-sidebar w-full md:w-[240px] shrink-0 bg-surface-container-low/50 border-r border-outline-variant/10 p-6 flex flex-col gap-2">
+                        <button class="sidebar-menu-btn active w-full text-left px-4 py-3 rounded-xl font-label text-[14px] flex items-center gap-3" onclick="switchDashboardTab('admin', 'tab-admin-sacerdotes', this)">
+                            <i class="ti ti-users text-[18px]"></i> Sacerdotes
+                        </button>
+                        <button class="sidebar-menu-btn w-full text-left px-4 py-3 rounded-xl font-label text-[14px] flex items-center gap-3" onclick="switchDashboardTab('admin', 'tab-admin-parroquias', this)">
+                            <i class="ti ti-building-church text-[18px]"></i> Parroquias
+                        </button>
+                    </aside>
+                    
+                    <div class="dashboard-content flex-1 p-6 md:p-10 bg-white/30">
+                        <!-- Tab: All requests list -->
+                        <div id="tab-admin-sacerdotes" class="dashboard-tab-content" style="display: block;">
+                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-2">Gestión de Solicitudes y Documentación</h3>
+                            <p class="font-body text-[14px] text-slate-warm mb-6">Revise las peticiones presentadas por el clero diocesano. Puede evaluar sus solicitudes, escribir retroalimentación, redactar y emitir los decretos y certificados correspondientes.</p>
+                            
+                            <div class="stats-grid grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
+                                <div class="stat-card glass-panel p-6 rounded-2xl flex items-center gap-4 border-l-4 border-slate-warm bento-card">
+                                    <div class="stat-icon w-12 h-12 rounded-full bg-slate-warm/10 text-slate-warm flex items-center justify-center text-[22px]"><i class="ti ti-files"></i></div>
+                                    <div class="stat-details">
+                                        <h3 class="font-label text-[11px] uppercase tracking-wider text-slate-warm font-semibold">Totales</h3>
+                                        <p id="stat-total" class="font-display text-[26px] font-bold text-slate-warm leading-tight">0</p>
+                                    </div>
+                                </div>
+                                <div class="stat-card glass-panel p-6 rounded-2xl flex items-center gap-4 border-l-4 border-gold-antique bento-card">
+                                    <div class="stat-icon w-12 h-12 rounded-full bg-gold-antique/10 text-gold-antique flex items-center justify-center text-[22px]"><i class="ti ti-clock"></i></div>
+                                    <div class="stat-details">
+                                        <h3 class="font-label text-[11px] uppercase tracking-wider text-gold-antique font-semibold">Pendientes</h3>
+                                        <p id="stat-pending" class="font-display text-[26px] font-bold text-gold-antique leading-tight">0</p>
+                                    </div>
+                                </div>
+                                <div class="stat-card glass-panel p-6 rounded-2xl flex items-center gap-4 border-l-4 border-green-600 bento-card">
+                                    <div class="stat-icon w-12 h-12 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-[22px]"><i class="ti ti-circle-check"></i></div>
+                                    <div class="stat-details">
+                                        <h3 class="font-label text-[11px] uppercase tracking-wider text-green-700 font-semibold">Aprobados</h3>
+                                        <p id="stat-approved" class="font-display text-[26px] font-bold text-green-700 leading-tight">0</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="overflow-x-auto rounded-xl border border-outline-variant/20 shadow-sm bg-white">
+                                <table class="w-full border-collapse font-body text-[14px] text-left">
+                                    <thead>
+                                        <tr class="bg-surface-container-low text-on-surface font-label text-[13px] font-bold uppercase tracking-wider border-b border-outline-variant/20">
+                                            <th class="p-4">Código</th>
+                                            <th class="p-4">Sacerdote</th>
+                                            <th class="p-4">Tipo de Trámite</th>
+                                            <th class="p-4">Fecha</th>
+                                            <th class="p-4">Estado</th>
+                                            <th class="p-4">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admin-requests-table-body" class="divide-y divide-outline-variant/10 text-slate-warm">
+                                        <!-- Dynamically injected -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab: Parroquias list for admin -->
+                        <div id="tab-admin-parroquias" class="dashboard-tab-content" style="display: none;">
+                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-2">Gestión y Control de Parroquias y Rectorías</h3>
+                            <p class="font-body text-[14px] text-slate-warm mb-6">Consulte el directorio completo de las entidades pastorales. A continuación se listan sus datos de contacto y las claves de acceso de 5 dígitos generadas.</p>
+                            
+                            <div class="stats-grid grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
+                                <div class="stat-card glass-panel p-6 rounded-2xl flex items-center gap-4 border-l-4 border-slate-warm bento-card">
+                                    <div class="stat-icon w-12 h-12 rounded-full bg-slate-warm/10 text-slate-warm flex items-center justify-center text-[22px]"><i class="ti ti-building-church"></i></div>
+                                    <div class="stat-details">
+                                        <h3 class="font-label text-[11px] uppercase tracking-wider text-slate-warm font-semibold">Total Parroquias</h3>
+                                        <p id="stat-parish-total" class="font-display text-[26px] font-bold text-slate-warm leading-tight">72</p>
+                                    </div>
+                                </div>
+                                <div class="stat-card glass-panel p-6 rounded-2xl flex items-center gap-4 border-l-4 border-gold-antique bento-card">
+                                    <div class="stat-icon w-12 h-12 rounded-full bg-gold-antique/10 text-gold-antique flex items-center justify-center text-[22px]"><i class="ti ti-crown"></i></div>
+                                    <div class="stat-details">
+                                        <h3 class="font-label text-[11px] uppercase tracking-wider text-gold-antique font-semibold">Total Rectorías</h3>
+                                        <p id="stat-parish-rectorias" class="font-display text-[26px] font-bold text-gold-antique leading-tight">8</p>
+                                    </div>
+                                </div>
+                                <div class="stat-card glass-panel p-6 rounded-2xl flex items-center gap-4 border-l-4 border-green-600 bento-card">
+                                    <div class="stat-icon w-12 h-12 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-[22px]"><i class="ti ti-mail"></i></div>
+                                    <div class="stat-details">
+                                        <h3 class="font-label text-[11px] uppercase tracking-wider text-green-700 font-semibold">Con Correo</h3>
+                                        <p id="stat-parish-emails" class="font-display text-[26px] font-bold text-green-700 leading-tight">0</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6 flex gap-4 items-center">
+                                <div class="relative flex-1">
+                                    <input type="text" id="admin-parish-search" oninput="filterAdminParishes()" class="w-full bg-warm-ivory/50 border border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none rounded-xl px-4 py-3 font-body text-[14px]" placeholder="Buscar parroquia/rectoría por nombre o código...">
+                                </div>
+                            </div>
+
+                            <div class="overflow-x-auto rounded-xl border border-outline-variant/20 shadow-sm bg-white">
+                                <table class="w-full border-collapse font-body text-[14px] text-left">
+                                    <thead>
+                                        <tr class="bg-surface-container-low text-on-surface font-label text-[13px] font-bold uppercase tracking-wider border-b border-outline-variant/20">
+                                            <th class="p-4">Código</th>
+                                            <th class="p-4">Nombre Completo</th>
+                                            <th class="p-4">Párroco / Rector</th>
+                                            <th class="p-4">Contacto</th>
+                                            <th class="p-4">Clave (5 dígitos)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admin-parishes-table-body" class="divide-y divide-outline-variant/10 text-slate-warm">
+                                        <!-- Dynamically injected -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab: Manage individual request -->
+                        <div id="tab-admin-manage" class="dashboard-tab-content" style="display: none;">
+                            <div class="flex justify-between items-center mb-6 flex-wrap gap-4 border-b border-outline-variant/20 pb-4">
+                                <h3 class="font-display text-[20px] font-bold text-crimson-deep">Gestionar Solicitud de Trámite</h3>
+                                <button onclick="backToAdminList()" class="bg-surface-container-highest hover:bg-surface-variant text-slate-warm px-4 py-2 rounded-xl font-bold font-label text-[13px] transition-all flex items-center gap-1.5 border border-outline-variant/25 shadow-sm">
+                                    <i class="ti ti-arrow-left"></i> Volver a la Lista
+                                </button>
+                            </div>
+
+                            <div class="bg-white/60 border border-outline-variant/20 p-6 rounded-2xl shadow-sm mb-6 flex flex-col gap-4">
+                                <h4 class="font-display text-[16px] font-bold text-crimson-deep border-b-2 border-gold-antique/40 pb-2 mb-2 flex items-center gap-2">
+                                    <i class="ti ti-file-text text-[18px]"></i> Detalles Enviados por el Sacerdote
+                                </h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 font-body text-[13px] text-slate-warm">
+                                    <p><strong>Código Solicitud:</strong> <span id="adm-view-id" class="text-on-surface font-semibold">REQ-000</span></p>
+                                    <p><strong>Sacerdote Solicitante:</strong> <span id="adm-view-priest" class="text-on-surface font-semibold">Nombre</span></p>
+                                    <p><strong>Correo:</strong> <span id="adm-view-email-detail" class="text-on-surface font-semibold">correo@sacerdote.com</span></p>
+                                    <p style="display: none;"><strong>Correo Electrónico:</strong> <span id="adm-view-email">correo</span></p>
+                                    <p><strong>Tipo de Documento:</strong> <span id="adm-view-type" class="text-on-surface font-semibold">Tipo</span></p>
+                                    <p><strong>Institución Destinataria:</strong> <span id="adm-view-institution" class="text-on-surface font-semibold">Banco Mercantil</span></p>
+                                    <p><strong>Parroquia / Destino:</strong> <span id="adm-view-parish" class="text-on-surface font-semibold">Parroquia</span></p>
+                                </div>
+                                <div class="font-body text-[14px] bg-white p-4 rounded-xl border border-outline-variant/20 white-space-pre-line my-2">
+                                    <strong class="text-on-surface block mb-1">Motivo de la solicitud:</strong>
+                                    <p id="adm-view-description" class="text-slate-warm leading-relaxed">Cuerpo</p>
+                                </div>
+
+                                <!-- Priest's attached file -->
+                                <div id="adm-priest-file-section" style="display: none;" class="p-4 bg-slate-100 rounded-xl border border-dashed border-outline-variant/40 flex items-center justify-between flex-wrap gap-4 font-body text-[13px] text-slate-warm my-2">
+                                    <div class="flex items-center gap-2">
+                                        <i class="ti ti-paperclip text-slate-warm text-[18px]"></i>
+                                        <span class="font-semibold">Documentación Adjunta:</span>
+                                        <span id="adm-priest-file-name" class="italic text-on-surface">archivo.pdf</span>
+                                    </div>
+                                    <a id="adm-priest-file-download" href="#" download class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg font-bold font-label text-[12px] transition-all flex items-center gap-1.5 shadow-sm">
+                                        <i class="ti ti-download"></i> Descargar Documentos
+                                    </a>
+                                </div>
+
+                                <!-- Priest's ministerial profile data -->
+                                <div class="mt-4 pt-4 border-t border-outline-variant/10">
+                                    <h5 class="font-label text-[12px] text-gold-antique font-bold uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                                        <i class="ti ti-user-check text-[15px]"></i> Perfil Ministerial del Sacerdote
+                                    </h5>
+                                    <div id="adm-view-profile-box" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 font-body text-[12px] text-slate-warm">
+                                        <p><strong>Cédula:</strong> <span id="adm-prof-cedula">-</span></p>
+                                        <p><strong>Nacimiento:</strong> <span id="adm-prof-birthdate">-</span></p>
+                                        <p><strong>Teléfono:</strong> <span id="adm-prof-phone">-</span></p>
+                                        <p><strong>Ordenación:</strong> <span id="adm-prof-orddate">-</span></p>
+                                        <p><strong>Obispo Ordinante:</strong> <span id="adm-prof-ordbishop">-</span></p>
+                                        <p><strong>Diócesis:</strong> <span id="adm-prof-diocesis">-</span></p>
+                                        <p><strong>Cargo Eclesiástico:</strong> <span id="adm-prof-charge">-</span></p>
+                                        <p><strong>Parroquia:</strong> <span id="adm-prof-parish">-</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form id="form-manage-request" class="space-y-5" onsubmit="event.preventDefault(); handleManageSubmit(event)">
+                                <div class="form-group flex flex-col">
+                                    <label for="adm-feedback" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Comentarios y Feedback (Se enviará al correo del Sacerdote)</label>
+                                    <textarea id="adm-feedback" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" rows="3" placeholder="Escriba aquí la retroalimentación oficial, correcciones o justificaciones del despacho..." required style="resize: vertical;"></textarea>
+                                </div>
+
+                                <div class="form-group flex flex-col">
+                                    <label for="adm-upload-file" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Adjuntar Documento Oficial (PDF, DOC, DOCX - Opcional)</label>
+                                    <input type="file" id="adm-upload-file" accept=".pdf,.doc,.docx" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-2.5 transition-colors font-body text-[14px] rounded-t-lg">
+                                </div>
+
+                                <div class="form-group flex flex-col" id="adm-doc-section">
+                                    <label for="adm-document-text" class="font-label text-[13px] font-bold text-slate-warm mb-1.5 flex justify-between items-center flex-wrap gap-2">
+                                        <span>Redacción del Documento Oficial Emitido (Decreta / Certifica)</span>
+                                        <button type="button" onclick="loadDocTemplate()" class="text-gold-antique hover:text-secondary font-label text-[12px] font-bold flex items-center gap-1">
+                                            <i class="ti ti-file-symlink"></i> Cargar Plantilla Automática
+                                        </button>
+                                    </label>
+                                    <textarea id="adm-document-text" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" rows="10" placeholder="Redacte el texto que figurará en el certificado eclesiástico formal..." style="font-family: Georgia, serif; font-size: 15px; resize: vertical; line-height: 1.6;"></textarea>
+                                </div>
+
+                                <div class="flex gap-4 pt-4 flex-wrap">
+                                    <button type="submit" onclick="setSubmitAction('Aprobar')" class="bg-gold-antique hover:bg-secondary text-white px-8 py-3 rounded-xl font-bold font-label text-[14px] hover:shadow-lg active:scale-95 transition-all flex items-center gap-2 shadow-md uppercase tracking-wider flex-1 sm:flex-initial">
+                                        <i class="ti ti-circle-check text-[16px]"></i> Aprobar y Emitir
+                                    </button>
+                                    <button type="submit" onclick="setSubmitAction('Rechazar')" class="bg-crimson-deep hover:bg-primary text-white px-8 py-3 rounded-xl font-bold font-label text-[14px] hover:shadow-lg active:scale-95 transition-all flex items-center gap-2 shadow-md uppercase tracking-wider flex-1 sm:flex-initial">
+                                        <i class="ti ti-circle-x text-[16px]"></i> Rechazar Solicitud
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. VIEW: PARISH DASHBOARD -->
+        <div id="view-parish-dashboard" class="view">
+            <div class="glass-panel rounded-3xl shadow-2xl border border-outline-variant/30 overflow-hidden flex flex-col min-h-[600px] mb-12">
+                <div class="dashboard-header bg-crimson-deep text-white p-6 md:p-8 flex justify-between items-center border-b-4 border-gold-antique flex-wrap gap-4">
+                    <div class="user-info">
+                        <h2 id="parish-welcome-name" class="font-display text-[22px] md:text-[26px] font-bold text-gold-antique">Nombre Parroquia</h2>
+                        <p class="font-body text-[13px] opacity-90 mt-1 flex items-center gap-2 flex-wrap">
+                            <span class="material-symbols-outlined text-sm">church</span>
+                            <span id="parish-welcome-code">Código: PZ1-1</span> 
+                            <span class="opacity-40">|</span> 
+                            <span id="parish-welcome-role">Rol: Parroquia</span> 
+                            <span class="opacity-40">|</span> 
+                            <span id="db-badge-parish" class="inline-flex items-center gap-1 bg-white/10 text-gold-antique px-2 py-0.5 rounded border border-gold-antique/20 font-mono text-[10px] font-bold">DB</span>
+                        </p>
+                    </div>
+                    <div>
+                        <button onclick="handleLogout()" class="bg-primary hover:bg-black/20 text-white px-5 py-2.5 rounded-xl flex items-center gap-2 transition-all font-label text-[13px] font-bold shadow-md border border-white/10">
+                            <i class="ti ti-logout text-[16px]"></i> Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+                <div class="dashboard-layout flex flex-col md:flex-row flex-1">
+                    <aside class="dashboard-sidebar w-full md:w-[240px] shrink-0 bg-surface-container-low/50 border-r border-outline-variant/10 p-6 flex flex-col gap-2">
+                        <button class="sidebar-menu-btn active w-full text-left px-4 py-3 rounded-xl font-label text-[14px] flex items-center gap-3" onclick="switchDashboardTab('parish', 'tab-parish-solicitudes', this)">
+                            <i class="ti ti-folder-open text-[18px]"></i> Solicitudes
+                        </button>
+                        <button class="sidebar-menu-btn w-full text-left px-4 py-3 rounded-xl font-label text-[14px] flex items-center gap-3" onclick="switchDashboardTab('parish', 'tab-parish-info', this)">
+                            <i class="ti ti-info-circle text-[18px]"></i> Información Parroquial
+                        </button>
+                    </aside>
+                    
+                    <div class="dashboard-content flex-1 p-6 md:p-10 bg-white/30">
+                        <!-- Tab: Parish Solicitudes -->
+                        <div id="tab-parish-solicitudes" class="dashboard-tab-content" style="display: block;">
+                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-2">Solicitudes Parroquiales</h3>
+                            <p class="font-body text-[14px] text-slate-warm mb-6">Trámites y solicitudes de la parroquia o rectoría ante la Curia Metropolitana de Maracaibo.</p>
+                            
+                            <div class="p-8 text-center border border-gold-antique/30 rounded-2xl bg-gold-antique/5 max-w-xl mx-auto my-6 animate-fadeIn">
+                                <div class="text-4xl text-gold-antique mb-3">
+                                    <i class="ti ti-tool"></i>
+                                </div>
+                                <h4 class="font-display text-[18px] font-bold text-crimson-deep mb-2">Sección de Trámites en Desarrollo</h4>
+                                <p class="font-body text-[14px] text-slate-warm leading-relaxed">
+                                    Este módulo de trámites oficiales para las parroquias y rectorías se encuentra actualmente en fase de especificación y desarrollo por el despacho de la Cancillería.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Tab: Parish Info -->
+                        <div id="tab-parish-info" class="dashboard-tab-content" style="display: none;">
+                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-4">Información de la Entidad Pastoral</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
+                                <div class="bg-white/50 p-6 rounded-2xl border border-outline-variant/20 shadow-sm flex flex-col gap-4">
+                                    <h4 class="font-display text-[16px] font-bold text-crimson-deep border-b-2 border-gold-antique/40 pb-2 mb-2 flex items-center gap-2">
+                                        <i class="ti ti-building-church text-[18px]"></i> Datos Institucionales
+                                    </h4>
+                                    <p class="font-body text-[13px] text-slate-warm"><strong>Nombre:</strong> <span id="parish-info-name" class="text-on-surface font-semibold">-</span></p>
+                                    <p class="font-body text-[13px] text-slate-warm"><strong>Código:</strong> <span id="parish-info-code" class="text-on-surface font-semibold">-</span></p>
+                                    <p class="font-body text-[13px] text-slate-warm"><strong>Párroco / Rector:</strong> <span id="parish-info-parroco" class="text-on-surface font-semibold">-</span></p>
+                                </div>
+                                <div class="bg-white/50 p-6 rounded-2xl border border-outline-variant/20 shadow-sm flex flex-col gap-4">
+                                    <h4 class="font-display text-[16px] font-bold text-crimson-deep border-b-2 border-gold-antique/40 pb-2 mb-2 flex items-center gap-2">
+                                        <i class="ti ti-address-book text-[18px]"></i> Datos de Contacto
+                                    </h4>
+                                    <p class="font-body text-[13px] text-slate-warm"><strong>Correo Electrónico:</strong> <span id="parish-info-email" class="text-on-surface font-semibold">-</span></p>
+                                    <p class="font-body text-[13px] text-slate-warm"><strong>Teléfono:</strong> <span id="parish-info-phone" class="text-on-surface font-semibold">-</span></p>
+                                    <p class="font-body text-[13px] text-slate-warm"><strong>Dirección:</strong> <span id="parish-info-address" class="text-on-surface font-semibold">-</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. VIEW: OFFICIAL DOCUMENT VIEWER (PRINTABLE CERTIFICATE) -->
+        <div id="view-document" class="view" style="padding: 2rem 0;">
+            <div class="no-print max-w-[800px] mx-auto mb-6 flex justify-between items-center gap-4">
+                <button onclick="backFromDocument()" class="bg-surface-container-highest hover:bg-surface-variant text-slate-warm px-4 py-2.5 rounded-xl font-bold font-label text-[13px] transition-all flex items-center gap-1.5 border border-outline-variant/20 shadow-sm">
+                    <i class="ti ti-arrow-left"></i> Volver al Portal
+                </button>
+                <button onclick="window.print()" class="bg-crimson-deep hover:bg-primary text-white px-5 py-2.5 rounded-xl font-bold font-label text-[13px] transition-all flex items-center gap-1.5 shadow-md border border-white/10">
+                    <i class="ti ti-printer"></i> Imprimir / Guardar PDF
+                </button>
+            </div>
+
+            <div class="document-container">
+                <div class="document-watermark"></div>
+                
+                <div class="document-header">
+                    <img src="img/logo-arquidiocesis.webp" alt="Escudo Arzobispado" onerror="this.src='https://placehold.co/75x75/00235B/FFCC00?text=A'">
+                    <h1>Curia Metropolitana de Maracaibo</h1>
+                    <h2>Cancillería de la Arquidiócesis</h2>
+                </div>
+
+                <div class="document-title" id="doc-render-title">
+                    Certificado Oficial
+                </div>
+
+                <div class="document-body text-justify" id="doc-render-body">
+                    Cargando contenido oficial del documento...
+                </div>
+
+                <div class="document-signatures">
+                    <div class="sig-block sig-stamp relative">
+                        <div class="sig-stamp-seal">
+                            <span>Arzobispado Metropolitano<br><strong>Maracaibo</strong><br>Despacho del Arzobispo</span>
+                        </div>
+                        <div class="sig-line">Mons. José Luis Azuaje Ayala</div>
+                        <div class="sig-title">Arzobispo Metropolitano de Maracaibo</div>
+                    </div>
+                    <div class="sig-block">
+                        <div style="font-family: Georgia, serif; font-size: 0.95rem; font-style: italic; color: #5c4d31;">
+                            Signado con firma digital diocesana. Verificación válida en curia.
+                        </div>
+                        <div class="sig-line">Registro General</div>
+                        <div class="sig-title">Archivo de Cancillería</div>
+                    </div>
+                </div>
+
+                <div class="document-footer font-body text-[11px]">
+                    <div>Código de Verificación: <strong id="doc-render-id">REQ-0000</strong></div>
+                    <div>Arquidiócesis de Maracaibo — Estado Zulia, Venezuela</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!-- Toast Notification Container -->
+<div id="portal-notification-container" style="position: fixed; top: 80px; right: 20px; z-index: 10000; display: flex; flex-direction: column; gap: 10px; pointer-events: none;"></div>
+
+<!-- Email Emulation Panel (Development/Demo) -->
+<div id="toast-mail" class="toast-mail">
+    <div class="toast-mail-header">
+        <span><i class="ti ti-mail"></i> Buzón de Correo Simulado (Pruebas)</span>
+        <button onclick="closeToastMail()">&times;</button>
+    </div>
+    <div class="toast-mail-body">
+        <div class="toast-mail-field"><strong>Para:</strong> <span id="toast-to">correo@sacerdote.com</span></div>
+        <div class="toast-mail-field"><strong>Asunto:</strong> <span id="toast-subj">Código de Seguridad</span></div>
+        <div id="toast-content" style="background: #0f172a; padding: 0.75rem; border-radius: 4px; color: #e2e8f0; font-family: monospace; font-size: 0.8rem; overflow-wrap: break-word;">
+            Contenido del correo electrónico...
+        </div>
+    </div>
+</div>
+
+<!-- Footer injected by JS -->
+<div id="stitch-footer"></div>
+
+<script src="js/stitch-components.js"></script>
+<script>StitchLayout.init({ activePage: 'portal-sacerdotes' });</script>
+
+<script>
+    // Helper to format Date string to DD/MM/YYYY local format
+    function formatDateToLocale(dateStr) {
+        if (!dateStr) return '';
+        try {
+            const date = new Date(dateStr + 'T00:00:00');
+            return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        } catch (e) {
+            return dateStr;
+        }
+    }
+
+    // ── CUSTOM TOAST NOTIFICATION SYSTEM (replaces browser alerts) ──
+    function showNotification(message, type = 'info') {
+        const container = document.getElementById('portal-notification-container');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        toast.style.pointerEvents = 'auto';
+        toast.style.minWidth = '300px';
+        toast.style.maxWidth = '450px';
+        toast.style.padding = '14px 18px';
+        toast.style.borderRadius = '8px';
+        toast.style.background = '#1e293b';
+        toast.style.color = '#ffffff';
+        toast.style.boxShadow = '0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.05)';
+        toast.style.borderLeft = '6px solid #3b82f6';
+        toast.style.fontFamily = 'var(--font-ui), sans-serif';
+        toast.style.fontSize = '0.88rem';
+        toast.style.display = 'flex';
+        toast.style.justifyContent = 'space-between';
+        toast.style.alignItems = 'center';
+        toast.style.gap = '15px';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-20px)';
+        toast.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+
+        if (type === 'success') {
+            toast.style.borderLeftColor = '#10b981';
+        } else if (type === 'error') {
+            toast.style.borderLeftColor = '#ef4444';
+        } else if (type === 'warning') {
+            toast.style.borderLeftColor = '#f59e0b';
+        }
+
+        toast.innerHTML = `
+            <div style="flex-grow: 1; font-weight: 500; line-height: 1.4;">${message}</div>
+            <button style="background: transparent; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer; padding: 0 4px; line-height: 1;" onclick="this.parentElement.remove()">&times;</button>
+        `;
+
+        container.appendChild(toast);
+        toast.offsetHeight;
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateY(0)';
+
+        const lower = message.toLowerCase();
+        const isCode = lower.includes('código') || lower.includes('codigo') || lower.includes('clave') || lower.includes('contraseña');
+        if (!isCode) {
+            const duration = type === 'error' ? 8000 : 5000;
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateY(-20px)';
+                    setTimeout(() => { toast.remove(); }, 300);
+                }
+            }, duration);
+        }
+    }
+
+    // Override native window.alert with custom toast notifications
+    window.alert = function(message) {
+        let type = 'info';
+        const lower = message.toLowerCase();
+        if (lower.includes('éxito') || lower.includes('exito') || lower.includes('correctamente') || lower.includes('aprobado') || lower.includes('conectado') || lower.includes('enviada con éxito')) {
+            type = 'success';
+        } else if (lower.includes('error') || lower.includes('fallo') || lower.includes('incorrecta') || lower.includes('no se') || lower.includes('no está')) {
+            type = 'error';
+        } else if (lower.includes('advertencia') || lower.includes('atención') || lower.includes('atencion') || lower.includes('cuidado') || lower.includes('desarrollo') || lower.includes('local')) {
+            type = 'warning';
+        }
+        showNotification(message, type);
+    };
+
+    // ── DATABASE SYSTEM & SUPABASE / LOCALSTORAGE INTEGRATION ──
+
+    let currentLoginType = 'priest';
+
+    function setLoginType(type) {
+        currentLoginType = type;
+        const tabPriest = document.getElementById('tab-login-priest');
+        const tabParish = document.getElementById('tab-login-parish');
+        const emailContainer = document.getElementById('container-login-email');
+        const parishContainer = document.getElementById('container-login-parish');
+        const emailInput = document.getElementById('login-email');
+        const linkForgot = document.getElementById('link-forgot-password');
+
+        if (type === 'priest') {
+            tabPriest.className = "px-5 py-2 font-label text-[14px] font-bold border-b-2 border-crimson-deep text-crimson-deep transition-all";
+            tabParish.className = "px-5 py-2 font-label text-[14px] font-bold border-b-2 border-transparent text-slate-warm hover:text-crimson-deep transition-all";
+            emailContainer.style.display = 'block';
+            parishContainer.style.display = 'none';
+            emailInput.required = true;
+            if (linkForgot) linkForgot.style.display = 'inline-block';
+        } else {
+            tabPriest.className = "px-5 py-2 font-label text-[14px] font-bold border-b-2 border-transparent text-slate-warm hover:text-crimson-deep transition-all";
+            tabParish.className = "px-5 py-2 font-label text-[14px] font-bold border-b-2 border-crimson-deep text-crimson-deep transition-all";
+            emailContainer.style.display = 'none';
+            parishContainer.style.display = 'block';
+            emailInput.required = false;
+            if (linkForgot) linkForgot.style.display = 'none';
+        }
+    }
+
+    let db = {
+        users: [],
+        requests: [],
+        parroquias: []
+    };
+
+    let supabaseClient = null;
+    let isSupabase = false;
+
+    let currentUser = null;
+    let selectedRequestId = null;
+    let submitAction = '';
+    let generatedCodeForForgot = null;
+    let targetForgotUser = null;
+
+    // Mapper to normalize DB objects to camelCase in frontend
+    function mapRequestFields(r) {
+        if (!r) return null;
+        return {
+            id: r.id,
+            cedula: r.cedula || '',
+            email: r.email || r.priest_email || '',
+            priestName: r.priest_name || r.priestName || '',
+            priestEmail: r.priest_email || r.priestEmail || '',
+            type: r.type,
+            date: r.date,
+            subject: r.subject,
+            parish: r.parish,
+            details: r.details,
+            status: r.status,
+            feedback: r.feedback || '',
+            documentContent: r.document_content || r.documentContent || '',
+            documentFileContent: r.document_file_content || r.documentFileContent || '',
+            documentFileName: r.document_file_name || r.documentFileName || '',
+            institution: r.institution || '',
+            priestFileContent: r.priest_file_content || r.priestFileContent || '',
+            priestFileName: r.priest_file_name || r.priestFileName || ''
+        };
+    }
+
+    // 1. Database Initialization (Supabase vs LocalStorage)
+    async function initDB() {
+        try {
+            const configRes = await fetch('/api/config');
+            const config = await configRes.json().catch(() => ({}));
+
+            if (config.supabaseUrl && config.supabaseAnonKey && window.supabase) {
+                supabaseClient = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
+                isSupabase = true;
+                console.log("Conectado con éxito a Supabase.");
+            }
+        } catch (err) {
+            console.warn("Fallo al conectar con la API de configuración. Se usará LocalStorage.", err);
+        }
+
+        updateDBBadges();
+
+        if (!isSupabase) {
+            const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '';
+            if (!isLocalhost) {
+                renderProductionConfigError();
+                return;
+            }
+
+            let savedDb = localStorage.getItem('cancilleria_db');
+            if (savedDb) {
+                try {
+                    const parsed = JSON.parse(savedDb);
+                    const isLegacyFormat = parsed.users && parsed.users.some(u => !u.email || u.cedula);
+                    const isLegacyRequests = parsed.requests && parsed.requests.some(r => !r.email || r.cedula);
+                    if (isLegacyFormat || isLegacyRequests) {
+                        console.warn("Base de datos local con formato antiguo detectada. Reiniciando base de datos local...");
+                        localStorage.removeItem('cancilleria_db');
+                        savedDb = null;
+                    } else {
+                        db = parsed;
+                        console.log("Base de datos local cargada desde localStorage.");
+                    }
+                } catch (e) {
+                    console.error("Error al parsear la base de datos local:", e);
+                    localStorage.removeItem('cancilleria_db');
+                    savedDb = null;
+                }
+            }
+
+            // Default users list (all priests of the Archdiocese)
+            const defaultUsers = [
+                    {
+                                    "name": "Mons. José Luis Azuaje Ayala",
+                                    "email": "cancilleria@arquidiocesisdemaracaibo.org",
+                                    "password": "canciller123",
+                                    "phone": "0412-0000000",
+                                    "role": "admin",
+                                    "parish": "Curia Metropolitana"
+                    },
+                    {
+                                    "name": "Pbro. Paul David",
+                                    "email": "pauldavid2809@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-2809280",
+                                    "role": "priest",
+                                    "parish": "Parroquia de Pruebas"
+                    },
+                    {
+                                    "name": "Pbro. Paul David (Alt)",
+                                    "email": "pauldd28@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-2809280",
+                                    "role": "priest",
+                                    "parish": "Parroquia de Pruebas"
+                    },
+                    {
+                                    "name": "Pbro. Néstor Primera",
+                                    "email": "nprimera40@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-7885662",
+                                    "role": "priest",
+                                    "parish": "El Sagrario – Catedral de los Santos Apóstoles Pedro y Pablo"
+                    },
+                    {
+                                    "name": "Pbro. Rafael Ángel Villalobos Carmona",
+                                    "email": "rafael.angel@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-3676212",
+                                    "role": "priest",
+                                    "parish": "Santa Lucía"
+                    },
+                    {
+                                    "name": "Pbro. José Gregorio Andrade Vecino",
+                                    "email": "santabarbaramaracaibo@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-7892388",
+                                    "role": "priest",
+                                    "parish": "Santa Bárbara"
+                    },
+                    {
+                                    "name": "Pbro. Nedward Jorge Andrade",
+                                    "email": "basilicachiquinquira@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-2889973",
+                                    "role": "priest",
+                                    "parish": "San Juan de Dios y Basílica Santuario de N.S. de Chiquinquirá. 'Santuario Mariano del Zulia'"
+                    },
+                    {
+                                    "name": "Pbro. José Miguel Hernández",
+                                    "email": "basilicachiquinquira1@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-2889973",
+                                    "role": "priest",
+                                    "parish": "San Juan de Dios y Basílica Santuario de N.S. de Chiquinquirá. 'Santuario Mariano del Zulia'"
+                    },
+                    {
+                                    "name": "Pbro. José Enrique Varela",
+                                    "email": "pquiasanbenitopalermo@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6620878",
+                                    "role": "priest",
+                                    "parish": "San Benito de Palermo"
+                    },
+                    {
+                                    "name": "Pbro. Jorge A. Dos Pasos",
+                                    "email": "pquiasanbenitopalermo1@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6620878",
+                                    "role": "priest",
+                                    "parish": "San Benito de Palermo"
+                    },
+                    {
+                                    "name": "Pbro. Renzo O. Gotera",
+                                    "email": "pquiasanbenitopalermo2@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6620878",
+                                    "role": "priest",
+                                    "parish": "San Benito de Palermo"
+                    },
+                    {
+                                    "name": "Pbro. Juan Pablo Hernández",
+                                    "email": "juan.pablo@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0261-7650404",
+                                    "role": "priest",
+                                    "parish": "N.S. de la Asunción"
+                    },
+                    {
+                                    "name": "Pbro. José Gregorio Montenegro Fereira",
+                                    "email": "monfercheo@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6361306",
+                                    "role": "priest",
+                                    "parish": "N.S. de la Medalla Milagrosa"
+                    },
+                    {
+                                    "name": "Pbro. Alfonso Rodríguez",
+                                    "email": "alfonso_rodriguez@cantv.net",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6281643",
+                                    "role": "priest",
+                                    "parish": "Santo Cristo de Aranza"
+                    },
+                    {
+                                    "name": "Pbro. Roberto Segundo Morales Carruyo",
+                                    "email": "parroquiasanjosemcbo@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6614822",
+                                    "role": "priest",
+                                    "parish": "San José"
+                    },
+                    {
+                                    "name": "Pbro. Jesús Colina",
+                                    "email": "jesus.colina@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6153784",
+                                    "role": "priest",
+                                    "parish": "San Alfonso María de Ligorio"
+                    },
+                    {
+                                    "name": "R.P. Fray José Vivas Vivas, OSA",
+                                    "email": "parroquia.perpetuosocorro.mcbo@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-5147175",
+                                    "role": "priest",
+                                    "parish": "N.S. del Perpetuo Socorro"
+                    },
+                    {
+                                    "name": "R.P. Fray Oswaldo Matheus González, OSA",
+                                    "email": "parroquia.perpetuosocorro.mcbo1@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-5147175",
+                                    "role": "priest",
+                                    "parish": "N.S. del Perpetuo Socorro"
+                    },
+                    {
+                                    "name": "R.P. Fray Ricardo Riaño, OAR",
+                                    "email": "iglesialaconsolacion.mbo@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-7127606",
+                                    "role": "priest",
+                                    "parish": "N.S. de la Consolación"
+                    },
+                    {
+                                    "name": "Pbro. Max Gregorio Guerere Rodríguez",
+                                    "email": "elrosariomcbo@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6293617",
+                                    "role": "priest",
+                                    "parish": "N.S. del Rosario"
+                    },
+                    {
+                                    "name": "Pbro. Andrés de Jesús Afanador Rodríguez",
+                                    "email": "andres.de@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-7128907",
+                                    "role": "priest",
+                                    "parish": "San Judas Tadeo"
+                    },
+                    {
+                                    "name": "Pbro. Ovidio Eduardo Duarte Torres",
+                                    "email": "licduarte@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-6275968",
+                                    "role": "priest",
+                                    "parish": "San Antonio María Claret"
+                    },
+                    {
+                                    "name": "Pbro. Lenín José Naranjo Flores (enero 2014)",
+                                    "email": "parroquialasmercedes@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-6467261",
+                                    "role": "priest",
+                                    "parish": "N.S. de las Mercedes"
+                    },
+                    {
+                                    "name": "Pbro. Edgar J. Doria M.",
+                                    "email": "edgarjose@cantv.net",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-3612908",
+                                    "role": "priest",
+                                    "parish": "Sagrado Corazón de Jesús"
+                    },
+                    {
+                                    "name": "Pbro. Juan José Navarro Robertis",
+                                    "email": "juan.jose@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0416-5611244",
+                                    "role": "priest",
+                                    "parish": "N.S. de Lourdes (Maracaibo)"
+                    },
+                    {
+                                    "name": "Pbro. Pedro Colmenares",
+                                    "email": "pbropedrocolmenares@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0426-9655848",
+                                    "role": "priest",
+                                    "parish": "San Miguel Arcángel"
+                    },
+                    {
+                                    "name": "Pbro. Danilo González",
+                                    "email": "danilo.gonzalez@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0416-7611987",
+                                    "role": "priest",
+                                    "parish": "La Sagrada Familia"
+                    },
+                    {
+                                    "name": "Pbro. Eleuterio Segundo Cuevas Pereira",
+                                    "email": "parrnuestrasradelcarmenmcbo@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6844539",
+                                    "role": "priest",
+                                    "parish": "N.S. del Carmen (Maracaibo)"
+                    },
+                    {
+                                    "name": "Pbro. Enrique Rojas Peña",
+                                    "email": "kyke32@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-7539894",
+                                    "role": "priest",
+                                    "parish": "San Pedro Apóstol"
+                    },
+                    {
+                                    "name": "Pbro. Rafael López",
+                                    "email": "rafaelopez3303@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6266122",
+                                    "role": "priest",
+                                    "parish": "San Martín de Porres"
+                    },
+                    {
+                                    "name": "Pbro. José Andrés Bravo Henríquez",
+                                    "email": "padreabravo@yahoo.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6185341",
+                                    "role": "priest",
+                                    "parish": "Santa Teresita del Niño Jesús"
+                    },
+                    {
+                                    "name": "Pbro. José Pineda",
+                                    "email": "pjosepineda@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6755405",
+                                    "role": "priest",
+                                    "parish": "Niña María"
+                    },
+                    {
+                                    "name": "R.P. Jesús Vásquez, SchP",
+                                    "email": "jesusvc55@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-0616901",
+                                    "role": "priest",
+                                    "parish": "San Ignacio de Loyola"
+                    },
+                    {
+                                    "name": "Pbro. Miguel Antonio Ospino",
+                                    "email": "mospino_martinez@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0416-0625909",
+                                    "role": "priest",
+                                    "parish": "San Tarsicio"
+                    },
+                    {
+                                    "name": "R.P. Francisco Ortiz Bran, O.de M.",
+                                    "email": "mcbofatima@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6715547",
+                                    "role": "priest",
+                                    "parish": "N.S. de Fátima"
+                    },
+                    {
+                                    "name": "R.P. Alejandro Rincón Quiroz, O.de M.",
+                                    "email": "mcbofatima1@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6715547",
+                                    "role": "priest",
+                                    "parish": "N.S. de Fátima"
+                    },
+                    {
+                                    "name": "R.P. Poncs Capell Capell, O.de M.",
+                                    "email": "sanramonnonato@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-3466396",
+                                    "role": "priest",
+                                    "parish": "San Ramón Nonato"
+                    },
+                    {
+                                    "name": "Pbro. Robert Alberto Álvarez Pérez",
+                                    "email": "robert.alberto@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6704586",
+                                    "role": "priest",
+                                    "parish": "La Santísima Trinidad"
+                    },
+                    {
+                                    "name": "Pbro. Héctor de los Reyes Bermúdez C. (octubre 2014)",
+                                    "email": "hector.bermudez.c@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0416-1618046",
+                                    "role": "priest",
+                                    "parish": "N.S. de la Candelaria"
+                    },
+                    {
+                                    "name": "Pbro. Fr. Adelmo Irene, OAR",
+                                    "email": "fr..adelmo@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-1218537",
+                                    "role": "priest",
+                                    "parish": "Santa Rosa de Lima – Santa Rita de Casia"
+                    },
+                    {
+                                    "name": "Pbro. Wilmer Olano",
+                                    "email": "wilmer.olano@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6920201",
+                                    "role": "priest",
+                                    "parish": "San Bartolomé (Ziruma)"
+                    },
+                    {
+                                    "name": "R.P. Fray José Antonio Díaz, OAR",
+                                    "email": "mcboparroquiasanonofre@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6178408",
+                                    "role": "priest",
+                                    "parish": "San Onofre"
+                    },
+                    {
+                                    "name": "R.P. Fray Juan Carlos Fernández, OAR",
+                                    "email": "mcboparroquiasanonofre1@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6178408",
+                                    "role": "priest",
+                                    "parish": "San Onofre"
+                    },
+                    {
+                                    "name": "Pbro. Dainer Prieto (Párroco",
+                                    "email": "sanjuanboscomcbo@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-3636962",
+                                    "role": "priest",
+                                    "parish": "San Juan Bosco (Sede del Curso Propedéutico)"
+                    },
+                    {
+                                    "name": "R.P. Pedro Castellano, OCarm",
+                                    "email": "fraypedrocarm@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6747353",
+                                    "role": "priest",
+                                    "parish": "Santa Mónica – La Concepción"
+                    },
+                    {
+                                    "name": "Pbro. Jesús Sandoval",
+                                    "email": "jesus.sandoval@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-9617569",
+                                    "role": "priest",
+                                    "parish": "N.S. de Coromoto"
+                    },
+                    {
+                                    "name": "Pbro. Dr. Carlos José Reyes B.",
+                                    "email": "padrereye@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-2575199",
+                                    "role": "priest",
+                                    "parish": "San Pablo Apóstol"
+                    },
+                    {
+                                    "name": "Pbro. Leonardo Martínez",
+                                    "email": "p.n.s.jesucristorey@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6654756",
+                                    "role": "priest",
+                                    "parish": "Nuestro Señor Jesucristo Rey"
+                    },
+                    {
+                                    "name": "Pbro. Jorge David Sánchez Urdaneta (Adm. Parroquial 10/01/2026)",
+                                    "email": "jorgeservi0518@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6219438",
+                                    "role": "priest",
+                                    "parish": "El Buen Pastor"
+                    },
+                    {
+                                    "name": "R.P. Yonys Mendoza, MSC",
+                                    "email": "yonysmendoza@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6316996",
+                                    "role": "priest",
+                                    "parish": "N.S. de la Paz"
+                    },
+                    {
+                                    "name": "Pbro. Dionni José Ríos Ríos (Adm. Parroquial 15/02/2026)",
+                                    "email": "dionni.jose@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-1640886",
+                                    "role": "priest",
+                                    "parish": "La Resurrección del Señor"
+                    },
+                    {
+                                    "name": "Pbro. Silverio Antonio Osorio Mora",
+                                    "email": "silverio.antonio@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-5142747",
+                                    "role": "priest",
+                                    "parish": "San Isidro Labrador"
+                    },
+                    {
+                                    "name": "Pbro. Ender Alexander Castillo Montoya (Administrador parroquial 15/11/2025)",
+                                    "email": "parroquiasmosacramento@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-2582491",
+                                    "role": "priest",
+                                    "parish": "Santísimo Sacramento"
+                    },
+                    {
+                                    "name": "Pbro. José Domingo Alvarado",
+                                    "email": "jose.domingo@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6827366",
+                                    "role": "priest",
+                                    "parish": "Santa Inés"
+                    },
+                    {
+                                    "name": "Pbro. Andrés Bravo",
+                                    "email": "andres.bravo@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6185341",
+                                    "role": "priest",
+                                    "parish": "San Juan Crisóstomo y San Juan Pablo II (Parroquia Universitaria)"
+                    },
+                    {
+                                    "name": "Pbro. Andry Sánchez",
+                                    "email": "sanchezaandry@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6949290",
+                                    "role": "priest",
+                                    "parish": "N.S. de Guadalupe"
+                    },
+                    {
+                                    "name": "Pbro. Henry Tapia",
+                                    "email": "henrybenito1@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0416-9604224",
+                                    "role": "priest",
+                                    "parish": "Jesús Nazareno"
+                    },
+                    {
+                                    "name": "Pbro. Lcdo. Richard Garrillo",
+                                    "email": "joseanbarboza@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0261-7320042",
+                                    "role": "priest",
+                                    "parish": "Santísimo Salvador"
+                    },
+                    {
+                                    "name": "Pbro. Leonardo López",
+                                    "email": "pbrolopezquintero@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-0619083",
+                                    "role": "priest",
+                                    "parish": "Santísimo Cristo de San Francisco"
+                    },
+                    {
+                                    "name": "Pbro. Danilo Humberto Calderón Matheus",
+                                    "email": "danilo.humberto@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6268956",
+                                    "role": "priest",
+                                    "parish": "San Juan Bautista"
+                    },
+                    {
+                                    "name": "Pbro. Raúl R. Montoya Medero",
+                                    "email": "stodomingogcatolicaparroquia@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6799880",
+                                    "role": "priest",
+                                    "parish": "Santo Domingo de Guzmán"
+                    },
+                    {
+                                    "name": "Pbro. Néstor Luis Pérez",
+                                    "email": "nestor.luis@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6919517",
+                                    "role": "priest",
+                                    "parish": "San Felipe Neri"
+                    },
+                    {
+                                    "name": "Pbro. Francisco Antonio Niño Correa",
+                                    "email": "francisco.antonio@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-7683972",
+                                    "role": "priest",
+                                    "parish": "N.S. de la Caridad del Cobre"
+                    },
+                    {
+                                    "name": "Pbro. Engelbert Alfredo Jackson Carrasco",
+                                    "email": "engelbert.alfredo@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6237799",
+                                    "role": "priest",
+                                    "parish": "Transfiguración del Señor"
+                    },
+                    {
+                                    "name": "Pbro. Carlos Quiva",
+                                    "email": "padrecarlosquiva@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-1285174",
+                                    "role": "priest",
+                                    "parish": "Santa Mariana de Jesús"
+                    },
+                    {
+                                    "name": "Pbro. Jorge Enrique Rodríguez González",
+                                    "email": "jorge.enrique@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6513813",
+                                    "role": "priest",
+                                    "parish": "Purísima Madre de Dios y San Benito de Palermo"
+                    },
+                    {
+                                    "name": "Pbro. Raúl Moreno",
+                                    "email": "raulalfredo1963@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6326406",
+                                    "role": "priest",
+                                    "parish": "La Inmaculada Concepción (La Cañada de Urdaneta)"
+                    },
+                    {
+                                    "name": "Pbro. Hebert de Jesús Rivera Cañizález",
+                                    "email": "raulalfredo19631@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6326406",
+                                    "role": "priest",
+                                    "parish": "La Inmaculada Concepción (La Cañada de Urdaneta)"
+                    },
+                    {
+                                    "name": "Pbro. Daigel Medina",
+                                    "email": "daigelhml@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6483753",
+                                    "role": "priest",
+                                    "parish": "N.S. del Carmen (El Carmelo)"
+                    },
+                    {
+                                    "name": "Pbro. José del Carmen Chirinos (Adm. Parroquial)",
+                                    "email": "jose.del@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6089719",
+                                    "role": "priest",
+                                    "parish": "N.S. de Chiquinquirá (La Ensenada)"
+                    },
+                    {
+                                    "name": "Pbro. Fabricio Medina",
+                                    "email": "fabricio.medina@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6266325",
+                                    "role": "priest",
+                                    "parish": "San Antonio de Padua y N.S. Virgen de Los Parrales"
+                    },
+                    {
+                                    "name": "Pbro. Rafael Morales",
+                                    "email": "parroquiasanrafael@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0416-6667944",
+                                    "role": "priest",
+                                    "parish": "San Rafael Arcángel (El Moján)"
+                    },
+                    {
+                                    "name": "Pbro. Rafael Morales",
+                                    "email": "rafael.morales@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0416-6667944",
+                                    "role": "priest",
+                                    "parish": "N.S. de Lourdes (Isla de Toas)"
+                    },
+                    {
+                                    "name": "Pbro. Evelio Pérez",
+                                    "email": "evelio.perez@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6288234",
+                                    "role": "priest",
+                                    "parish": "María Auxiliadora (Santa Cruz de Mara)"
+                    },
+                    {
+                                    "name": "Pbro. Yonder Javier Urdaneta Hiza (Adm. Parroquial 18/01/2026)",
+                                    "email": "yonder.javier@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-1670969",
+                                    "role": "priest",
+                                    "parish": "La Inmaculada Concepción (Carrasquero)"
+                    },
+                    {
+                                    "name": "Pbro. William Chiquinquirá Ortega Colmenares",
+                                    "email": "william.chiquinquira@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6539582",
+                                    "role": "priest",
+                                    "parish": "N.S. de Coromoto y San José Obrero (La Sierrita)"
+                    },
+                    {
+                                    "name": "Pbro. José G. Sánchez (in solidum)",
+                                    "email": "pquia.jesusredentor@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0416-4617636",
+                                    "role": "priest",
+                                    "parish": "Jesús Redentor (Tamare)"
+                    },
+                    {
+                                    "name": "Pbro. Valentín Segundo Rodríguez López",
+                                    "email": "pquia.jesusredentor1@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0416-4617636",
+                                    "role": "priest",
+                                    "parish": "Jesús Redentor (Tamare)"
+                    },
+                    {
+                                    "name": "Pbro. Santos Xavier Silva Blanco (Adm. Parroquial)",
+                                    "email": "padresantosilva@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-1742378",
+                                    "role": "priest",
+                                    "parish": "San Bartolomé Apóstol (Sinamaica)"
+                    },
+                    {
+                                    "name": "Pbro. Eduardo José Daboin Bermúdez Diác. Francisco José Núñez Larez",
+                                    "email": "eduardodaboin1991@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-6690248",
+                                    "role": "priest",
+                                    "parish": "San José de Paraguaipoa"
+                    },
+                    {
+                                    "name": "Pbro. Germán Palmar",
+                                    "email": "german.palmar@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-7980355",
+                                    "role": "priest",
+                                    "parish": "El Sagrado Corazón de Jesús (Guarero)"
+                    },
+                    {
+                                    "name": "Pbro. Dilmer Báez",
+                                    "email": "else-oresmiluz@hotmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0426-4604314",
+                                    "role": "priest",
+                                    "parish": "Santa María (Guana)"
+                    },
+                    {
+                                    "name": "Pbro. Santos Xavier Silva Blanco",
+                                    "email": "padresantosilva1@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-1742378",
+                                    "role": "priest",
+                                    "parish": "Parroquia Personal Eclesiástica N.S. del Carmen (añú)"
+                    },
+                    {
+                                    "name": "R.P. Pedro Enrique Paredes Ramírez, IC",
+                                    "email": "pedro.enrique@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-7697073",
+                                    "role": "priest",
+                                    "parish": "Rectoría San Francisco de Asís (Rosmini)"
+                    },
+                    {
+                                    "name": "Pbro. Laudi Zambrano",
+                                    "email": "laudi.zambrano@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0414-3618152",
+                                    "role": "priest",
+                                    "parish": "Rectoría Santo Tomás Moro"
+                    },
+                    {
+                                    "name": "R.P. Juan Esteban Padilla Ponce, O.H.",
+                                    "email": "familiajuandediana@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6224357",
+                                    "role": "priest",
+                                    "parish": "Rectoría Hogar Clínica San Rafael"
+                    },
+                    {
+                                    "name": "Pbro. Evelio Pérez",
+                                    "email": "evelio.perez1@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0424-6288234",
+                                    "role": "priest",
+                                    "parish": "Rectoría La Santísima Cruz de Mara"
+                    },
+                    {
+                                    "name": "Pbro. Carlos Quiva",
+                                    "email": "padrecarlosquiva1@gmail.com",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-1285174",
+                                    "role": "priest",
+                                    "parish": "Rectoría Jesús de la Buena Esperanza"
+                    },
+                    {
+                                    "name": "R.P. Pedro Enrique Paredes Ramírez, IC",
+                                    "email": "pedro.enrique1@arquidiocesisdemaracaibo.org",
+                                    "password": "sacerdote123",
+                                    "phone": "0412-7697073",
+                                    "role": "priest",
+                                    "parish": "Rectoría San Antonio de Padua"
+                    }
+            ];
+
+            if (!db.users) db.users = [];
+            if (!db.requests) db.requests = [];
+            
+            defaultUsers.forEach(defUser => {
+                if (!db.users.some(u => u.email === defUser.email)) {
+                    db.users.push(defUser);
+                }
+            });
+            saveLocalDB();
+        }
+
+        // Cargar Parroquias desde el listado autogenerado
+        try {
+            const parishesRes = await fetch('/parishes_with_passwords.json');
+            if (parishesRes.ok) {
+                db.parroquias = await parishesRes.json();
+                console.log("Parroquias cargadas:", db.parroquias.length);
+            }
+        } catch (e) {
+            console.error("Error al cargar parishes_with_passwords.json:", e);
+        }
+
+        populateParishDropdown();
+    }
+
+    function populateParishDropdown() {
+        const select = document.getElementById('login-parish');
+        if (!select) return;
+        
+        select.innerHTML = '<option value="" disabled selected>Seleccione su Parroquia...</option>';
+        
+        const sorted = [...(db.parroquias || [])].sort((a, b) => a.name.localeCompare(b.name));
+        sorted.forEach(p => {
+            const opt = document.createElement('option');
+            opt.value = p.code;
+            opt.textContent = `${p.name} (${p.code})`;
+            select.appendChild(opt);
+        });
+    }
+
+    function saveLocalDB() {
+        try {
+            localStorage.setItem('cancilleria_db', JSON.stringify(db));
+        } catch (e) {
+            console.error("Error al guardar la base de datos local:", e);
+        }
+    }
+
+    function updateDBBadges() {
+        const label = isSupabase ? '☁ Supabase Cloud' : '💾 Local (Dev)';
+        const badges = ['db-badge-login', 'db-badge-priest', 'db-badge-admin'];
+        badges.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = label;
+        });
+    }
+
+    function renderProductionConfigError() {
+        document.body.innerHTML = `
+            <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #fdf8f2; font-family: 'DM Sans', sans-serif; padding: 2rem;">
+                <div style="max-width: 600px; text-align: center; background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid #e2e8f0;">
+                    <div style="font-size: 3rem; color: #f59e0b; margin-bottom: 1rem;">⚠️</div>
+                    <h2 style="color: #00235b; font-size: 1.5rem; margin-bottom: 1rem;">Configuración de Base de Datos Requerida</h2>
+                    <p style="color: #64748b; line-height: 1.6; margin-bottom: 1.5rem;">
+                        El Portal de Sacerdotes requiere una conexión activa a <strong>Supabase</strong> para funcionar correctamente en producción.
+                        <br><br>
+                        Por favor configure las variables de entorno <code>SUPABASE_URL</code> y <code>SUPABASE_ANON_KEY</code> en el servidor de despliegue (Vercel).
+                    </p>
+                    <a href="cancilleria.html" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #00235b; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 700;">
+                        ← Volver a la Cancillería
+                    </a>
+                </div>
+            </div>
+        `;
+    }
+
+    // 2. View Navigation
+    function switchView(viewId) {
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        const target = document.getElementById(viewId);
+        if (target) target.classList.add('active');
+    }
+
+    function switchDashboardTab(role, tabId, btnEl) {
+        const dashboard = document.getElementById(`view-${role}-dashboard`);
+        if (!dashboard) return;
+        dashboard.querySelectorAll('.dashboard-tab-content').forEach(t => t.style.display = 'none');
+        const target = document.getElementById(tabId);
+        if (target) target.style.display = 'block';
+        dashboard.querySelectorAll('.sidebar-menu-btn').forEach(b => b.classList.remove('active'));
+        if (btnEl) btnEl.classList.add('active');
+    }
+
+    // 3. Authentication
+    async function handleLogin(event) {
+        const passwordInput = document.getElementById('login-password').value;
+
+        try {
+            let user = null;
+
+            if (currentLoginType === 'parish') {
+                const parishCode = document.getElementById('login-parish').value;
+                if (!parishCode) {
+                    alert("Por favor seleccione una parroquia.");
+                    return;
+                }
+
+                if (isSupabase) {
+                    const { data, error } = await supabaseClient
+                        .from('parroquias')
+                        .select('*')
+                        .eq('code', parishCode)
+                        .single();
+                    if (data) user = data;
+                } else {
+                    const parish = db.parroquias.find(p => p.code === parishCode);
+                    if (parish) {
+                        user = {
+                            code: parish.code,
+                            name: parish.name,
+                            email: parish.email,
+                            phone: parish.phone,
+                            password: parish.password,
+                            role: parish.role || 'parish',
+                            direccion: parish.direccion || parish.address || "",
+                            parroco: parish.parroco || ""
+                        };
+                    }
+                }
+
+                if (!user) {
+                    alert("La parroquia seleccionada no está registrada.");
+                    return;
+                }
+            } else {
+                const emailInput = document.getElementById('login-email').value.trim().toLowerCase();
+                if (isSupabase) {
+                    const { data, error } = await supabaseClient
+                        .from('sacerdotes')
+                        .select('*')
+                        .eq('email', emailInput)
+                        .single();
+                    if (data) user = data;
+                } else {
+                    user = db.users.find(u => u.email && u.email.toLowerCase() === emailInput);
+                }
+
+                if (!user) {
+                    alert("El correo ingresado no está registrado en el portal de la Cancillería.");
+                    return;
+                }
+            }
+
+            if (user.password !== passwordInput) {
+                alert("Contraseña incorrecta. Por favor intente de nuevo.");
+                return;
+            }
+
+            currentUser = user;
+            sessionStorage.setItem('current_user', JSON.stringify(user));
+            
+            if (user.role === 'admin') {
+                await loadAdminDashboard();
+                switchView('view-admin-dashboard');
+            } else if (user.role === 'parish' || user.role === 'rectoria') {
+                await loadParishDashboard();
+                switchView('view-parish-dashboard');
+            } else {
+                await loadPriestDashboard();
+                switchView('view-priest-dashboard');
+            }
+
+            document.getElementById('form-login').reset();
+        } catch (err) {
+            console.error("Excepción en handleLogin:", err);
+            alert("Error durante el inicio de sesión: " + err.message);
+        }
+    }
+
+    function handleLogout() {
+        currentUser = null;
+        sessionStorage.removeItem('current_user');
+        switchView('view-login');
+    }
+
+    async function checkSession() {
+        const savedUser = sessionStorage.getItem('current_user');
+        if (savedUser) {
+            currentUser = JSON.parse(savedUser);
+            if (currentUser.role === 'admin') {
+                await loadAdminDashboard();
+                switchView('view-admin-dashboard');
+            } else if (currentUser.role === 'parish' || currentUser.role === 'rectoria') {
+                await loadParishDashboard();
+                switchView('view-parish-dashboard');
+            } else {
+                await loadPriestDashboard();
+                switchView('view-priest-dashboard');
+            }
+        }
+    }
+
+    // 4. Priest Dashboard
+    function isProfileComplete(user) {
+        if (!user) return false;
+        const requiredFields = [
+            'name',
+            'cedula',
+            'birth_date',
+            'phone',
+            'ordination_date',
+            'ordaining_bishop',
+            'diocesis',
+            'parish',
+            'charge'
+        ];
+        return requiredFields.every(field => user[field] && String(user[field]).trim() !== '');
+    }
+
+    function goToProfileTab() {
+        const sidebar = document.querySelector('#view-priest-dashboard .dashboard-sidebar');
+        const profileBtn = Array.from(sidebar.querySelectorAll('.sidebar-menu-btn'))
+            .find(b => b.textContent.includes('Mi Perfil'));
+        if (profileBtn) {
+            switchDashboardTab('priest', 'tab-priest-profile', profileBtn);
+        }
+    }
+
+    async function handleSaveProfile(e) {
+        e.preventDefault();
+        
+        const nameVal = document.getElementById('prof-name').value.trim();
+        const cedulaVal = document.getElementById('prof-cedula').value.trim();
+        const birthDateVal = document.getElementById('prof-birthdate').value;
+        const phoneVal = document.getElementById('prof-phone').value.trim();
+        const ordDateVal = document.getElementById('prof-orddate').value;
+        const ordBishopVal = document.getElementById('prof-ordbishop').value.trim();
+        const diocesisVal = document.getElementById('prof-diocesis').value.trim();
+        const parishVal = document.getElementById('prof-parish').value.trim();
+        const chargeVal = document.getElementById('prof-charge').value.trim();
+
+        try {
+            if (isSupabase) {
+                if (!supabaseClient) {
+                    alert("El cliente de Supabase no está inicializado.");
+                    return;
+                }
+                
+                const { error } = await supabaseClient
+                    .from('sacerdotes')
+                    .update({
+                        name: nameVal,
+                        cedula: cedulaVal,
+                        birth_date: birthDateVal,
+                        phone: phoneVal,
+                        ordination_date: ordDateVal,
+                        ordaining_bishop: ordBishopVal,
+                        diocesis: diocesisVal,
+                        parish: parishVal,
+                        charge: chargeVal
+                    })
+                    .eq('email', currentUser.email);
+
+                if (error) {
+                    console.error("Error al actualizar perfil en Supabase:", error);
+                    alert("Error al guardar la información del perfil en Supabase.");
+                    return;
+                }
+            } else {
+                const localUser = db.users.find(u => u.email === currentUser.email);
+                if (localUser) {
+                    localUser.name = nameVal;
+                    localUser.cedula = cedulaVal;
+                    localUser.birth_date = birthDateVal;
+                    localUser.phone = phoneVal;
+                    localUser.ordination_date = ordDateVal;
+                    localUser.ordaining_bishop = ordBishopVal;
+                    localUser.diocesis = diocesisVal;
+                    localUser.parish = parishVal;
+                    localUser.charge = chargeVal;
+                    saveLocalDB();
+                }
+            }
+
+            currentUser.name = nameVal;
+            currentUser.cedula = cedulaVal;
+            currentUser.birth_date = birthDateVal;
+            currentUser.phone = phoneVal;
+            currentUser.ordination_date = ordDateVal;
+            currentUser.ordaining_bishop = ordBishopVal;
+            currentUser.diocesis = diocesisVal;
+            currentUser.parish = parishVal;
+            currentUser.charge = chargeVal;
+            
+            sessionStorage.setItem('current_user', JSON.stringify(currentUser));
+            
+            alert("¡Perfil ministerial actualizado con éxito!");
+            
+            await loadPriestDashboard();
+            
+            const sidebar = document.querySelector('#view-priest-dashboard .dashboard-sidebar');
+            const listBtn = sidebar.querySelector('button');
+            if (listBtn) {
+                switchDashboardTab('priest', 'tab-priest-list', listBtn);
+            }
+        } catch (err) {
+            console.error("Excepción en handleSaveProfile:", err);
+            alert("Error al intentar guardar el perfil: " + err.message);
+        }
+    }
+
+    async function loadParishDashboard() {
+        document.getElementById('parish-welcome-name').textContent = currentUser.name;
+        document.getElementById('parish-welcome-code').textContent = "Código: " + currentUser.code;
+        document.getElementById('parish-welcome-role').textContent = "Rol: " + (currentUser.role === 'rectoria' ? 'Rectoría' : 'Parroquia');
+        
+        document.getElementById('parish-info-name').textContent = currentUser.name || '';
+        document.getElementById('parish-info-code').textContent = currentUser.code || '';
+        document.getElementById('parish-info-parroco').textContent = currentUser.parroco || 'No registrado';
+        document.getElementById('parish-info-email').textContent = currentUser.email || 'No registrado';
+        document.getElementById('parish-info-phone').textContent = currentUser.phone || 'No registrado';
+        document.getElementById('parish-info-address').textContent = currentUser.direccion || 'No registrada';
+
+        const label = isSupabase ? '☁ Supabase Cloud' : '💾 Local (Dev)';
+        const el = document.getElementById('db-badge-parish');
+        if (el) el.textContent = label;
+
+        // Reset to first tab
+        const sidebar = document.querySelector('#view-parish-dashboard .dashboard-sidebar');
+        const firstBtn = sidebar.querySelector('button');
+        if (firstBtn) {
+            switchDashboardTab('parish', 'tab-parish-solicitudes', firstBtn);
+        }
+    }
+
+    async function loadPriestDashboard() {
+        document.getElementById('priest-welcome-name').textContent = currentUser.name;
+        document.getElementById('priest-welcome-email').textContent = currentUser.email;
+
+        document.getElementById('prof-name').value = currentUser.name || '';
+        document.getElementById('prof-cedula').value = currentUser.cedula || '';
+        document.getElementById('prof-birthdate').value = currentUser.birth_date || '';
+        document.getElementById('prof-phone').value = currentUser.phone || '';
+        document.getElementById('prof-orddate').value = currentUser.ordination_date || '';
+        document.getElementById('prof-ordbishop').value = currentUser.ordaining_bishop || '';
+        document.getElementById('prof-diocesis').value = currentUser.diocesis || '';
+        document.getElementById('prof-parish').value = currentUser.parish || '';
+        document.getElementById('prof-charge').value = currentUser.charge || '';
+
+        if (isProfileComplete(currentUser)) {
+            document.getElementById('request-form-container').style.display = 'block';
+            document.getElementById('profile-warning-block').style.display = 'none';
+            document.getElementById('req-parish').value = currentUser.parish || '';
+        } else {
+            document.getElementById('request-form-container').style.display = 'none';
+            document.getElementById('profile-warning-block').style.display = 'block';
+        }
+
+        await renderPriestRequestsTable();
+    }
+
+    async function renderPriestRequestsTable() {
+        const tbody = document.getElementById('priest-requests-table-body');
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--gris-medio); padding: 1.5rem;"><i class="ti ti-loader animate-spin"></i> Cargando solicitudes...</td></tr>`;
+
+        let myRequests = [];
+
+        if (isSupabase) {
+            const { data, error } = await supabaseClient
+                .from('tramites')
+                .select('*')
+                .eq('email', currentUser.email);
+
+            if (error) {
+                console.error("Error al leer trámites en Supabase:", error);
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--grana); padding: 1.5rem;">Fallo al conectar con la base de datos Supabase.</td></tr>`;
+                return;
+            }
+            myRequests = (data || []).map(mapRequestFields);
+        } else {
+            myRequests = db.requests.filter(r => r.email && r.email.toLowerCase() === currentUser.email.toLowerCase());
+        }
+
+        if (myRequests.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--gris-medio); padding: 2rem;">No posee ninguna solicitud registrada hasta la fecha.</td></tr>`;
+            return;
+        }
+
+        myRequests.sort((a,b) => b.id.localeCompare(a.id));
+
+        tbody.innerHTML = '';
+        myRequests.forEach(r => {
+            let badgeClass = 'badge-pending';
+            let stateText = 'Pendiente';
+
+            if (r.status === 'Aprobado') {
+                badgeClass = 'badge-approved';
+                stateText = 'Aprobado';
+            } else if (r.status === 'Rechazado') {
+                badgeClass = 'badge-rejected';
+                stateText = 'Rechazado';
+            }
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><strong>${r.id}</strong></td>
+                <td>${r.type}</td>
+                <td>${r.date}</td>
+                <td><span class="badge-status ${badgeClass}"><i class="ti ti-point-filled"></i> ${stateText}</span></td>
+                <td>
+                    <button onclick="viewRequestDetails('${r.id}')" class="btn-table-action">
+                        <i class="ti ti-eye"></i> Ver Detalle
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    async function handleNewRequest(e) {
+        e.preventDefault();
+        if (!isProfileComplete(currentUser)) {
+            alert("Debe completar su perfil ministerial antes de poder enviar solicitudes.");
+            return;
+        }
+        const type = document.getElementById('req-type').value;
+        const subject = "Solicitud de " + type;
+        const parish = document.getElementById('req-parish').value.trim();
+        const details = document.getElementById('req-details').value.trim();
+        const institution = document.getElementById('req-institution').value.trim();
+
+        const fileInput = document.getElementById('req-file');
+        let fileContent = "";
+        let fileName = "";
+        if (fileInput && fileInput.files && fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            if (file.size > 5 * 1024 * 1024) {
+                alert("El archivo adjunto supera el límite de 5MB.");
+                return;
+            }
+            try {
+                fileContent = await readFileAsDataURL(file);
+                fileName = file.name;
+            } catch (err) {
+                console.error("Error al procesar archivo adjunto:", err);
+                alert("Error al procesar el archivo seleccionado.");
+                return;
+            }
+        }
+
+        const today = new Date().toISOString().split('T')[0];
+        let newId = "";
+
+        if (isSupabase) {
+            const { count, error } = await supabaseClient
+                .from('tramites')
+                .select('*', { count: 'exact', head: true });
+            newId = "REQ-" + ((count || 0) + 1001);
+        } else {
+            newId = "REQ-" + (db.requests.length + 1001);
+        }
+
+        const newReq = {
+            id: newId,
+            email: currentUser.email,
+            priestName: currentUser.name,
+            priestEmail: currentUser.email,
+            type: type,
+            date: today,
+            subject: subject,
+            parish: parish,
+            details: details,
+            status: "Pendiente",
+            feedback: "",
+            documentContent: "",
+            institution: institution,
+            priestFileContent: fileContent,
+            priestFileName: fileName
+        };
+
+        if (isSupabase) {
+            const { error } = await supabaseClient
+                .from('tramites')
+                .insert([{
+                    id: newId,
+                    email: currentUser.email,
+                    priest_name: currentUser.name,
+                    priest_email: currentUser.email,
+                    type: type,
+                    date: today,
+                    subject: subject,
+                    parish: parish,
+                    details: details,
+                    status: "Pendiente",
+                    feedback: "",
+                    document_content: "",
+                    institution: institution,
+                    priest_file_content: fileContent,
+                    priest_file_name: fileName
+                }]);
+
+            if (error) {
+                console.error("Error al registrar en Supabase:", error);
+                alert("Error al enviar la solicitud en la nube.");
+                return;
+            }
+        } else {
+            db.requests.push(newReq);
+            saveLocalDB();
+        }
+
+        (async () => {
+            const subjectPriest = `[Arquidiócesis] Confirmación de Solicitud de Trámite ${newId}`;
+            const priestHtml = `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f5; border-radius: 8px;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h2 style="color: #00235b; margin: 0; font-family: 'Poppins', Georgia, serif;">Portal de Sacerdotes</h2>
+                        <p style="color: #8c7853; font-weight: 600; margin: 5px 0 0 0;">Arquidiócesis de Maracaibo</p>
+                    </div>
+                    <p style="color: #2b3a54; font-size: 1.05em;">Estimado <strong>${currentUser.name}</strong>,</p>
+                    <p style="color: #3d4f6e; line-height: 1.6;">Le confirmamos que hemos recibido con éxito su solicitud de trámite. A continuación se detallan los datos registrados:</p>
+                    
+                    <div style="background-color: #f8fafc; padding: 15px; border-radius: 6px; border: 1px solid #e2e8f0; margin: 20px 0;">
+                        <p style="margin: 0 0 8px 0;"><strong>Código de Trámite:</strong> ${newId}</p>
+                        <p style="margin: 0 0 8px 0;"><strong>Tipo de Documento:</strong> ${type}</p>
+                        <p style="margin: 0 0 8px 0;"><strong>Institución Destinataria:</strong> ${institution || 'No especificada'}</p>
+                        <p style="margin: 0 0 8px 0;"><strong>Asignación/Parroquia:</strong> ${parish}</p>
+                        <p style="margin: 0 0 8px 0;"><strong>Fecha de Registro:</strong> ${today}</p>
+                        <p style="margin: 8px 0 0 0; padding-top: 8px; border-top: 1px dashed #e2e8f0;"><strong>Motivo de la Solicitud:</strong></p>
+                        <p style="margin: 5px 0 0 0; color: #556987; font-style: italic; white-space: pre-line;">${details}</p>
+                        ${fileName ? `<p style="margin: 10px 0 0 0; font-size: 0.9em; color: #3b82f6;"><strong>Archivo adjunto:</strong> ${fileName}</p>` : ''}
+                    </div>
+                    
+                    <p style="color: #3d4f6e; line-height: 1.6;">Su solicitud se encuentra en estado <strong>Pendiente</strong> y será evaluada por el Arzobispado. Le notificaremos por correo electrónico una vez que se emita la resolución oficial.</p>
+                    <hr style="border: 0; border-top: 1px solid #e2e8f5; margin: 30px 0 15px 0;">
+                    <p style="text-align: center; color: #7a8bad; font-size: 0.8em; margin: 0;">Portal de Sacerdotes | Arquidiócesis de Maracaibo</p>
+                </div>
+            `;
+            await callSendEmailAPI(currentUser.email, subjectPriest, priestHtml);
+
+            const subjectAdmin = `[NUEVA SOLICITUD] Trámite ${newId} - ${currentUser.name}`;
+            const adminHtml = `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f5; border-radius: 8px;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h2 style="color: #00235b; margin: 0; font-family: 'Poppins', Georgia, serif;">Portal de la Cancillería</h2>
+                        <p style="color: #8c7853; font-weight: 600; margin: 5px 0 0 0;">Nueva Solicitud Recibida</p>
+                    </div>
+                    <p style="color: #2b3a54; font-size: 1.05em;">Estimado Canciller/Administrador,</p>
+                    <p style="color: #3d4f6e; line-height: 1.6;">Se ha registrado una nueva solicitud de trámite en el portal digital. Por favor ingrese al panel de administración para evaluarla y gestionarla.</p>
+                    
+                    <div style="background-color: #f8fafc; padding: 15px; border-radius: 6px; border: 1px solid #e2e8f0; margin: 20px 0;">
+                        <p style="margin: 0 0 8px 0;"><strong>Código de Trámite:</strong> ${newId}</p>
+                        <p style="margin: 0 0 8px 0;"><strong>Sacerdote Solicitante:</strong> ${currentUser.name} (${currentUser.email})</p>
+                        <p style="margin: 0 0 8px 0;"><strong>Tipo de Documento:</strong> ${type}</p>
+                        <p style="margin: 0 0 8px 0;"><strong>Institución Destinataria:</strong> ${institution || 'No especificada'}</p>
+                        <p style="margin: 0 0 8px 0;"><strong>Asignación/Parroquia:</strong> ${parish}</p>
+                        <p style="margin: 0 0 8px 0;"><strong>Fecha de Registro:</strong> ${today}</p>
+                        <p style="margin: 8px 0 0 0; padding-top: 8px; border-top: 1px dashed #e2e8f0;"><strong>Motivo de la Solicitud:</strong></p>
+                        <p style="margin: 5px 0 0 0; color: #556987; font-style: italic; white-space: pre-line;">${details}</p>
+                        ${fileName ? `<p style="margin: 10px 0 0 0; font-size: 0.9em; color: #3b82f6;"><strong>Archivo adjunto por el sacerdote:</strong> ${fileName}</p>` : ''}
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 25px;">
+                        <a href="${window.location.origin}/portal-sacerdotes.html" style="background-color: #00235b; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; display: inline-block;">Ingresar al Panel de Gestión</a>
+                    </div>
+                    <hr style="border: 0; border-top: 1px solid #e2e8f5; margin: 30px 0 15px 0;">
+                    <p style="text-align: center; color: #7a8bad; font-size: 0.8em; margin: 0;">Portal de la Cancillería | Arquidiócesis de Maracaibo</p>
+                </div>
+            `;
+            let adminAttachments = null;
+            if (fileContent && fileName) {
+                const base64Content = fileContent.split(',')[1];
+                adminAttachments = [{ filename: fileName, content: base64Content }];
+            }
+            await callSendEmailAPI('cancilleria@arquidiocesisdemaracaibo.org', subjectAdmin, adminHtml, adminAttachments);
+        })();
+        
+        alert(`¡Solicitud ${newId} enviada con éxito a la Cancillería!`);
+        document.getElementById('form-new-request').reset();
+        
+        const firstMenuBtn = document.querySelector('#view-priest-dashboard .sidebar-menu-btn');
+        switchDashboardTab('priest', 'tab-priest-list', firstMenuBtn);
+        await renderPriestRequestsTable();
+    }
+
+    async function viewRequestDetails(reqId) {
+        let req = null;
+
+        if (isSupabase) {
+            const { data, error } = await supabaseClient
+                .from('tramites')
+                .select('*')
+                .eq('id', reqId)
+                .single();
+            if (data) {
+                req = mapRequestFields(data);
+            }
+        } else {
+            req = db.requests.find(r => r.id === reqId);
+        }
+
+        if (!req) return;
+
+        let detailHtml = `
+            <div style="font-family: var(--font-body); font-size: 0.95rem; color: var(--texto);">
+                <p style="border-bottom: 1px dashed var(--gris-suave); padding-bottom: 0.5rem; margin-top:0;"><strong>Trámite:</strong> ${req.type}</p>
+                <p style="border-bottom: 1px dashed var(--gris-suave); padding-bottom: 0.5rem;"><strong>Asunto:</strong> ${req.subject}</p>
+                <p style="border-bottom: 1px dashed var(--gris-suave); padding-bottom: 0.5rem;"><strong>Fecha Solicitud:</strong> ${req.date}</p>
+                <p style="border-bottom: 1px dashed var(--gris-suave); padding-bottom: 0.5rem;"><strong>Asignación Actual:</strong> ${req.parish}</p>
+                <div style="background: var(--surface-1); padding: 1rem; border-radius: 4px; border: 1px solid var(--gris-suave); margin-bottom: 1.5rem;">
+                    <strong>Su descripción enviada:</strong>
+                    <p style="margin-top: 0.5rem; color: var(--texto-soft); font-size: 0.9rem; white-space: pre-line;">${req.details}</p>
+                </div>
+        `;
+
+        if (req.status === 'Pendiente') {
+            detailHtml += `
+                <div style="padding: 1rem; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 4px; color: #856404; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="ti ti-clock" style="font-size: 1.3rem;"></i> Solicitud en espera de revisión por el Canciller.
+                </div>
+            `;
+        } else if (req.status === 'Rechazado') {
+            detailHtml += `
+                <div style="padding: 1rem; background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px; color: #721c24; margin-bottom: 1rem;">
+                    <strong>Retroalimentación del Canciller (Rechazado):</strong>
+                    <p style="margin-top: 0.5rem; font-size:0.9rem;">${req.feedback || "Sin comentarios."}</p>
+                </div>
+            `;
+        } else if (req.status === 'Aprobado') {
+            detailHtml += `
+                <div style="padding: 1rem; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; color: #155724; margin-bottom: 1.5rem;">
+                    <strong>Feedback de Aprobación:</strong>
+                    <p style="margin-top: 0.5rem; font-size:0.9rem; margin-bottom: 0.5rem;">${req.feedback || "Aprobado oficialmente."}</p>
+                </div>
+            `;
+            if (req.documentFileContent) {
+                detailHtml += `
+                    <div style="margin-bottom: 1.5rem; padding: 1.2rem; background: var(--surface-1); border: 1px solid var(--gris-suave); border-radius: 6px;">
+                        <strong style="color: var(--azul); display: block; margin-bottom: 0.5rem; font-family: var(--font-ui); font-size: 0.9rem;"><i class="ti ti-paperclip"></i> Documento Adjunto Firmado:</strong>
+                        <a href="${req.documentFileContent}" download="${req.documentFileName}" class="btn-portal btn-portal-primary" style="text-decoration: none; padding: 0.6rem 1rem; font-size: 0.85rem; width: auto; display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;">
+                            <i class="ti ti-download"></i> Descargar ${req.documentFileName}
+                        </a>
+                    </div>
+                `;
+            }
+            detailHtml += `
+                <button onclick="renderDocument('${req.id}')" class="btn-portal btn-portal-gold">
+                    <i class="ti ti-award"></i> Ver Certificado Oficial Firmado
+                </button>
+            `;
+        }
+
+        detailHtml += `</div>`;
+
+        const overlay = document.createElement('div');
+        overlay.className = 'nav-overlay active';
+        overlay.style.cssText = 'position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999;';
+
+        const modal = document.createElement('div');
+        modal.className = 'auth-card';
+        modal.style.position = 'fixed';
+        modal.style.top = '50%';
+        modal.style.left = '50%';
+        modal.style.transform = 'translate(-50%, -50%)';
+        modal.style.zIndex = '1000';
+        modal.style.width = '550px';
+        modal.style.maxWidth = '90%';
+        modal.style.maxHeight = '85vh';
+        modal.style.overflowY = 'auto';
+        modal.style.boxShadow = 'var(--shadow-xl)';
+        
+        modal.innerHTML = `
+            <div class="auth-header" style="padding: 1.5rem;">
+                <h2>Trámite ${req.id}</h2>
+                <p style="text-transform: uppercase;">Estado: ${req.status}</p>
+            </div>
+            <div class="auth-body" style="padding: 1.5rem;">
+                ${detailHtml}
+                <button onclick="closeRequestDetailsModal(this)" class="btn-portal btn-portal-secondary mt-3">Cerrar Detalle</button>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+        document.body.appendChild(modal);
+
+        overlay.addEventListener('click', () => {
+            closeRequestDetailsModal(modal);
+        });
+    }
+
+    function closeRequestDetailsModal(btnOrModal) {
+        const modal = btnOrModal.closest('.auth-card') || btnOrModal;
+        const overlays = document.querySelectorAll('.nav-overlay');
+        overlays.forEach(o => {
+            if (o.style.zIndex === '999') o.remove();
+        });
+        modal.remove();
+    }
+
+    // 5. Admin (Chancellor) Dashboard
+    async function loadAdminDashboard() {
+        await renderAdminStats();
+        await renderAdminRequestsTable();
+        await loadAdminParroquias();
+    }
+
+    async function loadAdminParroquias() {
+        let list = [];
+
+        if (isSupabase) {
+            try {
+                const { data, error } = await supabaseClient.from('parroquias').select('*');
+                if (error) {
+                    console.error("Error al obtener parroquias de Supabase:", error);
+                    list = [...db.parroquias];
+                } else {
+                    list = data || [];
+                }
+            } catch (err) {
+                console.error("Excepción al leer parroquias en Supabase:", err);
+                list = [...db.parroquias];
+            }
+        } else {
+            list = [...db.parroquias];
+        }
+
+        // Stats
+        const totalParroquias = list.filter(p => p.role !== 'rectoria').length;
+        const totalRectorias = list.filter(p => p.role === 'rectoria').length;
+        const conCorreo = list.filter(p => p.email && p.email.trim() !== '').length;
+
+        const elTotal = document.getElementById('stat-parish-total');
+        const elRect = document.getElementById('stat-parish-rectorias');
+        const elMails = document.getElementById('stat-parish-emails');
+
+        if (elTotal) elTotal.textContent = totalParroquias;
+        if (elRect) elRect.textContent = totalRectorias;
+        if (elMails) elMails.textContent = conCorreo;
+
+        // Render table
+        const tbody = document.getElementById('admin-parishes-table-body');
+        if (!tbody) return;
+
+        if (list.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 2rem;">No existen parroquias registradas.</td></tr>`;
+            return;
+        }
+
+        // Sort alphabetically by name
+        list.sort((a, b) => a.name.localeCompare(b.name));
+
+        tbody.innerHTML = '';
+        list.forEach(p => {
+            const tr = document.createElement('tr');
+            tr.className = 'parish-row';
+            tr.dataset.name = p.name.toLowerCase();
+            tr.dataset.code = p.code.toLowerCase();
+            
+            const emailText = p.email || '<span class="text-slate-400 italic">No registrado</span>';
+            const phoneText = p.phone || '<span class="text-slate-400 italic">No registrado</span>';
+            const parrocoText = p.parroco || '<span class="text-slate-400 italic">No asignado</span>';
+
+            tr.innerHTML = `
+                <td><strong>${p.code}</strong></td>
+                <td>
+                    <div class="font-bold text-on-surface">${p.name}</div>
+                    <div class="text-[11px] text-slate-400 font-mono">${p.role === 'rectoria' ? 'Rectoría' : 'Parroquia'}</div>
+                </td>
+                <td>${parrocoText}</td>
+                <td>
+                    <div class="text-[13px]"><strong>M:</strong> ${emailText}</div>
+                    <div class="text-[12px] text-slate-500"><strong>T:</strong> ${phoneText}</div>
+                </td>
+                <td>
+                    <span class="px-2.5 py-1 rounded bg-gold-antique/10 text-gold-antique border border-gold-antique/20 font-mono font-bold tracking-wider text-xs">${p.password}</span>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function filterAdminParishes() {
+        const query = document.getElementById('admin-parish-search').value.toLowerCase().trim();
+        const rows = document.querySelectorAll('#admin-parishes-table-body tr.parish-row');
+        
+        rows.forEach(row => {
+            const name = row.dataset.name || '';
+            const code = row.dataset.code || '';
+            if (!query || name.includes(query) || code.includes(query)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    async function renderAdminStats() {
+        let total = 0;
+        let pending = 0;
+        let approved = 0;
+
+        if (isSupabase) {
+            const { data, error } = await supabaseClient.from('tramites').select('status');
+            if (data) {
+                total = data.length;
+                pending = data.filter(r => r.status === 'Pendiente').length;
+                approved = data.filter(r => r.status === 'Aprobado').length;
+            }
+        } else {
+            total = db.requests.length;
+            pending = db.requests.filter(r => r.status === 'Pendiente').length;
+            approved = db.requests.filter(r => r.status === 'Aprobado').length;
+        }
+
+        document.getElementById('stat-total').textContent = total;
+        document.getElementById('stat-pending').textContent = pending;
+        document.getElementById('stat-approved').textContent = approved;
+    }
+
+    async function renderAdminRequestsTable() {
+        const tbody = document.getElementById('admin-requests-table-body');
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--gris-medio); padding: 1.5rem;"><i class="ti ti-loader animate-spin"></i> Cargando solicitudes...</td></tr>`;
+
+        let list = [];
+
+        if (isSupabase) {
+            const { data, error } = await supabaseClient.from('tramites').select('*');
+            if (error) {
+                console.error("Error al obtener solicitudes de administrador de Supabase:", error);
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--grana); padding: 1.5rem;">Error al recuperar datos en Supabase.</td></tr>`;
+                return;
+            }
+            list = (data || []).map(mapRequestFields);
+        } else {
+            list = [...db.requests];
+        }
+
+        if (list.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--gris-medio); padding: 2rem;">No existen solicitudes registradas en la curia.</td></tr>`;
+            return;
+        }
+
+        list.sort((a,b) => b.id.localeCompare(a.id));
+
+        tbody.innerHTML = '';
+        list.forEach(r => {
+            let badgeClass = 'badge-pending';
+            let stateText = 'Pendiente';
+
+            if (r.status === 'Aprobado') {
+                badgeClass = 'badge-approved';
+                stateText = 'Aprobado';
+            } else if (r.status === 'Rechazado') {
+                badgeClass = 'badge-rejected';
+                stateText = 'Rechazado';
+            }
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><strong>${r.id}</strong></td>
+                <td>${r.priestName}</td>
+                <td>${r.type}</td>
+                <td>${r.date}</td>
+                <td><span class="badge-status ${badgeClass}"><i class="ti ti-point-filled"></i> ${stateText}</span></td>
+                <td>
+                    <button onclick="manageRequest('${r.id}')" class="btn-table-action">
+                        <i class="ti ti-settings"></i> ${r.status === 'Pendiente' ? 'Gestionar' : 'Revisar'}
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    async function manageRequest(reqId) {
+        let req = null;
+
+        if (isSupabase) {
+            const { data, error } = await supabaseClient
+                .from('tramites')
+                .select('*')
+                .eq('id', reqId)
+                .single();
+            if (data) {
+                req = mapRequestFields(data);
+            }
+        } else {
+            req = db.requests.find(r => r.id === reqId);
+        }
+
+        if (!req) return;
+
+        selectedRequestId = reqId;
+
+        document.getElementById('adm-view-id').textContent = req.id;
+        document.getElementById('adm-view-priest').textContent = req.priestName;
+        document.getElementById('adm-view-email-detail').textContent = req.email || req.priestEmail;
+        document.getElementById('adm-view-type').textContent = req.type;
+        document.getElementById('adm-view-institution').textContent = req.institution || 'No especificada';
+        document.getElementById('adm-view-parish').textContent = req.parish;
+        document.getElementById('adm-view-description').textContent = req.details;
+
+        const fileSection = document.getElementById('adm-priest-file-section');
+        const fileNameSpan = document.getElementById('adm-priest-file-name');
+        const fileDownloadLink = document.getElementById('adm-priest-file-download');
+
+        if (req.priestFileContent) {
+            fileSection.style.display = 'flex';
+            const fName = req.priestFileName || 'archivo_adjunto';
+            fileNameSpan.textContent = fName;
+            fileDownloadLink.href = req.priestFileContent;
+            fileDownloadLink.download = fName;
+        } else {
+            fileSection.style.display = 'none';
+        }
+
+        (async () => {
+            let priestUser = null;
+            const targetEmail = (req.email || req.priestEmail || '').trim().toLowerCase();
+
+            if (targetEmail) {
+                if (isSupabase) {
+                    try {
+                        const { data, error } = await supabaseClient
+                            .from('sacerdotes')
+                            .select('*')
+                            .eq('email', targetEmail)
+                            .single();
+                        if (data) priestUser = data;
+                    } catch (e) {
+                        console.error("Error al cargar perfil en admin view:", e);
+                    }
+                } else {
+                    priestUser = db.users.find(u => u.email && u.email.toLowerCase() === targetEmail);
+                }
+            }
+
+            if (priestUser) {
+                document.getElementById('adm-prof-cedula').textContent = priestUser.cedula || 'No especificado';
+                document.getElementById('adm-prof-birthdate').textContent = priestUser.birth_date ? formatDateToLocale(priestUser.birth_date) : 'No especificado';
+                document.getElementById('adm-prof-phone').textContent = priestUser.phone || 'No especificado';
+                document.getElementById('adm-prof-orddate').textContent = priestUser.ordination_date ? formatDateToLocale(priestUser.ordination_date) : 'No especificado';
+                document.getElementById('adm-prof-ordbishop').textContent = priestUser.ordaining_bishop || 'No especificado';
+                document.getElementById('adm-prof-diocesis').textContent = priestUser.diocesis || 'No especificado';
+                document.getElementById('adm-prof-charge').textContent = priestUser.charge || 'No especificado';
+                document.getElementById('adm-prof-parish').textContent = priestUser.parish || 'No especificado';
+            } else {
+                document.getElementById('adm-prof-cedula').textContent = 'No registrado';
+                document.getElementById('adm-prof-birthdate').textContent = 'No registrado';
+                document.getElementById('adm-prof-phone').textContent = 'No registrado';
+                document.getElementById('adm-prof-orddate').textContent = 'No registrado';
+                document.getElementById('adm-prof-ordbishop').textContent = 'No registrado';
+                document.getElementById('adm-prof-diocesis').textContent = 'No registrado';
+                document.getElementById('adm-prof-charge').textContent = 'No registrado';
+                document.getElementById('adm-prof-parish').textContent = 'No registrado';
+            }
+        })();
+        
+        document.getElementById('adm-feedback').value = req.feedback || '';
+        document.getElementById('adm-document-text').value = req.documentContent || '';
+
+        document.getElementById('adm-doc-section').style.display = 'block';
+
+        if (!req.documentContent) {
+            loadDocTemplate();
+        }
+
+        const tabContentArea = document.getElementById('tab-admin-manage').closest('.dashboard-content');
+        tabContentArea.querySelectorAll('.dashboard-tab-content').forEach(t => t.style.display = 'none');
+        document.getElementById('tab-admin-manage').style.display = 'block';
+    }
+
+    function loadDocTemplate() {
+        const type = document.getElementById('adm-view-type').textContent;
+        const priest = document.getElementById('adm-view-priest').textContent;
+        const parish = document.getElementById('adm-view-parish').textContent;
+        const id = document.getElementById('adm-view-id').textContent;
+        const today = new Date();
+        const dateStr = today.getDate() + " de " + today.toLocaleString('es-ES', { month: 'long' }) + " de " + today.getFullYear();
+
+        let template = "";
+
+        if (type === "Licencia Ministerial") {
+            template = `DECRETO ARZOBISPAL Nº 082/2026\n\nMaracaibo, ${dateStr}\n\nPor cuanto el reverendo presbítero ${priest} goza del aprecio doctrinal, pastoral y moral en nuestra Arquidiócesis de Maracaibo, desempeñando actualmente su ministerio en la ${parish}.\n\nPor las presentes letras y en virtud de nuestras facultades ordinarias, CONCEDEMOS a dicho presbítero la prórroga de su LICENCIA MINISTERIAL por el período de un año fiscal, facultándole para la celebración pública del Santo Sacrificio de la Eucaristía, la predicación de la Palabra de Dios y la administración de los sacramentos litúrgicos correspondientes a su ministerio pastoral, en conformidad con las normas de la Iglesia Católica y las disposiciones locales.\n\nNotifíquese a los interesados.\n\nMons. José Luis Azuaje Ayala, Arzobispo Metropolitano.`;
+        } else if (type.includes("Celebret") || type.includes("Idoneidad")) {
+            template = `CERTIFICADO DE IDONEIDAD MINISTERIAL (CELEBRET)\n\nMaracaibo, ${dateStr}\n\nLa Curia Metropolitana de la Arquidiócesis de Maracaibo certifica por la presente que el reverendo presbítero ${priest} es sacerdote ordenado en comunión con la Sede Apostólica y con el Arzobispado metropolitano.\n\nEl mencionado presbítero goza de una conducta moral intachable y está plenamente autorizado para ejercer las funciones ministeriales y los sacramentos en el territorio de su jurisdicción, no teniendo ningún impedimento canónico para la celebración del culto divino.\n\nRecomendamos fraternalmente su acogida litúrgica a las autoridades eclesiásticas del lugar adonde se traslada temporalmente.\n\nDada en el Arzobispado de Maracaibo, bajo el registro de archivo ${id}.\n\nMons. José Luis Azuaje Ayala, Arzobispo Metropolitano.`;
+        } else {
+            template = `RESOLUCIÓN ARZOBISPAL\n\nMaracaibo, ${dateStr}\n\nEn atención a la solicitud presentada por el presbítero ${priest} adscrito a la ${parish}, referente a la solicitud de: "${type}".\n\nEste Arzobispado metropolitano, oído el parecer del Ordinario del lugar y habiendo cumplido con los requerimientos documentales exigidos por la disciplina eclesiástica, CONCEDE la autorización oficial correspondiente para el fin descrito en su solicitud, debiendo asentarse la respectiva acta de ejecución en los libros parroquiales de origen.\n\nDado para fe pública de lo decretado.\n\nMons. José Luis Azuaje Ayala, Arzobispo Metropolitano.`;
+        }
+
+        document.getElementById('adm-document-text').value = template;
+    }
+
+    function setSubmitAction(action) {
+        submitAction = action;
+    }
+
+    function readFileAsDataURL(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => reject(reader.error);
+            reader.readAsDataURL(file);
+        });
+    }
+
+    async function handleManageSubmit(e) {
+        e.preventDefault();
+        const feedback = document.getElementById('adm-feedback').value.trim();
+        const docContent = document.getElementById('adm-document-text').value.trim();
+        const fileInput = document.getElementById('adm-upload-file');
+
+        let targetStatus = submitAction === 'Aprobar' ? 'Aprobado' : 'Rechazado';
+        let targetDoc = submitAction === 'Aprobar' ? docContent : '';
+
+        let attachments = null;
+        let fileDataUrl = '';
+        let fileName = '';
+
+        if (submitAction === 'Aprobar' && fileInput && fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            try {
+                fileDataUrl = await readFileAsDataURL(file);
+                const base64Content = fileDataUrl.split(',')[1];
+                attachments = [{ filename: file.name, content: base64Content }];
+                fileName = file.name;
+            } catch (err) {
+                console.error("Error al leer el archivo adjunto:", err);
+                alert("Error al procesar el archivo seleccionado.");
+                return;
+            }
+        }
+
+        if (isSupabase) {
+            const { error } = await supabaseClient
+                .from('tramites')
+                .update({
+                    status: targetStatus,
+                    feedback: feedback,
+                    document_content: targetDoc,
+                    document_file_content: fileDataUrl,
+                    document_file_name: fileName
+                })
+                .eq('id', selectedRequestId);
+
+            if (error) {
+                console.error("Error al actualizar trámite en Supabase:", error);
+                alert("Error al actualizar la base de datos Supabase.");
+                return;
+            }
+        } else {
+            const req = db.requests.find(r => r.id === selectedRequestId);
+            if (!req) return;
+            req.status = targetStatus;
+            req.feedback = feedback;
+            req.documentContent = targetDoc;
+            req.documentFileContent = fileDataUrl;
+            req.documentFileName = fileName;
+            saveLocalDB();
+        }
+
+        let priestEmail = document.getElementById('adm-view-email').textContent;
+        let priestName = document.getElementById('adm-view-priest').textContent;
+        let reqType = document.getElementById('adm-view-type').textContent;
+
+        const successText = targetStatus === 'Aprobado' ? 'APROBADA' : 'RECHAZADA';
+        const subject = `[Arquidiócesis] Notificación de Trámite ${selectedRequestId} - ${successText}`;
+        
+        let htmlContent = `
+            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f5; border-radius: 8px;">
+                <div style="text-align: center; border-bottom: 2px solid #00235B; padding-bottom: 15px; margin-bottom: 20px;">
+                    <h2 style="color: #00235B; margin: 0;">Arquidiócesis de Maracaibo</h2>
+                    <span style="color: #F5C518; font-size: 0.9em; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Curia Metropolitana</span>
+                </div>
+                <p style="font-size: 1.1em; color: #0F1729;">Estimado Pbro. <strong>${priestName}</strong>,</p>
+                <p style="color: #3D4F6E; line-height: 1.6;">Le informamos que su solicitud con código <strong>${selectedRequestId}</strong> para el trámite de <strong>${reqType}</strong> ha sido evaluada y aprobada por el Excmo. Mons. José Luis Azuaje Ayala, Arzobispo Metropolitano de Maracaibo, con la siguiente resolución:</p>
+                
+                <div style="background-color: ${targetStatus === 'Aprobado' ? '#d4edda' : '#f8d7da'}; border-left: 5px solid ${targetStatus === 'Aprobado' ? '#28a745' : '#dc3545'}; padding: 15px; margin: 20px 0; border-radius: 4px;">
+                    <p style="margin: 0; font-weight: bold; color: ${targetStatus === 'Aprobado' ? '#155724' : '#721c24'}; font-size: 1.1em;">ESTADO: ${successText}</p>
+                    <p style="margin: 10px 0 0 0; color: #3d4f6e; font-size: 0.95em;"><strong>Feedback/Observación:</strong> ${feedback}</p>
+                </div>
+        `;
+
+        if (targetStatus === 'Aprobado') {
+            htmlContent += `
+                <div style="background-color: #fcf8f2; border: 1px solid #ebdcb9; padding: 20px; border-radius: 6px; font-family: Georgia, serif; line-height: 1.8; color: #2b2518; margin-top: 20px; white-space: pre-line;">
+                    <h3 style="text-align: center; color: #4a3e26; border-bottom: 1px solid #ebdcb9; padding-bottom: 10px; margin-top: 0; font-family: sans-serif;">DOCUMENTO EMITIDO</h3>
+                    ${docContent}
+                </div>
+                <p style="margin-top: 20px; color: #3D4F6E; font-size: 0.9em;"><em>Nota: Puede ingresar al Portal Digital de la Cancillería en el sitio web oficial para descargar una versión imprimible formal con membretes y firmas oficiales. ${fileName ? `Asimismo, se adjunta a este correo el archivo oficial <strong>${fileName}</strong> emitido por el Arzobispo.` : ''}</em></p>
+            `;
+        }
+
+        htmlContent += `
+                <hr style="border: 0; border-top: 1px solid #e2e8f5; margin: 30px 0 15px 0;">
+                <p style="text-align: center; color: #7a8bad; font-size: 0.8em; margin: 0;">Este es un correo automático del Portal Digital de la Curia Metropolitana de Maracaibo. No responda a este mensaje.</p>
+            </div>
+        `;
+
+        await callSendEmailAPI(priestEmail, subject, htmlContent, attachments);
+
+        alert(`Solicitud ${selectedRequestId} procesada con éxito y notificada al sacerdote.`);
+        
+        if (fileInput) fileInput.value = '';
+        
+        backToAdminList();
+        await loadAdminDashboard();
+    }
+
+    function backToAdminList() {
+        const firstMenuBtn = document.querySelector('#view-admin-dashboard .sidebar-menu-btn');
+        switchDashboardTab('admin', 'tab-admin-sacerdotes', firstMenuBtn);
+    }
+
+    // 6. Password Reset Flow
+    async function handleForgotStep1() {
+        const email = document.getElementById('forgot-email').value.trim().toLowerCase();
+        let user = null;
+
+        if (isSupabase) {
+            const { data, error } = await supabaseClient
+                .from('sacerdotes')
+                .select('*')
+                .eq('email', email)
+                .single();
+            if (data) user = data;
+        } else {
+            user = db.users.find(u => u.email && u.email.toLowerCase() === email);
+        }
+
+        if (!user) {
+            alert("El correo electrónico ingresado no se encuentra registrado.");
+            return;
+        }
+
+        if (user.role === 'admin') {
+            alert("Para reestablecer la clave del Canciller, por favor contáctese con soporte técnico de sistemas curiales.");
+            return;
+        }
+
+        targetForgotUser = user;
+        
+        const parts = user.email.split('@');
+        const localPart = parts[0];
+        const domainPart = parts[1];
+        const maskedLocal = localPart.substring(0, 3) + "****" + localPart.substring(localPart.length - 2);
+        const maskedDomain = domainPart.substring(0, 3) + "***" + domainPart.substring(domainPart.length - 3);
+        const maskedEmail = maskedLocal + "@" + maskedDomain;
+
+        document.getElementById('masked-email').textContent = maskedEmail;
+
+        document.getElementById('forgot-step-1').style.display = 'none';
+        document.getElementById('forgot-step-2').style.display = 'block';
+    }
+
+    async function sendVerificationCode() {
+        const code = Math.floor(100000 + Math.random() * 900000);
+        generatedCodeForForgot = code;
+
+        document.getElementById('btn-send-code').disabled = true;
+        document.getElementById('btn-send-code').innerHTML = `<i class="ti ti-loader animate-spin" style="display:inline-block; animation: spin 1s infinite linear;"></i> Enviando Código...`;
+
+        const subject = "Código de Seguridad para restablecer su contraseña de la Cancillería";
+        const htmlContent = `
+            <div style="font-family: sans-serif; max-width: 500px; margin: 0 auto; padding: 25px; border: 1px solid #e2e8f5; border-radius: 8px; background: #ffffff;">
+                <div style="text-align: center; border-bottom: 2px solid #00235B; padding-bottom: 15px; margin-bottom: 20px;">
+                    <h2 style="color: #00235B; margin: 0;">Arquidiócesis de Maracaibo</h2>
+                    <span style="color: #F5C518; font-size: 0.9em; font-weight: bold; text-transform: uppercase;">Portal de Sacerdotes</span>
+                </div>
+                <p style="color: #0F1729; font-size: 1em;">Estimado Pbro. <strong>${targetForgotUser.name}</strong>,</p>
+                <p style="color: #3D4F6E; line-height: 1.6;">Hemos recibido una solicitud para restablecer la contraseña de su cuenta en el Portal de la Cancillería.</p>
+                
+                <div style="text-align: center; padding: 20px; background-color: #FAFAF7; border: 1px solid #E2E8F5; border-radius: 6px; margin: 25px 0;">
+                    <span style="display: block; font-size: 0.85em; text-transform: uppercase; color: #7A8BAD; font-weight: bold; margin-bottom: 5px;">Código de Verificación</span>
+                    <strong style="font-size: 2.2em; color: #00235B; letter-spacing: 5px; font-family: monospace;">${code}</strong>
+                    <span style="display: block; font-size: 0.8em; color: #7A8BAD; margin-top: 10px;">Este código expirará en 15 minutos y es de un solo uso.</span>
+                </div>
+
+                <p style="color: #3D4F6E; font-size: 0.9em; line-height: 1.5;">Si usted no solicitó este cambio, puede ignorar este mensaje de forma segura.</p>
+                <hr style="border: 0; border-top: 1px solid #e2e8f5; margin: 25px 0 15px 0;">
+                <p style="text-align: center; color: #7a8bad; font-size: 0.75em; margin: 0;">Cancillería Metropolitana de Maracaibo — Calle 95, Maracaibo, Zulia.</p>
+            </div>
+        `;
+
+        const style = document.createElement('style');
+        style.innerHTML = `@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`;
+        document.head.appendChild(style);
+
+        const result = await callSendEmailAPI(targetForgotUser.email, subject, htmlContent);
+
+        if (result.success && !result.emulated) {
+            alert("Se ha enviado un código de verificación de 6 dígitos al correo electrónico registrado.");
+        } else if (result.emulated) {
+            alert("Modo de desarrollo/local: El código de verificación es " + code + ". (También puedes verlo en el visor de correos emergente al final de la página).");
+        } else {
+            alert("No se pudo enviar el correo de verificación. Sin embargo, para continuar con la prueba, usa este código de verificación: " + code);
+        }
+
+        document.getElementById('forgot-code').disabled = false;
+        document.getElementById('btn-verify-code').disabled = false;
+        document.getElementById('btn-send-code').innerHTML = `<i class="ti ti-mail-check"></i> Enviar de nuevo`;
+        document.getElementById('btn-send-code').disabled = false;
+    }
+
+    function handleForgotStep2() {
+        const enteredCode = document.getElementById('forgot-code').value.trim();
+        if (enteredCode === String(generatedCodeForForgot)) {
+            document.getElementById('forgot-step-2').style.display = 'none';
+            document.getElementById('forgot-step-3').style.display = 'block';
+        } else {
+            alert("El código de verificación ingresado es incorrecto. Revise el código e intente de nuevo.");
+        }
+    }
+
+    async function handleForgotStep3() {
+        const newPass = document.getElementById('forgot-new-password').value;
+        const confirmPass = document.getElementById('forgot-confirm-password').value;
+
+        if (newPass.length < 6) {
+            alert("La contraseña debe tener al menos 6 caracteres.");
+            return;
+        }
+
+        if (newPass !== confirmPass) {
+            alert("Las contraseñas no coinciden.");
+            return;
+        }
+
+        if (isSupabase) {
+            const { error } = await supabaseClient
+                .from('sacerdotes')
+                .update({ password: newPass })
+                .eq('email', targetForgotUser.email);
+
+            if (error) {
+                console.error("Error al restablecer contraseña en Supabase:", error);
+                alert("Error al guardar la nueva clave en Supabase.");
+                return;
+            }
+        } else {
+            const userInDb = db.users.find(u => u.email && u.email.toLowerCase() === targetForgotUser.email.toLowerCase());
+            if (userInDb) {
+                userInDb.password = newPass;
+                saveLocalDB();
+            }
+        }
+
+        alert("¡Contraseña restablecida con éxito! Ya puede iniciar sesión con sus nuevas credenciales.");
+        
+        targetForgotUser = null;
+        generatedCodeForForgot = null;
+
+        document.getElementById('forgot-step-3').style.display = 'none';
+        document.getElementById('forgot-step-1').style.display = 'block';
+        document.getElementById('forgot-email').value = '';
+        document.getElementById('forgot-code').value = '';
+        document.getElementById('forgot-new-password').value = '';
+        document.getElementById('forgot-confirm-password').value = '';
+        document.getElementById('btn-send-code').disabled = false;
+
+        switchView('view-login');
+    }
+
+    async function callSendEmailAPI(toEmail, subject, htmlContent, attachments = null) {
+        try {
+            const payload = {
+                to: toEmail,
+                subject: subject,
+                html: htmlContent
+            };
+            if (attachments) {
+                payload.attachments = attachments;
+            }
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json().catch(() => ({}));
+
+            if (response.ok) {
+                console.log('API de correo ejecutada con éxito:', data);
+                if (data.emulated) {
+                    openToastMail(toEmail, subject, htmlContent);
+                    return { success: true, emulated: true };
+                }
+                return { success: true, emulated: false };
+            } else {
+                console.error('Fallo en la API de correo:', data);
+                openToastMail(toEmail, `${subject} (SIMULACIÓN DE FALLO DE CONEXIÓN)`, htmlContent);
+                return { success: false, emulated: true };
+            }
+        } catch (err) {
+            console.error('Error al conectar con la API de envío de correo:', err);
+            openToastMail(toEmail, `${subject} (LOCAL OFFLINE DEV)`, htmlContent);
+            return { success: false, emulated: true };
+        }
+    }
+
+    // 8. Email Toast Viewer (Dev/Demo)
+    function openToastMail(to, subject, content) {
+        document.getElementById('toast-to').textContent = to;
+        document.getElementById('toast-subj').textContent = subject;
+        document.getElementById('toast-content').innerHTML = content;
+        document.getElementById('toast-mail').style.display = 'flex';
+    }
+
+    function closeToastMail() {
+        document.getElementById('toast-mail').style.display = 'none';
+    }
+
+    // 9. Render Official Document (Certificate)
+    async function renderDocument(reqId) {
+        let req = null;
+
+        if (isSupabase) {
+            const { data, error } = await supabaseClient
+                .from('tramites')
+                .select('*')
+                .eq('id', reqId)
+                .single();
+            if (data) {
+                req = mapRequestFields(data);
+            }
+        } else {
+            req = db.requests.find(r => r.id === reqId);
+        }
+
+        if (!req) return;
+
+        document.getElementById('doc-render-title').textContent = req.type;
+        document.getElementById('doc-render-body').textContent = req.documentContent || 'Sin redactar.';
+        document.getElementById('doc-render-id').textContent = req.id;
+
+        switchView('view-document');
+    }
+
+    function backFromDocument() {
+        if (currentUser.role === 'admin') {
+            switchView('view-admin-dashboard');
+        } else {
+            switchView('view-priest-dashboard');
+        }
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', async () => {
+        await initDB();
+        await checkSession();
+    });
+</script>
+
+</body></html>

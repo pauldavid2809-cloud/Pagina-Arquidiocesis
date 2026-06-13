@@ -1,0 +1,1257 @@
+ Estrategia de transformación digital y 
+ rediseño de la plataforma web de la 
+ Archidiócesis de Maracaibo 
+ La evolución de la comunicación institucional dentro de la Iglesia Católica ha trascendido la 
+ mera difusión de información para convertirse en un ecosistema de encuentro, transparencia y 
+ servicio pastoral. En el umbral de 2026, la Archidiócesis de Maracaibo, que sirve a una 
+ comunidad de más de 2,3 millones de fieles en una superficie de 12.319 kilómetros cuadrados  1  , 
+ se enfrenta al desafío de consolidar una presencia digital que armonice su herencia histórica 
+ —erigida originalmente como Diócesis del Zulia en 1897— con las exigencias funcionales de una 
+ metrópolis moderna y tecnológicamente activa.  3  El  presente informe detalla una propuesta 
+ integral de desarrollo web, fundamentada en un análisis comparativo de estándares globales y 
+ la integración meticulosa de la realidad parroquial local, con un enfoque prioritario en la 
+ seguridad institucional y la identidad gráfica regional. 
+ Análisis comparativo de referentes globales y 
+ tendencias 2025-2026 
+ La conceptualización de una plataforma diocesana de vanguardia exige el estudio de los 
+ modelos que han definido la experiencia de usuario (UX) en el ámbito eclesiástico. El portal 
+ vatican.va permanece como el pilar documental de la Iglesia universal, ofreciendo una riqueza 
+ de recursos bibliográficos, encíclicas y archivos de los pontífices en múltiples idiomas.  5  Sin 
+ embargo, la crítica técnica contemporánea identifica que su estructura enciclopédica a 
+ menudo dificulta la navegación para el usuario que busca información práctica inmediata, lo 
+ que sugiere que para una archidiócesis local como la de Maracaibo, el modelo no debe ser el 
+ de un repositorio estático, sino el de un centro de servicios dinámico.  6 
+ Por el contrario, referentes como la Archidiócesis de Nueva York han implementado sistemas 
+ de navegación orientados al servicio que priorizan funciones críticas como la protección de 
+ menores, el buscador de parroquias y las donaciones en línea.  7  Este enfoque de "utilidad 
+ primera" permite que el fiel acceda a los sacramentos o a los trámites administrativos con una 
+ fricción mínima. Asimismo, parroquias de referencia en 2024 y 2025, como St. Michael en 
+ Minnesota o Church of the Nativity, destacan por el uso de videos inmersivos y una interfaz que 
+ utiliza un lenguaje accesible, alejándose del tecnicismo eclesiástico para fomentar una acogida 
+ inmediata.  8  La integración de estas prácticas en Maracaibo  permitirá transformar el sitio web 
+ de un simple tablón de anuncios en una verdadera extensión del palacio arzobispal. 
+ El modelo del Vaticano y la experiencia documental 
+ El portal oficial de la Santa Sede ha sido tradicionalmente el referente por su capacidad de 
+ albergar la totalidad del Magisterio de la Iglesia. Con una media de 12 millones de entradas 
+ diarias, su organización mediante círculos temáticos en la página de inicio agrupa el archivo 
+ pontificio, los dicasterios de la curia romana y las celebraciones litúrgicas.  5  A pesar de su 
+ exhaustividad, el buscador interno ha sido reportado históricamente como lento y complejo 
+ para el usuario promedio, una debilidad que la Archidiócesis de Maracaibo debe evitar 
+ mediante la implementación de motores de búsqueda indexados y una arquitectura de 
+ información plana.  5  La lección fundamental del Vaticano  para Maracaibo es la importancia de la 
+ jerarquía: la información administrativa debe estar claramente separada de la información 
+ espiritual y de la actualidad noticiosa para no abrumar al visitante. 
+ Innovaciones en la gestión diocesana de Estados Unidos y Europa 
+ La observación de las tendencias para 2026 revela que las diócesis líderes están adoptando el 
+ "Minimalismo Funcional", caracterizado por fondos limpios, bloques de contenido espaciados y 
+ una clara jerarquía visual que guía el ojo hacia las acciones más importantes.  10  Sitios como los 
+ de las archidiócesis de Los Ángeles o Madrid han comenzado a integrar herramientas de 
+ inteligencia artificial para la validación de accesibilidad y la personalización de contenidos en 
+ tiempo real.  10  Para Maracaibo, esto implica que la  plataforma debe estar optimizada para 
+ dispositivos móviles ("Mobile-First"), considerando que la mayor parte de la población zuliana 
+ accede a internet a través de teléfonos inteligentes, lo que requiere tiempos de carga mínimos 
+ y botones de llamada a la acción de tamaño adecuado para la interacción táctil. 
+ Propuesta de identidad visual y diseño gráfico 
+ moderno 
+ La identidad gráfica de la Archidiócesis de Maracaibo debe ser una síntesis entre la solemnidad 
+ de la tradición católica y el dinamismo cultural del estado Zulia. El diseño propuesto se aleja de 
+ la rigidez convencional para adoptar un estilo "Editorial Premium" y "Orgánico Soft", que utiliza 
+ curvas suaves y espacios en blanco generosos para transmitir una sensación de transparencia, 
+ autoridad y cercanía.  11  Esta estética es ideal para  instituciones que buscan proyectar 
+ credibilidad y profundidad sin resultar obsoletas o distantes. 
+ Heráldica regional y paleta cromática institucional 
+ El escudo de la Archidiócesis y del Estado Zulia proporcionan los cimientos de la paleta de 
+ colores. Se propone el uso de tres tonalidades fundamentales que resuenan con la fe y la 
+ geografía local: el azur (azul), el gualda (amarillo) y el grana (rojo).  12  El azul, representando tanto 
+ el Lago de Maracaibo como la justicia y la lealtad, servirá como color de fondo primario o en 
+ bloques de navegación para transmitir estabilidad.  12  El amarillo, símbolo del sol zuliano, de la luz 
+ divina y de la gloria, se utilizará en botones de acción y resaltes para captar la atención del 
+ usuario.  12  Por último, el rojo grana, evocando el  clima ardiente y el sacrificio de Cristo, se 
+ reservará para elementos de alta prioridad, como la sección de 'Ambientes Seguros' o alertas 
+ importantes.  13 
+ Tipografía y elementos visuales de 2026 
+ La tipografía desempeña un papel crucial en la percepción de modernidad. Se recomienda una 
+ combinación de fuentes  serif  elegantes para los encabezados  —aportando un tono clásico y 
+ formal— y fuentes  sans-serif  geométricas (como Manrope  o Montserrat) para el cuerpo de 
+ texto, garantizando la legibilidad en pantallas pequeñas.  11  Una innovación visual propuesta es la 
+ implementación del "Glassmorphism 2.0", que utiliza efectos de vidrio esmerilado en menús 
+ flotantes y tarjetas de información, permitiendo que las imágenes de fondo de la Catedral de 
+ San Pedro y San Pablo o de la Basílica de la Chinita se perciban de manera sutil detrás del 
+ contenido informativo.  11  Además, la integración de  micro-interacciones, como sombras 
+ dinámicas en los botones al pasar el cursor, proporcionará una experiencia táctil y moderna 
+ que refuerza la profesionalidad del portal. 
+ Estructura de navegación y mapa del sitio (Sitemap) 
+ La arquitectura de la información ha sido diseñada para reflejar la complejidad administrativa 
+ de la Curia de Maracaibo, asegurando al mismo tiempo que el fiel pueda localizar su 
+ comunidad parroquial sin dificultades. El sitemap se organiza en siete ejes estratégicos que 
+ abarcan desde el gobierno eclesiástico hasta la atención directa al ciudadano. 
+ Eje 1: La Archidiócesis y su Gobierno 
+ Esta sección debe presentar la estructura jerárquica y la historia de la Iglesia particular. Incluye 
+ la biografía y magisterio del Excmo. Mons. José Luis Azuaje Ayala, actual Arzobispo 
+ Metropolitano, quien ejerce su ministerio desde la Catedral de San Pedro y San Pablo.  3  Es 
+ fundamental incluir un organigrama claro de la Curia Diocesana, detallando las funciones del 
+ Vicario General, Mons. Jesús Enrique Hernández, y el personal emérito como Mons. Ubaldo 
+ Santana.  3 
+ Eje 2: Servicios de la Curia y Trámites 
+ En este apartado se centralizan las funciones administrativas que anteriormente requerían la 
+ presencia física del fiel. La Cancillería y la Notaría son oficinas críticas encargadas de la emisión 
+ de decretos, nombramientos y la corrección de partidas sacramentales (Bautismo, Comunión, 
+ Confirmación).  15  El Tribunal Eclesiástico, por su  parte, debe contar con una subsección 
+ informativa sobre los procesos de nulidad matrimonial, ofreciendo transparencia sobre los 
+ pasos a seguir y los contactos de los auditores.  16  Asimismo, el Archivo Arquidiocesano de 
+ Maracaibo debe tener una presencia digital para investigadores y fieles interesados en la 
+ memoria histórica de la diócesis.  4 
+ Eje 3: Secretariados y Comisiones Pastorales 
+ La labor evangelizadora se articula a través de secretariados especializados. La propuesta 
+ incluye secciones dedicadas a la Pastoral Familiar, Juvenil, Educativa y Social (Cáritas 
+ Maracaibo), cada una con su propio calendario de actividades y recursos para agentes de 
+ pastoral.  17  La Pastoral de la Comunicación, responsable  de la gestión de la marca diocesana, 
+ tendrá un rol protagonista en la actualización de contenidos y la integración de la Radio 
+ Diocesana si estuviera disponible.  18 
+ Eje 4: Directorio Parroquial y Rectorías 
+ Basado en el directorio actualizado de enero de 2026, esta sección es el motor de búsqueda 
+ más consultado. Debe permitir filtrar las 72 parroquias y 8 rectorías por Arciprestazgo o Zona 
+ Pastoral, facilitando el acceso a horarios de misa, contactos de secretaría y ubicación 
+ geográfica.  20 
+ Eje 5: Ambientes Seguros (Protección de Menores) 
+ Esta es una sección de visibilidad crítica y acceso directo desde el menú principal. Contendrá la 
+ normativa de la Comisión Arquidiocesana para la Promoción de Ambientes Seguros (CAPAS), 
+ los formularios de denuncia y los recursos de formación para el clero y laicos.  19 
+ Eje 6: Vida Consagrada y Congregaciones 
+ Un espacio dedicado a las numerosas órdenes religiosas presentes en el Zulia, detallando su 
+ carisma, obras educativas y centros de espiritualidad.  22 
+ Eje 7: Noticias, Agenda y Donaciones 
+ Un feed dinámico de noticias vinculadas a @arquimcbo y una sección de transparencia 
+ financiera que facilite las donaciones en línea para el sostenimiento de la Iglesia y las obras de 
+ caridad.  7 
+ El Directorio Parroquial detallado de la Archidiócesis 
+ de Maracaibo 
+ La implementación de un directorio preciso es esencial para la utilidad práctica del sitio web. El 
+ análisis del material proporcionado revela una organización territorial en 9 zonas o 
+ arciprestazgos, cada uno con identidades parroquiales específicas que deben ser respetadas 
+ en la plataforma digital. Los datos integrados a continuación provienen del directorio oficial 
+ actualizado por el Pbro. Silverio Osorio al 22 de enero de 2026.  20 
+ Arciprestazgo 1: Nuestra Señora del Rosario de Chiquinquirá 
+ Esta zona abarca el casco central de la ciudad, donde se encuentran los templos de mayor 
+ significado histórico y devocional. La digitalización de esta zona requiere mapas interactivos 
+ que guíen al turista religioso y al feligrés local. 
+ Cód.  Parroquia  Párroco / 
+ Rector 
+ Dirección y 
+ Contacto 
+ Iglesias Filiales 
+ PZ1-1  El Sagrario 
+ (Catedral) 
+ Pbro. Néstor 
+ Primera 
+ Av. 4 con calle 
+ 95, frente a la 
+ Plaza Bolívar. 
+ Telf.: 
+ 0412-7885662 / 
+ 0416-5619091 
+ Santa Ana, 
+ Rectoría San 
+ Francisco de Asís 
+ (El Convento) 
+ PZ1-2  Santa Lucía  Pbro. Rafael Á. 
+ Villalobos 
+ Carmona 
+ Av. 2 entre Calle 
+ 89 y 90, frente a 
+ la Plaza Dr. 
+ Serrano. Sec.: 
+ Janeira Díaz 
+ 0414-3676212 
+ - 
+ PZ1-3  Santa Bárbara  Pbro. José 
+ Gregorio 
+ Andrade 
+ Av. 8 Calle Páez 
+ con calle 95. 
+ Telf.: 
+ 0261-7230509. 
+ Email: 
+ santabarbarama 
+ racaibo@hotmail 
+ .com 
+ Santa Teresita del 
+ Niño Jesús 
+ (Hospital de 
+ Niños) 
+ PZ1-4  San Juan de 
+ Dios y Basílica 
+ Pbro. Nedward 
+ Jorge Andrade 
+ Av. 12 con Calle 
+ 95. Telf.: 
+ 0424-6155550. 
+ Email: 
+ basilicachiquinq 
+ Capilla San Benito 
+ (Punta del 
+ Empedrao) 
+ uira@gmail.com 
+ PZ1-5  San Benito de 
+ Palermo 
+ Pbro. Jorge 
+ Alejandro Dos 
+ Pasos 
+ Av. N° 3A con 
+ Calle 86, Sector 
+ Valle Frío. Sec.: 
+ Carmen Villa 
+ 0414-6620878 
+ - 
+ PZ1-6  Ntra. Sra. de la 
+ Asunción 
+ Pbro. Juan Pablo 
+ Hernández 
+ Av. 17 Los 
+ Haticos. Telf.: 
+ 0261-7650404. 
+ Sec.: Elsa 
+ Noguera 
+ - 
+ PZ1-7  Ntra. Sra. de la 
+ Medalla 
+ Milagrosa 
+ Pbro. Alfonso 
+ Rodríguez 
+ Av. 17 Los 
+ Haticos. Telf.: 
+ 0414-6281643. 
+ Sec.: Alfonso 
+ Rodríguez 
+ Inmaculado 
+ Corazón de María, 
+ Espíritu Santo, La 
+ Chinita (Sector 
+ Haticos arriba) 
+ PZ1-8  Santo Cristo de 
+ Aranza 
+ Pbro. Alfonso 
+ Rodríguez 
+ Av. 17 con Calle 
+ 106, Los Haticos. 
+ Telf.: 
+ 0261-4237583. 
+ Sec.: Arelis 
+ González 
+ - 
+ Arciprestazgo 2: Sagrado Corazón de Jesús 
+ Comprende el eje de la Avenida Bella Vista y sectores adyacentes de alta actividad comercial y 
+ residencial. Muchas de estas parroquias están a cargo de comunidades religiosas, lo que debe 
+ indicarse en la ficha parroquial. 
+ Cód.  Parroquia  Párroco / 
+ Rector 
+ Dirección y 
+ Contacto 
+ Iglesias Filiales 
+ PZ2-1  San José  Pbro. Roberto 
+ Segundo 
+ Morales 
+ Calle 77 N° 
+ 16-30. Telf.: 
+ 0424-6004278. 
+ Sec.: Francisco 
+ Javier Orozco 
+ San Vicente de 
+ Paúl, San 
+ Francisco de Paula 
+ PZ2-2  San Alfonso 
+ María de Ligorio 
+ Pbro. Jesús 
+ Colina 
+ Urb. Santa María 
+ Av. 27 N° 69A-70. 
+ Telf.: 
+ 0261-7519818. 
+ Sec.: Clarisa Díaz 
+ San Gerardo 
+ Mayela 
+ PZ2-3  Ntra. Sra. del 
+ Perpetuo 
+ Socorro 
+ Fray José Vivas 
+ Vivas 
+ Av. 9B N° 64-64, 
+ Barrio Tierra 
+ Negra. Telf.: 
+ 0424-6122629. 
+ Sec.: Ana María 
+ Villalobos 
+ - 
+ PZ2-4  Ntra. Sra. de la 
+ Consolación 
+ Fray Ricardo 
+ Riaño 
+ Av. Bella Vista 
+ Esq. Calle 79. 
+ Telf.: 
+ 0416-5030067. 
+ Sec.: Gisela Ávila 
+ - 
+ PZ2-5  Ntra. Sra. del 
+ Rosario 
+ Pbro. Max 
+ Gregorio 
+ Guerere 
+ Urb. La Virginia, 
+ Sector La Lago. 
+ Telf.: 
+ 0424-6293617. 
+ Sec.: Emma 
+ San Benito 
+ Zavala 
+ PZ2-6  San Judas Tadeo  Pbro. Andrés 
+ Afanador 
+ Calle 85 Falcón, 
+ Sector Las 
+ Delicias. Telf.: 
+ 0412-7857731. 
+ Sec.: Felicia 
+ Rivera 
+ Ntra. Sra. del 
+ Carmen 
+ PZ2-7  San Antonio 
+ María Claret 
+ Pbro. Ovidio 
+ Eduardo Duarte 
+ Calle Dr. Portillo 
+ N° 3E-20. Telf.: 
+ 0424-6382227. 
+ Sec.: Belkis 
+ Govea 
+ Santísima Trinidad 
+ PZ2-8  Ntra. Sra. de las 
+ Mercedes 
+ Pbro. Lenín José 
+ Naranjo 
+ Av. 3F entre 
+ calles 63 y 64. 
+ Telf.: 
+ 0412-7113145. 
+ Sec.: Almeida 
+ Vega 
+ - 
+ PZ2-9  Sagrado 
+ Corazón de 
+ Jesús 
+ Pbro. Edgar J. 
+ Doria 
+ Av. 4 Calle 68A 
+ Bella Vista. Telf.: 
+ 0414-6942960. 
+ Sec.: Liseth 
+ Guanipa 
+ - 
+ Arciprestazgo 3: La Sagrada Familia 
+ Esta zona cubre la densa zona oeste de Maracaibo, desde Sabaneta hasta la Avenida La Limpia. 
+ Las parroquias aquí suelen tener numerosas filiales que atienden a comunidades populares, lo 
+ que hace necesario un despliegue detallado de misiones en la web. 
+ Cód.  Parroquia  Párroco  Dirección y 
+ Contacto 
+ Iglesias Filiales 
+ PZ3-1  Ntra. Sra. de 
+ Lourdes (Mcbo) 
+ Pbro. Juan José 
+ Navarro 
+ Av. 28 La Limpia. 
+ Telf.: 
+ 0261-7525301. 
+ Ntra. Sra. de 
+ Chiquinquirá 
+ PZ3-2  San Miguel 
+ Arcángel 
+ Pbro. Pedro 
+ Colmenares 
+ Sabaneta Larga 
+ Av. 20 Calle 100. 
+ Telf.: 
+ 0261-7292806. 
+ Sec.: Rita Zárate 
+ Virgen de 
+ Claromonte, Santa 
+ Clara 
+ PZ3-3  La Sagrada 
+ Familia 
+ Pbro. Danilo 
+ González 
+ Urb. San Miguel 
+ Av. 60 N# 
+ 96G-30. Telf.: 
+ 0261-7874331. 
+ Sec.: Natalia 
+ Manzano 
+ María Rosa 
+ Mística, San 
+ Rafael, El Buen 
+ Pastor 
+ PZ3-4  Ntra. Sra. del 
+ Carmen (Mcbo) 
+ Pbro. Eleuterio 
+ Cuevas 
+ Haticos por 
+ Arriba, calle 
+ 19C-36. Telf.: 
+ 0261-7649041. 
+ Sec.: Caroll Brito 
+ - 
+ PZ3-5  San Pedro 
+ Apóstol 
+ Pbro. Enrique 
+ Rojas Peña 
+ Telf.: 
+ 0414-7539894. 
+ - 
+ PZ3-6  San Martín de 
+ Porres 
+ Pbro. Rafael 
+ López 
+ Barrio Los 
+ Estanques calle 
+ 113. Telf.: 
+ - 
+ 0414-6596076. 
+ Sec.: José Daniel 
+ Rivera 
+ PZ3-7  Santa Teresita 
+ del Niño Jesús 
+ Pbro. José 
+ Andrés Bravo 
+ Avenida 29, Zulia 
+ Amparo. Casa 
+ cural: calle 81 
+ #57B-75. Telf.: 
+ 0414-6185341 
+ María Reina de los 
+ Apóstoles, Ntra. 
+ Sra. Coromoto, 
+ Ntra. Sra. de la 
+ Palma, San 
+ Sebastián 
+ PZ3-8  Niña María  Pbro. José 
+ Pineda 
+ Av. 11-4D Sector 
+ Los Robles. Telf.: 
+ 0261-7341013. 
+ Sec.: Ander 
+ Salas 
+ Stmo. Sacramento 
+ (El Gaitero) 
+ PZ3-9  San Ignacio de 
+ Loyola 
+ R.P. Jesús 
+ Vásquez 
+ Av. Principal 
+ Barrio Los 
+ Andes. Telf.: 
+ 0424-6123229. 
+ Sec.: Carmen 
+ Ávila 
+ Jesús de la Divina 
+ Misericordia 
+ PZ3-10  San Tarsicio  Pbro. Miguel 
+ Ospino 
+ Circunvalación 
+ N° 2 Barrio Jorge 
+ Hernández. Telf.: 
+ 0416-0625909. 
+ Sec.: Sara 
+ Acosta 
+ - 
+ Arciprestazgo 4: Nuestra Señora de Coromoto 
+ Incluye parroquias del noroeste de Maracaibo y el municipio Jesús Enrique Lossada. Es una 
+ zona geográficamente extensa que requiere indicaciones claras de acceso en la plataforma. 
+ Cód.  Parroquia  Párroco  Dirección y 
+ Contacto 
+ Iglesias Filiales 
+ PZ4-1  Santa Mónica 
+ (La Concepción) 
+ R.P. Vladimir 
+ Pérez 
+ La Concepción, 
+ Mcpio. J.E. 
+ Lossada. Telf.: 
+ 0262-2432040. 
+ Valle de los 
+ Rosales, El 
+ Carmen, San 
+ Pedro, Sta. Lucía, 
+ La Paz, El 
+ Laberinto, Ntra. 
+ Sra. del Rosario 
+ PZ4-2  Ntra. Sra. de 
+ Coromoto 
+ Pbro. Jesús 
+ Sandoval 
+ Urb. Los Olivos 
+ calle 73 con calle 
+ 67. Telf.: 
+ 0261-7540959. 
+ San Juan Diego 
+ PZ4-3  San Pablo 
+ Apóstol 
+ Pbro. Carlos 
+ José Reyes 
+ Urb. La Rotaria 
+ Av. 85. Telf.: 
+ 0261-7542280. 
+ Sec.: Miriam 
+ Romero 
+ Ntra. Sra. del Valle, 
+ San Alejo, Rosa 
+ Mística, San Juan 
+ XXIII, San Juan 
+ Pablo II 
+ PZ4-4  Nuestro Señor 
+ Jesucristo Rey 
+ Pbro. Leonardo 
+ Martínez 
+ Barrio 
+ Panamericano 
+ Av. 91. 
+ Instagram: 
+ @somoscristore 
+ y 
+ Monte Carmelo, 
+ Ntra. Sra. del Pilar, 
+ San Juan Pablo II, 
+ San Joaquín y 
+ Santa Ana 
+ PZ4-5  El Buen Pastor  Pbro. Jorge 
+ David Sánchez 
+ Urb. 
+ Cuatricentenario 
+ Av. Principal 
+ Divino Niño, San 
+ Juan Diego, Rosa 
+ Mística, Divina 
+ 66G. Telf.: 
+ 0412-6451573. 
+ Sec.: Johana 
+ Molina 
+ Misericordia, 
+ Stma. Trinidad 
+ PZ4-6  Ntra. Sra. de la 
+ Paz 
+ R.P. Yonys 
+ Mendoza 
+ Av. 78 Urb. La 
+ Victoria. Telf.: 
+ 0261-7549581. 
+ Sec.: Yeyn 
+ Zapata 
+ El Carmen, 
+ Corazón de Jesús, 
+ San Patricio, 
+ Virgen del Carmen 
+ PZ4-7  La Resurrección 
+ del Señor 
+ Pbro. Dionni 
+ José Ríos 
+ Barrio Libertador 
+ Av. 93C. Telf.: 
+ 0261-3283191. 
+ Sec.: María 
+ Molero 
+ Sta. Inés, La 
+ Chinita, Sta. 
+ Brígida, San 
+ Pancracio, San 
+ Padre Pío, San 
+ Juan Evangelista 
+ PZ4-8  San Isidro 
+ Labrador 
+ Pbro. Silverio 
+ Osorio 
+ Sector San Isidro 
+ Carretera Vía La 
+ Concepción. 
+ Telf.: 
+ 0412-5470157. 
+ Sec.: Idalis 
+ Berrueta 
+ Divino Niño, San 
+ Rafael, Divina 
+ Misericordia, San 
+ Óscar Romero, El 
+ Carmen, Hogar 
+ Santa Cruz 
+ PZ4-9  Santísimo 
+ Sacramento 
+ Pbro. Ender 
+ Castillo 
+ Telf.: 
+ 0412-1691326. 
+ Sec.: Erika Alaña 
+ Ntra. Sra. del 
+ Sagrado Corazón, 
+ María Auxiliadora, 
+ Ntra. Sra. de los 
+ Ángeles 
+ PZ4-10  Santa Inés  Pbro. José 
+ Domingo 
+ Barrio Indio 
+ Mara. Telf.: 
+ - 
+ Alvarado  0424-6305238. 
+ Sec.: Yoleida 
+ Fernández 
+ PZ4-11  San Juan 
+ Crisóstomo y 
+ San Juan Pablo II 
+ Pbro. Andrés 
+ Bravo 
+ Parroquia 
+ Universitaria. 
+ Telf.: 
+ 0414-6185341. 
+ - 
+ Arciprestazgo 5: San Francisco de Asís 
+ Corresponde al municipio San Francisco. Es un área de intensa actividad social y educativa, con 
+ parroquias que gestionan grandes complejos parroquiales y escuelas. 
+ Cód.  Parroquia  Párroco  Dirección y 
+ Contacto 
+ Iglesias Filiales 
+ PZ5-1  Ntra. Sra. de 
+ Guadalupe 
+ Pbro. Andry 
+ Sánchez 
+ Av. 16 con calle 
+ 11 Sierra 
+ Maestra. Telf.: 
+ 0261-7344890. 
+ Sec.: Larry 
+ Sánchez 
+ Ntra. del Carmen 
+ (La Portuaria) 
+ PZ5-2  Jesús Nazareno  Pbro. Henry 
+ Tapia 
+ Av. 16 barrio El 
+ Manzanillo. Telf.: 
+ 0261-7615915. 
+ - 
+ PZ5-3  Santísimo 
+ Salvador 
+ Pbro. Richard 
+ Garrillo 
+ Calle 4 con Av. 
+ 49 (El Callao). 
+ Telf.: 
+ 0261-7320042. 
+ Jesús Carpintero, 
+ San Agustín 
+ PZ5-4  Santísimo Cristo 
+ de San Francisco 
+ Pbro. Leonardo 
+ López 
+ Av. 5 calle 27 San 
+ Francisco. Telf.: 
+ 0261-7612550. 
+ Sec.: José 
+ Contreras 
+ - 
+ PZ5-5  San Juan 
+ Bautista 
+ Pbro. Danilo 
+ Calderón 
+ Urb. San 
+ Francisco Sector 
+ 8 calle 161. 
+ Jesús Obrero 
+ PZ5-6  Santo Domingo 
+ de Guzmán 
+ Pbro. Raúl R. 
+ Montoya 
+ Urb. La 
+ Coromoto calle 
+ 171. Telf.: 
+ 0424-6200471. 
+ Sec.: Joan 
+ Palmar 
+ - 
+ PZ5-7  San Felipe Neri  Pbro. Néstor Luis 
+ Pérez 
+ Urb. San Felipe. 
+ Telf.: 
+ 0414-0626736. 
+ Sec.: Glisel 
+ Servigna 
+ Ntra. Sra. de 
+ Chiquinquirá 
+ PZ5-8  Ntra. Sra. de la 
+ del Cobre 
+ Pbro. Francisco 
+ Antonio Niño 
+ Urb. San 
+ Francisco La 
+ Popular. Telf.: 
+ 0424-6828646. 
+ Sec.: Mayerling 
+ Ávila 
+ San Andrés, Jesús 
+ Carpintero, Jesús 
+ de Nazaret, San 
+ Juan Pablo II, San 
+ Agustín 
+ PZ5-9  Transfiguración 
+ del Señor 
+ Pbro. Engelbert 
+ Carrasco 
+ Km. 13 Vía Perijá 
+ Av. 49H Los 
+ Cortijos. 
+ - 
+ PZ5-10  Santa Mariana 
+ de Jesús 
+ Pbro. Carlos 
+ Quiva 
+ Barrio Sur 
+ América calle 
+ 149. Telf.: 
+ 0261-7328271. 
+ San Isidro 
+ Labrador (Km 18) 
+ Arciprestazgo 6: Nuestra Señora de Fátima 
+ Ubicado en la zona norte de Maracaibo, este arciprestazgo incluye sectores como San Jacinto 
+ y Monte Bello, caracterizados por una vida comunitaria muy activa y templos modernos. 
+ Cód.  Parroquia  Párroco  Dirección y 
+ Contacto 
+ Iglesias Filiales 
+ PZ6-1  Ntra. Sra. de 
+ Fátima 
+ R.P. Francisco 
+ Ortiz Bran 
+ Urb. Monte 
+ Claro Av. 2. Telf.: 
+ 0414-6715547. 
+ Sec.: Angélica 
+ Vílchez 
+ San Antonio de 
+ Padua 
+ PZ6-2  San Ramón 
+ Nonato 
+ R.P. Ponc Capell 
+ Capell 
+ Av. 1 Monte 
+ Bello. Telf.: 
+ 0414-6388401. 
+ Sec.: Carmen 
+ Rosa Beltrán 
+ La Merced del 
+ Valle, San Pedro 
+ Nolasco, Ermita 
+ del Carmen, Divina 
+ Misericordia 
+ PZ6-3  La Santísima 
+ Trinidad 
+ Pbro. Robert 
+ Álvarez 
+ Calle 55 Urb. La 
+ Trinidad. Telf.: 
+ 0414-6477288. 
+ Sec.: Raiza 
+ Martínez 
+ Inmaculada 
+ Concepción (La 
+ California), San 
+ Agustín 
+ PZ6-4  Ntra. Sra. de la  Pbro. Héctor  Urb. San Jacinto 
+ Sector 8 calle 3. 
+ San Benito, Virgen 
+ Candelaria  Bermúdez  Telf.: 
+ 0261-7573672. 
+ Sec.: Ángela 
+ Sánchez 
+ de Betania 
+ PZ6-5  Santa Rosa de 
+ Lima 
+ Pbro. Adelmo 
+ Irene 
+ Altos del Jalisco. 
+ Telf.: 
+ 0261-7422818. 
+ Sec.: Iris Nava 
+ Santa Rosa de 
+ Agua, El Carmen 
+ (Sector Sambil) 
+ PZ6-6  San Bartolomé 
+ (Ziruma) 
+ Pbro. Wilmer 
+ Olano 
+ Ziruma. Telf.: 
+ 0261-5254318. 
+ Sec.: Isabel 
+ López 
+ - 
+ PZ6-7  San Onofre  R.P. Fray José 
+ Antonio Díaz 
+ Telf.: 
+ 0412-3670531. 
+ Sec.: Belkis 
+ Bravo 
+ - 
+ PZ6-8  San Juan Bosco  Pbro. Dainer 
+ Prieto 
+ Urb. Lago Mar 
+ Beach. Telf.: 
+ 0414-3636962. 
+ Sec.: Minyamin 
+ Divina Misericordia 
+ Arciprestazgos 7 y 8: San Rafael del Moján y San Bartolomé Apóstol 
+ Estas zonas cubren los municipios Mara, Páez (Guajira) e Insular Padilla. Son áreas de misión 
+ donde la labor de la Iglesia es fundamental para la cohesión social y la identidad cultural. 
+ Cód.  Parroquia  Párroco  Dirección y 
+ Contacto 
+ Iglesias Filiales 
+ PZ7-1  San Rafael 
+ Arcángel 
+ Pbro. Rafael 
+ Morales 
+ Av. 2 El Moján. 
+ Telf.: 
+ 0262-8721193. 
+ Sec.: Arabella 
+ Mayor 
+ San José, San 
+ Benito, San Isidro, 
+ Guadalupe, Inm. 
+ Concepción 
+ PZ7-3  Ntra. Sra. de 
+ Lourdes (Toas) 
+ Pbro. Rafael 
+ Morales 
+ Isla de Toas. Telf.: 
+ 0262-8676068. 
+ Sec.: María 
+ Mercedes Nava 
+ El Carmen, 
+ Coromoto, San 
+ Benito, Santa 
+ Lucía, San José 
+ PZ7-6  María 
+ Auxiliadora 
+ (Santa Cruz) 
+ Pbro. Evelio 
+ Pérez 
+ Santa Cruz de 
+ Mara. Sec.: 
+ Jackeline Nava 
+ El Carmen, 
+ Santísima Trinidad, 
+ San José, 
+ Exaltación de la 
+ Sta. Cruz 
+ PZ7-7  Inmaculada 
+ Concepción 
+ (Carrasquero) 
+ Pbro. Yonder 
+ Urdaneta 
+ Carrasquero. 
+ Telf.: 
+ 0262-9940227. 
+ Sec.: Yuli Taimi 
+ González 
+ El Carmen, 
+ Chiquinquirá, Rosa 
+ Mística, María 
+ Auxiliadora, San 
+ Felipe 
+ PZ7-9  Ntra. Sra. 
+ Coromoto / San 
+ José 
+ Pbro. William 
+ Ortega 
+ La Sierrita. Telf.: 
+ 0262-8581131. 
+ Sec.: Ana Jusayu 
+ San Antonio, San 
+ José, María 
+ Auxiliadora, 
+ Sagrado Corazón 
+ PZ7-10  Jesús Redentor 
+ (Tamare) 
+ Pbro. José 
+ Sánchez 
+ Mcpio. Mara Km. 
+ 29. Telf.: 
+ 0262-4115325. 
+ María Auxiliadora, 
+ Sta. Rosa, 
+ Perpetuo Socorro, 
+ Divina Misericordia 
+ PZ7-2  San Bartolomé 
+ (Sinamaica) 
+ Pbro. Santo 
+ Xavier Silva 
+ Sinamaica, 
+ Mcpio. Páez. 
+ Telf.: 
+ 0414-6452186. 
+ San Benito, El 
+ Carmen, 
+ Coromoto, Santa 
+ Lucía, Santa 
+ Teresita 
+ PZ7-8  San José de 
+ Paraguaipoa 
+ Pbro. Eduardo 
+ Daboin 
+ Paraguaipoa 
+ Plaza Bolívar. 
+ Telf.: 
+ 0262-9691145. 
+ La Consolata, San 
+ José Obrero, 
+ Santa Elena, El 
+ Carmen, Fátima, 
+ San Juan Bautista 
+ PZ7-4  Sagrado 
+ Corazón de 
+ Jesús 
+ Pbro. Germán 
+ Palmar 
+ Guarero Sector 
+ Juamana. 
+ Stma. Trinidad, El 
+ Carmen, 
+ Inmaculado 
+ Corazón de María 
+ PZ7-5  Santa María 
+ (Guana) 
+ Pbro. Dilmer 
+ Báez 
+ Km. 47 Santa 
+ María de Guana. 
+ Telf.: 
+ 0262-5150815. 
+ Sec.: Gertrudis 
+ Rodríguez 
+ San Benito, San 
+ José Obrero, San 
+ Francisco, La 
+ Inmaculada 
+ PZ7-11  Ntra. Sra. del 
+ Carmen (P) 
+ Pbro. Santos 
+ Xavier Silva 
+ Sinamaica 
+ (Parroquia 
+ Personal). 
+ - 
+ Arciprestazgo 9: Inmaculada Concepción 
+ Abarca el municipio La Cañada de Urdaneta y zonas limítrofes. Es una región con profundas 
+ raíces religiosas vinculadas a la Inmaculada y a San Benito de Palermo. 
+ Cód.  Parroquia  Párroco  Dirección y 
+ Contacto 
+ Iglesias Filiales 
+ PZ8-1  Inmaculada 
+ Concepción 
+ Pbro. Raúl 
+ Moreno 
+ La Cañada de 
+ Urdaneta. Telf.: 
+ 0414-6508142. 
+ Sec.: Danis 
+ Morillo 
+ Santísima Trinidad, 
+ Sagrado Corazón, 
+ San Benito, San 
+ Marcos, San 
+ Ramiro, Divino 
+ Niño 
+ PZ8-2  Ntra. Sra. del 
+ Carmen (El 
+ Carmelo) 
+ Pbro. Daigel 
+ Medina 
+ El Carmelo, 
+ Mcpio. 
+ Urdaneta. 
+ San Ignacio, San 
+ José, San Antonio, 
+ Ntra. Sra. del 
+ Rosario 
+ PZ8-3  Ntra. Sra. de 
+ Chiquinquirá 
+ Pbro. José 
+ Chirinos 
+ La Ensenada, 
+ Mcpio. 
+ Urdaneta. Telf.: 
+ 0262-8084331. 
+ - 
+ PZ8-4  San Antonio / 
+ Virgen de los 
+ Parrales 
+ Pbro. Fabricio 
+ Medina 
+ Panal del Sur. 
+ Sec.: Heli Ramón 
+ Rincón 
+ 0414-6266325 
+ Virgen del 
+ Carmen, Santo 
+ Domingo, San 
+ Juan Bautista, San 
+ Rafael, Santa Rita 
+ PZ8-5  Purísima Madre 
+ de Dios / San 
+ Benito 
+ Pbro. Jorge 
+ Rodríguez 
+ San Francisco 
+ con El Bajo. Sec.: 
+ Haidee Petit 
+ 0414-6513813 
+ - 
+ Rectorías Eclesiásticas 
+ Las rectorías son centros de culto específicos que, aunque no tienen el rango de parroquia, 
+ desempeñan una labor pastoral vital en hospitales o comunidades puntuales. 
+ Cód.  Rectoría  Rector  Dirección y Contacto 
+ RZ6-10  San Francisco de Asís  R.P. Pedro Enrique 
+ Paredes 
+ Av. Milagro Norte. ZP-6. 
+ RZ5-13  El Divino Niño  -  Telf.: 7320586. Sec.: 
+ Judith Chacín. ZP-5. 
+ RZ4-12  Santo Tomás Moro  Pbro. Laudi 
+ Zambrano 
+ Urb. Sucre calle 62. 
+ Telf.: 0261-7591449. 
+ ZP-4. 
+ RZ2-10  Hogar Clínica San 
+ Rafael 
+ R.P. Juan Esteban 
+ Padilla 
+ Calle 64 con Av. 3F. 
+ Telf.: 0261-7911790. 
+ ZP-2. 
+ RZ5-12  San Francisco Javier  -  Barrio Carabobo. Telf.: 
+ 0261-8144854. ZP-5. 
+ RZ7-12  La Santísima Cruz de 
+ Mara 
+ Pbro. Evelio Pérez  Las Cruces. Telf.: 
+ 0262-6288234. ZP-7. 
+ RZ5-11  Jesús la Buena 
+ Esperanza 
+ Pbro. Carlos Quiva  Barrio El Silencio. 
+ Mcpio. San Francisco. 
+ RZ6-  San Antonio de  R.P. Pedro Enrique  ZP-6. 
+ Padua  Paredes 
+ Vida consagrada y congregaciones religiosas 
+ La presencia de comunidades religiosas es un rasgo distintivo de la Archidiócesis de 
+ Maracaibo. El sitio web debe incluir una sección detallada donde se listen estas 
+ congregaciones, sus carismas y las obras sociales o educativas que lideran. En Maracaibo 
+ existen 20 congregaciones masculinas y 90 femeninas.  3 
+ Congregaciones Masculinas (Religiosos) 
+ La labor de los religiosos en Maracaibo se extiende desde la educación universitaria hasta la 
+ atención en parroquias populares y zonas de misión. 
+ ●  Compañía de Jesús (Jesuitas):  Tradicionalmente vinculados  a la educación y a la 
+ promoción de la justicia social, con presencia en parroquias como Nuestra Señora de 
+ Lourdes y en instituciones educativas.  23 
+ ●  Orden de los Frailes Menores Capuchinos (OFM Cap.):  Con un fuerte carisma de 
+ cercanía al pueblo y atención a las periferias.  23 
+ ●  Congregación del Santísimo Redentor (Redentoristas):  Responsables de la Parroquia 
+ Nuestra Señora del Perpetuo Socorro.  20 
+ ●  Orden de Agustinos Recoletos (OAR):  A cargo de la  Parroquia San Onofre.  20 
+ ●  Escuelas Pías (Escolapios):  Su misión se centra en  la educación cristiana de la niñez y la 
+ juventud.  23 
+ ●  Congregación de la Misión (Paúles):  Dedicados a las  misiones populares y la formación 
+ del clero.  23 
+ ●  Hermanos Maristas:  Con una larga trayectoria en la  educación primaria y secundaria en 
+ la ciudad.  23 
+ Congregaciones Femeninas (Religiosas) 
+ Las religiosas constituyen la fuerza operativa más numerosa de la archidiócesis, sosteniendo 
+ colegios, hospitales, casas de abrigo y monasterios de vida contemplativa. 
+ ●  Siervas de Jesús de Venezuela:  Congregación de derecho  pontificio fundada por la 
+ beata Carmen Rendiles. Su carisma se centra en la adoración eucarística y la ayuda a los 
+ sacerdotes.  25 
+ ●  Hermanas de la Caridad de Santa Ana:  Con una presencia  histórica en la salud y la 
+ educación en el estado Zulia.  22 
+ ●  Hijas de María Auxiliadora (Salesianas):  Centradas  en la promoción y educación de la 
+ mujer joven.  22 
+ ●  Carmelitas Descalzas (Monasterio Natividad del Señor):  Representan el pulmón 
+ espiritual de la diócesis desde su vida de clausura y oración contemplativa.  22 
+ ●  Hermanitas de los Ancianos Desamparados:  Lideran la  atención a los adultos mayores 
+ en diversas residencias de la ciudad.  22 
+ ●  Misioneras de la Caridad (Santa Teresa de Calcuta):  Dedicadas al servicio de los más 
+ pobres entre los pobres en sectores vulnerables.  27 
+ 'Ambientes Seguros': El compromiso con la protección 
+ de los vulnerables 
+ La implementación de una sección específica de 'Ambientes Seguros' no solo responde a un 
+ imperativo legal y canónico, sino a una renovación ética y espiritual de la Iglesia en Maracaibo. 
+ Esta sección debe ser accesible, transparente y estar diseñada para generar confianza en las 
+ víctimas y en la comunidad en general. 
+ La Comisión Arquidiocesana de Ambientes Seguros (CAPAS) 
+ En cumplimiento con las directrices del Papa Francisco y la Conferencia Episcopal Venezolana 
+ (CEV), la Archidiócesis de Maracaibo creó el 5 de septiembre de 2023 la "Comisión 
+ Arquidiocesana para la Promoción de Ambientes Seguros y la Protección de los Menores y 
+ Personas Vulnerables".  19  El Arzobispo José Luis Azuaje  designó al abogado  Alberto de Jesús 
+ Sobalvarro Núñez  como coordinador de esta comisión.  21 
+ La comisión opera bajo una estructura dual: 
+ 1.  Área Técnica:  Integrada por expertos en derecho civil,  derecho canónico, psicología y 
+ pedagogía, encargados de la recepción y trámite legal de las denuncias.  19 
+ 2.  Área Pastoral:  Formada por representantes de los secretariados  de pastoral educativa, 
+ familiar, social y catequesis, cuya misión es la prevención y el acompañamiento espiritual.  19 
+ Elementos fundamentales para la sección web 
+ Para que la sección sea efectiva, debe integrar los siguientes componentes de servicio y 
+ transparencia: 
+ ●  Canales de Denuncia Inmediata:  Un botón de "Reportar  Abuso" destacado, que enlace a 
+ un formulario encriptado o proporcione un número de teléfono de atención inmediata.  21 
+ Se debe garantizar la opción de denuncia anónima y el estricto cumplimiento de la 
+ confidencialidad. 
+ ●  Protocolos y Códigos de Conducta:  Acceso a los documentos  oficiales de la CEV y de la 
+ Archidiócesis de Maracaibo que regulan el trato con menores.  30  Estos códigos incluyen 
+ prohibiciones estrictas sobre castigos físicos, secretismos, regalos preferenciales y la 
+ permanencia de adultos a solas con menores en sacristías o despachos sin visibilidad.  30 
+ ●  Recursos de Formación (VIRTUS):  Información sobre  los programas de entrenamiento 
+ obligatorio para todo el personal eclesiástico y voluntarios que tienen contacto 
+ permanente con menores.  34 
+ ●  Guía de Ayuda a la Víctima:  Información sobre centros  de recursos contra la agresión 
+ sexual, apoyo psicológico y la oración por la sanación de las víctimas.  34 
+ ●  Transparencia Institucional:  Publicación de informes  de cumplimiento y lista de 
+ contactos de los "Campeones de Ambiente Seguro" locales en cada parroquia.  29 
+ Implementación técnica y estrategia de 
+ mantenimiento 
+ La propuesta técnica debe garantizar que la web sea una herramienta de trabajo diario para la 
+ curia y un punto de referencia para el fiel. La arquitectura debe estar optimizada para el 
+ rendimiento y la visibilidad. 
+ Especificaciones de Desarrollo y WPO (Web Performance 
+ Optimization) 
+ Para 2026, la velocidad es el factor determinante en la retención del usuario. El sitio debe 
+ desarrollarse bajo los siguientes estándares: 
+ ●  Infraestructura:  Uso de servidores locales o regionales  con discos NVMe para garantizar 
+ una respuesta rápida.  10 
+ ●  Optimización de Imágenes:  Todas las fotografías parroquiales  deben utilizar el formato 
+ .webp para reducir el peso sin perder calidad visual.  10 
+ ●  Hosting de Alta Calidad:  Se desaconseja el uso de  hostings compartidos de bajo costo 
+ que degradan la experiencia del usuario.  10 
+ ●  IA y Accesibilidad:  Implementación de herramientas  de IA para la generación automática 
+ de textos alternativos en imágenes y la validación de estándares de accesibilidad para 
+ personas con discapacidad visual.  10 
+ Gestión de Contenidos y Escalabilidad 
+ El uso de un CMS moderno y modular (como WordPress optimizado o Webflow) permitirá que 
+ cada secretariado actualice sus secciones sin depender de un programador. Esto facilita la 
+ publicación de noticias semanales, la actualización del santoral y la gestión del calendario 
+ diocesano. Además, la estructura modular permite que, en el futuro, se integren sistemas de 
+ gestión parroquial (Chmeetings u otros) que permitan el seguimiento de contribuciones y la 
+ organización de ministerios de forma automatizada.  9 
+ Consideraciones finales y visión de futuro 
+ La transformación digital de la Archidiócesis de Maracaibo es un proceso que va más allá de lo 
+ estético. Se trata de crear un espacio donde la comunidad de 2,3 millones de católicos sienta la 
+ cercanía de sus pastores y la eficacia de su administración. La integración de un directorio 
+ parroquial exhaustivo, el compromiso explícito con los 'Ambientes Seguros' y un diseño que 
+ respeta la identidad zuliana posicionará a la archidiócesis como un referente de modernidad y 
+ transparencia en la región. 
+ La implementación de esta propuesta debe ser entendida como un servicio pastoral: una 
+ plataforma que no solo informa sobre la fe, sino que facilita su vivencia a través de la 
+ tecnología, asegurando que la Iglesia en el Zulia siga siendo luz y guía en el entorno digital de 
+ 2026. 
+ Fuentes citadas 
+ 1.  Diócesis católicas, acceso: marzo 18, 2026,  https://cividata.org/es/list/dioceses/ 
+ 2.  Maracaibo (Archdiocese) [Catholic-Hierarchy], acceso: marzo 18, 2026, 
+ https://www.catholic-hierarchy.org/diocese/dmara.html 
+ 3.  Arquidiócesis de Maracaibo - Wikipedia, la enciclopedia libre, acceso: marzo 18, 
+ 2026,  https://es.wikipedia.org/wiki/Arquidi%C3%B3cesis_de_Maracaibo 
+ 4.  Arquidiócesis de Maracaibo, Venezuela - FamilySearch Wiki, acceso: marzo 18, 
+ 2026, 
+ https://www.familysearch.org/es/wiki/ARQUIDI%C3%93CESIS_DE_MARACAIBO 
+ 5.  I. Las páginas católicas en español más visitadas - Catholic.net, acceso: marzo 18, 
+ 2026, 
+ https://es.catholic.net/op/articulos/22360/cat/156/i-las-paginas-catolicas-en-espa 
+ nol-mas-visitadas.html 
+ 6.  Ratings & Reviews - Vatican.va - App Store - Apple, acceso: marzo 18, 2026, 
+ https://apps.apple.com/au/app/612918266?see-all=reviews&platform=iphone 
+ 7.  Archdiocese of New York: Home, acceso: marzo 18, 2026,  https://archny.org/ 
+ 8.  6 Church Website Designs We Love In 2025 - Juxt Marketing, acceso: marzo 18, 
+ 2026, 
+ https://www.juxtmarketing.com/6-church-website-designs-we-love-in-2025/ 
+ 9.  8 Mejores Sitios Web de Parroquias Católicas de 2024: Un Camino hacia el 
+ Compromiso Espiritual en la Era Digital - ChMeetings, acceso: marzo 18, 2026, 
+ https://www.chmeetings.com/es/blog/8-mejores-sitios-web-de-parroquias-catoli 
+ cas-de-2024-un-camino-hacia-el-compromiso-espiritual-en-la-era-digital/ 
+ 10.  Tendencias en Diseño Web 2026 | Visión Real de Reflipa, acceso: marzo 18, 2026, 
+ https://reflipa.com/tendencias-diseno-web-2026-reflipa/ 
+ 11.  Tendencias diseño web 2026: claves para adelantarte al futuro, acceso: marzo 18, 
+ 2026,  https://www.maxcf.es/tendencias-diseno-web/ 
+ 12.  El Escudo Del Zulia 02 - Calaméo, acceso: marzo 18, 2026, 
+ https://www.calameo.com/books/005575289c8884fa8d87c 
+ 13.  Redalyc.Antecedentes históricos y evolución heráldica del escudo del estado 
+ Zulia, Venezuela, acceso: marzo 18, 2026, 
+ https://www.redalyc.org/pdf/200/20025468004.pdf 
+ 14.  Tendencias en diseño web de 2026: 5 ejemplos para inspirarte - Squarespace, 
+ acceso: marzo 18, 2026, 
+ https://es.squarespace.com/blog/tendencias-en-diseno-web 
+ 15.  Curia Diocesana - Diócesis de San Fernando de Apure, acceso: marzo 18, 2026, 
+ https://diocesisdesanfernando.org/curia-diocesana/ 
+ 16.  Servicios diocesanos - Diócesis de La Guaira, acceso: marzo 18, 2026, 
+ https://diocesisdelaguaira.com/servicios-diocesanos/ 
+ 17.  Ordenados 06 diáconos en la Arquidiócesis de Maracaibo, acceso: marzo 18, 
+ 2026, 
+ https://conferenciaepiscopalvenezolana.com/ordenados-06-diaconos-en-la-arqu 
+ idiocesis-de-maracaibo/ 
+ 18.  Secretariados diocesanos - Diócesis de La Guaira, acceso: marzo 18, 2026, 
+ https://diocesisdelaguaira.com/secretariados-diocesanos/ 
+ 19.  Arquidiócesis de Maracaibo creó Comisión para proteger a menores de posibles 
+ abusos, acceso: marzo 18, 2026, 
+ https://vpitv.com/lo-ultimo/arquidiocesis-de-maracaibo-creo-comision-para-prot 
+ eger-a-menores-de-posibles-abusos/ 
+ 20.  Directorio Parroquial 2026 Enero22.pdf 
+ 21.  Arquidiócesis de Maracaibo crea comisión para proteger a menores ..., acceso: 
+ marzo 18, 2026, 
+ https://notizulia.net/arquidiocesis-de-maracaibo-crea-comision-para-proteger-a 
+ -menores-de-abusos/ 
+ 22.  Congregaciones Femeninas | PDF | María, madre de Jesús | Misionero - Scribd, 
+ acceso: marzo 18, 2026, 
+ https://es.scribd.com/document/440014750/congregacionesFemeninas 
+ 23.  Congregaciones Masculinas en Venezuela | PDF - Scribd, acceso: marzo 18, 2026, 
+ https://es.scribd.com/document/419402372/Congregaciones-Masculinas-en-Ven 
+ ezuela 
+ 24.  Best Catholic Website Design Agencies [Updated for 2025] - Bend Marketing, 
+ acceso: marzo 18, 2026, 
+ https://bendyourmarketing.com/blog/catholic-website-design-agencies/ 
+ 25.  Siervas de Jesús de Venezuela - Wikipedia, la enciclopedia libre, acceso: marzo 
+ 18, 2026,  https://es.wikipedia.org/wiki/Siervas_de_Jes%C3%BAs_de_Venezuela 
+ 26.  Comunidades Religiosas catolicas de mujeres -.:Cat licos.com:., acceso: marzo 18, 
+ 2026,  http://www.catolicos.com/mujeres.htm 
+ 27.  CONGREGACIONES RELIGIOSAS - Conferencia de Religiosos de El Salvador, 
+ acceso: marzo 18, 2026,  https://confres.org/datos-de-comunidades-religiosas/ 
+ 28.  Alberto Sobalvarro, director local del RC en Maracaibo nos habla de su nueva 
+ misión como coordinador de ambientes seguros de esta Arquidiócesis - Regnum 
+ Christi, acceso: marzo 18, 2026, 
+ https://www.regnumchristi.co/alberto-sobalvarro-director-local-del-rc-en-marac 
+ aibo-nos-habla-de-su-nueva-mision-como-coordinador-de-ambientes-seguros 
+ -de-esta-arquidiocesis/ 
+ 29.  Ambiente Seguro - Catholic Diocese of Fort Worth, acceso: marzo 18, 2026, 
+ https://fwdioc.org/ambiente-seguro 
+ 30.  PROTOCOLO PARA LA PROMOCIÓN DE LA CULTURA DEL BUEN TRATO 
+ PREVENCIÓN DE ABUSOS CONTRA NIÑOS, NIÑAS, ADOLESCENTES Y PERSONAS 
+ V - Arquidiócesis de Caracas, acceso: marzo 18, 2026, 
+ https://arquidiocesiscaracas.com/wp-content/uploads/2024/07/Protocolo-y-Codi 
+ go-Arquidiocesis-Metropolitana-de-Caracas-.pdf 
+ 31.  SISTEMA DIOCESANO PARA LA PROTECCIÓN DE LOS MENORES - Conferencia 
+ Episcopal Venezolana, acceso: marzo 18, 2026, 
+ https://conferenciaepiscopalvenezolana.com/wp-content/uploads/2023/03/Proto 
+ colo-La-Guaira.pdf 
+ 32.  LINEAS GENERALES PARA LA PROTECCION DE MENORES Y PERSONAS 
+ VULNERABLES. 1. INTRODUCCIÓN. Para tramitar la Arquidiócesis de Mér - 
+ Conferencia Episcopal Venezolana, acceso: marzo 18, 2026, 
+ https://conferenciaepiscopalvenezolana.com/wp-content/uploads/2023/03/Proto 
+ colo-Merida.pdf 
+ 33.  PROTOCOLO DE PREVENCIÓN Y ACTUACIÓN ANTE CASOS DE ABUSOS 
+ SEXUALES A NIÑAS, NIÑOS, ADOLESCENTES Y PERSONAS VULNERABLES - 
+ Conferencia Episcopal Venezolana, acceso: marzo 18, 2026, 
+ https://conferenciaepiscopalvenezolana.com/wp-content/uploads/2023/03/Proto 
+ colo-Ciudad-Bolivar.pdf 
+ 34.  Protección de menores & ambientes seguros - Archdiocese of Washington, 
+ acceso: marzo 18, 2026,  https://adw.org/es/recursos/ambiente-seguro/ 
+ 35.  Para las parroquias Ambiente seguro - Archdiocese of Seattle, acceso: marzo 18, 
+ 2026, 
+ https://archseattle.org/para-parroquias/para-las-parroquias-ambiente-seguro/?la 
+ ng=es 
+ 36.  Programa de Entorno Seguro para Adultos - The Roman Catholic Diocese of San 
+ Diego, acceso: marzo 18, 2026, 
+ https://sdcatholic.org/es/child-and-youth-protection/safe-environment-program- 
+ for-adults/ 

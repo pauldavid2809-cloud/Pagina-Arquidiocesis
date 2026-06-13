@@ -1,0 +1,509 @@
+<!DOCTYPE html><html class="light" lang="es">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Inicio | Arquidiócesis de Maracaibo</title>
+<meta content="Portal oficial de la Arquidiócesis de Maracaibo. Encuentro, transparencia y servicio pastoral para el pueblo de Dios en el Zulia." name="description">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/stitch-config.js"></script>
+<!-- Core Styles -->
+<link href="css/stitch-core.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-surface font-body">
+<!-- Navbar injected by JS -->
+<div id="stitch-navbar"></div>
+
+<!-- Hero Section — Full-image Stitch style with gradient overlay -->
+<section class="relative h-[90vh] md:h-[85vh] flex items-center overflow-hidden bg-surface-dim">
+<div class="absolute inset-0 z-0">
+<img alt="Interior de la Catedral de Maracaibo" class="w-full h-full object-cover object-center" src="img/catedral_interior.jpg">
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter relative z-10 text-white">
+<div class="max-w-4xl space-y-stack-lg reveal">
+<div class="flex items-center gap-4">
+<div class="h-[1px] w-12 bg-gold-antique"></div>
+<span class="font-label text-sm tracking-[0.2em] uppercase text-gold-antique">Iglesia Particular de Maracaibo</span>
+</div>
+<h1 class="font-display text-display-lg leading-[1.1] font-semibold">
+Encuentro, Transparencia <br>
+<span class="italic font-normal text-[0.95em] text-white/90">y Servicio Pastoral</span>
+</h1>
+<p class="font-body text-body-lg text-white/80 max-w-xl">
+Portal oficial de la Arquidiócesis de Maracaibo, una Iglesia en salida al encuentro de más de 2 millones de fieles zulianos en comunión y esperanza.
+</p>
+<div class="flex flex-wrap gap-stack-md pt-stack-md">
+<a class="bg-crimson-deep text-white px-8 py-4 rounded-lg font-label hover:brightness-110 transition-all flex items-center gap-2 group shadow-xl" href="directorio.html">
+Buscar mi Parroquia
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">church</span>
+</a>
+<a class="glass-panel text-white border border-white/30 px-8 py-4 rounded-lg font-label hover:bg-white/10 transition-all flex items-center gap-2" href="ambientes.html">
+Ambientes Seguros
+<span class="material-symbols-outlined">verified_user</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Asymmetric Scroll Indicator -->
+<div class="absolute bottom-10 right-gutter hidden md:flex flex-col items-center gap-4 group cursor-pointer" onclick="document.getElementById('ejes').scrollIntoView({behavior:'smooth'})">
+<span class="[writing-mode:vertical-lr] font-label text-sm text-white/60 tracking-widest uppercase group-hover:text-gold-antique transition-colors">Explorar</span>
+<div class="w-[1px] h-24 bg-white/20 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-gold-antique animate-bounce"></div>
+</div>
+</div>
+</section>
+
+<!-- Impact Stats Bar -->
+<section class="py-12 bg-surface-container-lowest border-y border-outline-variant/10">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter grid grid-cols-2 md:grid-cols-4 gap-gutter text-center">
+<div class="flex flex-col">
+<span class="stat-number font-headline text-headline-md text-crimson-deep" data-target="72">0</span>
+<span class="font-label text-label-sm text-slate-warm">Parroquias</span>
+</div>
+<div class="flex flex-col">
+<span class="stat-number font-headline text-headline-md text-crimson-deep" data-target="2300000">0</span>
+<span class="font-label text-label-sm text-slate-warm">Fieles Aprox.</span>
+</div>
+<div class="flex flex-col">
+<span class="stat-number font-headline text-headline-md text-crimson-deep" data-target="9">0</span>
+<span class="font-label text-label-sm text-slate-warm">Zonas Pastorales</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline text-headline-md text-crimson-deep">Servicio</span>
+<span class="font-label text-label-sm text-slate-warm">Pastoral Continuo</span>
+</div>
+</div>
+</section>
+
+<!-- Ejes Pastorales — Bento Grid -->
+<section class="py-section-gap bg-background" id="ejes">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+<div class="mb-stack-lg space-y-stack-sm text-center reveal">
+<span class="font-label text-sm text-gold-antique tracking-widest uppercase">Nuestra Iglesia</span>
+<h2 class="font-headline text-headline-lg text-crimson-deep">Ejes Pastorales y Administrativos</h2>
+<div class="h-1 w-20 bg-gold-antique mx-auto mt-4"></div>
+<p class="text-slate-warm font-body text-body-md mt-4 max-w-2xl mx-auto">Navegue por las distintas áreas de servicio que ofrecemos a nuestra comunidad con transparencia y compromiso evangelizador.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[280px] mt-12 reveal-stagger">
+<!-- Archbishop (Double Row) -->
+<div class="md:col-span-1 md:row-span-2 bento-card glass-panel bg-white rounded-xl shadow-lg border border-warm-ivory p-8 flex flex-col justify-between reveal">
+<div class="space-y-4">
+<div class="w-24 h-24 rounded-full border-2 border-gold-antique p-1 overflow-hidden">
+<img alt="Mons. José Luis Azuaje Ayala" class="w-full h-full object-cover rounded-full" src="img/arzobispo.webp" onerror="this.onerror=null;this.src='img/logo-arquidiocesis.webp'">
+</div>
+<span class="inline-block px-3 py-1 bg-primary-container text-white text-[10px] font-bold font-label rounded-full uppercase tracking-widest">Pastor Metropolitano</span>
+<h3 class="font-headline text-headline-md text-crimson-deep leading-tight">Arzobispo</h3>
+<p class="font-editorial italic text-lg text-slate-warm leading-relaxed">
+Mensajes, homilías, cartas pastorales y la labor del Excmo. Mons. José Luis Azuaje Ayala.
+</p>
+</div>
+<a class="text-crimson-deep font-label flex items-center gap-2 hover:translate-x-1 transition-transform mt-4" href="arzobispo.html">
+VER PERFIL <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+
+<!-- Directory -->
+<div class="md:col-span-2 md:row-span-1 bento-card bg-surface-container shadow-sm rounded-xl border border-outline-variant/30 p-8 flex gap-stack-lg overflow-hidden relative reveal" id="directorio">
+<div class="z-10 flex-1 flex flex-col justify-center">
+<span class="text-gold-antique font-label text-[10px] tracking-widest uppercase mb-2">Servicio Popular</span>
+<h3 class="font-headline text-headline-md text-crimson-deep">Directorio Parroquial</h3>
+<p class="font-body text-slate-warm mt-3 text-body-md">
+Encuentre su parroquia, horarios de misas y contactos de todos los templos.
+</p>
+<div class="mt-stack-md flex bg-white rounded-lg shadow-inner p-1">
+<input class="flex-1 bg-transparent border-none font-label text-sm focus:ring-0 px-3" placeholder="¿Qué templo busca? Ej: Chiquinquirá..." type="text">
+<a href="directorio.html" class="bg-gold-antique text-white px-4 py-2 rounded-md font-label text-sm">Buscar</a>
+</div>
+</div>
+<div class="hidden lg:block absolute -right-10 -bottom-10 opacity-10 transform -rotate-12">
+<span class="material-symbols-outlined text-[200px]">church</span>
+</div>
+</div>
+
+<!-- Government/Arquidiócesis -->
+<div class="md:col-span-1 md:row-span-1 bento-card bg-white rounded-xl shadow-lg border border-warm-ivory p-8 group hover:bg-crimson-deep transition-all duration-500 reveal">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center text-crimson-deep group-hover:bg-white/20 group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<h3 class="font-headline text-headline-md text-crimson-deep mt-4 group-hover:text-white">Arquidiócesis</h3>
+<p class="font-body text-slate-warm mt-2 group-hover:text-white/80">Nuestra curia, historia y organización.</p>
+<a class="mt-4 font-label text-crimson-deep group-hover:text-white inline-flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all" href="arquidiocesis.html">Ver más <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+
+<!-- Pastoral -->
+<div class="md:col-span-1 md:row-span-1 bento-card bg-warm-ivory rounded-xl shadow-sm border border-gold-antique/20 p-8 reveal">
+<div class="w-12 h-12 bg-crimson-deep rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<h3 class="font-headline text-headline-md text-crimson-deep mt-4">Pastoral</h3>
+<p class="font-body text-slate-warm mt-2">Comisiones, movimientos apostólicos y acción social.</p>
+<a class="mt-4 font-label text-crimson-deep inline-flex items-center gap-2 hover:gap-3 transition-all" href="pastoral.html">Ver comisiones <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+
+<!-- Seminary & Consacrated -->
+<div class="md:col-span-2 md:row-span-1 bento-card bg-surface-dim rounded-xl shadow-sm overflow-hidden flex flex-col md:flex-row reveal">
+<a href="seminario.html" class="flex-1 p-8 border-b md:border-b-0 md:border-r border-outline-variant/20 hover:bg-white transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-crimson-deep">school</span>
+<h4 class="font-headline text-headline-md text-crimson-deep mt-2">Seminario</h4>
+<p class="font-body text-slate-warm text-body-md">Discernimiento y formación de los futuros pastores de nuestra Iglesia.</p>
+</a>
+<a href="vida-consagrada.html" class="flex-1 p-8 hover:bg-white transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-crimson-deep">auto_awesome</span>
+<h4 class="font-headline text-headline-md text-crimson-deep mt-2">Vida Consagrada</h4>
+<p class="font-body text-slate-warm text-body-md">Conozca las órdenes religiosas en el Zulia.</p>
+</a>
+</div>
+
+<!-- Safe Environments -->
+<div class="md:col-span-2 md:row-span-1 bento-card bg-primary text-white rounded-xl shadow-xl p-8 flex items-center gap-stack-lg reveal">
+<div class="w-20 h-20 bg-white/10 backdrop-blur rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-4xl">verified_user</span>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-2">
+<h3 class="font-headline text-headline-md">Ambientes Seguros</h3>
+<span class="px-2 py-0.5 bg-gold-antique text-[9px] font-bold font-label rounded uppercase">Protección</span>
+</div>
+<p class="font-body text-white/80 text-body-md">Código de conducta y directrices para la protección de menores y personas vulnerables.</p>
+<a href="ambientes.html" class="mt-4 font-label font-bold flex items-center gap-2 hover:underline">
+Ver protocolo <span class="material-symbols-outlined">open_in_new</span>
+</a>
+</div>
+</div>
+
+<!-- Cancillería -->
+<div class="md:col-span-1 md:row-span-1 bento-card bg-white rounded-xl shadow-md border border-warm-ivory p-8 reveal">
+<span class="material-symbols-outlined text-gold-antique">description</span>
+<h3 class="font-headline text-headline-md text-crimson-deep mt-2">Cancillería</h3>
+<p class="font-body text-slate-warm text-body-md">Trámites, decretos y archivo.</p>
+<a class="mt-4 font-label text-crimson-deep inline-flex items-center gap-2 hover:gap-3 transition-all" href="cancilleria.html">Ir a Cancillería <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+
+<!-- Donaciones -->
+<div class="md:col-span-1 md:row-span-1 bento-card bg-secondary-container rounded-xl shadow-lg p-8 flex flex-col justify-between reveal">
+<div class="text-on-secondary-container">
+<span class="material-symbols-outlined text-3xl">volunteer_activism</span>
+<h3 class="font-headline text-headline-md font-bold mt-2">Donaciones</h3>
+<p class="text-sm font-body opacity-90 mt-1">Sostenga nuestras obras de caridad.</p>
+</div>
+<a href="donaciones.html" class="w-full bg-crimson-deep text-white py-3 rounded-lg font-bold font-label shadow-md hover:scale-105 transition-transform text-center block mt-4">Donar Ahora</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Quote Section -->
+<section class="py-section-gap px-margin-mobile flex flex-col items-center text-center bg-surface-container-lowest">
+<div class="max-w-[800px] reveal">
+<span class="material-symbols-outlined text-6xl text-gold-antique/30 mb-8" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<blockquote class="font-headline text-headline-md text-crimson-deep italic leading-relaxed mb-8">
+"Somos una Iglesia en salida, llamados a ir al encuentro de cada persona con el amor de Dios, a ser puentes de esperanza en nuestra tierra zuliana."
+</blockquote>
+<cite class="not-italic">
+<div class="font-bold text-crimson-deep font-label text-label-md uppercase tracking-widest">Excmo. Mons. José Luis Azuaje Ayala</div>
+<div class="text-slate-warm font-label text-label-sm mt-1">Arzobispo de Maracaibo</div>
+</cite>
+</div>
+</section>
+
+<!-- Events & Calendar -->
+<section class="py-section-gap bg-background">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+<div class="flex flex-col md:flex-row justify-between items-end mb-stack-lg gap-4 reveal">
+<div>
+<span class="font-label text-sm text-gold-antique tracking-widest uppercase">Próximos Eventos</span>
+<h2 class="font-headline text-headline-lg text-crimson-deep mt-2">Calendario Litúrgico y Pastoral</h2>
+<div class="h-1 w-20 bg-gold-antique mt-4"></div>
+</div>
+<a class="text-crimson-deep font-bold font-label border-b border-crimson-deep flex items-center gap-2 pb-1 hover:gap-4 transition-all" href="noticias.html">
+Ver calendario completo <span class="material-symbols-outlined">east</span>
+</a>
+</div>
+
+<div class="space-y-4 mt-8 reveal-stagger">
+<!-- Event Row 1 -->
+<div class="group flex flex-col md:flex-row gap-6 p-8 rounded-xl bg-white border border-outline-variant/10 hover:shadow-lg transition-all duration-300 items-center bento-card reveal">
+<div class="flex flex-col items-center justify-center min-w-[80px] h-[80px] bg-surface-container-high rounded-2xl group-hover:bg-crimson-deep group-hover:text-white transition-colors">
+<span class="text-2xl font-bold">13</span>
+<span class="text-sm font-medium uppercase">Jun</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-2">
+<span class="px-3 py-1 rounded-full bg-gold-antique/10 text-gold-antique text-xs font-bold uppercase font-label">Celebración</span>
+</div>
+<h4 class="font-headline text-[24px] text-crimson-deep group-hover:text-gold-antique transition-colors">Solemnidad del Sagrado Corazón de Jesús</h4>
+<p class="text-slate-warm font-body text-body-md mt-1">Solemne Eucaristía presidida por nuestro Arzobispo en el templo Catedral.</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-slate-warm font-label text-label-sm">05:00 PM</span>
+<button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center group-hover:bg-crimson-deep group-hover:text-white group-hover:border-crimson-deep transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+
+<!-- Event Row 2 -->
+<div class="group flex flex-col md:flex-row gap-6 p-8 rounded-xl bg-white border border-outline-variant/10 hover:shadow-lg transition-all duration-300 items-center bento-card reveal">
+<div class="flex flex-col items-center justify-center min-w-[80px] h-[80px] bg-surface-container-high rounded-2xl group-hover:bg-crimson-deep group-hover:text-white transition-colors">
+<span class="text-2xl font-bold">20</span>
+<span class="text-sm font-medium uppercase">Jun</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-2">
+<span class="px-3 py-1 rounded-full bg-surface-container-low text-slate-warm text-xs font-bold uppercase border border-outline-variant/20 font-label">Formación</span>
+</div>
+<h4 class="font-headline text-[24px] text-crimson-deep group-hover:text-gold-antique transition-colors">Taller Diocesano de Ambientes Seguros</h4>
+<p class="text-slate-warm font-body text-body-md mt-1">Jornada de capacitación para sacerdotes, catequistas y animadores de la Zona Pastoral N° 1.</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-slate-warm font-label text-label-sm">08:30 AM</span>
+<button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center group-hover:bg-crimson-deep group-hover:text-white group-hover:border-crimson-deep transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+
+<!-- Event Row 3 -->
+<div class="group flex flex-col md:flex-row gap-6 p-8 rounded-xl bg-white border border-outline-variant/10 hover:shadow-lg transition-all duration-300 items-center bento-card reveal">
+<div class="flex flex-col items-center justify-center min-w-[80px] h-[80px] bg-surface-container-high rounded-2xl group-hover:bg-crimson-deep group-hover:text-white transition-colors">
+<span class="text-2xl font-bold">29</span>
+<span class="text-sm font-medium uppercase">Jun</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-2">
+<span class="px-3 py-1 rounded-full bg-gold-antique/10 text-gold-antique text-xs font-bold uppercase font-label">Liturgia</span>
+</div>
+<h4 class="font-headline text-[24px] text-crimson-deep group-hover:text-gold-antique transition-colors">Solemnidad de San Pedro y San Pablo</h4>
+<p class="text-slate-warm font-body text-body-md mt-1">Día del Papa. Oración comunitaria por las intenciones del Santo Padre.</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-slate-warm font-label text-label-sm">Todo el día</span>
+<button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center group-hover:bg-crimson-deep group-hover:text-white group-hover:border-crimson-deep transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Latest News (Instagram Feed) -->
+<section class="py-section-gap bg-surface-container-low overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+<div class="flex flex-col md:flex-row justify-between items-end mb-stack-lg reveal">
+<div class="max-w-xl">
+<span class="font-label text-sm text-gold-antique tracking-widest uppercase">Actualidad</span>
+<h2 class="font-headline text-headline-lg text-crimson-deep">Últimas Noticias</h2>
+<div class="h-1 w-20 bg-gold-antique mt-4"></div>
+</div>
+<a class="text-crimson-deep font-bold font-label border-b border-crimson-deep flex items-center gap-2 pb-1 hover:gap-4 transition-all" href="noticias.html">Ver todas <span class="material-symbols-outlined">east</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter news-grid-home">
+<!-- News Card 1 (Fallback — replaced dynamically by Instagram API) -->
+<article class="group cursor-pointer reveal">
+<div class="aspect-[4/3] overflow-hidden rounded-xl mb-4 shadow-lg">
+<img alt="Ordenación sacerdotal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLvYEwkdKZfxieIsOJr5yUphrHSw9FheJq8jKPFQUqXoyLtuR_XOtdD-E2u_5BT46-k0glbydsU7DlODLv9j2IQBR9LZ9rdeKaisiSsm8Y6S6HcZhLX3ePZu1RiwZjtacjAJpLCMf0ooWuLkgTkFUTL6BtWPmtkv7A44jIPt9pTQ0pKaj14m0EhuArafHbkcPRV7etnSfz4SVZkpsDcEjpMjGs5OyFyUjfJKwV5nrphc5la2ghbOnX2H8fc">
+</div>
+<span class="font-label text-xs text-gold-antique uppercase tracking-widest">Ministerio</span>
+<h4 class="font-headline text-[24px] font-semibold text-crimson-deep mt-2 group-hover:text-gold-antique transition-colors line-clamp-2">Solemne Ordenación Sacerdotal en la Catedral Metropolitana</h4>
+<p class="font-body text-slate-warm mt-2 line-clamp-3">El Arzobispo Mons. José Luis Azuaje presidió la Eucaristía en la que tres nuevos presbíteros fueron ordenados.</p>
+</article>
+<article class="group cursor-pointer reveal">
+<div class="aspect-[4/3] overflow-hidden rounded-xl mb-4 shadow-lg">
+<img alt="Pastoral juvenil" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLt6LTrK2adr0k6Yrz0FPMwJ0alG8DaRa8Oe01aGO7fQajA-BTAB8YBDtyFtZ0spXAxdeLtLsZvDuwbMCNxfXx_Z5kigtwqQ9PaAIJCJJ5F_zRjqU1dnVEERItxUW7p4Fd3NyNdLfUFHh-pI8F7CD8A3FykrsC922zs3UfmW0QNByJUFYsIdGQIcfMMMCrD6WrTyCENkgVbiCMXuvMOrBOQwqEBQcGBv_W5Vbkz93yxUktRdt-X32M7kBmI">
+</div>
+<span class="font-label text-xs text-gold-antique uppercase tracking-widest">Juventud</span>
+<h4 class="font-headline text-[24px] font-semibold text-crimson-deep mt-2 group-hover:text-gold-antique transition-colors line-clamp-2">Encuentro Diocesano de Pastoral Juvenil</h4>
+<p class="font-body text-slate-warm mt-2 line-clamp-3">Jóvenes delegados de todas las zonas se reunieron para orar, compartir y planificar la labor evangelizadora.</p>
+</article>
+<article class="group cursor-pointer reveal">
+<div class="aspect-[4/3] overflow-hidden rounded-xl mb-4 shadow-lg">
+<img alt="Cáritas Maracaibo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLtt0E7LYOkquWJt-TVYI4Ct2Em2GtrSSg97gwT9b90wtrW0IulFjp0Vei8kWi49-XrSt6UZlplN1s8osgPEXSA4yjUzb6Wo-YkwW3_ATF3KNSx6wkhsfSU12zvtXp7K-tHDq5Huixj7ASLnCAlhjxaWmNIveRqqh7ZCICp9izbNtkMpvtEXJrBsr_O5RzfSvQLSvBgZxhMmqB5R2vy_obLm_rK9Zj5Qv0ygKeDPQZCHlop4hMdZ8rhRAw">
+</div>
+<span class="font-label text-xs text-gold-antique uppercase tracking-widest">Solidaridad</span>
+<h4 class="font-headline text-[24px] font-semibold text-crimson-deep mt-2 group-hover:text-gold-antique transition-colors line-clamp-2">Cáritas Maracaibo entregó kits de alimentación</h4>
+<p class="font-body text-slate-warm mt-2 line-clamp-3">Más de 500 kits fueron distribuidos en sectores vulnerables del oeste de la ciudad en una nueva jornada.</p>
+</article>
+</div>
+</div>
+</section>
+
+<!-- Final CTA: Donations -->
+<section class="py-section-gap px-margin-mobile">
+<div class="max-w-container-max mx-auto bg-crimson-deep rounded-3xl p-12 md:p-24 overflow-hidden relative text-center text-white reveal">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-[-50%] right-[-10%] w-[800px] h-[800px] bg-gold-antique rounded-full blur-[150px]"></div>
+<div class="absolute bottom-[-50%] left-[-10%] w-[600px] h-[600px] bg-secondary-container rounded-full blur-[120px]"></div>
+</div>
+<div class="relative z-10 max-w-[700px] mx-auto">
+<span class="material-symbols-outlined text-5xl mb-6 text-gold-antique" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<h2 class="font-headline text-headline-lg mb-6">Su generosidad transforma vidas</h2>
+<p class="font-body text-body-lg opacity-80 mb-12">
+Apoye el clero diocesano, la formación de seminaristas y las múltiples obras sociales dirigidas a las familias más desprotegidas del estado Zulia.
+</p>
+<a class="inline-block bg-gold-antique text-white px-12 py-5 rounded-lg font-bold font-label text-lg shadow-xl hover:brightness-110 hover:scale-105 active:scale-95 transition-all" href="donaciones.html">
+Hacer una Donación
+</a>
+</div>
+</div>
+</section>
+
+<!-- Footer injected by JS -->
+<div id="stitch-footer"></div>
+
+<script src="js/stitch-components.js"></script>
+<script>StitchLayout.init({ activePage: 'index' });</script>
+
+<script>
+    // Dynamic Instagram News Feed
+    (function initHomeNews() {
+        const newsGrid = document.querySelector('.news-grid-home');
+        if (!newsGrid) return;
+
+        const FALLBACK_NEWS = [
+            { id:"1", timestamp:"2026-05-28T10:00:00Z", caption:"Ordenación sacerdotal en la Catedral Metropolitana. Mons. José Luis Azuaje presidió la Eucaristía en la que tres nuevos presbíteros fueron ordenados para servir a la Iglesia de Maracaibo.", media_url:"https://lh3.googleusercontent.com/aida/AP1WRLvYEwkdKZfxieIsOJr5yUphrHSw9FheJq8jKPFQUqXoyLtuR_XOtdD-E2u_5BT46-k0glbydsU7DlODLv9j2IQBR9LZ9rdeKaisiSsm8Y6S6HcZhLX3ePZu1RiwZjtacjAJpLCMf0ooWuLkgTkFUTL6BtWPmtkv7A44jIPt9pTQ0pKaj14m0EhuArafHbkcPRV7etnSfz4SVZkpsDcEjpMjGs5OyFyUjfJKwV5nrphc5la2ghbOnX2H8fc", permalink:"https://www.instagram.com/arquimcbo/" },
+            { id:"2", timestamp:"2026-05-25T15:30:00Z", caption:"Encuentro Diocesano de Pastoral Juvenil. Jóvenes delegados de todas las zonas pastorales compartieron una tarde de reflexión y comunión.", media_url:"https://lh3.googleusercontent.com/aida/AP1WRLt6LTrK2adr0k6Yrz0FPMwJ0alG8DaRa8Oe01aGO7fQajA-BTAB8YBDtyFtZ0spXAxdeLtLsZvDuwbMCNxfXx_Z5kigtwqQ9PaAIJCJJ5F_zRjqU1dnVEERItxUW7p4Fd3NyNdLfUFHh-pI8F7CD8A3FykrsC922zs3UfmW0QNByJUFYsIdGQIcfMMMCrD6WrTyCENkgVbiCMXuvMOrBOQwqEBQcGBv_W5Vbkz93yxUktRdt-X32M7kBmI", permalink:"https://www.instagram.com/arquimcbo/" },
+            { id:"5", timestamp:"2026-05-15T11:00:00Z", caption:"Cáritas Maracaibo entregó kits de alimentación a familias vulnerables. Seguimos comprometidos con el servicio caritativo a los más necesitados.", media_url:"https://lh3.googleusercontent.com/aida/AP1WRLtt0E7LYOkquWJt-TVYI4Ct2Em2GtrSSg97gwT9b90wtrW0IulFjp0Vei8kWi49-XrSt6UZlplN1s8osgPEXSA4yjUzb6Wo-YkwW3_ATF3KNSx6wkhsfSU12zvtXp7K-tHDq5Huixj7ASLnCAlhjxaWmNIveRqqh7ZCICp9izbNtkMpvtEXJrBsr_O5RzfSvQLSvBgZxhMmqB5R2vy_obLm_rK9Zj5Qv0ygKeDPQZCHlop4hMdZ8rhRAw", permalink:"https://www.instagram.com/arquimcbo/" }
+        ];
+
+        function parseCaption(caption) {
+            if (!caption) return { title: 'Noticia Oficial', excerpt: 'Haz clic para leer la comunicación completa.' };
+            let cleanText = caption.replace(/#\w+/g, '').replace(/\s+/g, ' ').trim();
+            let parts = caption.split(/\n+/).map(p => p.replace(/#\w+/g, '').trim()).filter(p => p.length > 0);
+            let title = 'Noticia Oficial';
+            let excerpt = '';
+            if (parts.length > 0) {
+                title = parts[0];
+                title = title.replace(/^[\s⚡✨⚠️📢🔥🔴📣🏛️🙏⛪🔔🇩🇪🤝🇻🇪⚜️🎨🦾🎬🇵🇱🌟🖼️📷📸ℹ️🎉🎊🇵🇦]+|[\s⚡✨⚠️📢🔥🔴📣🏛️🙏⛪🔔🇩🇪🤝🇻🇪⚜️🎨🦾🎬🇵🇱🌟🖼️📷📸ℹ️🎉🎊🇵🇦]+$/g, '').trim();
+                let restOfText = parts.slice(1).join(' ').trim();
+                if (restOfText) excerpt = restOfText;
+                else {
+                    let sentences = title.split(/[.!?]/);
+                    if (sentences.length > 1) {
+                        title = sentences[0].trim();
+                        excerpt = sentences.slice(1).join('.').trim();
+                    }
+                }
+            }
+            if (!title || title.length < 5) {
+                title = cleanText.slice(0, 75);
+                excerpt = cleanText.slice(75);
+            }
+            if (title.length > 90) title = title.slice(0, 87) + '…';
+            if (excerpt.length > 180) excerpt = excerpt.slice(0, 177) + '…';
+            if (!excerpt) excerpt = 'Haz clic para leer el comunicado completo de la Arquidiócesis en nuestras redes oficiales.';
+            return { title, excerpt };
+        }
+
+        function getTag(caption) {
+            const cap = (caption || '').toLowerCase();
+            if (cap.includes('ordenación') || cap.includes('sacerdotal') || cap.includes('nombramientos')) return 'Ministerio';
+            if (cap.includes('juvenil') || cap.includes('pentecostés')) return 'Juventud';
+            if (cap.includes('cáritas') || cap.includes('alimentación') || cap.includes('kits')) return 'Solidaridad';
+            if (cap.includes('ambientes') || cap.includes('capas')) return 'Ambientes Seguros';
+            if (cap.includes('crismal') || cap.includes('misa')) return 'Liturgia';
+            return 'Actualidad';
+        }
+
+        function renderHomeNews(posts) {
+            const latest3 = posts.slice(0, 3);
+            newsGrid.innerHTML = latest3.map(p => {
+                const info = parseCaption(p.caption);
+                const title = p.ai_title || info.title;
+                const excerpt = p.ai_excerpt || info.excerpt;
+                const tag = getTag(p.caption);
+                return `
+                <article class="group cursor-pointer reveal active" onclick="window.open('${p.permalink}','_blank')">
+                    <div class="aspect-[4/3] overflow-hidden rounded-xl mb-4 shadow-lg">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="${p.media_url}" alt="${title}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x220/7A1A22/ffffff?text=Actualidad'">
+                    </div>
+                    <span class="font-label text-xs text-gold-antique uppercase tracking-widest">${tag}</span>
+                    <h4 class="font-headline text-[24px] font-semibold text-crimson-deep mt-2 group-hover:text-gold-antique transition-colors line-clamp-2">${title}</h4>
+                    <p class="font-body text-slate-warm mt-2 line-clamp-3">${excerpt}</p>
+                </article>`;
+            }).join('');
+        }
+
+        async function fetchHomeNews() {
+            try {
+                const res = await fetch('/api/instagram?limit=6');
+                if (!res.ok) throw new Error('API offline');
+                const data = await res.json();
+                const posts = (data.data || []).map(p => ({...p, media_url: p.media_url || p.thumbnail_url || ''})).filter(p => p.media_url);
+                if (posts.length === 0) throw new Error('No posts');
+                renderHomeNews(posts);
+            } catch (e) {
+                renderHomeNews(FALLBACK_NEWS);
+            }
+        }
+
+        fetchHomeNews();
+    })();
+
+    // Statistics Counter Animation
+    (function initStatsCounters() {
+        const counterElements = document.querySelectorAll('.stat-number');
+        
+        function animateCounter(element, targetValue) {
+            let currentVal = 0;
+            const duration = 1500;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const ease = progress * (2 - progress);
+                currentVal = Math.floor(ease * targetValue);
+                
+                if (targetValue >= 1000000) {
+                    element.textContent = (currentVal / 1000000).toFixed(1) + 'M+';
+                } else {
+                    element.textContent = currentVal.toLocaleString();
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    if (targetValue >= 1000000) {
+                        element.textContent = (targetValue / 1000000).toFixed(1) + 'M+';
+                    } else {
+                        element.textContent = targetValue.toLocaleString();
+                    }
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        if ('IntersectionObserver' in window && counterElements.length > 0) {
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const targetVal = parseInt(el.getAttribute('data-target') || '0', 10);
+                        animateCounter(el, targetVal);
+                        observer.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            counterElements.forEach(el => counterObserver.observe(el));
+        } else {
+            counterElements.forEach(el => {
+                const targetVal = parseInt(el.getAttribute('data-target') || '0', 10);
+                if (targetVal >= 1000000) {
+                    el.textContent = (targetVal / 1000000).toFixed(1) + 'M+';
+                } else {
+                    el.textContent = targetVal.toLocaleString();
+                }
+            });
+        }
+    })();
+</script>
+</body></html>

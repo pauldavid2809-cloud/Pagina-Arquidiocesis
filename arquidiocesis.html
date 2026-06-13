@@ -1,0 +1,1173 @@
+<!DOCTYPE html><html class="light" lang="es">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Arquidiócesis | Arquidiócesis de Maracaibo</title>
+<meta content="Historia, organización y misión de la Iglesia Metropolitana de Maracaibo. Conozca nuestra estructura pastoral y nuestra historia eclesiástica." name="description">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/stitch-config.js"></script>
+<!-- Core Styles -->
+<link href="css/stitch-core.css" rel="stylesheet">
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .bento-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(74, 69, 67, 0.12);
+  }
+  .glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .clero-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #F9F7F2; }
+  ::-webkit-scrollbar-thumb { background: #C59B27; border-radius: 4px; }
+  .priest-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #C59B27, #7A1A22);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .stat-counter {
+    font-variant-numeric: tabular-nums;
+  }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body overflow-x-hidden">
+
+<!-- Navbar injected by JS -->
+<div id="stitch-navbar"></div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- HERO SECTION -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="relative h-[65vh] min-h-[480px] flex items-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img
+      class="w-full h-full object-cover"
+      src="img/catedral.jpg"
+      alt="Catedral de Maracaibo"
+      onerror="this.src='https://placehold.co/1400x700/7A1A22/ffffff?text=Catedral+de+Maracaibo'"
+    >
+    <div class="absolute inset-0 bg-gradient-to-r from-crimson-deep/80 via-crimson-deep/50 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+  </div>
+  <div class="relative z-10 px-margin-mobile md:px-gutter max-w-container-max mx-auto w-full">
+    <div class="max-w-2xl">
+      <span class="inline-block font-label text-sm text-gold-antique tracking-widest uppercase mb-4">Iglesia Metropolitana</span>
+      <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
+        Nuestra Arquidiócesis
+      </h1>
+      <p class="font-body text-lg text-white/85 leading-relaxed max-w-xl">
+        Soberana, intelectual y profundamente acogedora. Conozca la historia, curia y organización eclesial de la grey zuliana.
+      </p>
+      <!-- Breadcrumb anchors -->
+      <div class="flex flex-wrap gap-3 mt-8">
+        <a href="#iglesia-universal" class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-full font-label text-sm transition-all">
+          <span class="material-symbols-outlined text-[16px]">church</span> Iglesia Universal
+        </a>
+        <a href="#historia" class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-full font-label text-sm transition-all">
+          <span class="material-symbols-outlined text-[16px]">history_edu</span> Historia
+        </a>
+        <a href="#organizacion" class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-full font-label text-sm transition-all">
+          <span class="material-symbols-outlined text-[16px]">account_tree</span> Organización
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- STAT COUNTERS STRIP -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="bg-crimson-deep text-white">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div>
+      <div class="stat-counter font-display text-3xl font-bold text-gold-antique">1897</div>
+      <div class="font-label text-xs tracking-widest uppercase text-white/70 mt-1">Año de Erección</div>
+    </div>
+    <div>
+      <div class="stat-counter font-display text-3xl font-bold text-gold-antique">1966</div>
+      <div class="font-label text-xs tracking-widest uppercase text-white/70 mt-1">Elevación a Arquidiócesis</div>
+    </div>
+    <div>
+      <div class="stat-counter font-display text-3xl font-bold text-gold-antique">6</div>
+      <div class="font-label text-xs tracking-widest uppercase text-white/70 mt-1">Municipios</div>
+    </div>
+    <div>
+      <div class="stat-counter font-display text-3xl font-bold text-gold-antique">+127</div>
+      <div class="font-label text-xs tracking-widest uppercase text-white/70 mt-1">Años de Fe</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- MAIN CONTENT -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-gap space-y-section-gap">
+
+  <!-- ─── IGLESIA UNIVERSAL ─────────────────────────────────── -->
+  <section class="reveal grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center" id="iglesia-universal">
+    <!-- Text -->
+    <div class="lg:col-span-7 space-y-6">
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Comunión Universal</span>
+      <h2 class="font-headline text-3xl md:text-4xl font-bold text-crimson-deep leading-tight">Iglesia Universal</h2>
+      <div class="h-1 w-16 bg-gold-antique"></div>
+
+      <div class="space-y-4 font-body text-slate-warm leading-relaxed">
+        <p>
+          La Iglesia Católica tiene como único centro y cabeza a <strong class="text-on-surface">Jesucristo</strong>, el Hijo de Dios. Todo nuestro actuar, organización y misión pastoral nacen del encuentro vivo con Él, buscando hacer presente el Reino de Dios en la sociedad.
+        </p>
+        <p>
+          Nuestra Arquidiócesis de Maracaibo no es una entidad aislada, sino una porción del Pueblo de Dios integrada plenamente a la Iglesia Católica Universal, unida en comunión de fe, sacramentos y disciplina.
+        </p>
+        <p>
+          Caminamos en estricta fidelidad y comunión con el Obispo de Roma, el Papa, Sucesor de San Pedro y Vicario de Jesucristo en la tierra. Él es el principio y fundamento perpetuo y visible de la unidad de la Iglesia.
+        </p>
+      </div>
+
+      <!-- Feature pillars -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+        <div class="p-4 border-l-2 border-gold-antique bg-surface-container-low rounded-r-xl">
+          <h4 class="font-headline font-semibold text-crimson-deep mb-1">Centralidad en Cristo</h4>
+          <p class="font-body text-sm text-slate-warm">Todo nuestro actuar y misión pastoral nacen del encuentro vivo con Jesucristo, buscando hacer presente el Reino de Dios.</p>
+        </div>
+        <div class="p-4 border-l-2 border-gold-antique bg-surface-container-low rounded-r-xl">
+          <h4 class="font-headline font-semibold text-crimson-deep mb-1">Sede Apostólica</h4>
+          <p class="font-body text-sm text-slate-warm">Unidos en fe, sacramentos y disciplina con el Sucesor de San Pedro, principio perpetuo de unidad.</p>
+        </div>
+      </div>
+
+      <a class="inline-flex items-center gap-2 text-crimson-deep font-body font-bold hover:gap-4 transition-all group" href="https://www.vatican.va/" target="_blank" rel="noopener">
+        Sitio Web de la Santa Sede <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+      </a>
+    </div>
+
+    <!-- Image -->
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl">
+        <img
+          class="w-full h-full object-cover"
+          src="img/vaticano.jpg"
+          alt="El Vaticano"
+          onerror="this.src='https://placehold.co/600x750/003366/ffffff?text=Vaticano'"
+        >
+        <div class="absolute inset-0 bg-gradient-to-t from-crimson-deep/20 to-transparent pointer-events-none"></div>
+      </div>
+      <!-- Decorative accent -->
+      <div class="absolute -bottom-6 -left-6 w-44 h-44 bg-gold-antique/10 glass-panel border border-gold-antique/20 rounded-xl hidden lg:flex items-center justify-center p-0">
+        <img src="img/escudo_vaticano.png" alt="Escudo de la Iglesia Particular" class="w-full h-full object-contain">
+      </div>
+      <div class="absolute -top-4 -right-4 w-16 h-16 bg-crimson-deep/10 border border-crimson-deep/15 rounded-xl hidden lg:block"></div>
+    </div>
+  </section>
+
+  <!-- ─── TRADICIÓN Y DEVOCIÓN BENTO GRID ───────────────────── -->
+  <section class="reveal space-y-8" id="historia">
+    <div class="text-center max-w-2xl mx-auto">
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Raíces e Identidad</span>
+      <h2 class="font-headline text-3xl md:text-4xl font-bold text-crimson-deep mt-2">Tradición y Devoción</h2>
+      <div class="h-1 w-20 bg-gold-antique mx-auto mt-4"></div>
+      <p class="font-body text-slate-warm mt-4">Un legado que se extiende desde la antigua Diócesis del Zulia hasta la elevación a Arquidiócesis Metropolitana.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+
+      <!-- Historia Crónica Card (large) -->
+      <div class="md:col-span-8 bg-surface-container-low p-8 rounded-xl flex flex-col justify-between bento-card border border-outline-variant/30">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-crimson-deep/10 rounded-full flex items-center justify-center">
+              <span class="material-symbols-outlined text-crimson-deep">history_edu</span>
+            </div>
+            <h3 class="font-headline text-xl font-bold text-crimson-deep">Crónica de Nuestra Fe</h3>
+          </div>
+          <div class="space-y-3 font-body text-slate-warm leading-relaxed">
+            <p>
+              La historia de nuestra Iglesia local se remonta al <strong class="text-on-surface">28 de julio de 1897</strong>, cuando el Papa León XIII erigió la antigua <strong class="text-on-surface">Diócesis del Zulia</strong>, separando su territorio de la Diócesis de Mérida.
+            </p>
+            <p>
+              El 2 de enero de <strong class="text-on-surface">1953</strong>, cambió su nombre a Diócesis de Maracaibo. Gracias al profundo crecimiento en la fe y al dinamismo pastoral de la región occidental, el 30 de abril de <strong class="text-on-surface">1966</strong> el Papa San Pablo VI elevó la sede al rango de <strong class="text-on-surface">Arquidiócesis Metropolitana</strong>, siendo Monseñor Domingo Roa Pérez su primer Arzobispo.
+            </p>
+            <p>
+              Hoy en día, la Arquidiócesis congrega a cientos de miles de fieles y abarca una rica estructura parroquial, liderada por nuestro Arzobispo, impulsando la nueva evangelización y labor social en el estado Zulia.
+            </p>
+          </div>
+        </div>
+        <!-- Timeline stats -->
+        <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-outline-variant/20">
+          <div class="text-center">
+            <div class="font-display text-2xl font-bold text-gold-antique">1897</div>
+            <div class="font-label text-xs uppercase tracking-widest text-slate-warm/60 mt-1">Erección Diócesis Zulia</div>
+          </div>
+          <div class="text-center">
+            <div class="font-display text-2xl font-bold text-gold-antique">1953</div>
+            <div class="font-label text-xs uppercase tracking-widest text-slate-warm/60 mt-1">Renombre Maracaibo</div>
+          </div>
+          <div class="text-center">
+            <div class="font-display text-2xl font-bold text-gold-antique">1966</div>
+            <div class="font-label text-xs uppercase tracking-widest text-slate-warm/60 mt-1">Elevación Arquidiócesis</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- La Chinita Card -->
+      <div class="md:col-span-4 bg-crimson-deep text-white p-8 rounded-xl bento-card flex flex-col justify-end relative overflow-hidden group min-h-[280px]">
+        <img
+          class="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:scale-110 transition-transform duration-700"
+          src="img/la_chinita.jpg"
+          alt="Nuestra Señora del Rosario de Chiquinquirá"
+          onerror="this.src='https://placehold.co/400x500/5b000f/ffffff?text=La+Chinita'"
+        >
+        <div class="absolute inset-0 bg-gradient-to-t from-crimson-deep via-crimson-deep/60 to-transparent"></div>
+        <div class="relative z-10">
+          <span class="font-label text-xs text-gold-antique tracking-widest uppercase">Nuestra Patrona</span>
+          <h3 class="font-headline text-2xl font-bold mt-2 mb-2">La Chinita</h3>
+          <p class="text-white/80 font-body text-sm mb-4">Nuestra Señora del Rosario de Chiquinquirá, corazón espiritual y Patrona indiscutible del Zulia desde 1709.</p>
+          <a href="#patrona" class="inline-block bg-gold-antique text-crimson-deep px-4 py-2 rounded-lg font-label font-bold text-sm hover:brightness-110 transition-all">
+            Conoce el Milagro
+          </a>
+        </div>
+      </div>
+
+      <!-- Territorio Card -->
+      <div class="md:col-span-5 bg-warm-ivory p-8 rounded-xl bento-card border border-outline-variant/30">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-gold-antique text-2xl">map</span>
+          <h3 class="font-headline text-xl font-bold text-crimson-deep">Nuestro Territorio</h3>
+        </div>
+        <p class="font-body text-slate-warm mb-4">
+          La Arquidiócesis abarca un vasto y diverso territorio que incluye los municipios <strong class="text-on-surface">Maracaibo, San Francisco, Jesús Enrique Lossada, Mara, Almirante Padilla</strong> y <strong class="text-on-surface">La Cañada de Urdaneta</strong>.
+        </p>
+        <p class="font-body text-slate-warm text-sm mb-5">
+          Nuestro pueblo fiel se caracteriza por una profunda devoción mariana, alegría inconfundible y un fuerte apego a sus tradiciones, incluyendo las etnias indígenas Wayúu y Añú.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-surface-container px-3 py-1 rounded-full font-label text-xs text-slate-warm border border-outline-variant/30">Wayúu</span>
+          <span class="bg-surface-container px-3 py-1 rounded-full font-label text-xs text-slate-warm border border-outline-variant/30">Añú</span>
+          <span class="bg-surface-container px-3 py-1 rounded-full font-label text-xs text-slate-warm border border-outline-variant/30">Maracaibo</span>
+          <span class="bg-surface-container px-3 py-1 rounded-full font-label text-xs text-slate-warm border border-outline-variant/30">San Francisco</span>
+          <span class="bg-surface-container px-3 py-1 rounded-full font-label text-xs text-slate-warm border border-outline-variant/30">Mara</span>
+          <span class="bg-surface-container px-3 py-1 rounded-full font-label text-xs text-slate-warm border border-outline-variant/30">La Cañada</span>
+        </div>
+      </div>
+
+      <!-- Map image card -->
+      <div class="md:col-span-7 rounded-xl overflow-hidden bento-card relative min-h-[240px]">
+        <img
+          class="w-full h-full object-contain bg-white p-2"
+          src="img/mapa_arquidiocesis.webp"
+          alt="Mapa de la Arquidiócesis de Maracaibo"
+          onerror="this.src='https://placehold.co/800x480/e6e6e6/888?text=Mapa+Arquidiócesis'"
+        >
+        <div class="absolute inset-0 bg-crimson-deep/5 pointer-events-none"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NUESTRA PATRONA ───────────────────────────────────── -->
+  <section class="reveal grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center" id="patrona">
+    <!-- Image -->
+    <div class="lg:col-span-5 relative order-2 lg:order-1">
+      <div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl">
+        <img
+          class="w-full h-full object-cover"
+          src="img/la_chinita.jpg"
+          alt="Nuestra Señora del Rosario de Chiquinquirá - La Chinita"
+          onerror="this.src='https://placehold.co/500x640/7A1A22/ffffff?text=La+Chinita'"
+        >
+      </div>
+      <!-- Gold decorative block -->
+      <div class="absolute -bottom-5 -right-5 w-24 h-24 bg-gold-antique/15 border border-gold-antique/30 rounded-xl hidden lg:block glass-panel"></div>
+    </div>
+    <!-- Text -->
+    <div class="lg:col-span-7 space-y-6 order-1 lg:order-2">
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Patrona de la Arquidiócesis</span>
+      <h2 class="font-headline text-3xl md:text-4xl font-bold text-crimson-deep leading-tight">
+        Ntra. Sra. del Rosario de Chiquinquirá
+      </h2>
+      <div class="h-1 w-16 bg-gold-antique"></div>
+      <div class="space-y-4 font-body text-slate-warm leading-relaxed">
+        <p>
+          La venerada imagen de <strong class="text-on-surface">Nuestra Señora del Rosario de Chiquinquirá</strong>, cariñosamente llamada "La Chinita", es el corazón espiritual del Zulia y Patrona indiscutible de nuestra Arquidiócesis.
+        </p>
+        <p>
+          Cuenta la historia que en <strong class="text-on-surface">1709</strong>, en las orillas del Lago de Maracaibo, una humilde mujer encontró una pequeña tabla que llevó a su casa. Días después, el <strong class="text-on-surface">18 de noviembre</strong>, escuchó unos golpes que provenían del cuarto donde había colgado la tabla. Al asomarse, la vivienda se llenó de un gran resplandor: en la madera se había dibujado nítidamente la imagen de la Virgen de Chiquinquirá.
+        </p>
+        <p>
+          Desde aquel milagro de la renovación, hace más de tres siglos, la <strong class="text-on-surface">Basílica Santuario</strong> alberga la Reliquia, siendo centro de peregrinación continua y manifestación del profundo fervor mariano de todo el pueblo zuliano.
+        </p>
+      </div>
+      <!-- Feast date badge -->
+      <div class="inline-flex items-center gap-3 bg-gold-antique/10 border border-gold-antique/30 px-5 py-3 rounded-xl">
+        <span class="material-symbols-outlined text-gold-antique">event</span>
+        <div>
+          <div class="font-label text-xs text-gold-antique uppercase tracking-widest">Fiesta Patronal</div>
+          <div class="font-headline font-bold text-crimson-deep">18 de Noviembre</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ESTRUCTURA ECLESIAL ──────────────────────────────── -->
+  <section class="reveal space-y-8" id="organizacion">
+    <!-- Section header -->
+    <div class="flex justify-between items-end border-b border-outline-variant/30 pb-5">
+      <div>
+        <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Gobierno Diocesano</span>
+        <h2 class="font-headline text-3xl md:text-4xl font-bold text-crimson-deep mt-1">Estructura Eclesial</h2>
+        <p class="font-body text-slate-warm mt-2">Gobierno, vicarias y presbiterio al servicio de la grey.</p>
+      </div>
+      <div class="hidden md:block">
+        <a href="directorio.html" class="inline-flex items-center gap-2 bg-surface-container-high text-on-surface px-5 py-2.5 rounded-xl font-label text-sm hover:bg-gold-antique/20 transition-all border border-outline-variant/20">
+          <span class="material-symbols-outlined text-[18px]">map</span> Directorio Parroquial
+        </a>
+      </div>
+    </div>
+
+    <!-- Vicarios Episcopales -->
+    <div>
+      <h3 class="font-headline text-xl font-semibold text-crimson-deep mb-5">Vicarios Episcopales</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter">
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-warm-ivory transition-all hover:border-gold-antique/40 hover:shadow-md">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-crimson-deep/8 rounded-full flex items-center justify-center text-crimson-deep shrink-0">
+              <span class="material-symbols-outlined">account_balance</span>
+            </div>
+            <div>
+              <h4 class="font-headline font-semibold text-crimson-deep text-base">Vicario General</h4>
+              <p class="font-body font-bold text-on-surface mt-1">Pbro. Jesús Enrique Hernández</p>
+              <p class="font-label text-xs text-slate-warm mt-0.5 tracking-wide">Moderador de la Curia</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-warm-ivory transition-all hover:border-gold-antique/40 hover:shadow-md">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-crimson-deep/8 rounded-full flex items-center justify-center text-crimson-deep shrink-0">
+              <span class="material-symbols-outlined">explore</span>
+            </div>
+            <div>
+              <h4 class="font-headline font-semibold text-crimson-deep text-base">Vic. Episcopal Maracaibo-Oeste</h4>
+              <p class="font-body font-bold text-on-surface mt-1">Pbro. Jesús Sandoval</p>
+              <p class="font-label text-xs text-slate-warm mt-0.5 tracking-wide">Territorio Pastoral</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placeholder for additional vicars -->
+        <div class="bg-surface-container-low border border-dashed border-outline-variant/40 p-6 rounded-xl flex items-center gap-4 text-slate-warm/60">
+          <span class="material-symbols-outlined text-2xl">add_circle</span>
+          <p class="font-label text-sm italic">Añadir otros vicarios territoriales y funcionales según aplique</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Presbiterio Arquidiocesano -->
+    <div class="bg-white rounded-xl shadow-sm border border-warm-ivory overflow-hidden">
+      <!-- Card header -->
+      <div class="bg-surface-container-low px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-outline-variant/15">
+        <div>
+          <h3 class="font-headline text-xl font-bold text-crimson-deep">Presbiterio Arquidiocesano</h3>
+          <p class="font-body text-sm text-slate-warm mt-0.5">Listado oficial de sacerdotes incardinados al servicio de la Arquidiócesis de Maracaibo.</p>
+        </div>
+        <div class="relative w-full sm:w-64 shrink-0">
+          <input
+            id="priest-search"
+            class="w-full bg-white border border-outline-variant/40 rounded-xl py-2.5 px-4 pr-10 font-body text-sm focus:ring-2 focus:ring-gold-antique focus:border-gold-antique outline-none transition-all"
+            placeholder="Buscar sacerdote..."
+            type="text"
+          >
+          <span class="material-symbols-outlined absolute right-3 top-2.5 text-slate-warm text-[20px]">search</span>
+        </div>
+      </div>
+
+      <!-- Priest grid -->
+      <div class="p-6 clero-grid gap-y-4 gap-x-6 max-h-[520px] overflow-y-auto" id="priest-grid">
+        <!-- Priest items -->
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">AI</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Adelmo Irene</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">AR</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Alejandro Rincón Quiroz</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">AR</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Alfonso Rodríguez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">AS</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Andry Sánchez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">AJ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Andrés de Jesús Afanador Rodríguez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">CJ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Carlos José Reyes</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">CQ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Carlos Quiva</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">DM</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Daigel Medina</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">DP</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Dainer Prieto</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">DG</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Danilo González</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">DH</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Danilo Humberto Calderón Matheus</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">DB</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Dilmer Báez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">DJ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Dionni José Ríos Ríos</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">EJ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Edgar J. Doria M</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">EJ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Eduardo José Daboin Bermúdez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">ES</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Eleuterio Segundo Cuevas Pereira</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">EA</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Ender Alexander Castillo Montoya</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">EA</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Engelbert Alfredo Jackson Carrasco</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">ER</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Enrique Rojas Peña</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">EP</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Evelio Pérez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">FM</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Fabricio Medina</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">FA</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Francisco Antonio Niño Correa</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">FJ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Francisco José Núñez Larez</p>
+            <p class="font-label text-xs text-slate-warm">Diácono</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">FO</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Francisco Ortiz Bran</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">GP</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Germán Palmar</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">HJ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Hebert de Jesús Rivera Cañizález</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">HT</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Henry Tapia</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">HO</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Horacio</p>
+            <p class="font-label text-xs text-slate-warm">Diácono</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">HR</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Héctor de los Reyes Bermúdez C</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JA</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Jesús Alfredo Serrano</p>
+            <p class="font-label text-xs text-slate-warm">Diácono</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JC</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Jesús Colina</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JS</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Jesús Sandoval</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JV</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Jesús Vásquez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JA</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Jorge A. Dos Pasos</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JD</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Jorge David Sánchez Urdaneta</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JE</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Jorge Enrique Rodríguez González</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JA</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">José Andrés Bravo Henríquez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JA</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">José Antonio Díaz</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JD</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">José Domingo Alvarado</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JE</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">José Enrique Varela</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JG</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">José G. Sánchez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JG</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">José Gregorio Andrade Vecino</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JG</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">José Gregorio Montenegro Fereira</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JG</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">José Gregorio Pineda</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JM</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">José Miguel Hernández</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JP</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">José Pineda</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JV</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">José Vivas Vivas</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JC</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">José del Carmen Chirinos</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JC</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Juan Carlos Fernández</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JE</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Juan Esteban Padilla Ponce</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JJ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Juan José Navarro Robertis</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">JP</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Juan Pablo Hernández</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">LZ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Laudi Zambrano</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">LJ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Lenín José Naranjo Flores</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">LL</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Leonardo López</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">LM</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Leonardo Martínez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">MG</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Max Gregorio Guerere Rodríguez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">MA</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Miguel Antonio Ospino</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">NJ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Nedward Jorge Andrade</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">NL</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Néstor Luis Pérez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">NP</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Néstor Primera</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">OM</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Oswaldo Matheus González</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">OE</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Ovidio Eduardo Duarte Torres</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">PC</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Pedro Castellano</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">PC</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Pedro Colmenares</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">PE</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Pedro Enrique Paredes Ramírez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">PC</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Poncs Capell Capell</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">RL</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Rafael López</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">RM</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Rafael Morales</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">RA</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Rafael Ángel Villalobos Carmona</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">RR</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Randy Romero</p>
+            <p class="font-label text-xs text-slate-warm">Diácono</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">RM</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Raúl Moreno</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">RR</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Raúl R. Montoya Medero</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">RO</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Renzo O. Gotera</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">RR</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Ricardo Riaño</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">RG</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Richard Garrillo</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">RA</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Robert Alberto Álvarez Pérez</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">RS</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Roberto Segundo Morales Carruyo</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">SX</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Santos Xavier Silva Blanco</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">SA</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Silverio Antonio Osorio Mora</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">VS</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Valentín Segundo Rodríguez López</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">WC</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">William Chiquinquirá Ortega Colmenares</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">WO</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Wilmer Olano</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">YJ</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Yonder Javier Urdaneta Hiza</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+        <div class="priest-item flex items-center gap-3 border-b border-outline-variant/10 pb-3 group cursor-default">
+          <div class="priest-avatar shrink-0">YM</div>
+          <div>
+            <p class="font-body font-bold text-on-surface text-sm group-hover:text-crimson-deep transition-colors">Yonys Mendoza</p>
+            <p class="font-label text-xs text-slate-warm">Presbítero</p>
+          </div>
+        </div>
+
+
+        <!-- No results message (hidden by default) -->
+        <div id="no-results" class="hidden col-span-full text-center py-12">
+          <span class="material-symbols-outlined text-4xl text-slate-warm/30">search_off</span>
+          <p class="font-body text-slate-warm mt-2">No se encontraron sacerdotes con ese nombre.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CALL TO ACTION / SINODAL ─────────────────────────── -->
+  <section class="reveal">
+    <div class="bg-crimson-deep rounded-2xl p-10 md:p-14 text-center relative overflow-hidden">
+      <!-- Decorative circles -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-gold-antique/10 rounded-full translate-x-32 -translate-y-32 pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -translate-x-24 translate-y-24 pointer-events-none"></div>
+      <div class="relative z-10">
+        <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Iglesia Sinodal</span>
+        <h2 class="font-headline text-3xl md:text-4xl font-bold text-white mt-3 mb-4">Una Iglesia en Salida al Encuentro</h2>
+        <p class="font-body text-white/80 max-w-xl mx-auto mb-8">
+          Caminamos juntos como una Iglesia sinodal, buscando llegar a todas las periferias y llevando la buena noticia del Evangelio a cada hogar zuliano.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="pastoral.html" class="inline-flex items-center justify-center gap-2 bg-gold-antique text-crimson-deep px-7 py-3.5 rounded-xl font-label font-bold hover:brightness-105 transition-all">
+            <span class="material-symbols-outlined text-[18px]">groups</span>
+            Áreas Pastorales
+          </a>
+          <a href="directorio.html" class="inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white px-7 py-3.5 rounded-xl font-label font-bold hover:bg-white/10 transition-all">
+            <span class="material-symbols-outlined text-[18px]">map</span>
+            Directorio de Parroquias
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer injected by JS -->
+<div id="stitch-footer"></div>
+
+<script src="js/stitch-components.js"></script>
+<script>
+  StitchLayout.init({ activePage: 'arquidiocesis' });
+</script>
+
+<!-- Priest search functionality -->
+<script>
+  (function() {
+    const searchInput = document.getElementById('priest-search');
+    const grid = document.getElementById('priest-grid');
+    const noResults = document.getElementById('no-results');
+
+    if (!searchInput || !grid) return;
+
+    searchInput.addEventListener('input', function() {
+      const query = this.value.trim().toLowerCase();
+      const items = grid.querySelectorAll('.priest-item');
+      let visible = 0;
+
+      items.forEach(function(item) {
+        const name = item.querySelector('p:first-child')?.textContent.toLowerCase() || '';
+        const role = item.querySelector('p:last-child')?.textContent.toLowerCase() || '';
+        const matches = !query || name.includes(query) || role.includes(query);
+        item.style.display = matches ? '' : 'none';
+        if (matches) visible++;
+      });
+
+      noResults.classList.toggle('hidden', visible > 0 || !query);
+    });
+  })();
+</script>
+
+</body></html>

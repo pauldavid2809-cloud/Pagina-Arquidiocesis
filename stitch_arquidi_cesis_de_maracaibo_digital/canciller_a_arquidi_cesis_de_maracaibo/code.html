@@ -1,0 +1,383 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Cancillería Arquidiocesana | Arquidiócesis de Maracaibo</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#baeaff",
+                    "on-primary-container": "#ff8888",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#7a1a22",
+                    "on-surface-variant": "#574241",
+                    "tertiary-container": "#004558",
+                    "secondary": "#775a00",
+                    "secondary-fixed": "#ffdf98",
+                    "surface-dim": "#dbdad5",
+                    "crimson-deep": "#7A1A22",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#fbf9f4",
+                    "inverse-surface": "#30312e",
+                    "surface-container": "#f0eee9",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "slate-warm": "#4A4543",
+                    "surface-container-highest": "#e4e2dd",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004d62",
+                    "primary": "#5b000f",
+                    "inverse-on-surface": "#f2f1ec",
+                    "secondary-container": "#fece57",
+                    "primary-fixed": "#ffdad8",
+                    "on-secondary-fixed": "#251a00",
+                    "background": "#fbf9f4",
+                    "inverse-primary": "#ffb3b1",
+                    "on-tertiary-container": "#6db4d0",
+                    "tertiary-fixed-dim": "#89d0ed",
+                    "on-primary-fixed-variant": "#842229",
+                    "primary-fixed-dim": "#ffb3b1",
+                    "on-secondary-container": "#735700",
+                    "lake-azure": "#87CEEB",
+                    "surface-variant": "#e4e2dd",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "surface-container-low": "#f5f3ee",
+                    "tertiary": "#002d3b",
+                    "surface-tint": "#a43a3e",
+                    "secondary-fixed-dim": "#eec14b",
+                    "outline": "#8a7170",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#001f29",
+                    "on-background": "#1b1c19",
+                    "on-primary-fixed": "#410008",
+                    "on-surface": "#1b1c19",
+                    "outline-variant": "#ddc0be",
+                    "surface-container-high": "#eae8e3",
+                    "warm-ivory": "#F9F7F2",
+                    "surface": "#fbf9f4",
+                    "gold-antique": "#C59B27"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-md": "1rem",
+                    "stack-lg": "2rem",
+                    "stack-sm": "0.5rem",
+                    "section-gap": "5rem",
+                    "margin-mobile": "1rem",
+                    "gutter": "1.5rem",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "quote-editorial": ["Cormorant Garamond"],
+                    "label-md": ["Poppins"],
+                    "display-lg": ["Rotis Sans Serif", "sans-serif"],
+                    "body-md": ["Poppins"],
+                    "headline-lg-mobile": ["Rotis Sans Serif", "sans-serif"],
+                    "headline-lg": ["Rotis Sans Serif", "sans-serif"],
+                    "headline-md": ["Rotis Sans Serif", "sans-serif"],
+                    "body-lg": ["Poppins"]
+            },
+            "fontSize": {
+                    "quote-editorial": ["22px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        @font-face {
+            font-family: 'Rotis Sans Serif';
+            src: local('Rotis Sans Serif'), local('RotisSansSerif');
+            font-weight: 400 700;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(74, 69, 67, 0.1);
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(249, 247, 242, 0.95), rgba(249, 247, 242, 0.7)), url('https://images.unsplash.com/photo-1548705085-101177834f47?q=80&w=2560&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="bg-surface/85 backdrop-blur-md dark:bg-surface-dim/80 docked full-width top-0 sticky z-50 shadow-sm dark:shadow-none border-b border-warm-ivory/20" id="top-nav">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-4"><a href="/" class="flex items-center gap-4">
+  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDlr44pz9FWGgSIEUvFBrbqY7l7w3bS-_-e6izQbFG2nWSSAZ9bfgvRZS-ppZ8tvFsxLQtiRMzTEclke6hITXFc_QOJBBf0S2CjyQXeeV8tayJBl-JA3kwByMPwORjbF9E1ynuQw65-61EJkO6XJqDrcQ3kTNeMzZqTBrV64hwsZNdECfkVxGWlaEGb3_gu-_4AafPWcKwKf-HGBf8sboHpf8G8BwOfrN52IX_AIajf8dr8WktosxUvFgCItqTgO5_tQ" alt="Logo Arquidiócesis de Maracaibo" class="h-10 w-auto object-contain">
+  <div class="flex flex-col justify-center">
+    <span class="font-headline-md text-headline-md font-bold text-crimson-deep dark:text-primary-fixed tracking-wider leading-none uppercase">Arquidiócesis</span>
+    <span class="font-headline-md text-headline-md font-bold text-crimson-deep dark:text-primary-fixed tracking-wider leading-none uppercase">de Maracaibo</span>
+  </div>
+</a></div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Arquidiócesis</a>
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Pastoral</a>
+<a class="font-label-md text-label-md text-crimson-deep border-b-2 border-gold-antique pb-1 font-bold" href="#">Cancillería</a>
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Noticias</a>
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Donaciones</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden lg:block bg-crimson-deep text-on-primary px-6 py-2 rounded-lg font-label-md text-label-md hover:bg-primary transition-all active:scale-95 duration-150">Portal Clero</button>
+<span class="material-symbols-outlined text-crimson-deep cursor-pointer" data-icon="account_circle">account_circle</span>
+<button class="md:hidden material-symbols-outlined" onclick="toggleMobileMenu()">menu</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="hero-gradient py-24 md:py-32 relative overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter relative z-10 fade-in-up">
+<div class="max-w-2xl">
+<span class="inline-block bg-gold-antique/10 text-gold-antique px-4 py-1 rounded-full font-label-md text-label-md mb-6 uppercase tracking-widest">Institución</span>
+<h1 class="font-display-lg text-display-lg text-primary mb-6 break-all">Cancillería Arquidiocesana</h1>
+<p class="font-body-lg text-body-lg text-slate-warm mb-8">Atención, información y gestión de documentos sacramentales y administrativos con la solemnidad y eficiencia que nuestra Iglesia merece.</p>
+<div class="flex flex-wrap gap-4">
+<a class="bg-crimson-deep text-on-primary px-8 py-4 rounded-lg font-label-md text-label-md shadow-lg hover:shadow-crimson-deep/20 transition-all" href="#formatos">Ver Formatos</a>
+<a class="bg-surface/50 backdrop-blur-sm border border-outline-variant text-slate-warm px-8 py-4 rounded-lg font-label-md text-label-md hover:bg-surface transition-all" href="#contacto">Contacto Directo</a>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-gap">
+<!-- Services & Schedule Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-section-gap">
+<!-- Lead Card -->
+<div class="md:col-span-8 bg-surface-container-low rounded-xl p-8 md:p-12 border border-warm-ivory relative overflow-hidden bento-card">
+<div class="relative z-10">
+<h2 class="font-headline-lg text-headline-lg text-crimson-deep mb-6 break-all">Servicios de Secretaría y Notaría</h2>
+<p class="font-body-lg text-body-lg text-slate-warm mb-8 max-w-xl">La Cancillería presta un servicio centralizado para la atención de los fieles, sacerdotes y parroquias en toda la región zuliana, velando por la correcta gestión administrativa y notarial de la Iglesia.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-gold-antique text-3xl" data-icon="history_edu">history_edu</span>
+<div>
+<h4 class="font-label-md text-label-md text-primary mb-1">Fe Pública</h4>
+<p class="text-sm text-on-surface-variant font-body-md">Damos validez oficial a documentos eclesiásticos y actas sacramentales.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-gold-antique text-3xl" data-icon="gavel">gavel</span>
+<div>
+<h4 class="font-label-md text-label-md text-primary mb-1">Gestión Canónica</h4>
+<p class="text-sm text-on-surface-variant font-body-md">Tramitación de dispensas, licencias y decretos del Arzobispado.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute -right-20 -bottom-20 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[300px]" data-icon="church">church</span>
+</div>
+</div>
+<!-- Contact/Schedule Card -->
+<div class="md:col-span-4 bg-crimson-deep text-on-primary rounded-xl p-8 flex flex-col justify-between bento-card" id="contacto">
+<div>
+<h3 class="font-headline-md text-headline-md mb-6">Información de Contacto</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined mt-1" data-icon="person">person</span>
+<div>
+<p class="text-xs opacity-70 font-label-md">Canciller - Secretario</p>
+<p class="font-bold font-body-md">Pbro. Mons. Jesús Hernández</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined mt-1" data-icon="phone">phone</span>
+<div>
+<p class="text-xs opacity-70 font-label-md">Teléfonos</p>
+<p class="font-bold font-body-md">0261-7225351</p>
+<p class="font-bold font-body-md">0412-0000000</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined mt-1" data-icon="mail">mail</span>
+<div>
+<p class="text-xs opacity-70 font-label-md">Correo Electrónico</p>
+<p class="font-bold break-all font-body-md">cancilleria@arquidiocesisdemaracaibo.org</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-white/10">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-gold-antique" data-icon="schedule">schedule</span>
+<h4 class="font-label-md text-label-md">Horario de Atención</h4>
+</div>
+<p class="text-sm opacity-90 font-body-md">Lunes a Viernes: 8:30 AM - 12:30 PM</p>
+</div>
+</div>
+<!-- Location Card (Asymmetric) -->
+<div class="md:col-span-12 lg:col-span-5 bg-surface-container-high rounded-xl p-8 bento-card flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-crimson-deep" data-icon="location_on">location_on</span>
+<h3 class="font-headline-md text-headline-md">Ubicación</h3>
+</div>
+<p class="font-body-md text-body-md text-slate-warm mb-6">Sede Arzobispado, Calle 95 entre Avenidas 2 y 3. Frente a la Plaza Bolívar. Maracaibo, Estado Zulia.</p>
+<div class="rounded-lg overflow-hidden h-48 bg-slate-200">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="A detailed map-like visualization of a classic city grid in Maracaibo, focusing on the historic district with elegant architectural outlines. The lighting is bright and crisp, emphasizing a clean, institutional urban layout with soft ivory and slate tones to match the sacred modernism style." src="https://lh3.googleusercontent.com/aida/AP1WRLtoFtvKpxeRUJTnktCb30wsi6dxqtOQD_sbq9n9aX22N4kbjrsWKSylmp-NNC4nFIqD5gMGyPyTlDMCGFSlPYyOWKY6vQiqjXgXMGiCcbR_ANbuzhHL2tFX9N6wm05wRsZmCFVY_Lf7Gz8316XHap_0DLccydl5g1KR7W4xwF93O3OO7PEjvZytwmyMkeaq6YMiA_968ASsMy1OaDLaV1fbEq2JCpdP8DiqAGv8qibJn63-BKrn71MmqGU">
+</div>
+</div>
+<!-- Chancery Image Card -->
+<div class="md:col-span-12 lg:col-span-7 rounded-xl overflow-hidden bento-card min-h-[300px] relative">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="The elegant, high-ceilinged interior of a historic ecclesiastical office in Maracaibo. Natural light streams through tall windows, illuminating polished dark wood desks and organized archival shelves. The atmosphere is quiet, intellectual, and professional, blending colonial architectural elements with modern administrative clarity." src="https://lh3.googleusercontent.com/aida/AP1WRLvqdhZr0__CkyBsp1Uy2KLe8m6lp1eUMxSfzWQA9CqgUJ98rZj4ze53mnsKm-By8puQpgy6IlN56JRFbmtt2VHJ9J4l7Mml_MgZ-16V5o1Vy4CNK8R2gm2W5lvnSN_PYIPXf2ocZ_GwL9jPWvQ0kS0ek9jDyLIfqekVU8Iwk38wZ9zrTk9YvmAaSFtHs2yNQDniti3jEKgqY2n9CaFhtEtUOI-ui5sYKfeclKEr0a2fOsKLVtI78BFcPw">
+<div class="absolute inset-0 bg-gradient-to-t from-crimson-deep/60 to-transparent flex items-end p-8">
+<p class="text-on-primary font-quote-editorial italic text-quote-editorial">"Servicio administrativo para la gloria de Dios y el bien de su pueblo."</p>
+</div>
+</div>
+</div>
+<!-- Downloads Section -->
+<section class="scroll-mt-24" id="formatos">
+<div class="text-center mb-12">
+<h2 class="font-display-lg text-headline-lg text-primary mb-4 break-all">Descarga de Formatos y Planillas</h2>
+<p class="max-w-2xl mx-auto text-slate-warm font-body-md">Descargue las planillas necesarias para sus solicitudes. Una vez impresas y documentadas, preséntelas en nuestra oficina central.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1: Partidas -->
+<div class="bg-white rounded-xl p-8 border border-outline-variant/30 flex flex-col items-start bento-card">
+<div class="w-12 h-12 bg-warm-ivory rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-gold-antique" data-icon="description">description</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-crimson-deep mb-4">Corrección de Partidas</h3>
+<p class="text-sm text-slate-warm mb-8 flex-grow font-body-md">Formato para solicitar la enmienda administrativa o subsanación de datos en actas de Bautismo, Confirmación o Matrimonio.</p>
+<button class="w-full flex items-center justify-center gap-2 border-2 border-crimson-deep text-crimson-deep py-3 rounded-lg font-label-md text-label-md hover:bg-crimson-deep hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                    Descargar Formato (PDF)
+                </button>
+</div>
+<!-- Card 2: Dispensas -->
+<div class="bg-white rounded-xl p-8 border border-outline-variant/30 flex flex-col items-start bento-card">
+<div class="w-12 h-12 bg-warm-ivory rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-gold-antique" data-icon="verified">verified</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-crimson-deep mb-4">Dispensas Matrimoniales</h3>
+<p class="text-sm text-slate-warm mb-8 flex-grow font-body-md">Planilla de solicitud de dispensas canónicas para impedimentos matrimoniales (disparidad de culto, mixta religión, etc.).</p>
+<button class="w-full flex items-center justify-center gap-2 border-2 border-crimson-deep text-crimson-deep py-3 rounded-lg font-label-md text-label-md hover:bg-crimson-deep hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                    Descargar Formato (PDF)
+                </button>
+</div>
+<!-- Card 3: Búsqueda -->
+<div class="bg-white rounded-xl p-8 border border-outline-variant/30 flex flex-col items-start bento-card">
+<div class="w-12 h-12 bg-warm-ivory rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-gold-antique" data-icon="manage_search">manage_search</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-crimson-deep mb-4">Búsqueda en Archivo</h3>
+<p class="text-sm text-slate-warm mb-8 flex-grow font-body-md">Solicitud oficial para la investigación y búsqueda de actas sacramentales antiguas en el Archivo Histórico Arquidiocesano.</p>
+<button class="w-full flex items-center justify-center gap-2 border-2 border-crimson-deep text-crimson-deep py-3 rounded-lg font-label-md text-label-md hover:bg-crimson-deep hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                    Descargar Formato (PDF)
+                </button>
+</div>
+</div>
+</section>
+<!-- Informational Banner -->
+<div class="mt-section-gap bg-lake-azure/10 border-l-4 border-lake-azure p-8 rounded-r-xl flex flex-col md:flex-row items-center gap-6">
+<span class="material-symbols-outlined text-lake-azure text-5xl" data-icon="info">info</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary mb-2">Procedimiento de Entrega</h4>
+<p class="text-slate-warm font-body-md">Toda solicitud debe ser consignada físicamente en la ventanilla de atención. Asegúrese de adjuntar las copias de identificación y documentos de respaldo requeridos en cada planilla.</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant/30 w-full py-stack-lg mt-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<span class="font-headline-md text-headline-md text-crimson-deep block mb-4">Arquidiócesis de Maracaibo</span>
+<p class="font-body-md text-body-md text-on-surface opacity-80">Soberana e Intelectual. Sagrado Modernismo desde el corazón del Zulia.</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Enlaces Rápidos</h4>
+<ul class="space-y-4">
+<li class=""><a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-all underline-offset-4 decoration-gold-antique hover:underline" href="#">Privacidad</a></li>
+<li class=""><a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-all underline-offset-4 decoration-gold-antique hover:underline" href="#">Términos</a></li>
+<li class=""><a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-all underline-offset-4 decoration-gold-antique hover:underline" href="#">Ambientes Seguros</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Institución</h4>
+<ul class="space-y-4">
+<li class=""><a class="font-label-md text-label-md text-gold-antique font-bold" href="#">Cancillería</a></li>
+<li class=""><a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-all underline-offset-4 decoration-gold-antique hover:underline" href="#">Portal del Clero</a></li>
+<li class=""><a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-all underline-offset-4 decoration-gold-antique hover:underline" href="#">Directorio</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Contacto</h4>
+<p class="font-body-md text-body-md text-on-surface mb-4">Av. 4 con calle 95, frente a la Plaza Bolívar. Maracaibo.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-crimson-deep cursor-pointer" data-icon="alternate_email">alternate_email</span>
+<span class="material-symbols-outlined text-crimson-deep cursor-pointer" data-icon="language">language</span>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-16 pt-8 border-t border-outline-variant/20 text-center">
+<p class="font-body-md text-body-md text-on-surface/60 opacity-90">© 2024 Arquidiócesis de Maracaibo. Todos los derechos reservados. Sagrado Modernismo.</p>
+</div>
+</footer>
+<script>
+    function toggleMobileMenu() {
+        console.log("Toggle mobile menu");
+    }
+
+    // Simple scroll reveal
+    window.addEventListener('scroll', () => {
+        const reveals = document.querySelectorAll('.bento-card');
+        reveals.forEach(reveal => {
+            const windowHeight = window.innerHeight;
+            const revealTop = reveal.getBoundingClientRect().top;
+            const revealPoint = 150;
+            if (revealTop < windowHeight - revealPoint) {
+                reveal.classList.add('opacity-100');
+                reveal.classList.remove('opacity-0');
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+</body></html>

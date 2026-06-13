@@ -1,0 +1,681 @@
+<!DOCTYPE html><html class="light" lang="es">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Noticias | Arquidiócesis de Maracaibo</title>
+<meta content="Actualidad y noticias de la Arquidiócesis de Maracaibo. Infórmese sobre ordenaciones sacerdotales, actividades caritativas y la vida de nuestra Iglesia." name="description">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/stitch-config.js"></script>
+<!-- Core Styles -->
+<link href="css/stitch-core.css" rel="stylesheet">
+<style>
+  /* ── News Grid Layout ───────────────────────────────── */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* ── Controls Bar ───────────────────────────────────── */
+  .controls-bar {
+    position: sticky;
+    top: 80px;
+    z-index: 40;
+    margin-bottom: 2rem;
+  }
+
+  .controls-inner {
+    background: rgba(251, 249, 244, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(221, 192, 190, 0.3);
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 16px rgba(122, 26, 34, 0.06);
+  }
+
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .search-wrap .material-symbols-outlined {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8a7170;
+    font-size: 18px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    background: #F9F7F2;
+    border: 1px solid rgba(221, 192, 190, 0.5);
+    border-radius: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #1b1c19;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-input:focus {
+    border-color: #C59B27;
+    box-shadow: 0 0 0 2px rgba(197, 155, 39, 0.15);
+  }
+
+  .search-input::placeholder {
+    color: #8a7170;
+  }
+
+  /* ── Filter Pills ───────────────────────────────────── */
+  .filter-pills {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .filter-pills::-webkit-scrollbar { display: none; }
+
+  .pill {
+    white-space: nowrap;
+    padding: 0.375rem 1rem;
+    border-radius: 9999px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    background: #e4e2dd;
+    color: #4A4543;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .pill:hover {
+    background: #F9F7F2;
+    color: #7A1A22;
+  }
+
+  .pill.active {
+    background: #7A1A22;
+    color: #ffffff;
+  }
+
+  .results-count {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: #8a7170;
+    white-space: nowrap;
+    margin-left: auto;
+  }
+
+  .results-count strong {
+    color: #7A1A22;
+    font-weight: 600;
+  }
+
+  /* ── Featured Article ───────────────────────────────── */
+  .news-featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: rgba(251, 249, 244, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(221, 192, 190, 0.15);
+    box-shadow: 0 8px 32px rgba(122, 26, 34, 0.08);
+    text-decoration: none;
+    transition: box-shadow 0.3s, transform 0.3s;
+    margin-bottom: 2.5rem;
+  }
+
+  .news-featured:hover {
+    box-shadow: 0 16px 48px rgba(122, 26, 34, 0.14);
+    transform: translateY(-2px);
+  }
+
+  .featured-img {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+  }
+
+  .featured-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+
+  .news-featured:hover .featured-img img {
+    transform: scale(1.04);
+  }
+
+  .badge-featured {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: #C59B27;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 9999px;
+  }
+
+  .featured-body {
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .featured-body h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #7A1A22;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .featured-body .excerpt {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #4A4543;
+    line-height: 1.65;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ig-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #7A1A22;
+    margin-top: 0.5rem;
+    transition: gap 0.2s;
+  }
+
+  .news-featured:hover .ig-link {
+    gap: 0.65rem;
+  }
+
+  /* ── News Date ──────────────────────────────────────── */
+  .news-date {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #C59B27;
+    text-transform: capitalize;
+  }
+
+  /* ── News Cards Grid ────────────────────────────────── */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .news-card {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: rgba(251, 249, 244, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(221, 192, 190, 0.15);
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .news-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(122, 26, 34, 0.1);
+  }
+
+  .card-img {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .news-card:hover .card-img img {
+    transform: scale(1.06);
+  }
+
+  .card-body {
+    padding: 1.25rem 1.25rem 0.75rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .card-body h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #7A1A22;
+    line-height: 1.4;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-body .excerpt {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: #4A4543;
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    padding: 0.75rem 1.25rem 1rem;
+    border-top: 1px solid rgba(221, 192, 190, 0.2);
+  }
+
+  .card-footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #7A1A22;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: gap 0.2s;
+  }
+
+  .card-footer a:hover {
+    gap: 0.65rem;
+  }
+
+  /* ── State Box (loading / empty) ────────────────────── */
+  .state-box {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    color: #8a7170;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .state-box h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #7A1A22;
+    margin-bottom: 0.5rem;
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(197, 155, 39, 0.2);
+    border-top-color: #C59B27;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 1rem;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ── Responsive ─────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .news-featured {
+      grid-template-columns: 1fr;
+    }
+    .featured-body {
+      padding: 1.5rem;
+    }
+    .featured-body h3 {
+      font-size: 20px;
+    }
+    .controls-inner {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .results-count {
+      margin-left: 0;
+    }
+  }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body">
+
+<!-- Navbar injected by JS -->
+<div id="stitch-navbar"></div>
+
+<!-- ── Page Hero ─────────────────────────────────────────── -->
+<section class="relative overflow-hidden bg-crimson-deep py-20 md:py-28">
+  <!-- Background texture -->
+  <div class="absolute inset-0 opacity-10" style="background-image: url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C59B27' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\");"></div>
+  <div class="relative max-w-container-max mx-auto px-margin-mobile md:px-gutter text-center reveal">
+    <!-- WhatsApp Canal CTA badge -->
+    <a href="https://whatsapp.com/channel/0029VaWIIPn1t90ixgBx9u1L" target="_blank" rel="noopener"
+       class="inline-flex items-center gap-2 bg-[#25D366] text-white px-5 py-2 rounded-full font-label text-[13px] font-bold hover:brightness-110 active:scale-95 transition-all mb-6 shadow-lg">
+      <span class="material-symbols-outlined text-[18px]">chat</span>
+      Canal Oficial de WhatsApp · Suscribirse
+    </a>
+    <!-- Section label -->
+    <div class="mb-3">
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Comunicación Oficial</span>
+    </div>
+    <h1 class="font-headline text-headline-lg-mobile md:text-headline-lg text-white mb-4">
+      Noticias y Actualidad
+    </h1>
+    <div class="h-1 w-20 bg-gold-antique mx-auto mb-6"></div>
+    <p class="font-body text-body-lg text-warm-ivory/85 max-w-2xl mx-auto">
+      Siga el acontecer pastoral, comunicados oficiales, nombramientos y eventos de la Iglesia en Maracaibo.
+    </p>
+  </div>
+</section>
+
+<!-- ── Main News Section ──────────────────────────────────── -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-gap">
+
+  <!-- Controls Sticky Bar -->
+  <div class="controls-bar reveal">
+    <div class="controls-inner">
+      <!-- Search -->
+      <div class="search-wrap">
+        <span class="material-symbols-outlined">search</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Buscar noticias…">
+      </div>
+      <!-- Month Filter Pills -->
+      <div class="filter-pills" id="filterPills">
+        <button class="pill active" data-month="all">Todas</button>
+      </div>
+      <!-- Count -->
+      <span class="results-count"><strong id="countNum">—</strong> noticias registradas</span>
+    </div>
+  </div>
+
+  <!-- Featured Article Container -->
+  <div id="featured" class="reveal"></div>
+
+  <!-- News Grid -->
+  <div id="newsGrid" class="news-grid reveal">
+    <div class="state-box">
+      <div class="spinner"></div>
+      <p>Cargando últimas publicaciones oficiales…</p>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── WhatsApp CTA Banner ────────────────────────────────── -->
+<section class="bg-surface-container py-16 border-t border-outline-variant/20 reveal">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+    <div class="bg-white rounded-2xl p-10 flex flex-col md:flex-row items-center justify-between gap-8 border border-outline-variant/20 shadow-sm">
+      <div class="max-w-2xl">
+        <span class="font-label text-sm text-gold-antique tracking-widest uppercase block mb-2">Mantente Informado</span>
+        <h2 class="font-headline text-headline-md text-crimson-deep mb-3">Recibe noticias al instante</h2>
+        <p class="font-body text-body-md text-slate-warm mb-6">
+          Únete a nuestro canal oficial de WhatsApp para recibir comunicados, noticias y reflexiones directamente en tu móvil.
+        </p>
+        <a class="inline-flex items-center gap-3 bg-[#25D366] text-white px-8 py-3.5 rounded-xl font-label font-bold hover:brightness-110 active:scale-95 transition-all shadow-md" href="https://whatsapp.com/channel/0029VaWIIPn1t90ixgBx9u1L" target="_blank" rel="noopener">
+          <span class="material-symbols-outlined">chat</span>
+          Unirse al Canal de WhatsApp
+        </a>
+      </div>
+      <div class="shrink-0">
+        <div class="w-48 h-48 bg-warm-ivory rounded-2xl border border-outline-variant/30 flex flex-col items-center justify-center gap-3 shadow-inner">
+          <span class="material-symbols-outlined text-slate-warm" style="font-size:64px;">qr_code_2</span>
+          <span class="font-label text-[11px] text-slate-warm tracking-widest uppercase">Escanear QR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer injected by JS -->
+<div id="stitch-footer"></div>
+
+<script src="js/stitch-components.js"></script>
+<script>StitchLayout.init({ activePage: 'noticias' });</script>
+
+<!-- ── Instagram / News JavaScript ───────────────────────── -->
+<script>
+  const POSTS_LIMIT = 24;
+
+  const DEMO_POSTS = [
+    { id:"1", timestamp:"2026-05-28T10:00:00Z", caption:"Ordenación sacerdotal en la Catedral de San Pedro y San Pablo. Mons. José Luis Azuaje presidió la celebración eucarística en la que tres nuevos presbíteros fueron ordenados para servir a la grey zuliana. ¡Que el Señor bendiga su ministerio! #arquimcbo #maracaibo", media_url:"https://placehold.co/900x600/003366/FFCC00?text=Ordenaci%C3%B3n+Sacerdotal", permalink:"https://www.instagram.com/p/demo1/" },
+    { id:"2", timestamp:"2026-05-25T15:30:00Z", caption:"Encuentro Diocesano de Pastoral Juvenil este sábado en el Colegio La Salle. Jóvenes de toda la Arquidiócesis se reunirán para compartir, orar y planificar las actividades del segundo semestre. #arquimcbo #pastorarjuvenil", media_url:"https://placehold.co/900x600/B23A48/fff?text=Pastoral+Juvenil", permalink:"https://www.instagram.com/p/demo2/" },
+    { id:"3", timestamp:"2026-05-22T09:00:00Z", caption:"Comunicado oficial de la Curia Arquidiocesana sobre los nuevos nombramientos parroquiales. Se informa a la fiel grey que los siguientes sacerdotes han sido designados a nuevas comunidades a partir del 1 de junio. #arquimcbo #comunicado", media_url:"https://placehold.co/900x600/555/fff?text=Comunicado+Oficial", permalink:"https://www.instagram.com/p/demo3/" },
+    { id:"4", timestamp:"2026-05-19T18:00:00Z", caption:"Misa Crismal 2026 en la Basílica Santuario de Nuestra Señora de Chiquinquirá. Una celebración de unidad del presbiterio con nuestro Arzobispo. #arquimcbo #misacrismal #lachinita", media_url:"https://placehold.co/900x600/003366/FFCC00?text=Misa+Crismal", permalink:"https://www.instagram.com/p/demo4/" },
+    { id:"5", timestamp:"2026-05-15T11:00:00Z", caption:"Cáritas Maracaibo entregó más de 500 kits de alimentación a familias vulnerables del sector El Marite. Gracias a todos los donantes que hacen posible esta obra. #arquimcbo #caritas #servicio", media_url:"https://placehold.co/900x600/4A7C59/fff?text=C%C3%A1ritas+Maracaibo", permalink:"https://www.instagram.com/p/demo5/" },
+    { id:"6", timestamp:"2026-05-10T14:00:00Z", caption:"Retiro espiritual para sacerdotes del Arciprestazgo de San Rafael del Moján. Tres días de oración, silencio y fraternidad presbiteral. #arquimcbo #clero", media_url:"https://placehold.co/900x600/003366/fff?text=Retiro+Sacerdotal", permalink:"https://www.instagram.com/p/demo6/" },
+    { id:"7", timestamp:"2026-05-05T09:00:00Z", caption:"La Comisión Arquidiocesana de Ambientes Seguros realizó talleres de prevención en 12 parroquias durante abril. #arquimcbo #ambientesseguros", media_url:"https://placehold.co/900x600/4A90E2/fff?text=CAPAS", permalink:"https://www.instagram.com/p/demo7/" },
+    { id:"8", timestamp:"2026-04-28T16:00:00Z", caption:"Vigilia Pascual 2026. El fuego nuevo iluminó la noche en todas las parroquias de la Arquidiócesis. Cristo resucitado es nuestra esperanza. ¡Aleluya! #arquimcbo #pascua", media_url:"https://placehold.co/900x600/B23A48/fff?text=Vigilia+Pascual", permalink:"https://www.instagram.com/p/demo8/" },
+    { id:"9", timestamp:"2026-04-18T10:00:00Z", caption:"Primer Congreso de Laicos de la Arquidiócesis de Maracaibo. Más de 400 laicos comprometidos participaron en este evento histórico. #arquimcbo #laicos", media_url:"https://placehold.co/900x600/7C3AED/fff?text=Congreso+de+Laicos", permalink:"https://www.instagram.com/p/demo9/" },
+  ];
+
+  let allPosts = [], activeMonth = 'all', searchQuery = '';
+
+  function formatDate(iso) {
+    return new Date(iso).toLocaleDateString('es-VE', { day:'numeric', month:'long', year:'numeric' });
+  }
+  function monthKey(iso) {
+    const d = new Date(iso);
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+  }
+  function monthLabel(key) {
+    const [y,m] = key.split('-');
+    return new Date(+y,+m-1,1).toLocaleDateString('es-VE',{month:'long',year:'numeric'});
+  }
+  function parseCaption(caption) {
+    if (!caption) return { title: 'Noticia Oficial', excerpt: 'Haz clic para leer la comunicación completa.' };
+    
+    let cleanText = caption.replace(/#\w+/g, '').replace(/\s+/g, ' ').trim();
+    let parts = caption.split(/\n+/).map(p => p.replace(/#\w+/g, '').trim()).filter(p => p.length > 0);
+    
+    let title = 'Noticia Oficial';
+    let excerpt = '';
+    
+    if (parts.length > 0) {
+      title = parts[0];
+      title = title.replace(/^[\s⚡✨⚠️📢🔥🔴📣🏛️🙏⛪🔔🇩🇪🤝🇻🇪⚜️🎨🦾🎬🇵🇱🌟🖼️📷📸ℹ️🎉🎊🇵🇦]+|[\s⚡✨⚠️📢🔥🔴📣🏛️🙏⛪🔔🇩🇪🤝🇻🇪⚜️🎨🦾🎬🇵🇱🌟🖼️📷📸ℹ️🎉🎊🇵🇦]+$/g, '').trim();
+      
+      let restOfText = parts.slice(1).join(' ').trim();
+      if (restOfText) {
+        excerpt = restOfText;
+      } else {
+        let sentences = title.split(/[.!?]/);
+        if (sentences.length > 1) {
+          title = sentences[0].trim();
+          excerpt = sentences.slice(1).join('.').trim();
+        }
+      }
+    }
+    
+    if (!title || title.length < 5) {
+      title = cleanText.slice(0, 75);
+      excerpt = cleanText.slice(75);
+    }
+    
+    if (title.length > 90) {
+      title = title.slice(0, 87) + '…';
+    }
+    
+    if (excerpt.length > 180) {
+      excerpt = excerpt.slice(0, 177) + '…';
+    }
+    
+    if (!excerpt) {
+      excerpt = 'Haz clic para leer el comunicado completo de la Arquidiócesis en nuestras redes oficiales.';
+    }
+    
+    return { title, excerpt };
+  }
+
+  function renderFeatured(post) {
+    const info = parseCaption(post.caption);
+    const title = post.ai_title || info.title;
+    const excerpt = post.ai_excerpt || info.excerpt;
+    document.getElementById('featured').innerHTML = `
+    <a href="${post.permalink}" target="_blank" class="news-featured">
+      <div class="featured-img">
+        <img src="${post.media_url}" alt="${title}" loading="eager" onerror="this.src='https://placehold.co/900x600/003366/FFCC00?text=Arquidi%C3%B3cesis'">
+        <span class="badge-featured">Última noticia</span>
+      </div>
+      <div class="featured-body">
+        <div class="news-date">${formatDate(post.timestamp)}</div>
+        <h3>${title}</h3>
+        <p class="excerpt">${excerpt}</p>
+        <span class="ig-link">
+          <span class="material-symbols-outlined" style="font-size:16px;">photo_camera</span>
+          Ver en Instagram
+          <span class="material-symbols-outlined" style="font-size:14px;">arrow_forward</span>
+        </span>
+      </div>
+    </a>`;
+  }
+
+  function renderGrid(posts) {
+    document.getElementById('countNum').textContent = posts.length;
+    if (!posts.length) {
+      document.getElementById('newsGrid').innerHTML = `<div class="state-box"><h4>Sin resultados</h4><p>No hay noticias que coincidan con la búsqueda.</p></div>`;
+      return;
+    }
+    document.getElementById('newsGrid').innerHTML = posts.map(p => {
+      const info = parseCaption(p.caption);
+      const title = p.ai_title || info.title;
+      const excerpt = p.ai_excerpt || info.excerpt;
+      return `
+      <article class="news-card" onclick="window.open('${p.permalink}','_blank')">
+        <div class="card-img"><img src="${p.media_url}" alt="${title}" loading="lazy" onerror="this.src='https://placehold.co/600x400/003366/FFCC00?text=Arquidi%C3%B3cesis'"></div>
+        <div class="card-body">
+          <div class="news-date">${formatDate(p.timestamp)}</div>
+          <h4>${title}</h4>
+          <p class="excerpt">${excerpt}</p>
+        </div>
+        <div class="card-footer">
+          <a href="${p.permalink}" target="_blank" onclick="event.stopPropagation()">
+            Ver en Instagram
+            <span class="material-symbols-outlined" style="font-size:14px;">photo_camera</span>
+          </a>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  function buildMonthPills(posts) {
+    const months = [...new Set(posts.map(p => monthKey(p.timestamp)))].sort().reverse();
+    const pills = document.getElementById('filterPills');
+    const todosBtn = pills.querySelector('[data-month="all"]');
+    pills.innerHTML = '';
+    pills.appendChild(todosBtn);
+    months.forEach(mk => {
+      const btn = document.createElement('button');
+      btn.className = 'pill'; btn.dataset.month = mk; btn.textContent = monthLabel(mk);
+      btn.onclick = () => { 
+        activeMonth = mk; 
+        document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active')); 
+        btn.classList.add('active'); 
+        applyFilters(); 
+      };
+      pills.appendChild(btn);
+    });
+  }
+
+  function applyFilters() {
+    let filtered = allPosts;
+    if (activeMonth !== 'all') filtered = filtered.filter(p => monthKey(p.timestamp) === activeMonth);
+    if (searchQuery) filtered = filtered.filter(p => (p.caption||'').toLowerCase().includes(searchQuery));
+    
+    if (activeMonth === 'all' && !searchQuery && filtered.length > 0) {
+      renderFeatured(filtered[0]); 
+      renderGrid(filtered.slice(1));
+    } else {
+      document.getElementById('featured').innerHTML = ''; 
+      renderGrid(filtered);
+    }
+  }
+
+  async function fetchInstagram() {
+    try {
+      const url = `/api/instagram?limit=${POSTS_LIMIT}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`API proxy: ${res.status}`);
+      const data = await res.json();
+      allPosts = (data.data||[]).map(p=>({...p,media_url:p.media_url||p.thumbnail_url||''})).filter(p=>p.media_url);
+      if (!allPosts.length) throw new Error('No se recibieron posts');
+      buildMonthPills(allPosts); 
+      renderFeatured(allPosts[0]); 
+      renderGrid(allPosts.slice(1));
+      document.getElementById('countNum').textContent = allPosts.length - 1;
+    } catch (err) {
+      console.warn('Proxy API no disponible, usando posts de demostración:', err.message);
+      allPosts = DEMO_POSTS;
+      buildMonthPills(allPosts);
+      renderFeatured(allPosts[0]);
+      renderGrid(allPosts.slice(1));
+    }
+  }
+
+  document.getElementById('searchInput').addEventListener('input', e => { 
+    searchQuery = e.target.value.toLowerCase().trim(); 
+    applyFilters(); 
+  });
+  
+  document.querySelector('[data-month="all"]').addEventListener('click', function() { 
+    activeMonth='all'; 
+    document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active')); 
+    this.classList.add('active'); 
+    applyFilters(); 
+  });
+
+  fetchInstagram();
+</script>
+
+</body></html>

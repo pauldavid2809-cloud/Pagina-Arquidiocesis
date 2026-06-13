@@ -1,0 +1,362 @@
+const parishesData = [
+  {
+    "code": "PZ1-1",
+    "name": "PARROQUIA EL SAGRARIO",
+    "raw_details": "PARROQUIA EL SAGRARIO \nLA CATEDRAL DE LOS \nSANTOS APÓSTOLES PEDRO \nY PABLO \nFundada en : 1574 \nPbro. Néstor Primera \n(Toma de Posesión 24/11/2019) \nEmail: nprimera40@gmail.com \nSecretario (a): Sra. Rita Zárate.  \nDirección: Av. 4 con calle 95, Frente a la \nPlaza Bolívar \nTeléfono: 0412-7885662 y 0416-5619091 \n-Santa Ana \nRECTORÍA SAN FRANCISCO DE \nASÍS, EL CONVENTO. "
+  },
+  {
+    "code": "PZ1-2",
+    "name": "PARROQUIA SANTA LUCIA",
+    "raw_details": "PARROQUIA SANTA LUCIA \nFundada en : 1877 \nRif: J-303154131 \nPbro. Rafael Ángel Villalobos \nCarmona \n0412-5556236 \nToma de Posesión 21/9/2019. \nSecretario(a): Janeira Díaz 0414-3676212 \nDirección: Av. 2 entre Calle 89 y  90 Frente \na la Plaza Dr. Serrano "
+  },
+  {
+    "code": "PZ1-3",
+    "name": "PARROQUIA SANTA BÁRBARA",
+    "raw_details": "PARROQUIA SANTA BÁRBARA \nFundada en : 1808 \nPbro. Andrade Vecino, José \nGregorio (Toma de Posesión \n10/01/2012) \nTelf.: 0412-7892388 \nSecretario(a): \nDirección: Av. 8 Calle Páez con calle 95 \nVenezuela. \nTeléfono:0261- 7230509 \nEmail: \nsantabarbaramaracaibo@hotmail.com \n- Santa Teresita del Niño Jesús \n(Hospital de niños) "
+  },
+  {
+    "code": "PZ1-4",
+    "name": "PARROQUIA SAN JUAN DE",
+    "raw_details": "PARROQUIA SAN JUAN DE \nDIOS Y BASÍLICA SANTUARIO \nDE NTRA. SRA. DE \nCHIQUINQUIRÁ \nFundada en : 1806 \nPbro. Nedward Jorge Andrade. \nTelf.: 0412-2473657 – 0424- \n6155550 \nToma de Posesión 27/5/2017. \nPbro. José Miguel Hernández \nSecretario(a): \nCarmen Julia Arévalo: 0414/2889973 \nEdwing Mosquera: 0424-6963122 \nTeléfono:0424-6155550 \nEmail: basilicachiquinquira@gmail.com "
+  },
+  {
+    "code": "PZ1-5",
+    "name": "PARROQUIA SAN BENITO DE",
+    "raw_details": "PARROQUIA SAN BENITO DE \nPALERMO \nFundada en : 1989 \nPbro. José Enrique Varela. \n0412/5147107 \nJorge Alejandro Dos Pasos. \nRenzo Omar Gotera. \n(Toma de Posesión 15/09/2023) \nSecretario(a): Carmen Villa 0414 6620878 \nDirección: Av. Nº 3A con Calle 86 Sector Valle \nFrío \nInstagram: @parroquia_sanbenito \nEmail: pquiasanbenitopalermo@hotmail.com \n-Capilla filial San Benito de la punta \ndel Empedrao. "
+  },
+  {
+    "code": "PZ1-6",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DE \nLA ASUNCIÓN \nFundada en : 1951 \nPbro. Juan Pablo Hernández \nTelf:0426-4436922 \ndesde: 08 diciembre de 2020 \nSecretario(a): Sra. Elsa Noguera Quintero \nDirección: Av. 17 los Haticos \nTeléfono: 0261-7650404 \nEmail: \n- Inmaculado Corazón De María \n- Espíritu Santo (Fundación Mendoza) \n-La Chinita (Sector La Chinita Haticos \npor Arriba) \n0426-6603812 "
+  },
+  {
+    "code": "PZ1-7",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DE \nLA MEDALLA MILAGROSA \nFundada en : 28/05/1958 \nRif: J-31448824-4 \nPbro. Alfonso Rodríguez \n(Toma de Posesión 08/08/2008 ) \nEmail: alfonso_rodríguez@cantv.net \nTelf.: 0414-6281643 \nSecretario(a): \nDirección: Av. 17 los Haticos \nTeléfono: Telf. "
+  },
+  {
+    "code": "PZ1-8",
+    "name": "PARROQUIA SANTO CRISTO",
+    "raw_details": "PARROQUIA SANTO CRISTO \nDE ARANZA \nFundada en :1924 \nPbro. Alfonso Rodríguez \n(Toma de Posesión 08/08/2008 ) \nEmail: alfonso_rodríguez@cantv.net \nTelf.: 0414-6281643 \nSecretario(a): Arelis González \nDirección: Av. 17 con Calle 106 los \nHaticos \nTeléfono: 0261-4237583 \n0414-6281643"
+  },
+  {
+    "code": "PZ2-1",
+    "name": "PARROQUIA SAN JOSÉ",
+    "raw_details": "PARROQUIA SAN JOSÉ \nFundada en : 08/12/1957 \nRif: J-30317219-9 \nPbro. Roberto Segundo Morales Carruyo \n(Toma de Posesión 29/09/2019) \nEmail: \nTelf.: 0424-6614822 \nSecretario(a): Francisco Javier Orozco \nMurillo \nDirección: Calle 77 N° 16-30 \nMaracaibo estado Zulia. \nTeléfono: 0424-6004278 \nEmail: parroquiasanjosemcbo@gmail.com \n- San Vicente De Paúl \n- San Francisco De Paula "
+  },
+  {
+    "code": "PZ2-2",
+    "name": "PARROQUIA SAN ALFONSO",
+    "raw_details": "PARROQUIA SAN ALFONSO \nMARÍA DE LIGORIO \nFundada en : 1957 \nPbro. Jesús Colina \nTeléf.: 0414-6920240 \nSecretario(a): Sra. Clarisa Díaz de Larreal \n0424-6153784 \nDirección: Urb. Santa María Av. 27 Nº 69A- \n70 \nTeléfono: 0261-7519818/7511194 \nEmail: \n- San Gerardo Mayela "
+  },
+  {
+    "code": "PZ2-3",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DEL \nPERPETUO SOCORRO \nFundada en : 08/12/1957 \nR.P. Fray José Vivas Vivas. \n0412-5238206 \nR.P. Fray Oswaldo José Matheus \nGonzález.0424-1354551 \nEmail: \nparroquia.perpetuosocorro.mcbo@gmail.c \nom \nSecretario(a): Ana María Villalobos \nTelf.: 0412-5147175 \nDirección: Av. 9B N° 64-64 Barrio Tierra \nNegra \nTeléfono secretaria: 0424-6122629 "
+  },
+  {
+    "code": "PZ2-4",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DE \nLA CONSOLACIÓN \nFundada en : 1967 \nR.P. Fray Ricardo Riaño. \nTelf.: 0414-7127606 \nSecretario(a): Sra. Gisela Ávila. \nDirección: Av. Bella Vista Esq. Calle 79 \nTeléfono: 0416-5030067 – 0424/6088748 \nEmail: iglesialaconsolacion.mbo@gmail.com "
+  },
+  {
+    "code": "PZ2-5",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DEL \nROSARIO \nFundada en : 09/03/1969 \nRif: 303134882 \nPbro. Guerere Rodríguez, Max Gregorio \nEmail: maxggr@hotmail.com \nTelf.: 0414-6464689 \nSecretario(a): Sra. Emma Zavala \n0424-6293617 \nDirección: entre calles 67A y 72, de la \nUrbanización La Virginia, sector la lago. \nTeléfono: 0424-6293617 \nEmail: elrosariomcbo@gmail.com \n- San Benito "
+  },
+  {
+    "code": "PZ2-6",
+    "name": "PARROQUIA SAN JUDAS",
+    "raw_details": "PARROQUIA SAN JUDAS \nTADEO \nFundada en : 11/10/1968 \nAndrés de Jesús Afanador Rodríguez. \n0412-7128907 \nSecretario(a): Felicia Rivera \nDirección: Calle 85 Falcón, Sector Las \nDelicias \nTeléfono: +58 412-7857731 \n-Nuestra Señora del Carmen "
+  },
+  {
+    "code": "PZ2-7",
+    "name": "SAN ANTONIO MARÍA CLARET",
+    "raw_details": "SAN ANTONIO MARÍA CLARET \nFundada en : 08/12/1957 \nRif: J-31240803-0 \nPbro. Duarte Torres Ovidio Eduardo \n(Toma de Posesión 27/12/2003) \nEmail: licduarte@gmail.com \nTelf.: 0412-3120074 \nVicario: Ender Alexander Castillo \nMontoya \nSecretario(a): Belkis Govea \nDirección: Calle Dr. Portillo N° 3E-20 \nTeléfono: 0424-6382227 Email: \ncomunidadparroquiapadreclaret@gmail.com \n- Santísima Trinidad "
+  },
+  {
+    "code": "PZ2-8",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DE \nLAS MERCEDES \nFundada en : 1922 \nNaranjo Flores Lenín José \n(Toma de Posesión enero del 2014) \nTelf.: 0412/6467261 \nSecretario(a): Sra.Almeida Vega. \nTeléfono: 0412/7113145 \nEmail: parroquialasmercedes@hotmail.com"
+  },
+  {
+    "code": "PZ2-9",
+    "name": "PARROQUIA SAGRADO",
+    "raw_details": "PARROQUIA SAGRADO \nCORAZÓN DE JESÚS \nFundada en : 1967 \nRif: J-309923993-5 \nPbro. Edgar J. Doria M. \n(Toma de Posesión 12/10/2025) \nEmail: edgarjose@cantv.net \nTelf.: 0414-3612908 \nSecretario(a): Liseth Guanipa \nDirección: Av. 4 Calle 68ª Bella Vista \nTeléfono:  04146942960 \nEmail:    \n \nZONA 3: LA SAGRADA FAMILIA. \nN° Cód. PARROQUIA PARROCO DIRECCIÓN IGLESIAS FILIALES "
+  },
+  {
+    "code": "PZ3-1",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DE \nLOURDES (MARACAIBO) \nFundada en : 08/12/1957 \nPbro. Navarro Robertis, Juan José. \nTeléfono: 0416-5611244Email: \nSecretario(a): \nDirección: Av. 28 La limpia \nTeléfono: 0261-7525301. Email: \n- Ntra. Sra. De Chiquinquirá \n(Atendida por los P. Jesuitas) "
+  },
+  {
+    "code": "PZ3-2",
+    "name": "PARROQUIA SAN MIGUEL",
+    "raw_details": "PARROQUIA SAN MIGUEL \nARCÁNGEL \nFundada en : 30/10/1954 \nRif: J30317286-5 \nPbro. Pedro Colmenares \nEmail: \npbropedrocolmenares@hotmail.com \nTelf.: 0426-9655848 \nSecretario(a): Rita Zarate \nDirección: Sabaneta Larga Av.20 Calle \n100 s/n \nTeléfono: 0261-7292806 Email: \n- Virgen de Claromonte \n- Santa Clara "
+  },
+  {
+    "code": "PZ3-3",
+    "name": "PARROQUIA LA SAGRADA",
+    "raw_details": "PARROQUIA LA SAGRADA \nFAMILIA \nFundada en : 1966 \nPbro. Danilo González (16/12/2011) \nTelf.: 0416-7611987 \nSecretario(a): Sra. Natalia Manzano \nDirección: Urb. San Migue Av. 60 N# \n96G-30 \nTeléfono: 0261-7874331 – 0416- \n8608755 \n- María Rosa Mística (Sector José \nGregorio Hernández) \n- San Rafael Arcángel (Sector San \nRafael) \n-El Buen Pastor (Barrio Bolívar) "
+  },
+  {
+    "code": "PZ3-4",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DEL \nCARMEN (MARACAIBO) \nFundada en : 21/09/1966 \nPbro. Eleuterio Segundo Cuevas Pereira \n(29/03/2022) \nEmail:  padreeleuterio2@gmail.com \nTelf.: 0414-3615185 \nSecretario(a): Karina \nTeléfono: 0424-6386898 \nparrnuestrasradelcarmenmabo@gmail.co \nm \n- María Reina De Los Apóstoles "
+  },
+  {
+    "code": "PZ3-5",
+    "name": "PARROQUIA SAN PEDRO",
+    "raw_details": "PARROQUIA SAN PEDRO \nAPÓSTOL \nFundada en : 28/05/1958 \nPbro. Enrique Rojas Peña \nEmail: kyke32@gmail.com \nTelf.: 0414-7539894 \nSecretario(a): Sra. Caroll Lizeth Brito \nDirección: Haticos por Arriba, calle 113A \nNº 19C-36. Teléfono: 0261-7649041 "
+  },
+  {
+    "code": "PZ3-6",
+    "name": "PARROQUIA SAN MARTÍN DE",
+    "raw_details": "PARROQUIA SAN MARTÍN DE \nPORRES \nFundada en : 1966 \nRIF:J296343853 \nPbro. Rafael López. \nrafaelopez3303@gmail.com \n0414-6266122 \nSecretario(a): José Daniel Rivera \nDirección: Barrio los Estanques calle 113 \nal lado de la cancha deportiva. \nTeléfono: 0414-6596076. Email: \npsanmartindeporres2016@hotmail.com \n- Ntra. Sra. De Coromoto \n- Ntra. Sra. De La Palma \n- San Sebastián "
+  },
+  {
+    "code": "PZ3-7",
+    "name": "PARROQUIA SANTA TERESITA",
+    "raw_details": "PARROQUIA SANTA TERESITA \nDEL NIÑO JESÚS \nFundada en : 03/03/2003 \nRif: no tiene \nPbro. José Andrés Bravo Henríquez \nTeléf.: 0414-6185341 \nEmail: padreabravo@yahoo.com \nSecretario(a): no tiene \nDirección: Avenida 29, Maracaibo 4001, \nZulia Amparo. Casa cural: calle 81, #57B- \n75. Cacique Mara. \n \n0414-6185341 "
+  },
+  {
+    "code": "PZ3-8",
+    "name": "PARROQUIA NIÑA MARÍA",
+    "raw_details": "PARROQUIA NIÑA MARÍA \nFundada en : 1985 \nPárroco: Pbro. José Pineda. \npjosepineda@gmail.com \n0424-675-5405 \nSecretario(a): ander Salas \nSalasyander911@gmail.com \nDirección: Av. 11-4D Sector Los Robles \nTeléfono: 0261-7341013/6151725 \n0412-7975632 \nEmail.:  parroquiasantamariq25@gmail.com \n- Stmo. Sacramento (El Gaitero)"
+  },
+  {
+    "code": "PZ3-9",
+    "name": "PARROQUIA SAN IGNACIO DE",
+    "raw_details": "PARROQUIA SAN IGNACIO DE \nLOYOLA \nFundada en : 30/09/2004 \nR.P. Jesús Vásquez SCHP \n(Toma de Posesión 04/03/2012) \nEmail.: jesusvc55@hotmail.com \nTelf.: 0412-0616901 \nSecretario(a): Carmen Ávila \nDirección: Av. Principal del Barrio los Andes \nTelef: 0424-6123229 \n-Jesús de la Divina Misericordia "
+  },
+  {
+    "code": "PZ3-10",
+    "name": "SAN TARSICIO",
+    "raw_details": "SAN TARSICIO \nFundada en : 12/04/1991 \nErigida: 30/11/2024 \nZP-3 Ntra. Sra. Del Carmen \nMcbo. \nPbro. Ospino Miguel Antonio - 9.708.014 \nmospino_martinez@hotmail.com - 0416- \n0625909 \nSecretario(a): Sara Acosta de Martínez \nDirección: Circunvalación Nº 2 Barrio \nJorge Hernández calle 56A Teléfono: \n7185440 \n \nZONA 4: NUESTRA SEÑORA DE COROMOTO. \nN° Cód. PARROQUIA PARROCO DIRECCIÓN IGLESIAS FILIALES "
+  },
+  {
+    "code": "PZ4-1",
+    "name": "PARROQUIA SANTA MÓNICA",
+    "raw_details": "PARROQUIA SANTA MÓNICA –LA \nCONCEPCIÓN \nFundada en : 24/06/1958 \nR.P. Pérez Ramírez, Vladimir O \nCarm. \nEmail: vladiperez@hotmail.com \nTelf.: 0414-7483850 \ncarmelitas_laconcepcion@yahoo.es \n \nR.P. Luis Fernando O Carm. \nVicario Parroquial \nTelf: 0416-3107308 \nSecretario(a): no tiene \nDirección: La Concepción Mcpio. Jesús \nEnrique Losada Estado Zulia.- \nTeléfono: 0262-2432040 \nEmail: \n0262-2432040 \n- Ntra. Sra. Del Valle de los Rosales \n- Ntra. Sra. Del Carmen (Los Totumos) \n-San Pedro (El Guayabo) \n-Virgen de Chiquinquirá (Zona Nueva) \n-Santa Lucia (Los Cerros) \n-Ntra. Sra. Del Valle (La Paz) \n-Ntra. Sra. Del Carmen (El Laberinto) \n-Santa Lucia (Km. 35 Vía Guajira) \n-Ntra. Sra. Del Rosario (Jardines del Lago) \n- San José (Jardines del Lago) "
+  },
+  {
+    "code": "PZ4-2",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DE \nCOROMOTO \nFundada en : 18/11/1963 \nRif: J-30314529-9 \nPárroco: Pbro. Jesús Sandoval. \nTeléf.: 0424/6214417 \nVicario: Pbro. Eddy Levinson GOVEA \nMONTIEL. \nTelef: 0424-6658143 \nSecretario(a): \nDirección: Urb. Los Olivos calle 73 con \ncalle 67 \nTeléfono: 0261-7540959 \n \n- San Juan Diego. "
+  },
+  {
+    "code": "PZ4-3",
+    "name": "PARROQUIA SAN PABLO",
+    "raw_details": "PARROQUIA SAN PABLO \nAPÓSTOL \nFundada en : 1966 \nRif: J30314512-4 \nPbro. Dr. Reyes B. Carlos José \nPárroco (Toma de Posesión \n11/08/2013) \nEmail.: padrereye@hotmail.com \nTelf.: 0412-2575199 \nSecretario(a): Srta. Miriam Romero \nDirección: Urb. La Rotaria Av. 85 \nTeléfono: 0261-7542280 - \n- Ntra. Sra. Del Valle \n- San Alejo \n-Rosa Mística \n- San Juan XXIII \n-San Juan Pablo II"
+  },
+  {
+    "code": "PZ4-4",
+    "name": "PARROQUIA NUESTRO SEÑOR",
+    "raw_details": "PARROQUIA NUESTRO SEÑOR \nJESUCRISTO REY \nFundada en : 1966 \nRif: J-410721510 \nPbro. Martínez, Leonardo. \nEmail: \nP.N.S.Jesucristorey@gmail.com \nTelf.: 0414-6654756 \nSecretario(a): \nDirección: Barrio panamericano a 500 de \nla Curva de Molina AV 91 Casa  \nParroquial: calle 69 -b Nro 90 -A -44 barrio \npanamericano \nTeléfono: \nInstagram: @somoscristorey \n* La más grande y activa : Capilla Nuestra \nSeñora del Monte Carmelo - Sector Carmelo \nUrdaneta. \n* Capilla Nuestra Señora del Pilar, Sector \nGuaicaipuro \n* Capilla San Juan Pablo II, Sector Armando \nReveron \n*Capilla San Joaquín y Santa Ana, Sector el \nBrillante. "
+  },
+  {
+    "code": "PZ4-5",
+    "name": "PARROQUIA EL BUEN PASTOR",
+    "raw_details": "PARROQUIA EL BUEN PASTOR \nFundada en : 14/02/1975 \nRIF: J-30770973-1 \nPbro. Jorge David Sánchez Urdaneta \n0424-6219438 \njorgeservi0518@gmail.com \nPosesión Administrador Parroquial: \n10/0/2026 \nSecretario(a): Johana Molina \n04126451573 \nDirección: Urb. Cuatricentenario 1 etapa \nAvenida principal 66g, vereda 24, esquina \nvereda 16, casa cural #9 \nTeléfono: \n- Divino Niño (La Chamarreta) \n- San Juan Diego \n-Rosa Mística (Los Bucares) \n-Divina Misericordia \n-Santísima Trinidad. "
+  },
+  {
+    "code": "PZ4-6",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DE LA \nPAZ \nFundada en :08/09/1976 Rif: \n30314578-7 \nR.P.Yonys Mendoza MSC (Toma de \nPosesión 16/08/2021) \nEmail: yonysmendoza@gmail.com \nTelf.: 0414-6316996 \nSecretario(a): Sra. Yeyn Zapata \nDirección: Av. 78 1era Etapa Urb. La \nVictoria \nTeléfono: 0261/ 7549581 \n-Ntra. Sra. El Carmen (Los Planazos) \n- Corazón De Jesús (Cujicito) \n- San Patricio (El Mamón) \n- Virgen del Carme (Barrio Virgen del \nCarmen) \n- Ntra. Sra. De la Esperanza (El Cardonal) \n- Santa Inés (Bario Indio Mara) \n- La Chinita (El Cardenal Norte) \n- Ntra. Sra. Del Sagrado Corazón (Barrio \nChino Julio) \n-Santa Brígida (Palo Negro) \n- -Capilla San José (Barrio Etnia Guajira de \nCristo Jesús) "
+  },
+  {
+    "code": "PZ4-7",
+    "name": "PARROQUIA LA RESURRECCIÓN",
+    "raw_details": "PARROQUIA LA RESURRECCIÓN \nDEL SEÑOR \nFundada en : 1992 \nRif: J-30314546-9 \nPbro. Dionni José Ríos Ríos \n0412-6695642 \nToma de posesión \nAdministrador Parroquial: \n(15/02/2026) \nSecretario(a): Sra. María Molero 0414- \n1640886 \nDirección: Barrio Libertador Av. 93C Nº \n79J-48 Frente al Kinder Tilingo Tilingo \nTeléfono: 0261-3283191 \nEmail: \n- Ntra. Sra. María Reina De Los \nApóstoles (El Marite ) \n- San Pancracio (Nuevo Horizonte). \n- San Padre Pío (Torito Fernández) \n0426-9668458 \n-Centro de Misiones Nuestra \nSeñora del Rosario de \nChiquinquirá. \n-San Juan Evangelista (barrio el \nModelo) CENDISOL "
+  },
+  {
+    "code": "PZ4-8",
+    "name": "PARROQUIA SAN ISIDRO",
+    "raw_details": "PARROQUIA SAN ISIDRO \nLABRADOR \nFundada en : 18/01/1997 \nJ-29656605-4 \nPbro. Silverio Antonio Osorio Mora. \nTelef: 0412-5470157 \nToma de posesión: 02 de diciembre \nde 2021. \nSecretario(a): Idalis Berrueta \n0412/5142747 \nDirección: Sector San Isidro Carretera \nVía la Concepción La Concepción \nTeléfono: \nEmail: 0414-6143544 \n-Divino Niño (La Montañita) \n-San Rafael (Villa Baralt) \n-Divina Misericordia (Villa Ana \nMaría Campos) \n-San Oscar Arnulfo Romero (Sector \nRafael Urdaneta) \n-Nuestra Señora del Carmen Mata \nClara. \n-Hogar Santa Cruz."
+  },
+  {
+    "code": "PZ5-1",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. DE \nGUADALUPE \nFundada en : 1962 \nPbro. Sanchez Andry C.I.10.423.457 \nsanchezaandry@gmail.com \n0414-1748270 \nSecretario(a): Larry Sánchez \nDirección: Av. 16 con calle 11 Sierra \nMaestra \nTeléfono: 0261-7344890 \n- Ntra. Del Carmen (activa) la \nportuaria. "
+  },
+  {
+    "code": "PZ5-2",
+    "name": "PARROQUIA JESÚS",
+    "raw_details": "PARROQUIA JESÚS \nNAZARENO \nFundada en : 28/08/1964 \nPbro. Tapia, Henry \nPárroco (Toma de Posesión 31/08/2011) \nEmail: henrybenito1@hotmail.com \nTelf.: 0416-9604224 \nSecretario(a): \nDirección: Av. 16 entre C/c 11 y 12 barrio \nel Manzanillo Estado Zulia \nTeléfono: 0261-7615915 \nparroquiajesusnazareno@hotmail.com "
+  },
+  {
+    "code": "PZ5-3",
+    "name": "PARROQUIA SANTÍSIMO",
+    "raw_details": "PARROQUIA SANTÍSIMO \nSALVADOR \nFundada en : 1972 \nPbro. Lcdo. Richard Garrillo \nAv. Principal Barrio Carabobo al lado del \nLiceo Juan Hilario Bosset \nEmail: joseanbarboza@gmail.com \nTelf.: 0412-640500 \nSecretario(a): \nDirección: Calle 4 con Av. 49 al lado de \nla E.A. Madre Laura (El Callao) \nTeléfono: 0261/7320042 \n- Jesús Carpintero \n-San Agustín "
+  },
+  {
+    "code": "PZ4-9",
+    "name": "PARROQUIA SANTÍSIMO",
+    "raw_details": "PARROQUIA SANTÍSIMO \nSACRAMENTO \nFundada en : 05/09/2001 \nPbro. Ender Alexander Castillo \nMontoya.  \n0424-2582491 \nToma de posesión como vicario \nparroquial: 15 de noviembre de 2025 \nSecretario(a): Erika Alaña \nTeléfono: 0412-1691326 \nEmail: \nparroquiasmosacramento@gmail.com \nFiliales:  \n-Nstra. Sra del Sagrado Corazón \n(Barrio Francisco de Miranda) \n-María Auxiliadora y San José \nProtector \n(Sector Cumbres de Maracaibo) \nDiacono Mervin Rincón  \n-Nstra Sra de los Ángeles \n(Sector Altamira)  \nDiácono Fernando Fuenmayor "
+  },
+  {
+    "code": "PZ4-10",
+    "name": "PARROQUIA SANTA INÉS",
+    "raw_details": "PARROQUIA SANTA INÉS \nFundada en 29/08/2013 \nPbro. José Domingo Alvarado. \nTelf: 04146827366 \nSecretario(a): Yoleida Fernández \nDirección: Barrio Indio Mara  \nTeléfono: 0424-6305238 \n-  "
+  },
+  {
+    "code": "PZ4-11",
+    "name": "PARROQUIA S",
+    "raw_details": "PARROQUIA San Juan \nCrisóstomo y San Juan Pablo II \n(Parroquia Universitaria) \nFundada en \nPbro. Andres Bravo \nTelef: 0414-6185341 \n -"
+  },
+  {
+    "code": "PZ5-4",
+    "name": "PARROQUIA SANTÍSIMO",
+    "raw_details": "PARROQUIA SANTÍSIMO \nCRISTO DE SAN FRANCISCO \nFundada en : 1/julio/1866 \nPbro. López, Leonardo. \n(Toma de Posesión 04/mayo/2014) \nEmail: pbrolopezquintero@hotmail.com \nTelf.: 0412-1277017 – 0414-6445575 \nSecretario(a): José Alejandro Contreras \nMendoza - 0412-0619083 \nDirección: San Francisco Av. 5 calle 27 \nTeléfono: 0261-7612550 "
+  },
+  {
+    "code": "PZ5-5",
+    "name": "PARROQUIA SAN JUAN",
+    "raw_details": "PARROQUIA SAN JUAN \nBAUTISTA \nFundada en : 1970 \nRif. J 30509143-9 \nPbro. Danilo Humberto Calderón Matheus \n0424-6268956 \nSecretario(a):  \nDirección: Urb. San Francisco Sector 8 \ncalle 161 \nTeléfono:  \n- Jesús Obrero "
+  },
+  {
+    "code": "PZ5-6",
+    "name": "PARROQUIA SANTO",
+    "raw_details": "PARROQUIA SANTO \nDOMINGO DE GUZMÁN \nFundada en : 25 de marzo de \n1977 \nPbro. Montoya Medero, Raúl R. \nEmail: raulrayф@hotmail.com \nTelf.: 0424-6482025 \n \nDiac. Heber de Jesús Rivera Cañizalez. \nTelef.: 0424-6247041 \nSecretario(a): Joan Palmar. \n0414-6799880 \nDirección: Urb. La Coromoto calle 171 Nº \n48-61 \nTeléfono: 0424-6200471 \nstodomingogcatolicaparroquia@gmail.com "
+  },
+  {
+    "code": "PZ5-7",
+    "name": "PARROQUIA SAN FELIPE",
+    "raw_details": "PARROQUIA SAN FELIPE \nNERI \nFundada en : 24/11/1996 \nPbro. Néstor Luis Pérez \nTelef: 0414-0626736 \nSecretario(a): Glisel Servigna \n04246919517 \nDirección: Urb. San Felipe-San Francisco Zulia. \n-Nuestra Señora de Chiquinquirá, \nsector Negro Primero. "
+  },
+  {
+    "code": "PZ5-8",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DE \nLA DEL COBRE \nFundada en :1985 \nPbro. Francisco Antonio Niño Correa \nTelf.: 0412-7683972 \nAP desde 24/10/2021 \nSecretario(a): Mayerling Avila \nDirección: Urb. San Francisco, La \nPopular Av. 53 \nTeléfono: 0424-6828646 \n- San Andrés Apóstol (Urb la modelo) \n-Jesús Carpintero (la polar) \n-Jesús de Nazaret (24 de julio) \n-San Juan Pablo II (la polar) \n-San Agustín (la polar) "
+  },
+  {
+    "code": "PZ5-9",
+    "name": "PARROQUIA",
+    "raw_details": "PARROQUIA \nTRANSFIGURACIÓN DEL \nSEÑOR \nFundada en : 29/09/2002 \nPbro. Jackson Carrasco, Engelbert \nAlfredo. \nTeléf.: 0414-6237799 \nSecretario(a): \nDirección: Km. 13 Vía Perija Av. 49H \nCalle Nº 218 -19 Los cortijos Mcpio. San \nFrancisco "
+  },
+  {
+    "code": "PZ5-10",
+    "name": "PARROQUIA SANTA",
+    "raw_details": "PARROQUIA SANTA \nMARIANA DE JESÚS \nPbro. Carlos Quiva. \npadrecarlosquiva@gmail.com \nteléf.: 0412-1285174 \nBarrio Sur América, calle 149 con avenida \n54A., San Francisco \n02617328271 \n-San Isidro Labrador, sector Jobo \nAlto. Cerca del Km 18 vía a Perijá."
+  },
+  {
+    "code": "PZ6-1",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DE \nFÁTIMA \nFundada en : 1957 \nRIF: 30315351-8 \nPárroco: R. P. Francisco Ortiz Bran. \nTelef: \nVicario: R.P. Alejandro Rincón Quiroz. \nTelef: 0412-9844169 \nSecretario(a): Angelica Vilchez \n0414-6715547 \nDirección: Urb. Monte Claro Av. 2 \nEmail: mcbofatima@gmail.com \n- San Antonio de Padua "
+  },
+  {
+    "code": "PZ6-2",
+    "name": "PARROQUIA SAN RAMÓN",
+    "raw_details": "PARROQUIA SAN RAMÓN \nNONATO \nFundada en : 1977 \nRif: J-301839218 \nPárroco: R. P. Ponc Capell Capell \nTelef: 0414-3466396 \nDiacono permanente Jesús Alfredo \nSerrano. \nSecretario(a): Sra. Carmen Rosa Beltrán \nPineda \nDirección: AV.1 Monte Bello \nTeléfono:0414-6388401 \nEmail: sanramonnonato@gmail.com \n- CAPILLA LA MERCED DEL VALLE ( Barrio \n18 de Octubre) \n- CAPILLA SAN PEDRO NOLASCO \n( Barrio Teotiste de Gallegos) \n- LA ERMITA DEL CARMEN \n( Barrio Pescadores) \n- CAPILLA LA DIVINA MISERICORDIA \n( Barrio Reyes Magos) \n- CENTRO DE MISIÓN \n( Barrio La Lucha) "
+  },
+  {
+    "code": "PZ6-3",
+    "name": "PARROQUIA LA SANTÍSIMA",
+    "raw_details": "PARROQUIA LA SANTÍSIMA \nTRINIDAD \nFundada en : 15/08/1965 \nRif: J-408147645 \nPbro. Robert Alberto Álvarez Pérez. \n0424-6704586 \nSecretario(a): Raiza Martínez \nDirección: Calle 55 Nº 15J-132 Urb. La \nTrinidad \nTeléfono: 0414-6477288 \nEmail: secretaria.iglesiatrinidad1965.com \n- Inmaculada Concepción (Urb. La \nCalifornia) \n- San Agustín (Urb. Monte Claro) "
+  },
+  {
+    "code": "PZ6-4",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DE \nLA CANDELARIA \nFundada en : 1974 \nRif. J30317223-7 \nPbro. Bermúdez C. Héctor de Los Reyes \n(Toma de Posesión Octubre 2014) \nEmail: hector.bermudez.c@hotmail.com \nTelf.: 0416-1618046 \nSecretario(a): Sra. Ángela Sánchez \nDirección: Urb. San Jacinto, Sector 8 \nCalle 3 \nTeléfono: 0261-7573672 \n-San Benito \n- Virgen de Betania "
+  },
+  {
+    "code": "PZ6-5",
+    "name": "PARROQUIA SANTA ROSA DE",
+    "raw_details": "PARROQUIA SANTA ROSA DE \nLIMA – Santa Rita de Casia \nFundada en : 08/12/1957 \nPbro. Fr. Adelmo Irene \nTeléf.: 0424-1218537 \nSecretario(a): Sra. Iris Nava \nDirección: Altos del Jalisco Maracaibo \nEstado Zulia. Telf. 0261-7422818 \n- Santa Rosa De Agua - "
+  },
+  {
+    "code": "PZ6-6",
+    "name": "PARROQUIA SAN",
+    "raw_details": "PARROQUIA SAN \nBARTOLOMÉ. (Ziruma) \nFundada en : 12/12/1957 \nPbro. Wilmer Olano \nTeléf.: 0414-6920201 \nSecretario(a): Sra. Isabel López \nDirección: \nTeléfono: 0261-5254318 "
+  },
+  {
+    "code": "PZ6-7",
+    "name": "PARROQUIA SAN ONOFRE",
+    "raw_details": "PARROQUIA SAN ONOFRE \nFundada en : 16/06/2000 \nR.P Fray José Antonio Díaz, OAR. \n0412/3670531 \nR.P. Fray Juan Carlos Fernández. OAR \n0424-6065719 \nSecretario(a): Sra. Belkis Bravo \n0424/6178408 \nCorreo: \nmcboparroquiasanonofre@gmail.com "
+  },
+  {
+    "code": "PZ6-8",
+    "name": "PARROQUIA SAN JUAN",
+    "raw_details": "PARROQUIA SAN JUAN \nBOSCO \nSede del curso propedéutico \nFundada en: 12/02/2017 \nPbro. Dainer Prieto. Párroco y Rector del \nSeminario Propedéutico. Toma de \nposesión: 2/03/2020. Tlf.: 0426-8618035 \nEmail:sanjuanboscomcbo@gmail.com \nSecretario(a): minyamin 04143636962 \nDirección: Urb. Lago Mar Beach \nTeléfono: \nEmail: minya.zambrano@gmail.com \nNuestra Señora del Carmen (Barrio \n4 de abril, detrás del Sambil) \nJesús de la Divina Misericordia \n(sector las tuberías)"
+  },
+  {
+    "code": "PZ7-1",
+    "name": "PARROQUIA SAN RAFAEL",
+    "raw_details": "PARROQUIA SAN RAFAEL \nARCÁNGEL EL MOJAN  \nFundada en : 1843 \nRif. J-30315388-7 \nPbro.  Morales, Rafael \nEmail.: \npadrerafaeljmoralesf@hotmail.com \nTelf.:  0416-6667944 \n \nSecretario(a): Sra. Arabella Mayor  \nDirección: AV. 2  El  Mojan Mcpio. Mara \nMaracaibo Estado Zulia \nTeléfono: 0262-8721193-5157298 \nEmail:  parroquiasanrafael@gmail.com \n-  San José  \n-San Benito y Ntra. Sra. Del Perpetuo \nSocorro  \n- San Benito y Ntra. Sra. De Fátima  \n- San Isidro Labrador  \n- San Bartolomé Apóstol  \n- Ntra. Sra. De Guadalupe \n- Ntra. Sra. Del Rosario de Chiquinquirá \n- La Inmaculada Concepción "
+  },
+  {
+    "code": "PZ7-3",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DE \nLOURDES (ISLA DE TOAS) \nFundada en : 1911 \nPbro.  Morales, Rafael \nEmail.: \npadrerafaeljmoralesf@hotmail.com \nTelf.:  0416-6667944 \n \nSecretario(a): Sra. María Mercedes Nava \nDirección: Av. Principal Campo Elías, \nSector el Toro, Mcpio. Insular Padilla, \nMaracaibo Estado Zulia \nTeléfono: 0262-8676068 \nEmail:  \n-Ntra. Del Carmen (las cabeceras)  \n-Ntra. De Coromoto (Sotavento) \n-La Natividad del Señor (Las Palmitas) \n- San Benito (El Hato) \n-Santa Lucia (El Semeruco) \n-San José (Las Playitas) \n-Ntra. Sra de Chiquinquirá  \n-Santa Cruz (El Potrero) \n-Inmaculada Concepción (Isla de San Carlos) \nNtra. Sra. Del Carmen (Isla de Zapara) "
+  },
+  {
+    "code": "PZ7-6",
+    "name": "PARROQUIA MARÍA",
+    "raw_details": "PARROQUIA MARÍA \nAUXILIADORA (SANTA CRUZ \nDE MARA) \nFundada en : 28/05/1958 \nRif. J-30317218-0 \nPbro. Pérez, Evelio.  \n Telf.: 0424-6288234 \n \n \n \n \n \n \n \nSecretario(a): Jackeline Nava \nDirección: Av. Principal Troncal del \nCaribe Vía al Moján Santa Cruz de Mara, \ndiagonal al Banco Provincial  Casa Cural.  \nMcpio. Mara Estado Zulia \n  \n- Santísima Trinidad (El Palo) \n- San José de Monteverde  \n- Ntra. Sra. Del Carmen \n- Exaltación de la Santa Cruz  "
+  },
+  {
+    "code": "PZ7-7",
+    "name": "PARROQUIA LA",
+    "raw_details": "PARROQUIA LA \nINMACULADA CONCEPCIÓN \n(CARRASQUERO)  \nFundada en : 1967 \nRif. J-30887408-6 \n \nPbro. Yonder Javier Urdaneta Hiza \nEmail:   \nTelf.: 0412-1670969 \nToma de posesión como administrador \nparroquial: 18/01/2026 \nSecretario(a): Sra. Yuli Taimi González  \nDirección: Av. Principal  frente a la Plaza \nBolívar Carrasquero La Guajira  Mcpio. \nMara Estado Zulia \nTeléfono: 0262/9940227 \n \n \n \n \n \n \n \n \n \n-Ntra. Sra. Del Carmen (Sector Siloe) \n- Ntra. Sra. De Chiquinquirá (Caña \nBrava) \n- María Rosa Mística (Guasare)  \n- María Auxiliadora (El Colorado) \n- María Rosa Mistica (Tamare) \n- San Felipe (Sector La Burra) \nSagrado corazón de Jesús (Manuelote) \n-Santa Lucia (Las Parchitas) \n - María Madre de los Mineros \n- San Antonio (Los Tizones) \n-San José (Cañada del Indio) \n- María Auxiliadora El Molinete) \n- Ntra. Sra. De Chiquinquirá (Varilla \nBlanca) \nSagrado Corazón de Jesús (La Cañera) "
+  },
+  {
+    "code": "PZ7-9",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SEÑORA \nDE COROMOTO Y SAN JOSE \nOBRERO (LA SIERRITA) \nFundada en : 11/04/1999 \nPbro. William Chiquinquirá Ortega \nColmenares. \nTelf: 0424-6539582 \nSecretario(a): Ana Jusayu de García \nDirección: La Sierrita Mcpio. Mara, \nMaracaibo Estado Zulia \nTeléfono:  0262-8581131 \n- Ntra. Sra. Del Carmen (Marcelino \n1) \n- Ntra. Sra. De la Divina Pastora \n(Cachiri)"
+  },
+  {
+    "code": "PZ7-10",
+    "name": "PARROQUIA JESÚS",
+    "raw_details": "PARROQUIA JESÚS \nREDENTOR (TAMARE) \nFundada en : 1996 \nPbro. Lcdo. José G. Sánchez (Párroco in \nsolidum) Telf.:  0416-4617636 \n \nPbro. Rodríguez López, Valentín \nSegundo. Telf: 0414-6122354 \n \n \n \nDirección: Mcpio. Mara Km. 29 \nTeléfono: 0262-4115325 \nEmail: pquia.jesusredentor@gmail.com \n \n- María Auxiliadora \n- Santa Rosa De Lima  \n- San  Benito y San Juan Evangelista \n- Perpetuo Socorro  \n- Jesús de la Misericordia  \n-Ntra. Sra. De Chiquinquirá  \n-Virgen de la Misericordia  \n-Ntra. Sra. Del Carmen  \n \nARCIPRESTAZGO 8: SAN BARTOLOMÉ APÓSTOL. "
+  },
+  {
+    "code": "PZ7-2",
+    "name": "PARROQUIA SAN",
+    "raw_details": "PARROQUIA SAN \nBARTOLOMÉ APÓSTOL. \n(SINAMAICA) \n Fundada en : 1896 \n \n \n \n \n \nPbro. Santo Xavier Silva Blanco. \nAdministrador Parroquial. \nEmail:  padresantosilva@gmail.com \nTeléf.: 0412-1742-378 \nSecretario(a):  \nDirección: Av. Principal Frente a la Plaza \nBolívar Sinamaica Mcpio. Páez. \nTeléfono: 04146452186 \n \n- San Benito (Sector el Botoncillo) \n- Ntra. Sra. De Coromoto (Sector \nLas Guardias) \n- Ntra. Del Carmen  (Laguna de \nSinamaica ) \n- San Benito (Sector Los Coros) \n- Santa Lucia (Calle 10) \n- Santa teresita del Niño Jesús \n(Sector Caimare Chico) "
+  },
+  {
+    "code": "PZ7-8",
+    "name": "PARROQUIA SAN JOSÉ DE",
+    "raw_details": "PARROQUIA SAN JOSÉ DE \nPARAGUAIPOA   \nFundada en :18/03/1995 \nPbro. Eduardo José Daboin Bermúdez. \nEmail: eduardodaboin1991@gmail.com \nTelf.:  0414-6690248 \n(Toma de Posesión 08/09/2019) \nSecretario(a):  \nDirección: Paraguaipoa Plaza Bolívar \nMcpio. Páez, Maracaibo Estado Zulia \nTeléfono: 0262-9691145 \nEmail: \n- Ntra. Sra. De La Consolata \n- San José Obrero  \n- Santa Elena  \n- Ntra. Del Carmen \n- Ntra. De Fátima  \n- San. Juan Bautista "
+  },
+  {
+    "code": "PZ7-4",
+    "name": "PARROQUIA EL SAGRADO",
+    "raw_details": "PARROQUIA EL SAGRADO \nCORAZÓN DE JESÚS-\nGUARERO \n Fundada en : 1945 \nPbro. Germán Palmar \nTlf: 0412-7980355 \nSecretario(a):  \nDirección: Guarero, sector Juamana \nfrente al complejo deportivo. \nTeléfono: \nEmail: \n- Santísima Trinidad- Calié  \n-Capilla Ntra. Sra. del Carmen – \nUraichipa \n-Inmaculado Corazón de María – \nMoína "
+  },
+  {
+    "code": "PZ7-5",
+    "name": "PARROQUIA SANTA MARÍA",
+    "raw_details": "PARROQUIA SANTA MARÍA \n(GUANA) \nFundada en : 1957 \nRif:30341762-0 \nPbro. Báez. Dilmer. \nEmail: else-oresmiluz@hotmail.com \nTelf.: 0426-4604314 \nSecretario(a): Sra. Gertrudis Rodríguez   \nDirección: Km. 47 Santa María de Guana \nVía Carrasquero-Guarero     \nTeléfono: 0262-5150815 \n- Capilla San Benito  \n-Capilla San José Obrero \n-San Francisco de Asís  \n-La Inmaculada  "
+  },
+  {
+    "code": "PZ7-11",
+    "name": "P",
+    "raw_details": "Parroquia Personal \nEclesiástica de Ntra. Sra. Del \nCarmen. (erección 15/09/2010 \nZP-7  San Bartolomé Apóstol \nSinamaica \nPbro. Santos Xavier, Silva Blanco. \nEmail:  padresantosilva@gmail.com \nTeléf.: 0412-1742-378 \n \nSecretario(a):  \nDirección:  \nTeléfono:  \nEmail:"
+  },
+  {
+    "code": "PZ8-1",
+    "name": "PARROQUIA LA",
+    "raw_details": "PARROQUIA LA \nINMACULADA CONCEPCIÓN \n(LA CAÑADA DE URDANETA) \nFundada en : 1785 \n \n@pqinmaculada \nFacebock: parroquia inmaculada \nconcepción. \nPárroco: Pbro. Raúl Moreno \nraulalfredo1963@hotmail.com \n0414-6326406 \n+0412-6582059 \nSecretario(a): Danis Morillo \nDirección: Av. 1 Gral Rafael Urdaneta, \nsector la Plaza, La Cañada de Urdaneta. \nEstado Zulia, Venezuela. \nTeléfono: 0414-6508142 / 0424-6493566 \n- Santísima Trinidad \n- Sagrado Corazón de Jesús \n- San Benito de Palermo \n- San Marcos Evangelista y Virgen de \nValvanera \n- Nuestra Señora de la Estrella \n- Beata María de San José \n- San Ramiro Monje \n- Divino Niño Jesús \n- Nuestra Señora del Carmen KM56. "
+  },
+  {
+    "code": "PZ8-2",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DEL \nCARMEN (EL CARMELO) (LA \nCAÑADA DE URDANETA) \nFundada en : 1912 \nPbro. Medina, Daigel \nEmail.: daigelhml@gmail.com \nTelf.: 0414-6483753 \nToma de posesión: 03/05/2025 \nSecretario(a): \nDirección: El Carmelo Mcpio. Urdaneta \nEstado Zulia \nTeléfono: \n- San Ignacio (Campo Alegre) \n- San José (Potreritos) \n- San Antonio (El Carmelo) "
+  },
+  {
+    "code": "PZ8-3",
+    "name": "PARROQUIA NTRA",
+    "raw_details": "PARROQUIA NTRA. SRA. DE \nCHIQUINQUIRÁ (LA \nENSENADA) \nFundada en : 1920 \nPbro. José del Carmen Chirinos. \nAdministrador Parroquial. \nTelf: 0414-6089719 \nSecretario(a): \nDirección: Av. Principal, La Ensenada \nMcpio. Urdaneta Estado Zulia. \nTeléfono: 0262-8084331 \n- Ntra. Sra. Del Rosario (Palmarejo) "
+  },
+  {
+    "code": "PZ8-4",
+    "name": "SAN ANTONIO DE PADUA Y",
+    "raw_details": "SAN ANTONIO DE PADUA Y \nNTRA. SRA. VIRGEN DE LOS \nPARRALES \nFundada en: 11/06/2008 \nPbro. Fabricio Medina. \nTelf: 0414-1695885 \nSecretario(a): Lcdo. Helí Ramón Rincón \n0414-6266325 \nDirección: La Cañada de Urdaneta \nPanal del Sur Av. Principal \n- Virgen del Carmen y san Benito de \nlos Reyes. \n- Santo Domingo de Guzmán \n- San Juan Bautista \n-San Rafael \n-Santa Rita \n- Santa Teresita del Niño Jesús "
+  },
+  {
+    "code": "PZ8-5",
+    "name": "PARROQUIA PURÍSIMA",
+    "raw_details": "PARROQUIA PURÍSIMA \nMADRE DE DIOS Y SAN \nBENITO DE PALERMO \nJorge Enrique Rodríguez González. \n0414-3688646 \nSecretaria: Haidee Petit 0414/6513813 \nDirección: Final Av. 5 de San Francisco \ncon C/ 55 de El Bajo, vía a la Refinería \nBajo Grande, Municipio San Francisco."
+  }
+];

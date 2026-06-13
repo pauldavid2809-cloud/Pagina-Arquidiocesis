@@ -1,0 +1,772 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Directorio Parroquial | Arquidiócesis de Maracaibo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<!-- Note: Rotis Sans Serif is typically a licensed font. In a real-world scenario, it would be served via @font-face or a specific CDN. For this implementation, we will use it in CSS with a fall-back. -->
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+        @font-face {
+            font-family: 'Rotis Sans Serif';
+            src: local('Rotis Sans Serif'), local('RotisSansSerif');
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(251, 249, 244, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(221, 192, 190, 0.3);
+        }
+        .bento-item {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bento-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(74, 69, 67, 0.08);
+        }
+        #parishMap {
+            height: 500px;
+            width: 100%;
+            z-index: 10;
+        }
+        .custom-popup .leaflet-popup-content-wrapper {
+            background: #F9F7F2;
+            color: #1b1c19;
+            border-radius: 0.75rem;
+            padding: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .custom-popup .leaflet-popup-tip {
+            background: #F9F7F2;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1eee9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C59B27;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#baeaff",
+                        "on-primary-container": "#ff8888",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#7a1a22",
+                        "on-surface-variant": "#574241",
+                        "tertiary-container": "#004558",
+                        "secondary": "#775a00",
+                        "secondary-fixed": "#ffdf98",
+                        "surface-dim": "#dbdad5",
+                        "crimson-deep": "#7A1A22",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fbf9f4",
+                        "inverse-surface": "#30312e",
+                        "surface-container": "#f0eee9",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "slate-warm": "#4A4543",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004d62",
+                        "primary": "#5b000f",
+                        "inverse-on-surface": "#f2f1ec",
+                        "secondary-container": "#fece57",
+                        "primary-fixed": "#ffdad8",
+                        "on-secondary-fixed": "#251a00",
+                        "background": "#fbf9f4",
+                        "inverse-primary": "#ffb3b1",
+                        "on-tertiary-container": "#6db4d0",
+                        "tertiary-fixed-dim": "#89d0ed",
+                        "on-primary-fixed-variant": "#842229",
+                        "primary-fixed-dim": "#ffb3b1",
+                        "on-secondary-container": "#735700",
+                        "lake-azure": "#87CEEB",
+                        "surface-variant": "#e4e2dd",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "surface-container-low": "#f5f3ee",
+                        "tertiary": "#002d3b",
+                        "surface-tint": "#a43a3e",
+                        "secondary-fixed-dim": "#eec14b",
+                        "outline": "#8a7170",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#001f29",
+                        "on-background": "#1b1c19",
+                        "on-primary-fixed": "#410008",
+                        "on-surface": "#1b1c19",
+                        "outline-variant": "#ddc0be",
+                        "surface-container-high": "#eae8e3",
+                        "warm-ivory": "#F9F7F2",
+                        "surface": "#fbf9f4",
+                        "gold-antique": "#C59B27"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "1rem",
+                        "stack-lg": "2rem",
+                        "stack-sm": "0.5rem",
+                        "section-gap": "5rem",
+                        "margin-mobile": "1rem",
+                        "gutter": "1.5rem",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Rotis Sans Serif", "sans-serif"],
+                        "body": ["Poppins", "sans-serif"],
+                        "label": ["Poppins", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface/85 backdrop-blur-md dark:bg-surface-dim/80 docked full-width top-0 sticky z-50 shadow-sm dark:shadow-none border-b border-warm-ivory/20 h-24">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto h-full">
+<div class="flex items-center gap-4"><a href="/" class="flex items-center gap-3 group">
+  <div class="h-10 w-auto flex-shrink-0">
+    <img alt="Arquidiócesis de Maracaibo Logo" class="h-full w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVqQfz4GOLSbXkZLRMXZM3-adbj0sBm7fSnyuOCdt-TlcIJfpI80WtgNPRnkLdInf_6fpNz-Qg9mIpV4we1bKlg-JFqUrMv_ePYugPvKcWimsQWuTtMOXbeTCFZO-Kv1P8VlCeDy8hZ9-MsNZkC2bd-3xNok6LYXDUdyBnzAD84-sE87YxQcQxpLT0ik06q5QuoY4Tu8CgZ_pIeHcpCIVGb-IdSDXSue1l9LCMlJ4EMu73b0gYjh-x9gvovclJh51fVg">
+  </div>
+  <div class="flex flex-col justify-center">
+    <span class="font-headline font-bold text-crimson-deep dark:text-primary-fixed leading-[0.9] tracking-wide uppercase text-lg">Arquidiócesis</span>
+    <span class="font-headline font-bold text-crimson-deep dark:text-primary-fixed leading-[0.9] tracking-wide uppercase text-lg">de Maracaibo</span>
+  </div>
+</a></div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-label text-sm text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Arquidiócesis</a>
+<a class="font-label text-sm text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Pastoral</a>
+<a class="font-label text-sm text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Cancillería</a>
+<a class="font-label text-sm text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Noticias</a>
+<a class="font-label text-sm text-crimson-deep border-b-2 border-gold-antique pb-1 font-bold" href="#">Directorio</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-crimson-deep text-on-primary px-6 py-2.5 rounded-lg font-label text-sm hover:opacity-90 transition-all scale-95 duration-150 ease-in-out">Portal Clero</button>
+<span class="material-symbols-outlined text-slate-warm cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-stack-lg">
+<!-- Hero Section -->
+<section class="mb-stack-lg animate-fade-in">
+<div class="relative overflow-hidden rounded-xl bg-crimson-deep h-[300px] flex flex-col justify-center items-center text-center px-8">
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<img alt="Cathedral Interior" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLsC5SmBXfO8ucARjKOQvDzniQaLrWW46w84UHQ-1uEgn0aMwPJiF6gPT5gCwu5Lrkk-q0t-K0YM-iBZGHBS9-vgdqb-Z2YAVzd289B57xIyE8MimUT8dkbwl-Gt1X3RMfjivaQMunnzix6ydlz7RXIXMWFeqimQcHNggfWk9-_I8XYngmMwNMmm8CMSs4ThszcvW8YG3aZ3-86etqqd4-DU5SkrFFWpgw4j12TVwGPz4jqFMW42dVL5uA">
+</div>
+<h1 class="relative z-10 font-headline md:text-5xl text-white mb-4 break-words text-2xl">Directorio Parroquial</h1>
+<p class="relative z-10 font-body text-lg text-white/90 max-w-2xl">Encuentre su parroquia, horarios de misas y datos de contacto en toda nuestra geografía eclesiástica.</p>
+</div>
+</section>
+<!-- Search and Filters -->
+<section class="glass-card p-6 rounded-xl mb-12 flex flex-col md:flex-row gap-6 items-center shadow-sm">
+<div class="flex-1 w-full relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-warm" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-warm-ivory border-none rounded-lg focus:ring-2 focus:ring-crimson-deep font-body text-base transition-all" id="searchInput" placeholder="Buscar por nombre, párroco o dirección..." type="text">
+</div>
+<div class="w-full md:w-72">
+<select class="w-full py-3 bg-warm-ivory border-none rounded-lg focus:ring-2 focus:ring-crimson-deep font-label text-sm" id="zoneFilter">
+<option value="all">Todas las Zonas</option>
+<option value="PZ1">Zona 1 · Chiquinquirá</option>
+<option value="PZ2">Zona 2 · Sagrado Corazón</option>
+<option value="PZ3">Zona 3 · Sagrada Familia</option>
+<option value="PZ4">Zona 4 · Coromoto</option>
+<option value="PZ5">Zona 5 · San Francisco</option>
+<option value="PZ6">Zona 6 · Fátima</option>
+<option value="PZ7">Zona 7 · San Rafael del Moján</option>
+<option value="PZ8">Zona 8 · Inmaculada Concepción</option>
+<option value="PZ9">Zona 9 · San Bartolomé Apóstol</option>
+<option value="RZ">Rectorías</option>
+</select>
+</div>
+<div class="hidden md:block h-8 w-[1px] bg-outline-variant/30"></div>
+<div class="font-label text-sm text-slate-warm">
+<span class="text-crimson-deep font-bold" id="visibleCount">80</span> resultados encontrados
+        </div>
+</section>
+<!-- Map & Legend Bento -->
+<section class="grid grid-cols-1 lg:grid-cols-4 gap-gutter mb-16">
+<div class="lg:col-span-3 rounded-xl overflow-hidden glass-card shadow-lg">
+<div class="p-4 flex justify-between items-center bg-surface-container-high/50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-gold-antique" data-icon="map">map</span>
+<h3 class="font-headline text-xl md:text-2xl break-words">Geolocalización Sagrada</h3>
+</div>
+<button class="font-label text-xs uppercase tracking-wider text-crimson-deep font-bold hover:underline" id="mapToggleBtn">Ocultar Mapa</button>
+</div>
+<div id="parishMap" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative;"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/11/616/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(358px, -7px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/11/616/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(358px, 249px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/11/615/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(102px, -7px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/11/617/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(614px, -7px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/11/615/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(102px, 249px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/11/617/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(614px, 249px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/11/614/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-154px, -7px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/11/618/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(870px, -7px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/11/614/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-154px, 249px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/11/618/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(870px, 249px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-shadow-pane"></div><div class="leaflet-pane leaflet-marker-pane"><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(521px, 277px, 0px); z-index: 277;"><div style="background:#c0392b; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(508px, 275px, 0px); z-index: 275;"><div style="background:#c0392b; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(520px, 245px, 0px); z-index: 245;"><div style="background:#e17055; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(519px, 228px, 0px); z-index: 228;"><div style="background:#e17055; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(517px, 207px, 0px); z-index: 207;"><div style="background:#2980b9; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(341px, -198px, 0px); z-index: -198;"><div style="background:#8e44ad; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(531px, 235px, 0px); z-index: 235;"><div style="background:#C59B27; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(414px, 242px, 0px); z-index: 242;"><div style="background:#C59B27; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(157796px, 246529px, 0px) scale(1024);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in" aria-disabled="false"><span aria-hidden="true" class="">+</span></a><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out" aria-disabled="false"><span aria-hidden="true" class="">−</span></a></div></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com" title="A JavaScript library for interactive maps" class=""><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag"><path fill="#4C7BE1" d="M0 0h12v4H0z"></path><path fill="#FFD500" d="M0 4h12v3H0z"></path><path fill="#E0BC00" d="M0 7h12v1H0z"></path></svg> Leaflet</a> <span aria-hidden="true" class="">|</span> © <a href="https://www.openstreetmap.org/copyright" class="">OSM</a></div></div></div><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/11/616/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(358px, -7px, 0px); opacity: 0;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/11/616/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(358px, 249px, 0px); opacity: 0;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/11/615/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(102px, -7px, 0px); opacity: 0;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/11/617/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(614px, -7px, 0px); opacity: 0;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/11/615/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(102px, 249px, 0px); opacity: 0;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/11/617/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(614px, 249px, 0px); opacity: 0;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/11/614/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-154px, -7px, 0px); opacity: 0;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/11/618/962.png" class="leaflet-tile" style="width: 256px; height: 256px; transform: translate3d(870px, -7px, 0px);"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/11/614/963.png" class="leaflet-tile" style="width: 256px; height: 256px; transform: translate3d(-154px, 249px, 0px);"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/11/618/963.png" class="leaflet-tile" style="width: 256px; height: 256px; transform: translate3d(870px, 249px, 0px);"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-shadow-pane"></div><div class="leaflet-pane leaflet-marker-pane"><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(521px, 277px, 0px); z-index: 277;"><div style="background:#c0392b; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(508px, 275px, 0px); z-index: 275;"><div style="background:#c0392b; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(520px, 245px, 0px); z-index: 245;"><div style="background:#e17055; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(519px, 228px, 0px); z-index: 228;"><div style="background:#e17055; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(517px, 207px, 0px); z-index: 207;"><div style="background:#2980b9; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(341px, -198px, 0px); z-index: -198;"><div style="background:#8e44ad; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(531px, 235px, 0px); z-index: 235;"><div style="background:#C59B27; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(414px, 242px, 0px); z-index: 242;"><div style="background:#C59B27; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(157796px, 246529px, 0px) scale(1024);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in" aria-disabled="false"><span aria-hidden="true" class="">+</span></a><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out" aria-disabled="false"><span aria-hidden="true" class="">−</span></a></div></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com" title="A JavaScript library for interactive maps" class=""><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag"><path fill="#4C7BE1" d="M0 0h12v4H0z"></path><path fill="#FFD500" d="M0 4h12v3H0z"></path><path fill="#E0BC00" d="M0 7h12v1H0z"></path></svg> Leaflet</a> <span aria-hidden="true" class="">|</span> © <a href="https://www.openstreetmap.org/copyright" class="">OSM</a></div></div></div><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/11/616/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(358px, -7px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/11/616/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(358px, 249px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/11/615/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(102px, -7px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/11/617/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(614px, -7px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/11/615/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(102px, 249px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/11/617/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(614px, 249px, 0px); opacity: 1;"><img alt="" src="https://b.basemaps.cartocdn.com/light_all/11/614/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-154px, -7px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/11/618/962.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(870px, -7px, 0px); opacity: 1;"><img alt="" src="https://c.basemaps.cartocdn.com/light_all/11/614/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-154px, 249px, 0px); opacity: 1;"><img alt="" src="https://a.basemaps.cartocdn.com/light_all/11/618/963.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(870px, 249px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-shadow-pane"></div><div class="leaflet-pane leaflet-marker-pane"><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(521px, 277px, 0px); z-index: 277;"><div style="background:#c0392b; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(508px, 275px, 0px); z-index: 275;"><div style="background:#c0392b; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(520px, 245px, 0px); z-index: 245;"><div style="background:#e17055; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(519px, 228px, 0px); z-index: 228;"><div style="background:#e17055; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(517px, 207px, 0px); z-index: 207;"><div style="background:#2980b9; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(341px, -198px, 0px); z-index: -198;"><div style="background:#8e44ad; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(531px, 235px, 0px); z-index: 235;"><div style="background:#C59B27; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -8px; margin-top: -8px; width: 16px; height: 16px; transform: translate3d(414px, 242px, 0px); z-index: 242;"><div style="background:#C59B27; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div></div></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(157796px, 246529px, 0px) scale(1024);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in" aria-disabled="false"><span aria-hidden="true" class="">+</span></a><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out" aria-disabled="false"><span aria-hidden="true" class="">−</span></a></div></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com" title="A JavaScript library for interactive maps" class=""><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag"><path fill="#4C7BE1" d="M0 0h12v4H0z"></path><path fill="#FFD500" d="M0 4h12v3H0z"></path><path fill="#E0BC00" d="M0 7h12v1H0z"></path></svg> Leaflet</a> <span aria-hidden="true" class="">|</span> © <a href="https://www.openstreetmap.org/copyright" class="">OSM</a></div></div></div></div>
+</div>
+<div class="lg:col-span-1 glass-card p-6 rounded-xl flex flex-col gap-4">
+<h4 class="font-headline text-lg text-crimson-deep border-b border-outline-variant pb-2">Zonas Pastorales</h4>
+<div class="flex flex-col gap-3 overflow-y-auto pr-2 max-h-[400px]" id="mapLegend">
+<!-- Legend items populated by JS -->
+
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#c0392b"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Chiquinquirá</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#e17055"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Sagrado Corazón</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#f1c40f"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Sagrada Familia</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#27ae60"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Coromoto</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#16a085"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">San Francisco</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#2980b9"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Fátima</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#8e44ad"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">San Rafael del Moján</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#d63384"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Inmaculada Concepción</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#6f42c1"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">San Bartolomé Apóstol</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#c0392b"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Chiquinquirá</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#e17055"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Sagrado Corazón</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#f1c40f"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Sagrada Familia</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#27ae60"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Coromoto</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#16a085"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">San Francisco</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#2980b9"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Fátima</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#8e44ad"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">San Rafael del Moján</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#d63384"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Inmaculada Concepción</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#6f42c1"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">San Bartolomé Apóstol</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#c0392b"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Chiquinquirá</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#e17055"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Sagrado Corazón</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#f1c40f"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Sagrada Familia</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#27ae60"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Coromoto</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#16a085"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">San Francisco</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#2980b9"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Fátima</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#8e44ad"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">San Rafael del Moján</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#d63384"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">Inmaculada Concepción</span>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:#6f42c1"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">San Bartolomé Apóstol</span>
+                </div></div>
+</div>
+</section>
+<!-- Tab Controls -->
+<div class="flex gap-4 mb-8 border-b border-outline-variant/30 pb-4">
+<button class="tab-btn px-6 py-2 rounded-full font-label text-sm bg-primary-container text-white transition-all" onclick="showTab('parroquias', this)">Parroquias (72)</button>
+<button class="tab-btn px-6 py-2 rounded-full font-label text-sm text-slate-warm hover:bg-surface-variant/30 transition-all" onclick="showTab('rectorias', this)">Rectorías (8)</button>
+</div>
+<!-- Parish Grid -->
+<div class="tab-panel" id="tab-parroquias">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter" id="parishGrid">
+        <div class="bento-item glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl group" data-name="catedral de los santos apóstoles pedro y pablo" data-zone="PZ1">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1548625361-9252c80145c2?w=800&amp;q=80" alt="Catedral de los Santos Apóstoles Pedro y Pablo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute top-4 right-4 bg-crimson-deep text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest font-label">PZ1-1</div>
+            </div>
+            <div class="p-6">
+                <h3 class="font-headline text-lg text-crimson-deep mb-4 leading-tight h-12 flex items-center break-words">Catedral de los Santos Apóstoles Pedro y Pablo</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="person">person</span>
+                        <div class="flex flex-col">
+                            <span class="text-[10px] font-bold text-slate-warm/50 uppercase tracking-wider font-label">Párroco</span>
+                            <span class="font-body text-sm font-medium text-slate-warm">Pbro. Néstor Primera</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="location_on">location_on</span>
+                        <span class="font-body text-sm text-slate-warm/80 leading-relaxed">Av. 4 con calle 95, Plaza Bolívar</span>
+                    </div>
+                </div>
+                <div class="mt-6 flex gap-2">
+                    <button class="flex-1 py-2 bg-crimson-deep text-white rounded-lg font-label text-sm hover:bg-primary transition-all">Ver Más</button>
+                    <button class="w-12 h-10 border border-crimson-deep/20 rounded-lg flex items-center justify-center text-crimson-deep hover:bg-crimson-deep/5 transition-all">
+                        <span class="material-symbols-outlined" data-icon="directions">directions</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="bento-item glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl group" data-name="basílica santuario de ntra. sra. de chiquinquirá" data-zone="PZ1">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1548115184-bc6544d06a58?w=800&amp;q=80" alt="Basílica Santuario de Ntra. Sra. de Chiquinquirá" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute top-4 right-4 bg-crimson-deep text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest font-label">PZ1-4</div>
+            </div>
+            <div class="p-6">
+                <h3 class="font-headline text-lg text-crimson-deep mb-4 leading-tight h-12 flex items-center break-words">Basílica Santuario de Ntra. Sra. de Chiquinquirá</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="person">person</span>
+                        <div class="flex flex-col">
+                            <span class="text-[10px] font-bold text-slate-warm/50 uppercase tracking-wider font-label">Párroco</span>
+                            <span class="font-body text-sm font-medium text-slate-warm">Pbro. Nedward Andrade</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="location_on">location_on</span>
+                        <span class="font-body text-sm text-slate-warm/80 leading-relaxed">Centro Histórico</span>
+                    </div>
+                </div>
+                <div class="mt-6 flex gap-2">
+                    <button class="flex-1 py-2 bg-crimson-deep text-white rounded-lg font-label text-sm hover:bg-primary transition-all">Ver Más</button>
+                    <button class="w-12 h-10 border border-crimson-deep/20 rounded-lg flex items-center justify-center text-crimson-deep hover:bg-crimson-deep/5 transition-all">
+                        <span class="material-symbols-outlined" data-icon="directions">directions</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="bento-item glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl group" data-name="parroquia ntra. sra. de la consolación" data-zone="PZ2">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1519810755548-39cd217da494?w=800&amp;q=80" alt="Parroquia Ntra. Sra. de la Consolación" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute top-4 right-4 bg-crimson-deep text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest font-label">PZ2-4</div>
+            </div>
+            <div class="p-6">
+                <h3 class="font-headline text-lg text-crimson-deep mb-4 leading-tight h-12 flex items-center break-words">Parroquia Ntra. Sra. de la Consolación</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="person">person</span>
+                        <div class="flex flex-col">
+                            <span class="text-[10px] font-bold text-slate-warm/50 uppercase tracking-wider font-label">Párroco</span>
+                            <span class="font-body text-sm font-medium text-slate-warm">Fray Ricardo Riaño</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="location_on">location_on</span>
+                        <span class="font-body text-sm text-slate-warm/80 leading-relaxed">Av. Bella Vista Esq. Calle 79</span>
+                    </div>
+                </div>
+                <div class="mt-6 flex gap-2">
+                    <button class="flex-1 py-2 bg-crimson-deep text-white rounded-lg font-label text-sm hover:bg-primary transition-all">Ver Más</button>
+                    <button class="w-12 h-10 border border-crimson-deep/20 rounded-lg flex items-center justify-center text-crimson-deep hover:bg-crimson-deep/5 transition-all">
+                        <span class="material-symbols-outlined" data-icon="directions">directions</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="bento-item glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl group" data-name="sagrado corazón de jesús" data-zone="PZ2">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1590059235658-ec37989d979a?w=800&amp;q=80" alt="Sagrado Corazón de Jesús" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute top-4 right-4 bg-crimson-deep text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest font-label">PZ2-9</div>
+            </div>
+            <div class="p-6">
+                <h3 class="font-headline text-lg text-crimson-deep mb-4 leading-tight h-12 flex items-center break-words">Sagrado Corazón de Jesús</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="person">person</span>
+                        <div class="flex flex-col">
+                            <span class="text-[10px] font-bold text-slate-warm/50 uppercase tracking-wider font-label">Párroco</span>
+                            <span class="font-body text-sm font-medium text-slate-warm">Pbro. Edgar J. Doria M.</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="location_on">location_on</span>
+                        <span class="font-body text-sm text-slate-warm/80 leading-relaxed">Av. 4 Calle 68A Bella Vista</span>
+                    </div>
+                </div>
+                <div class="mt-6 flex gap-2">
+                    <button class="flex-1 py-2 bg-crimson-deep text-white rounded-lg font-label text-sm hover:bg-primary transition-all">Ver Más</button>
+                    <button class="w-12 h-10 border border-crimson-deep/20 rounded-lg flex items-center justify-center text-crimson-deep hover:bg-crimson-deep/5 transition-all">
+                        <span class="material-symbols-outlined" data-icon="directions">directions</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="bento-item glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl group" data-name="ntra. sra. de fátima" data-zone="PZ6">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1555620263-73c1dc1c4961?w=800&amp;q=80" alt="Ntra. Sra. de Fátima" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute top-4 right-4 bg-crimson-deep text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest font-label">PZ6-1</div>
+            </div>
+            <div class="p-6">
+                <h3 class="font-headline text-lg text-crimson-deep mb-4 leading-tight h-12 flex items-center break-words">Ntra. Sra. de Fátima</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="person">person</span>
+                        <div class="flex flex-col">
+                            <span class="text-[10px] font-bold text-slate-warm/50 uppercase tracking-wider font-label">Párroco</span>
+                            <span class="font-body text-sm font-medium text-slate-warm">R.P. Francisco Ortiz Bran</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="location_on">location_on</span>
+                        <span class="font-body text-sm text-slate-warm/80 leading-relaxed">Urb. Monte Claro Av. 2</span>
+                    </div>
+                </div>
+                <div class="mt-6 flex gap-2">
+                    <button class="flex-1 py-2 bg-crimson-deep text-white rounded-lg font-label text-sm hover:bg-primary transition-all">Ver Más</button>
+                    <button class="w-12 h-10 border border-crimson-deep/20 rounded-lg flex items-center justify-center text-crimson-deep hover:bg-crimson-deep/5 transition-all">
+                        <span class="material-symbols-outlined" data-icon="directions">directions</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="bento-item glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl group" data-name="san rafael arcángel (el moján)" data-zone="PZ7">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&amp;q=80" alt="San Rafael Arcángel (El Moján)" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute top-4 right-4 bg-crimson-deep text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest font-label">PZ7-1</div>
+            </div>
+            <div class="p-6">
+                <h3 class="font-headline text-lg text-crimson-deep mb-4 leading-tight h-12 flex items-center break-words">San Rafael Arcángel (El Moján)</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="person">person</span>
+                        <div class="flex flex-col">
+                            <span class="text-[10px] font-bold text-slate-warm/50 uppercase tracking-wider font-label">Párroco</span>
+                            <span class="font-body text-sm font-medium text-slate-warm">Pbro. Rafael Morales</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="location_on">location_on</span>
+                        <span class="font-body text-sm text-slate-warm/80 leading-relaxed">AV. 2 El Moján, Mcpio. Mara</span>
+                    </div>
+                </div>
+                <div class="mt-6 flex gap-2">
+                    <button class="flex-1 py-2 bg-crimson-deep text-white rounded-lg font-label text-sm hover:bg-primary transition-all">Ver Más</button>
+                    <button class="w-12 h-10 border border-crimson-deep/20 rounded-lg flex items-center justify-center text-crimson-deep hover:bg-crimson-deep/5 transition-all">
+                        <span class="material-symbols-outlined" data-icon="directions">directions</span>
+                    </button>
+                </div>
+            </div>
+        </div></div>
+<div class="hidden text-center py-20" id="noResults">
+<span class="material-symbols-outlined text-6xl text-outline-variant mb-4" data-icon="search_off">search_off</span>
+<h4 class="font-headline text-2xl text-slate-warm">Sin resultados</h4>
+<p class="font-body text-base text-slate-warm/70">Intente con otro nombre o zona pastoral.</p>
+</div>
+</div>
+<div class="tab-panel hidden" id="tab-rectorias">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter" id="rectoriaGrid">
+        <div class="bento-item glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl group" data-name="rectoría san francisco de asís" data-zone="RZ">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1438032005730-c779502df39b?w=800&amp;q=80" alt="Rectoría San Francisco de Asís" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute top-4 right-4 bg-crimson-deep text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest font-label">RZ6-10</div>
+            </div>
+            <div class="p-6">
+                <h3 class="font-headline text-lg text-crimson-deep mb-4 leading-tight h-12 flex items-center">Rectoría San Francisco de Asís</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="person">person</span>
+                        <div class="flex flex-col">
+                            <span class="text-[10px] font-bold text-slate-warm/50 uppercase tracking-wider font-label">Párroco</span>
+                            <span class="font-body text-sm font-medium text-slate-warm">R.P. Pedro Paredes Ramírez</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="location_on">location_on</span>
+                        <span class="font-body text-sm text-slate-warm/80 leading-relaxed">Av. Milagro Norte (ZP-6)</span>
+                    </div>
+                </div>
+                <div class="mt-6 flex gap-2">
+                    <button class="flex-1 py-2 bg-crimson-deep text-white rounded-lg font-label text-sm hover:bg-primary transition-all">Ver Más</button>
+                    <button class="w-12 h-10 border border-crimson-deep/20 rounded-lg flex items-center justify-center text-crimson-deep hover:bg-crimson-deep/5 transition-all">
+                        <span class="material-symbols-outlined" data-icon="directions">directions</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="bento-item glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl group" data-name="rectoría santo tomás moro" data-zone="RZ">
+            <div class="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1519810755548-39cd217da494?w=800&amp;q=80" alt="Rectoría Santo Tomás Moro" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute top-4 right-4 bg-crimson-deep text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest font-label">RZ4-12</div>
+            </div>
+            <div class="p-6">
+                <h3 class="font-headline text-lg text-crimson-deep mb-4 leading-tight h-12 flex items-center">Rectoría Santo Tomás Moro</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="person">person</span>
+                        <div class="flex flex-col">
+                            <span class="text-[10px] font-bold text-slate-warm/50 uppercase tracking-wider font-label">Párroco</span>
+                            <span class="font-body text-sm font-medium text-slate-warm">Pbro. Laudi Zambrano</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="location_on">location_on</span>
+                        <span class="font-body text-sm text-slate-warm/80 leading-relaxed">Urb. Sucre Calle 62</span>
+                    </div>
+                </div>
+                <div class="mt-6 flex gap-2">
+                    <button class="flex-1 py-2 bg-crimson-deep text-white rounded-lg font-label text-sm hover:bg-primary transition-all">Ver Más</button>
+                    <button class="w-12 h-10 border border-crimson-deep/20 rounded-lg flex items-center justify-center text-crimson-deep hover:bg-crimson-deep/5 transition-all">
+                        <span class="material-symbols-outlined" data-icon="directions">directions</span>
+                    </button>
+                </div>
+            </div>
+        </div></div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface w-full py-stack-lg border-t border-outline-variant/30 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-gutter max-w-container-max mx-auto opacity-90 hover:opacity-100 transition-opacity">
+<div class="flex flex-col gap-4">
+<span class="font-headline text-2xl text-crimson-deep">Arquidiócesis de Maracaibo</span>
+<p class="font-body text-base text-on-surface">Custodiando la fe y el patrimonio espiritual del Zulia desde su fundación.</p>
+</div>
+<div>
+<h4 class="font-label text-sm font-semibold text-crimson-deep mb-4 uppercase tracking-wider">Enlaces Rápidos</h4>
+<div class="flex flex-col gap-2">
+<a class="font-label text-sm text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline decoration-gold-antique" href="#">Cancillería</a>
+<a class="font-label text-sm text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline decoration-gold-antique" href="#">Ambientes Seguros</a>
+<a class="font-label text-sm text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline decoration-gold-antique" href="#">Portal del Clero</a>
+</div>
+</div>
+<div>
+<h4 class="font-label text-sm font-semibold text-crimson-deep mb-4 uppercase tracking-wider">Contacto</h4>
+<p class="font-body text-sm text-on-surface leading-relaxed">Av. 4 con calle 95, frente a la Plaza Bolívar. Maracaibo, Estado Zulia.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label text-sm font-semibold text-crimson-deep mb-4 uppercase tracking-wider">Newsletter</h4>
+<div class="flex bg-surface-container-low p-1 rounded-lg">
+<input class="bg-transparent border-none focus:ring-0 w-full px-2 font-body text-sm" placeholder="Email" type="email">
+<button class="bg-gold-antique text-white p-2 rounded-md"><span class="material-symbols-outlined" data-icon="send">send</span></button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter pt-8 mt-8 border-t border-outline-variant/10 text-center">
+<p class="font-body text-sm text-slate-warm">© 2024 Arquidiócesis de Maracaibo. Todos los derechos reservados. Sagrado Modernismo.</p>
+</div>
+</footer>
+<script>
+    const parishes = [
+        { code:"PZ1-1", zone:"PZ1", name:"Catedral de los Santos Apóstoles Pedro y Pablo", parroco:"Pbro. Néstor Primera", direccion:"Av. 4 con calle 95, Plaza Bolívar", tels:["0412-7885662"], email:"nprimera40@gmail.com", image: "https://images.unsplash.com/photo-1548625361-9252c80145c2?w=800&q=80" },
+        { code:"PZ1-4", zone:"PZ1", name:"Basílica Santuario de Ntra. Sra. de Chiquinquirá", parroco:"Pbro. Nedward Andrade", direccion:"Centro Histórico", tels:["0412-2473657"], email:"basilicachiquinquira@gmail.com", image: "https://images.unsplash.com/photo-1548115184-bc6544d06a58?w=800&q=80" },
+        { code:"PZ2-4", zone:"PZ2", name:"Parroquia Ntra. Sra. de la Consolación", parroco:"Fray Ricardo Riaño", direccion:"Av. Bella Vista Esq. Calle 79", tels:["0414-7127606"], email:"iglesialaconsolacion.mbo@gmail.com", image: "https://images.unsplash.com/photo-1519810755548-39cd217da494?w=800&q=80" },
+        { code:"PZ2-9", zone:"PZ2", name:"Sagrado Corazón de Jesús", parroco:"Pbro. Edgar J. Doria M.", direccion:"Av. 4 Calle 68A Bella Vista", tels:["0414-3612908"], email:"edgarjose@cantv.net", image: "https://images.unsplash.com/photo-1590059235658-ec37989d979a?w=800&q=80" },
+        { code:"PZ6-1", zone:"PZ6", name:"Ntra. Sra. de Fátima", parroco:"R.P. Francisco Ortiz Bran", direccion:"Urb. Monte Claro Av. 2", tels:["0412-9844169"], email:"mcbofatima@gmail.com", image: "https://images.unsplash.com/photo-1555620263-73c1dc1c4961?w=800&q=80" },
+        { code:"PZ7-1", zone:"PZ7", name:"San Rafael Arcángel (El Moján)", parroco:"Pbro. Rafael Morales", direccion:"AV. 2 El Moján, Mcpio. Mara", tels:["0416-6667944"], email:"padrerafaeljmoralesf@hotmail.com", image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80" }
+    ];
+
+    const rectorias = [
+        { code:"RZ6-10", zone:"RZ", name:"Rectoría San Francisco de Asís", parroco:"R.P. Pedro Paredes Ramírez", direccion:"Av. Milagro Norte (ZP-6)", tels:[], email:"", image: "https://images.unsplash.com/photo-1438032005730-c779502df39b?w=800&q=80" },
+        { code:"RZ4-12", zone:"RZ", name:"Rectoría Santo Tomás Moro", parroco:"Pbro. Laudi Zambrano", direccion:"Urb. Sucre Calle 62", tels:["0414-3618152"], email:"", image: "https://images.unsplash.com/photo-1519810755548-39cd217da494?w=800&q=80" }
+    ];
+
+    const zoneNames = {
+        PZ1:"Zona 1 · Chiquinquirá", PZ2:"Zona 2 · Sagrado Corazón",
+        PZ3:"Zona 3 · Sagrada Familia", PZ4:"Zona 4 · Coromoto",
+        PZ5:"Zona 5 · San Francisco", PZ6:"Zona 6 · Fátima",
+        PZ7:"Zona 7 · San Rafael del Moján", PZ8:"Zona 8 · Inmaculada Concepción",
+        PZ9:"Zona 9 · San Bartolomé Apóstol"
+    };
+
+    const zoneColors = {
+        PZ1:'#c0392b', PZ2:'#e17055', PZ3:'#f1c40f',
+        PZ4:'#27ae60', PZ5:'#16a085', PZ6:'#2980b9',
+        PZ7:'#8e44ad', PZ8:'#d63384', PZ9:'#6f42c1', RZ:'#C59B27'
+    };
+
+    const coords = {
+        "PZ1-1":[10.64153,-71.60673], "PZ1-4":[10.6429,-71.61556],
+        "PZ2-4":[10.66358,-71.6075], "PZ2-9":[10.67476,-71.60809],
+        "PZ6-1":[10.68887,-71.60938], "PZ7-1":[10.96189,-71.73028],
+        "RZ6-10":[10.67,-71.60], "RZ4-12":[10.665,-71.68]
+    };
+
+    function createCard(p, isRect = false) {
+        return `
+        <div class="bento-item glass-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl group" data-name="${p.name.toLowerCase()}" data-zone="${p.zone}">
+            <div class="h-48 overflow-hidden relative">
+                <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute top-4 right-4 bg-crimson-deep text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest font-label">${p.code}</div>
+            </div>
+            <div class="p-6">
+                <h3 class="font-headline text-lg text-crimson-deep mb-4 leading-tight h-12 flex items-center">${p.name}</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="person">person</span>
+                        <div class="flex flex-col">
+                            <span class="text-[10px] font-bold text-slate-warm/50 uppercase tracking-wider font-label">Párroco</span>
+                            <span class="font-body text-sm font-medium text-slate-warm">${p.parroco || 'Por confirmar'}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold-antique text-lg" data-icon="location_on">location_on</span>
+                        <span class="font-body text-sm text-slate-warm/80 leading-relaxed">${p.direccion}</span>
+                    </div>
+                </div>
+                <div class="mt-6 flex gap-2">
+                    <button class="flex-1 py-2 bg-crimson-deep text-white rounded-lg font-label text-sm hover:bg-primary transition-all">Ver Más</button>
+                    <button class="w-12 h-10 border border-crimson-deep/20 rounded-lg flex items-center justify-center text-crimson-deep hover:bg-crimson-deep/5 transition-all">
+                        <span class="material-symbols-outlined" data-icon="directions">directions</span>
+                    </button>
+                </div>
+            </div>
+        </div>`;
+    }
+
+    function renderGrids() {
+        const parishGrid = document.getElementById('parishGrid');
+        const rectoriaGrid = document.getElementById('rectoriaGrid');
+        
+        parishGrid.innerHTML = parishes.map(p => createCard(p)).join('');
+        rectoriaGrid.innerHTML = rectorias.map(r => createCard(r, true)).join('');
+    }
+
+    function showTab(tab, btn) {
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+        document.getElementById('tab-' + tab).classList.remove('hidden');
+        
+        document.querySelectorAll('.tab-btn').forEach(b => {
+            b.classList.remove('bg-primary-container', 'text-white');
+            b.classList.add('text-slate-warm');
+        });
+        btn.classList.add('bg-primary-container', 'text-white');
+        btn.classList.remove('text-slate-warm');
+    }
+
+    function initMap() {
+        const map = L.map('parishMap', { scrollWheelZoom: false }).setView([10.66, -71.65], 11);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+        }).addTo(map);
+
+        const legendEl = document.getElementById('mapLegend');
+        Object.entries(zoneNames).forEach(([k, v]) => {
+            const zoneShort = v.split('·')[1]?.trim() || v;
+            legendEl.innerHTML += `
+                <div class="flex items-center gap-3 p-2 hover:bg-surface-container rounded-lg cursor-pointer transition-all">
+                    <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:${zoneColors[k]}"></span>
+                    <span class="font-label text-xs font-medium text-slate-warm">${zoneShort}</span>
+                </div>`;
+        });
+
+        // Add markers
+        const allPoints = [...parishes, ...rectorias];
+        allPoints.forEach(p => {
+            const c = coords[p.code];
+            if (!c) return;
+            const color = zoneColors[p.zone] || '#C59B27';
+            
+            const customIcon = L.divIcon({
+                className: 'custom-marker',
+                html: `<div style="background:${color}; width:16px; height:16px; border-radius:50%; border:3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.2);"></div>`,
+                iconSize: [16, 16],
+                iconAnchor: [8, 8]
+            });
+
+            L.marker(c, { icon: customIcon }).addTo(map)
+                .bindPopup(`
+                    <div class="custom-popup">
+                        <strong style="color:#7A1A22; font-family:'Rotis Sans Serif', sans-serif; font-weight:700; display:block; margin-bottom:4px; font-size:14px;">${p.name}</strong>
+                        <span style="font-size:12px; color:#4A4543; font-family:'Poppins', sans-serif;">${p.parroco || 'Párroco'}</span>
+                    </div>
+                `);
+        });
+
+        document.getElementById('mapToggleBtn').onclick = function() {
+            const mapDiv = document.getElementById('parishMap');
+            if (mapDiv.style.height === '0px') {
+                mapDiv.style.height = '500px';
+                this.innerText = 'Ocultar Mapa';
+                setTimeout(() => map.invalidateSize(), 300);
+            } else {
+                mapDiv.style.height = '0px';
+                this.innerText = 'Mostrar Mapa';
+            }
+        };
+    }
+
+    // Search logic
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const items = document.querySelectorAll('.bento-item');
+        let count = 0;
+        
+        items.forEach(item => {
+            const matches = item.dataset.name.includes(query);
+            item.style.display = matches ? 'block' : 'none';
+            if (matches) count++;
+        });
+        document.getElementById('visibleCount').innerText = count;
+        document.getElementById('noResults').classList.toggle('hidden', count > 0);
+    });
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+        renderGrids();
+        initMap();
+    });
+</script>
+
+
+
+
+
+
+</body></html>

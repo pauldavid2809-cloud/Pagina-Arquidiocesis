@@ -1,0 +1,376 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Noticias | Arquidiócesis de Maracaibo</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Poppins (replacing Outfit) -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#ffdea5",
+                    "on-surface": "#1e1b18",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#fff8f5",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#fed488",
+                    "on-background": "#1e1b18",
+                    "secondary": "#775a19",
+                    "on-primary-fixed-variant": "#842229",
+                    "tertiary-container": "#403f3b",
+                    "inverse-on-surface": "#f8efea",
+                    "primary-fixed": "#ffdad8",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#1c1c18",
+                    "on-primary-fixed": "#410008",
+                    "surface": "#fff8f5",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "primary-fixed-dim": "#ffb3b1",
+                    "surface-dim": "#e1d8d4",
+                    "surface-tint": "#a43a3e",
+                    "surface-container-highest": "#e9e1dc",
+                    "tertiary-fixed": "#e5e2dc",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#574241",
+                    "tertiary": "#292926",
+                    "outline-variant": "#ddc0be",
+                    "surface-container": "#f5ece7",
+                    "inverse-primary": "#ffb3b1",
+                    "surface-variant": "#e9e1dc",
+                    "surface-container-low": "#fbf2ed",
+                    "on-secondary-container": "#785a1a",
+                    "outline": "#8a7170",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#34302c",
+                    "surface-container-high": "#efe6e2",
+                    "secondary-fixed-dim": "#e9c176",
+                    "primary-container": "#7a1a22",
+                    "tertiary-fixed-dim": "#c9c6c1",
+                    "on-secondary-fixed": "#261900",
+                    "on-primary-container": "#ff8888",
+                    "on-error": "#ffffff",
+                    "background": "#fff8f5",
+                    "primary": "#5b000f",
+                    "on-tertiary-fixed-variant": "#474743",
+                    "on-tertiary-container": "#acaaa5",
+                    "crimson-deep": "#7A1A22",
+                    "gold-antique": "#C59B27",
+                    "slate-warm": "#4A4543",
+                    "warm-ivory": "#F9F7F2",
+                    "lake-azure": "#87CEEB"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-md": "1rem",
+                    "stack-lg": "2rem",
+                    "stack-sm": "0.5rem",
+                    "section-gap": "5rem",
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "label-lg": ["Poppins"],
+                    "headline-sm": ["Rotis Sans Serif", "sans-serif"],
+                    "body-md": ["Poppins"],
+                    "display-lg-mobile": ["Rotis Sans Serif", "sans-serif"],
+                    "headline-md": ["Rotis Sans Serif", "sans-serif"],
+                    "label-md": ["Poppins"],
+                    "headline-lg-mobile": ["Rotis Sans Serif", "sans-serif"],
+                    "body-lg": ["Poppins"],
+                    "display-lg": ["Rotis Sans Serif", "sans-serif"],
+                    "headline-lg": ["Rotis Sans Serif", "sans-serif"],
+                    "quote-editorial": ["Rotis Sans Serif", "sans-serif"]
+            },
+            "fontSize": {
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                    "quote-editorial": ["22px", {"lineHeight": "1.4", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 248, 245, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 113, 112, 0.1);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-surface/85 backdrop-blur-md dark:bg-surface-dim/80 docked full-width top-0 sticky z-50 shadow-sm dark:shadow-none border-b border-warm-ivory/20">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-4">
+<a class="flex items-center gap-4 group" href="/"><div class="flex items-center gap-3">
+  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXTtE-pVwh8DbfUMFF6Bjuh8je0hInMHfdCxGP5uQShKchtIVOjCrm7KVSDeab854-hcfD2a5O0tGPd9tUSw1NxNTInZ9itKKbi1c7PgcNp-65WQORxRJHGr3gGkfQ5696DVIRqJJcfT8MlKBBwconSXcWLRxUAVldAbyq7LMLWUgT16zSC3Oso3hhqKm-R6gBrE8iDJlbdtxiBr-g0F3Dg3oJmIusdjmG-ENhC_F0F5XWOm79c901t2RR9bwR08_c7A" alt="Logo Arquidiócesis de Maracaibo" class="h-10 w-auto object-contain">
+  <div class="flex flex-col justify-center">
+    <span class="font-display-lg text-lg font-bold leading-none text-crimson-deep uppercase text-base md:text-lg whitespace-normal">Arquidiócesis</span>
+    <span class="font-display-lg text-lg font-bold leading-none text-gold-antique uppercase text-base md:text-lg whitespace-normal">de Maracaibo</span>
+  </div>
+</div></a>
+</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Arquidiócesis</a>
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Pastoral</a>
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Cancillería</a>
+<a class="font-label-md text-label-md text-crimson-deep border-b-2 border-gold-antique pb-1 font-bold" href="#">Noticias</a>
+<a class="font-label-md text-label-md text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Donaciones</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden lg:block bg-crimson-deep text-on-primary px-6 py-2.5 rounded-lg font-label-md transition-all hover:bg-primary">Portal Clero</button>
+<span class="material-symbols-outlined text-slate-warm cursor-pointer" data-icon="account_circle">account_circle</span>
+<button class="md:hidden flex items-center" id="mobile-menu-trigger">
+<span class="material-symbols-outlined text-crimson-deep" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-stack-lg">
+<!-- Hero Section & Featured Highlight -->
+<section class="mb-section-gap reveal-up active">
+<div class="relative rounded-xl overflow-hidden bg-primary h-[500px] flex items-end">
+<img class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60" data-alt="A grand cathedral interior with golden light streaming through stained glass windows, illuminating the intricate stone arches and sacred atmosphere of a solemn liturgical celebration." src="https://lh3.googleusercontent.com/aida/AP1WRLt0GjSBR9iP0o8VTforMcD42XsG8RSxcV3FbAbzZGBm_BaEeq6vV5PYWu41o1lXXx5XJRsVEEyd7Dak6_oSOsi-q_DhN2_yh7jDwpdd9ccwIarrVDG_Rk22kixFCzbR2xrV5cY0WpVq-7YjvBkavuLsNWOX2VyBRvZNYuOelZSqabi6emxMKUoSCLsra4txpVy35Jj8Bx2755EB9qrr1xxP2ao1km51TgyOYIK0JdOf0LJm3KCwrjKERi8">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="relative p-8 md:p-12 max-w-3xl">
+<span class="bg-gold-antique text-on-background px-4 py-1 rounded-full font-label-md text-xs uppercase mb-4 inline-block tracking-widest">Noticia Destacada</span>
+<h1 class="font-headline-lg text-headline-lg text-white mb-4">Ordenación sacerdotal en la Catedral de Maracaibo</h1>
+<p class="font-quote-editorial text-quote-editorial text-warm-ivory/90 mb-6 italic">Mons. José Luis Azuaje presidió la celebración eucarística en la que nuevos presbíteros fueron llamados al servicio de la grey zuliana.</p>
+<div class="flex items-center gap-4">
+<button class="bg-crimson-deep text-on-primary px-8 py-3 rounded-lg font-label-md hover:bg-primary transition-all">Leer más</button>
+<span class="text-white/80 font-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_month">calendar_month</span>
+                        28 de Mayo, 2026
+                    </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Controls & Filters Bar -->
+<div class="mb-stack-lg sticky top-24 z-40">
+<div class="glass-card rounded-xl p-4 flex flex-col md:flex-row justify-between items-center gap-4 shadow-sm border border-outline-variant/30">
+<div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-hide">
+<button class="pill active bg-crimson-deep text-white px-6 py-2 rounded-full font-label-md transition-all">Todas</button>
+<button class="pill bg-surface-container-highest text-slate-warm px-6 py-2 rounded-full font-label-md hover:bg-warm-ivory transition-all whitespace-nowrap">Mayo 2026</button>
+<button class="pill bg-surface-container-highest text-slate-warm px-6 py-2 rounded-full font-label-md hover:bg-warm-ivory transition-all whitespace-nowrap">Abril 2026</button>
+<button class="pill bg-surface-container-highest text-slate-warm px-6 py-2 rounded-full font-label-md hover:bg-warm-ivory transition-all whitespace-nowrap">Marzo 2026</button>
+</div>
+<div class="relative w-full md:w-80">
+<input class="w-full bg-warm-ivory/50 border-0 border-b border-outline-variant focus:ring-0 focus:border-gold-antique py-2 pl-4 pr-10 font-body-md" placeholder="Buscar noticias..." type="text">
+<span class="material-symbols-outlined absolute right-2 top-2 text-slate-warm" data-icon="search">search</span>
+</div>
+</div>
+</div>
+<!-- News Bento Grid -->
+<div class="bento-grid mb-section-gap">
+<!-- News Item 1 (Wide) -->
+<div class="col-span-12 md:col-span-8 group cursor-pointer reveal-up active">
+<div class="glass-card rounded-xl overflow-hidden h-full flex flex-col md:flex-row hover:shadow-lg transition-all duration-500">
+<div class="md:w-1/2 overflow-hidden h-64 md:h-full relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A vibrant assembly of young people participating in a faith-based workshop within a brightly lit community hall." src="https://lh3.googleusercontent.com/aida/AP1WRLtg6UhTZ1BmL7ixmDbrEJ-jG5EUz-iECfRDPLrn6qsY6eQAn8Q4Gdhvu-w2w6_-1qo59TTwgQLZ9bsVI_9bET3APZeMQqq2yrkDU7JMzdBl5WR8s2NGUuFcdemrpfpVXEpZcoPdnk4dGrAtpIrds93SMCbuWKV2PuG07cW8vf2zmUXbZc3t00rXU3ILVlVOBAfh3JRa5jGBegdiVe6KXytUWzHWcwmGy2e-jJiJwh--Mem-rFKrQi6ceg">
+<span class="absolute top-4 left-4 bg-lake-azure/90 text-white px-3 py-1 rounded-full font-label-md text-xs">Pastoral Juvenil</span>
+</div>
+<div class="md:w-1/2 p-8 flex flex-col justify-center">
+<span class="text-gold-antique font-label-md text-sm mb-2">25 de Mayo, 2026</span>
+<h3 class="font-headline-md text-headline-md text-crimson-deep mb-4 leading-tight">Encuentro Diocesano: Juventud Zuliana en Acción</h3>
+<p class="text-on-surface-variant font-body-md line-clamp-3 mb-6">Jóvenes de toda la Arquidiócesis se reunirán para compartir, orar y planificar las actividades del segundo semestre con un espíritu de renovación.</p>
+<div class="mt-auto flex items-center text-crimson-deep font-label-md group-hover:gap-2 transition-all">
+                        Ver detalles <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- News Item 2 (Standard) -->
+<div class="col-span-12 md:col-span-4 group cursor-pointer reveal-up active">
+<div class="glass-card rounded-xl overflow-hidden h-full hover:shadow-lg transition-all duration-500">
+<div class="h-56 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A formal official document with an ecclesiastical seal placed on a dark wooden desk." src="https://lh3.googleusercontent.com/aida/AP1WRLs8_6Px6dQ1BaS0BOtiyyXSpWcbg0AQpJYViAoPcNH8i544q1cD12K9sZWJIJTCrE8T_je0UVYn4TNOD7nDGuLDz0YNYH9pCoeXPivxc0zyAgtJIZRk6f715fCAmD1e3sD8ThG3LFQlYBnu5flUcZmwLrfR_cPFoaykEwA6pbCXw9jDL5bpBQulPuVBOiloZUciEJTk2RW7IlBzNl4Ezca-hHvT89qft9_Ob_NQl48T1yPKqV6dQGEJGZw">
+</div>
+<div class="p-6">
+<span class="text-gold-antique font-label-md text-xs mb-2 block">22 de Mayo, 2026</span>
+<h3 class="font-headline-md text-xl text-crimson-deep mb-3">Nuevos Nombramientos Parroquiales</h3>
+<p class="text-on-surface-variant font-body-md line-clamp-2">La Curia informa sobre la designación de nuevos párrocos para diversas comunidades.</p>
+</div>
+</div>
+</div>
+<!-- News Item 3 (Standard) -->
+<div class="col-span-12 md:col-span-4 group cursor-pointer reveal-up active">
+<div class="glass-card rounded-xl overflow-hidden h-full hover:shadow-lg transition-all duration-500">
+<div class="h-56 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A compassionate scene of volunteers distributing food packages." src="https://lh3.googleusercontent.com/aida/AP1WRLvW-i8Ro86pIm0KiHsr09GzvTpaSqy4-JAlR4MLSckS2SwLcCv0x_60m_pMCtpoXt35M3bJmlV6udhIA7o3IWaOjVIHYdn9-PnKoTZz_8ppzU0ZIo-iOlsCGKHBO4YZO7oLeBWlKpA9ParzKYnssQ1QiyEIckhOxHZ3wvqEw14amdvu1kXG25lLPgl_7sIB88Uud401pr1qh-oX1effoYuzxPzE3Y63P1NGiUzO5FKYI_L3eSu6S4hQjIQ">
+</div>
+<div class="p-6">
+<span class="text-gold-antique font-label-md text-xs mb-2 block">15 de Mayo, 2026</span>
+<h3 class="font-headline-md text-xl text-crimson-deep mb-3">Cáritas: Ayuda Humanitaria en El Marite</h3>
+<p class="text-on-surface-variant font-body-md line-clamp-2">Más de 500 kits de alimentación fueron entregados a familias vulnerables del sector.</p>
+</div>
+</div>
+</div>
+<!-- News Item 4 (Tall / Asymmetric) -->
+<div class="col-span-12 md:col-span-4 group cursor-pointer reveal-up active">
+<div class="glass-card rounded-xl overflow-hidden h-full flex flex-col hover:shadow-lg transition-all duration-500 border-t-4 border-gold-antique">
+<div class="p-8">
+<span class="material-symbols-outlined text-gold-antique text-4xl mb-4" data-icon="policy">policy</span>
+<span class="text-slate-warm font-label-md text-xs mb-2 block">10 de Mayo, 2026</span>
+<h3 class="font-headline-md text-2xl text-crimson-deep mb-4 leading-tight">Programa de Ambientes Seguros: Talleres de Prevención</h3>
+<p class="text-on-surface-variant font-body-md mb-6">Continuamos fortaleciendo la cultura de la prevención en todas nuestras parroquias con formación integral para agentes de pastoral.</p>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-slate-warm"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-gold-antique"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-crimson-deep"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- News Item 5 (Standard) -->
+<div class="col-span-12 md:col-span-4 group cursor-pointer reveal-up active">
+<div class="glass-card rounded-xl overflow-hidden h-full hover:shadow-lg transition-all duration-500">
+<div class="h-56 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A group of faithful congregants holding lit candles during a night-time religious vigil." src="https://lh3.googleusercontent.com/aida/AP1WRLs9QDV1Z8V53JZqKaW_Ynck4SDpWqHL6VcgM24-f4kb1TEF-nM-RzR9Wmg62ot0XZdBJkIuvQT8idfW0FslkBvmvnCNKmuoFPFZ_Zb8rdIpq2mczHYlpTnEfF487-ywvmS6ZvyTMGGUIPZD8T1FPN9VeMt3bnflLuI_RGd3A36DSCjgf33zOPCKgqoTJXMddOhE49PiKj5_tS52dfpUeBtbAUUcQwQcapV5tmZJgohoPQutNBa_gD-Q550">
+</div>
+<div class="p-6">
+<span class="text-gold-antique font-label-md text-xs mb-2 block">28 de Abril, 2026</span>
+<h3 class="font-headline-md text-xl text-crimson-deep mb-3">Vigilia Pascual: Luz de Esperanza</h3>
+<p class="text-on-surface-variant font-body-md line-clamp-2">El fuego nuevo iluminó la noche en todas las comunidades de la Arquidiócesis.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- WhatsApp Channel CTA -->
+<section class="mb-section-gap reveal-up active">
+<div class="bg-surface-container-high rounded-2xl p-10 flex flex-col md:flex-row items-center justify-between gap-8 border border-outline-variant/20">
+<div class="max-w-2xl">
+<h2 class="font-headline-md text-3xl text-crimson-deep mb-4">Mantente Informado al Instante</h2>
+<p class="font-body-lg text-on-surface-variant mb-6">Únete a nuestro canal oficial de WhatsApp para recibir comunicados, noticias y reflexiones directamente en tu móvil.</p>
+<a class="inline-flex items-center gap-3 bg-[#25D366] text-white px-8 py-3 rounded-lg font-label-md hover:scale-105 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+                    Unirse al Canal de WhatsApp
+                </a>
+</div>
+<div class="w-full md:w-auto">
+<div class="w-48 h-48 bg-white p-4 rounded-xl shadow-inner border border-outline-variant/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-warm text-6xl" data-icon="qr_code_2">qr_code_2</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface w-full py-stack-lg border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<span class="font-headline-md text-2xl text-crimson-deep block mb-4">Arquidiócesis de Maracaibo</span>
+<p class="font-body-md text-on-surface-variant mb-4">Av. 4 con calle 95, frente a la Plaza Bolívar. Maracaibo, Estado Zulia.</p>
+</div>
+<div>
+<h4 class="font-label-md text-crimson-deep mb-6 uppercase tracking-widest font-semibold">Institución</h4>
+<ul class="space-y-3">
+<li class=""><a class="font-label-md text-slate-warm hover:text-crimson-deep transition-all" href="#">Directorio Parroquial</a></li>
+<li class=""><a class="font-label-md text-slate-warm hover:text-crimson-deep transition-all" href="#">Ambientes Seguros</a></li>
+<li class=""><a class="font-label-md text-slate-warm hover:text-crimson-deep transition-all" href="#">Cancillería</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-crimson-deep mb-6 uppercase tracking-widest font-semibold">Legal</h4>
+<ul class="space-y-3">
+<li class=""><a class="font-label-md text-slate-warm hover:text-crimson-deep transition-all" href="#">Privacidad</a></li>
+<li class=""><a class="font-label-md text-slate-warm hover:text-crimson-deep transition-all" href="#">Términos</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-crimson-deep mb-6 uppercase tracking-widest font-semibold">Portal</h4>
+<ul class="space-y-3">
+<li class=""><a class="font-label-md text-slate-warm hover:text-crimson-deep transition-all" href="#">Portal del Clero</a></li>
+<li class=""><a class="font-label-md text-slate-warm hover:text-crimson-deep transition-all" href="#">Donaciones</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter pt-12 mt-12 border-t border-outline-variant/10 text-center md:text-left">
+<p class="font-body-md text-on-surface-variant/70 text-sm italic">© 2024 Arquidiócesis de Maracaibo. Todos los derechos reservados. Sagrado Modernismo.</p>
+</div>
+</footer>
+<script>
+    // Simple Intersection Observer for reveal animations
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+    // Filter functionality simulation
+    document.querySelectorAll('.pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+            document.querySelectorAll('.pill').forEach(p => p.classList.remove('bg-crimson-deep', 'text-white'));
+            document.querySelectorAll('.pill').forEach(p => p.classList.add('bg-surface-container-highest', 'text-slate-warm'));
+            
+            pill.classList.remove('bg-surface-container-highest', 'text-slate-warm');
+            pill.classList.add('bg-crimson-deep', 'text-white');
+        });
+    });
+</script>
+
+
+
+
+
+
+</body></html>

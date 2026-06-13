@@ -1,0 +1,554 @@
+<!DOCTYPE html><html class="light" lang="es">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Directorio Parroquial | Arquidiócesis de Maracaibo</title>
+<meta content="Directorio eclesiástico oficial de la Arquidiócesis de Maracaibo. Encuentre el contacto de parroquias, templos, vicarios y clero diocesano." name="description">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/stitch-config.js"></script>
+<!-- Core Styles -->
+<link href="css/stitch-core.css" rel="stylesheet">
+<!-- Leaflet Map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+  /* Glass card */
+  .glass-card {
+    background: rgba(249, 247, 242, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(197, 155, 39, 0.15);
+  }
+
+  /* Parish card bento */
+  .parish-bento {
+    background: #fff;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 16px rgba(74,69,67,0.07);
+    border: 1px solid #f0eee9;
+    border-left: 4px solid #7A1A22;
+    display: flex;
+    flex-direction: row;
+    transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    overflow: hidden;
+  }
+  .parish-bento.rectoria { border-left-color: #C59B27; }
+  .parish-bento:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(122,26,34,0.12); }
+
+  .card-img-col {
+    flex-shrink: 0; width: 200px; position: relative;
+    background: #f0eee9; overflow: hidden;
+  }
+  .card-img-col img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+  }
+  .parish-bento:hover .card-img-col img { transform: scale(1.06); }
+
+  .zone-badge {
+    position: absolute; top: 10px; left: 10px;
+    background: #7A1A22; color: #fff;
+    font-family: Poppins, sans-serif;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.07em;
+    padding: 3px 9px; border-radius: 50px; text-transform: uppercase;
+  }
+  .zone-badge.rect { background: #C59B27; }
+
+  .card-body-col { flex: 1; padding: 1.5rem 1.75rem; min-width: 0; display: flex; flex-direction: column; }
+
+  .card-parish-title {
+    font-family: 'DM Sans', sans-serif; color: #7A1A22;
+    font-size: 1.1rem; line-height: 1.3; margin-bottom: 0.9rem; font-weight: 700;
+  }
+
+  .meta-grid { display: flex; flex-direction: column; gap: 0.4rem; }
+  .meta-row-item { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.875rem; line-height: 1.6; }
+  .meta-icon-item { color: #C59B27; flex-shrink: 0; font-size: 1rem; margin-top: 2px; }
+  .meta-lbl { font-weight: 600; color: #7A1A22; margin-right: 0.2rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .meta-val { color: #4A4543; }
+
+  .filiales-row { margin-top: 0.5rem; font-size: 0.8rem; color: #4A4543; opacity: 0.85; }
+  .filiales-row strong { color: #C59B27; }
+
+  .card-actions-row { margin-top: auto; padding-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+  .btn-maps {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-family: Poppins, sans-serif; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 50px;
+    background: #7A1A22; color: #fff !important; text-decoration: none;
+    transition: all 0.2s; box-shadow: 0 2px 8px rgba(122,26,34,0.2);
+  }
+  .btn-maps:hover { background: #5b000f; transform: translateY(-1px); }
+  .btn-web-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-family: Poppins, sans-serif; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 50px;
+    border: 1.5px solid #C59B27; color: #7A1A22;
+    text-decoration: none; background: transparent; transition: all 0.2s;
+  }
+  .btn-web-link:hover { background: #C59B27; color: #fff; }
+
+  /* Zone header */
+  .zone-group-header {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.5rem 0 0.6rem;
+    border-bottom: 2px solid #7A1A22; margin-bottom: 1.25rem; margin-top: 2rem;
+  }
+  .zone-group-header h3 { font-family: 'DM Sans', sans-serif; color: #7A1A22; font-size: 1.4rem; font-weight: 700; }
+  .zone-count-badge { background: #C59B27; color: #fff; font-family: Poppins, sans-serif; font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 50px; }
+
+  /* Tabs */
+  .tab-row-nav {
+    display: flex; gap: 0.5rem; border-bottom: 2px solid #f0eee9; padding-bottom: 0;
+    margin-bottom: 2rem;
+  }
+  .tab-nav-btn {
+    padding: 0.6rem 1.5rem; border: none; background: none; cursor: pointer;
+    font-family: Poppins, sans-serif; font-size: 0.82rem; font-weight: 600;
+    color: #4A4543; border-radius: 6px 6px 0 0; transition: all 0.2s;
+    border-bottom: 3px solid transparent; margin-bottom: -2px;
+  }
+  .tab-nav-btn.active { color: #7A1A22; border-bottom-color: #7A1A22; background: rgba(122,26,34,0.04); }
+  .tab-nav-btn:hover:not(.active) { background: #f0eee9; color: #7A1A22; }
+
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; animation: fadeUp 0.35s ease forwards; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  /* Map */
+  #parishMap { height: 460px; width: 100%; }
+
+  /* Search bar */
+  .search-input-stitch {
+    flex: 1; min-width: 240px;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    background: #F9F7F2; border: 1.5px solid #ddc0be; border-radius: 0.5rem;
+    font-size: 0.9rem; font-family: Poppins, sans-serif; outline: none;
+    transition: all 0.2s; color: #1b1c19;
+  }
+  .search-input-stitch:focus { border-color: #7A1A22; box-shadow: 0 0 0 3px rgba(122,26,34,0.1); }
+
+  .filter-select-stitch {
+    padding: 0.75rem 1rem; background: #F9F7F2; border: 1.5px solid #ddc0be; border-radius: 0.5rem;
+    font-family: Poppins, sans-serif; font-size: 0.85rem; color: #7A1A22; font-weight: 600;
+    outline: none; cursor: pointer; transition: all 0.2s; min-width: 220px;
+  }
+  .filter-select-stitch:focus { border-color: #7A1A22; }
+
+  /* Popup styles */
+  .leaflet-popup-content-wrapper { border-radius: 0.75rem !important; box-shadow: 0 8px 30px rgba(0,0,0,0.15) !important; }
+  .leaflet-popup-content { margin: 12px 14px !important; color: #1b1c19 !important; }
+  .popup-title { font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 700; color: #7A1A22; line-height: 1.3; margin-bottom: 3px; }
+  .popup-sub { font-size: 0.78rem; color: #4A4543; margin-bottom: 5px; }
+  .popup-cta { font-size: 0.75rem; color: #C59B27; font-weight: 600; text-decoration: none; }
+  .popup-cta:hover { text-decoration: underline; }
+
+  /* Leaflet overrides */
+  .leaflet-bar a, .leaflet-bar a:hover { color: #7A1A22 !important; background: #fff !important; }
+  .leaflet-control-attribution { background: rgba(255,255,255,0.85) !important; }
+
+  /* No results */
+  .no-results-box { text-align: center; padding: 3rem 2rem; color: #4A4543; display: none; }
+  .no-results-box h4 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #7A1A22; font-family: 'DM Sans', sans-serif; }
+
+  @media (max-width: 768px) {
+    .parish-bento { flex-direction: column; }
+    .card-img-col { width: 100%; height: 180px; }
+    .filter-select-stitch { min-width: 100%; }
+    #parishMap { height: 300px; }
+  }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body">
+
+<!-- Navbar injected by JS -->
+<div id="stitch-navbar"></div>
+
+<!-- ════════════════════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════════════════════ -->
+<section class="relative overflow-hidden bg-crimson-deep">
+  <div class="absolute inset-0 opacity-15 pointer-events-none">
+    <img src="img/catedral.webp" onerror="this.src='https://images.unsplash.com/photo-1548625361-9252c80145c2?w=1200&q=70'" alt="Catedral" class="w-full h-full object-cover">
+  </div>
+  <!-- Decorative cross -->
+  <div class="absolute right-12 top-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
+    <div class="text-white" style="font-size:14rem; line-height:1; font-family:'DM Sans',sans-serif; font-weight:300;">✝</div>
+  </div>
+  <div class="relative z-10 max-w-container-max mx-auto px-margin-mobile md:px-gutter py-20 text-center">
+    <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Arquidiócesis de Maracaibo</span>
+    <h1 class="font-headline text-4xl md:text-5xl text-white mt-3 mb-4">Directorio Parroquial</h1>
+    <div class="h-1 w-20 bg-gold-antique mx-auto mb-6"></div>
+    <p class="font-body text-lg text-white/80 max-w-2xl mx-auto">Encuentre su parroquia de referencia, horarios de misas y datos de contacto en toda nuestra geografía eclesiástica.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SEARCH & FILTER BAR
+════════════════════════════════════════════════════════ -->
+<section class="bg-surface-container border-b border-outline-variant/30 py-5 px-margin-mobile md:px-gutter sticky top-0 z-40 shadow-sm">
+  <div class="max-w-container-max mx-auto flex flex-col md:flex-row gap-4 items-center">
+    <!-- Search input -->
+    <div class="relative flex-1 w-full">
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-warm text-xl">search</span>
+      <input type="text" id="searchInput" class="search-input-stitch w-full" placeholder="Buscar por nombre, párroco o dirección…">
+    </div>
+    <!-- Zone filter -->
+    <select id="zoneFilter" class="filter-select-stitch" onchange="filterAll()">
+      <option value="all">Todas las Zonas Pastorales</option>
+      <option value="PZ1">Zona 1 · Chiquinquirá</option>
+      <option value="PZ2">Zona 2 · Sagrado Corazón</option>
+      <option value="PZ3">Zona 3 · Sagrada Familia</option>
+      <option value="PZ4">Zona 4 · Coromoto</option>
+      <option value="PZ5">Zona 5 · San Francisco</option>
+      <option value="PZ6">Zona 6 · Fátima</option>
+      <option value="PZ7">Zona 7 · San Rafael del Moján</option>
+      <option value="PZ8">Zona 8 · Inmaculada Concepción</option>
+      <option value="PZ9">Zona 9 · San Bartolomé Apóstol</option>
+      <option value="RZ">Rectorías</option>
+    </select>
+    <!-- Count -->
+    <div class="font-label text-sm text-slate-warm whitespace-nowrap hidden md:block">
+      <span class="text-crimson-deep font-bold text-base" id="visibleCount">74</span> parroquias · <strong>8</strong> rectorías
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     MAP SECTION
+════════════════════════════════════════════════════════ -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-10 mb-6">
+  <div class="rounded-xl overflow-hidden glass-card shadow-lg border border-outline-variant/20">
+    <!-- Map header -->
+    <div class="flex items-center justify-between px-6 py-4 bg-surface-container-high/60 border-b border-outline-variant/20">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-gold-antique">map</span>
+        <h3 class="font-headline text-xl text-crimson-deep">Mapa de Parroquias</h3>
+      </div>
+      <button id="mapToggleBtn" onclick="toggleMap()" class="font-label text-xs uppercase tracking-wider text-crimson-deep font-bold hover:underline transition-all px-3 py-1 rounded-lg border border-crimson-deep/20 hover:bg-crimson-deep/5">Ocultar Mapa</button>
+    </div>
+    <!-- Legend -->
+    <div id="mapLegend" class="flex flex-wrap gap-x-4 gap-y-2 px-6 py-3 bg-warm-ivory/60 border-b border-outline-variant/10"></div>
+    <!-- Map -->
+    <div id="parishMap"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     TABS + GRID
+════════════════════════════════════════════════════════ -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8 pb-20">
+
+  <!-- Stats banner (mobile) -->
+  <p class="md:hidden text-sm text-slate-warm mb-4">
+    <span class="text-crimson-deep font-bold" id="visibleCountMobile">74</span> parroquias encontradas
+  </p>
+
+  <!-- Tab nav -->
+  <div class="tab-row-nav reveal">
+    <button class="tab-nav-btn active" id="tabBtnParroquias" onclick="showTab('parroquias', this)">Parroquias (74)</button>
+    <button class="tab-nav-btn" id="tabBtnRectorias" onclick="showTab('rectorias', this)">Rectorías (8)</button>
+  </div>
+
+  <!-- Parroquias panel -->
+  <div class="tab-pane active" id="tab-parroquias">
+    <div id="parishGrid" class="flex flex-col gap-4"></div>
+    <div class="no-results-box" id="noResults">
+      <span class="material-symbols-outlined text-5xl text-slate-warm/40 block mb-3">search_off</span>
+      <h4>Sin resultados</h4>
+      <p>Intente con otra palabra clave o modifique la zona pastoral.</p>
+    </div>
+  </div>
+
+  <!-- Rectorías panel -->
+  <div class="tab-pane" id="tab-rectorias">
+    <div id="rectoriaGrid" class="flex flex-col gap-4"></div>
+  </div>
+
+</main>
+
+<!-- Footer injected by JS -->
+<div id="stitch-footer"></div>
+
+<script src="js/stitch-components.js"></script>
+<script>StitchLayout.init({ activePage: 'directorio' });</script>
+
+<!-- ════════════════════════════════════════════════════════
+     PAGE LOGIC — PARISH DATA + MAP + FILTER
+════════════════════════════════════════════════════════ -->
+<script>
+const parishes = [
+  { code:"PZ1-1", zone:"PZ1", name:"PARROQUIA EL SAGRARIO · Catedral de los Santos Apóstoles Pedro y Pablo", parroco:"Pbro. Néstor Primera", direccion:"Av. 4 con calle 95, frente a la Plaza Bolívar", tels:["0412-7885662","0416-5619091"], email:"nprimera40@gmail.com", web:"", filiales:["Rectoría San Francisco de Asís, El Convento","Capilla Santa Ana"] },
+  { code:"PZ1-2", zone:"PZ1", name:"PARROQUIA SANTA LUCÍA", parroco:"Pbro. Rafael Ángel Villalobos Carmona", direccion:"Av. 2 entre Calle 89 y 90, frente a la Plaza Dr. Serrano", tels:["0412-5556236"], email:"", web:"https://parroquiasantalucia.org/", filiales:[] },
+  { code:"PZ1-3", zone:"PZ1", name:"PARROQUIA SANTA BÁRBARA", parroco:"Pbro. José Gregorio Andrade Vecino", direccion:"Av. 8 Calle Páez con calle 95 Venezuela", tels:["0261-7230509","0412-7892388"], email:"santabarbaramaracaibo@hotmail.com", web:"", filiales:["Santa Teresita del Niño Jesús (Hospital de Niños)"] },
+  { code:"PZ1-4", zone:"PZ1", name:"PARROQUIA SAN JUAN DE DIOS Y BASÍLICA SANTUARIO DE NTRA. SRA. DE CHIQUINQUIRÁ", parroco:"Pbro. Nedward Jorge Andrade Govea", vicario:"Pbro. José Miguel Hernández", direccion:"", tels:["0412-2473657","0424-6155550"], email:"basilicachiquinquira@gmail.com", web:"", filiales:[] },
+  { code:"PZ1-5", zone:"PZ1", name:"PARROQUIA SAN BENITO DE PALERMO", parroco:"Pbros. José Enrique Varela, Jorge Alejandro Dos Passos y Renzo Omar Gotera", direccion:"Av. Nº 3A con Calle 86, Sector Valle Frío", tels:["0412-5147107","0414-6620878"], email:"pquiasanbenitopalermo@hotmail.com", web:"", filiales:["Capilla San Benito de la Punta del Empedrao"] },
+  { code:"PZ1-6", zone:"PZ1", name:"PARROQUIA NTRA. SRA. DE LA ASUNCIÓN", parroco:"Pbro. Juan Pablo Hernández", direccion:"Av. 17 Los Haticos", tels:["0426-4436922","0261-7650404"], email:"", web:"", filiales:["Inmaculado Corazón De María","Espíritu Santo (Fundación Mendoza)","La Chinita (Haticos por Arriba)"] },
+  { code:"PZ1-7", zone:"PZ1", name:"PARROQUIA NTRA. SRA. DE LA MEDALLA MILAGROSA", parroco:"Pbro. José Gregorio Montenegro Fereira", direccion:"Av. 17 Los Haticos", tels:["0424-6361306","0424-6197583"], email:"monfercheo@hotmail.com", web:"", filiales:[] },
+  { code:"PZ1-8", zone:"PZ1", name:"PARROQUIA SANTO CRISTO DE ARANZA", parroco:"Pbro. Alfonso Rodríguez", direccion:"Av. 17 con Calle 106, Los Haticos", tels:["0414-6281643","0261-4237583"], email:"alfonso_rodriguez@cantv.net", web:"", filiales:[] },
+
+  { code:"PZ2-1", zone:"PZ2", name:"PARROQUIA SAN JOSÉ", parroco:"Mons. Roberto Segundo Morales Carruyo", direccion:"Calle 77 N° 16-30", tels:["0424-6614822","0424-6004278"], email:"parroquiasanjosemcbo@gmail.com", web:"", filiales:["San Vicente De Paúl","San Francisco De Paula"] },
+  { code:"PZ2-2", zone:"PZ2", name:"PARROQUIA SAN ALFONSO MARÍA DE LIGORIO", parroco:"Pbro. Jesús Colina", direccion:"Urb. Santa María Av. 27 Nº 69A-70", tels:["0414-6920240","0261-7519818"], email:"", web:"", filiales:["San Gerardo Mayela"] },
+  { code:"PZ2-3", zone:"PZ2", name:"PARROQUIA NTRA. SRA. DEL PERPETUO SOCORRO", parroco:"Fray José Vivas Vivas y Fray Oswaldo José Matheus González", direccion:"Av. 9B N° 64-64, Barrio Tierra Negra", tels:["0412-5238206","0424-1354551"], email:"parroquia.perpetuosocorro.mcbo@gmail.com", web:"", filiales:[] },
+  { code:"PZ2-4", zone:"PZ2", name:"PARROQUIA NTRA. SRA. DE LA CONSOLACIÓN", parroco:"Fray Ricardo Riaño", direccion:"Av. Bella Vista Esq. Calle 79", tels:["0414-7127606","0416-5030067"], email:"iglesialaconsolacion.mbo@gmail.com", web:"", filiales:[] },
+  { code:"PZ2-5", zone:"PZ2", name:"PARROQUIA NTRA. SRA. DEL ROSARIO", parroco:"Pbro. Max Gregorio Guerere Rodríguez", direccion:"Urb. La Virginia, entre calles 67A y 72, sector La Lago", tels:["0414-6464689","0424-6293617"], email:"elrosariomcbo@gmail.com", web:"", filiales:["San Benito"] },
+  { code:"PZ2-6", zone:"PZ2", name:"PARROQUIA SAN JUDAS TADEO", parroco:"Pbro. Andrés de Jesús Afanador Rodríguez", direccion:"Calle 85 Falcón, Sector Las Delicias", tels:["0412-7128907","0412-7857731"], email:"", web:"", filiales:["Nuestra Señora del Carmen"] },
+  { code:"PZ2-7", zone:"PZ2", name:"PARROQUIA SAN ANTONIO MARÍA CLARET", parroco:"Pbro. Ovidio Eduardo Duarte Torres", direccion:"Calle Dr. Portillo N° 3E-20", tels:["0412-6275968"], email:"licduarte@gmail.com", web:"", filiales:["Santísima Trinidad"] },
+  { code:"PZ2-8", zone:"PZ2", name:"PARROQUIA NTRA. SRA. DE LAS MERCEDES", parroco:"Pbro. Lenín José Naranjo Flores", direccion:"", tels:["0412-6467261","0412-7113145"], email:"parroquialasmercedes@hotmail.com", web:"", filiales:[] },
+  { code:"PZ2-9", zone:"PZ2", name:"PARROQUIA SAGRADO CORAZÓN DE JESÚS", parroco:"Pbro. Edgar J. Doria M.", direccion:"Av. 4 Calle 68A Bella Vista", tels:["0414-3612908"], email:"edgarjose@cantv.net", web:"", filiales:[] },
+
+  { code:"PZ3-1", zone:"PZ3", name:"PARROQUIA NTRA. SRA. DE LOURDES (MARACAIBO)", parroco:"Pbro. Juan José Navarro Robertis", direccion:"Av. 28 La Limpia", tels:["0416-5611244","0261-7525301"], email:"", web:"", filiales:["Ntra. Sra. De Chiquinquirá (Jesuitas)"] },
+  { code:"PZ3-2", zone:"PZ3", name:"PARROQUIA SAN MIGUEL ARCÁNGEL", parroco:"Pbro. Pedro Colmenares", direccion:"Sabaneta Larga Av. 20 Calle 100 s/n", tels:["0426-9655848","0261-7292806"], email:"pbropedrocolmenares@hotmail.com", web:"", filiales:["Virgen de Claromonte","Santa Clara"] },
+  { code:"PZ3-3", zone:"PZ3", name:"PARROQUIA LA SAGRADA FAMILIA", parroco:"Pbro. Danilo González", direccion:"Urb. San Miguel Av. 60 N# 96G-30", tels:["0416-7611987","0261-7874331"], email:"", web:"", filiales:["María Rosa Mística","San Rafael Arcángel","El Buen Pastor (Barrio Bolívar)"] },
+  { code:"PZ3-4", zone:"PZ3", name:"PARROQUIA NTRA. SRA. DEL CARMEN (MARACAIBO)", parroco:"Pbro. Eleuterio Segundo Cuevas Pereira", direccion:"Barrio Andrés Eloy Blanco, Av. 53 N° 98C-100, Sector Gallo Verde", tels:["0414-3615185"], email:"parrnuestrasradelcarmenmcbo@gmail.com", web:"", filiales:[] },
+  { code:"PZ3-5", zone:"PZ3", name:"PARROQUIA SAN PEDRO APÓSTOL", parroco:"Pbro. Enrique Rojas Peña", direccion:"Haticos por Arriba, calle 113A Nº 19C-36", tels:["0414-7539894","0261-7649041"], email:"kyke32@gmail.com", web:"", filiales:[] },
+  { code:"PZ3-6", zone:"PZ3", name:"PARROQUIA SAN MARTÍN DE PORRES", parroco:"Pbro. Rafael López", direccion:"Barrio Los Estanques calle 113", tels:["0414-6266122","0414-6596076"], email:"psanmartindeporres2016@hotmail.com", web:"", filiales:["Ntra. Sra. De Coromoto","Ntra. Sra. De La Palma","San Sebastián"] },
+  { code:"PZ3-7", zone:"PZ3", name:"PARROQUIA SANTA TERESITA DEL NIÑO JESÚS", parroco:"Pbro. José Andrés Bravo Henríquez", direccion:"Avenida 29, Zulia Amparo. Casa cural: calle 81 #57B-75, Cacique Mara", tels:["0414-6185341"], email:"padreabravo@yahoo.com", web:"", filiales:[] },
+  { code:"PZ3-8", zone:"PZ3", name:"PARROQUIA NIÑA MARÍA", parroco:"Pbro. José Pineda", direccion:"Av. 11-4D Sector Los Robles", tels:["0424-6755405","0261-7341013"], email:"pjosepineda@gmail.com", web:"", filiales:["Stmo. Sacramento (El Gaitero)"] },
+  { code:"PZ3-9", zone:"PZ3", name:"PARROQUIA SAN IGNACIO DE LOYOLA", parroco:"R.P. Jesús Vásquez SCHP", direccion:"Av. Principal del Barrio Los Andes", tels:["0412-0616901","0424-6123229"], email:"jesusvc55@hotmail.com", web:"https://www.parroquiasescolapias.org/2024/01/13/parroquia-san-ignacio-de-loyola-maracaibo-venezuela/", filiales:["Jesús de la Divina Misericordia"] },
+  { code:"PZ3-10", zone:"PZ3", name:"PARROQUIA SAN TARSICIO", parroco:"Pbro. Miguel Antonio Ospino", direccion:"Circunvalación Nº 2 Barrio Jorge Hernández calle 56A", tels:["0416-0625909"], email:"mospino_martinez@hotmail.com", web:"", filiales:[] },
+
+  { code:"PZ4-1", zone:"PZ4", name:"PARROQUIA SANTA MÓNICA (LA CONCEPCIÓN)", parroco:"R.P. Pedro Castellano, OCarm", vicario:"Diác. Horacio / Randy Romero", direccion:"La Concepción, Mcpio. Jesús Enrique Lossada", tels:["0414-7444553","0412-7347435","0422-7170825"], email:"fraypedrocarm@gmail.com", web:"", filiales:["N.S. del Valle de los Rosales","N.S. del Carmen (Los Totumos)","San Pedro (El Guayabo)","y otras (10 filiales)"] },
+  { code:"PZ4-2", zone:"PZ4", name:"PARROQUIA NTRA. SRA. DE COROMOTO", parroco:"Pbro. Jesús Sandoval", direccion:"Urb. Los Olivos, calle 73 con calle 67", tels:["0414-6713708","0414-9617569","0424-6214417"], email:"", web:"", filiales:["San Juan Diego"] },
+  { code:"PZ4-3", zone:"PZ4", name:"PARROQUIA SAN PABLO APÓSTOL", parroco:"Pbro. Dr. Carlos José Reyes B.", direccion:"Urb. La Rotaria Av. 85", tels:["0412-2575199","0261-7542280"], email:"padrereye@hotmail.com", web:"", filiales:["Ntra. Sra. Del Valle","San Alejo","Rosa Mística","San Juan XXIII","San Juan Pablo II"] },
+  { code:"PZ4-4", zone:"PZ4", name:"PARROQUIA NUESTRO SEÑOR JESUCRISTO REY", parroco:"Pbro. Leonardo Martínez", direccion:"Barrio Panamericano, AV 91", tels:["0414-6654756"], email:"P.N.S.Jesucristorey@gmail.com", web:"", filiales:["Capilla Ntra. Sra. del Monte Carmelo","Capilla Ntra. Sra. del Pilar","Capilla San Juan Pablo II","Capilla San Joaquín y Santa Ana"] },
+  { code:"PZ4-5", zone:"PZ4", name:"PARROQUIA EL BUEN PASTOR", parroco:"Pbro. Jorge David Sánchez Urdaneta", direccion:"Urb. Cuatricentenario 1ª etapa, Av. principal 66g", tels:["0424-6219438","04126451573"], email:"jorgeservi0518@gmail.com", web:"", filiales:["Divino Niño (La Chamarreta)","San Juan Diego","Rosa Mística (Los Bucares)","Divina Misericordia","Santísima Trinidad"] },
+  { code:"PZ4-6", zone:"PZ4", name:"PARROQUIA NTRA. SRA. DE LA PAZ", parroco:"R.P. Yonys Mendoza MSC", direccion:"Av. 78 1ª Etapa Urb. La Victoria", tels:["0414-6316996","0261-7549581"], email:"yonysmendoza@gmail.com", web:"", filiales:["El Carmen (Los Planazos)","Corazón De Jesús (Cujicito)","San Patricio (El Mamón)","La Chinita (El Cardenal Norte)","Santa Brígida (Palo Negro)"] },
+  { code:"PZ4-7", zone:"PZ4", name:"PARROQUIA LA RESURRECCIÓN DEL SEÑOR", parroco:"Pbro. Dionni José Ríos Ríos", direccion:"Barrio Libertador Av. 93C Nº 79J-48", tels:["0412-6695642","0261-3283191"], email:"", web:"", filiales:["Ntra. Sra. María Reina De Los Apóstoles (El Marite)","San Pancracio (Nuevo Horizonte)","San Padre Pío (Torito Fernández)","San Juan Evangelista (Barrio El Modelo)"] },
+  { code:"PZ4-8", zone:"PZ4", name:"PARROQUIA SAN ISIDRO LABRADOR", parroco:"Pbro. Silverio Antonio Osorio Mora", direccion:"Sector San Isidro, Carretera Vía La Concepción", tels:["0412-5470157","0414-6143544"], email:"", web:"", filiales:["Divino Niño (La Montañita)","San Rafael (Villa Baralt)","Divina Misericordia","San Óscar Arnulfo Romero","Hogar Santa Cruz"] },
+  { code:"PZ4-9", zone:"PZ4", name:"PARROQUIA SANTÍSIMO SACRAMENTO", parroco:"Pbro. Ender Alexander Castillo Montoya", vicario:"Diácono Mervin Rincón · Diácono Fernando Fuenmayor", direccion:"", tels:["0424-2582491","0412-1691326"], email:"parroquiasmosacramento@gmail.com", web:"", filiales:["Ntra. Sra. del Sagrado Corazón","María Auxiliadora y San José Protector","Ntra. Sra. de los Ángeles (Sector Altamira)"] },
+  { code:"PZ4-10", zone:"PZ4", name:"PARROQUIA SANTA INÉS", parroco:"Pbro. José Domingo Alvarado", direccion:"Barrio Indio Mara", tels:["04146827366","0424-6305238"], email:"", web:"", filiales:[] },
+  { code:"PZ4-11", zone:"PZ4", name:"PARROQUIA SAN JUAN CRISÓSTOMO Y SAN JUAN PABLO II (Parroquia Universitaria)", parroco:"Pbro. Andrés Bravo", direccion:"", tels:["0414-6185341"], email:"", web:"", filiales:[] },
+
+  { code:"PZ5-1", zone:"PZ5", name:"PARROQUIA NTRA. SRA. DE GUADALUPE", parroco:"Pbro. Andry Sánchez", direccion:"Av. 16 con calle 11, Sierra Maestra", tels:["0414-1748270","0261-7344890"], email:"sanchezaandry@gmail.com", web:"", filiales:["Ntra. Del Carmen (La Portuaria)"] },
+  { code:"PZ5-2", zone:"PZ5", name:"PARROQUIA JESÚS NAZARENO", parroco:"Pbro. Henry Tapia", direccion:"Av. 16 entre C/c 11 y 12, barrio El Manzanillo", tels:["0416-9604224","0261-7615915"], email:"henrybenito1@hotmail.com", web:"", filiales:[] },
+  { code:"PZ5-3", zone:"PZ5", name:"PARROQUIA SANTÍSIMO SALVADOR", parroco:"Pbro. Lcdo. Richard Garrillo", direccion:"Calle 4 con Av. 49 al lado de la E.A. Madre Laura (El Callao)", tels:["0412-6405000","0261-7320042"], email:"joseanbarboza@gmail.com", web:"", filiales:["Jesús Carpintero","San Agustín"] },
+  { code:"PZ5-4", zone:"PZ5", name:"PARROQUIA SANTÍSIMO CRISTO DE SAN FRANCISCO", parroco:"Pbro. Leonardo López", direccion:"San Francisco Av. 5 calle 27", tels:["0412-1277017","0414-6445575"], email:"pbrolopezquintero@hotmail.com", web:"", filiales:[] },
+  { code:"PZ5-5", zone:"PZ5", name:"PARROQUIA SAN JUAN BAUTISTA", parroco:"Pbro. Danilo Humberto Calderón Matheus", direccion:"Urb. San Francisco Sector 8 calle 161", tels:["0424-6268956"], email:"", web:"", filiales:["Jesús Obrero"] },
+  { code:"PZ5-6", zone:"PZ5", name:"PARROQUIA SANTO DOMINGO DE GUZMÁN", parroco:"Pbro. Raúl R. Montoya Medero", direccion:"Urb. La Coromoto calle 171 Nº 48-61", tels:["0424-6482025","0424-6247041"], email:"stodomingogcatolicaparroquia@gmail.com", web:"", filiales:[] },
+  { code:"PZ5-7", zone:"PZ5", name:"PARROQUIA SAN FELIPE NERI", parroco:"Pbro. Néstor Luis Pérez", direccion:"Urb. San Felipe, San Francisco", tels:["0414-0626736"], email:"", web:"", filiales:["Ntra. Sra. de Chiquinquirá (Sector Negro Primero)"] },
+  { code:"PZ5-8", zone:"PZ5", name:"PARROQUIA NTRA. SRA. DE LA DEL COBRE", parroco:"Pbro. Francisco Antonio Niño Correa", direccion:"Urb. San Francisco, La Popular Av. 53", tels:["0412-7683972","0424-6828646"], email:"", web:"", filiales:["San Andrés Apóstol","Jesús Carpintero (La Polar)","Jesús de Nazaret","San Juan Pablo II (La Polar)","San Agustín (La Polar)"] },
+  { code:"PZ5-9", zone:"PZ5", name:"PARROQUIA TRANSFIGURACIÓN DEL SEÑOR", parroco:"Pbro. Engelbert Alfredo Jackson Carrasco", direccion:"Km. 13 Vía Perijá Av. 49H, Los Cortijos, Mcpio. San Francisco", tels:["0414-6237799"], email:"", web:"", filiales:[] },
+  { code:"PZ5-10", zone:"PZ5", name:"PARROQUIA SANTA MARIANA DE JESÚS", parroco:"Pbro. Carlos Quiva", direccion:"Barrio Sur América, calle 149 con avenida 54A, San Francisco", tels:["0412-1285174"], email:"padrecarlosquiva@gmail.com", web:"", filiales:["San Isidro Labrador (Sector Jobo Alto, Km 18 vía Perijá)"] },
+  { code:"PZ5-11", zone:"PZ5", name:"PARROQUIA PURÍSIMA MADRE DE DIOS Y SAN BENITO DE PALERMO", parroco:"Pbro. Jorge Enrique Rodríguez González", direccion:"Final Av. 5 de San Francisco con C/ 55 de El Bajo, vía a la Refinería Bajo Grande", tels:["0414-3688646"], email:"", web:"", filiales:[] },
+
+  { code:"PZ6-1", zone:"PZ6", name:"PARROQUIA NTRA. SRA. DE FÁTIMA", parroco:"R.P. Francisco Ortiz Bran", vicario:"R.P. Alejandro Rincón Quiroz", direccion:"Urb. Monte Claro Av. 2", tels:["0412-9844169","0414-6715547"], email:"mcbofatima@gmail.com", web:"", filiales:["San Antonio de Padua"] },
+  { code:"PZ6-2", zone:"PZ6", name:"PARROQUIA SAN RAMÓN NONATO", parroco:"R.P. Ponc Capell Capell", vicario:"Diácono permanente Jesús Alfredo Serrano", direccion:"AV. 1 Monte Bello", tels:["0414-3466396","0414-6388401"], email:"sanramonnonato@gmail.com", web:"", filiales:["Capilla La Merced del Valle","Capilla San Pedro Nolasco","La Ermita del Carmen","Capilla La Divina Misericordia","Centro de Misión (Barrio La Lucha)"] },
+  { code:"PZ6-3", zone:"PZ6", name:"PARROQUIA LA SANTÍSIMA TRINIDAD", parroco:"Pbro. Robert Alberto Álvarez Pérez", direccion:"Calle 55 Nº 15J-132 Urb. La Trinidad", tels:["0424-6704586","0414-6477288"], email:"", web:"", filiales:["Inmaculada Concepción (Urb. La California)","San Agustín (Urb. Monte Claro)"] },
+  { code:"PZ6-4", zone:"PZ6", name:"PARROQUIA NTRA. SRA. DE LA CANDELARIA", parroco:"Pbro. Héctor de Los Reyes Bermúdez C.", direccion:"Urb. San Jacinto, Sector 8 Calle 3", tels:["0416-1618046","0261-7573672"], email:"hector.bermudez.c@hotmail.com", web:"", filiales:["San Benito","Virgen de Betania"] },
+  { code:"PZ6-5", zone:"PZ6", name:"PARROQUIA SANTA ROSA DE LIMA / Santa Rita de Casia", parroco:"Pbro. Fr. Adelmo Irene", direccion:"Altos del Jalisco, Maracaibo", tels:["0424-1218537","0261-7422818"], email:"", web:"", filiales:["Santa Rosa De Agua"] },
+  { code:"PZ6-6", zone:"PZ6", name:"PARROQUIA SAN BARTOLOMÉ (Ziruma)", parroco:"Pbro. Wilmer Olano", direccion:"Ziruma", tels:["0414-6920201","0261-5254318"], email:"", web:"", filiales:[] },
+  { code:"PZ6-7", zone:"PZ6", name:"PARROQUIA SAN ONOFRE", parroco:"R.P. Fray José Antonio Díaz OAR · R.P. Fray Juan Carlos Fernández OAR", direccion:"", tels:["0412-3670531","0424-6065719"], email:"mcboparroquiasanonofre@gmail.com", web:"", filiales:[] },
+  { code:"PZ6-8", zone:"PZ6", name:"PARROQUIA SAN JUAN BOSCO (Sede Seminario Propedéutico)", parroco:"Pbro. Dainer Prieto", direccion:"Urb. Lago Mar Beach", tels:["0426-8618035","04143636962"], email:"sanjuanboscomcbo@gmail.com", web:"", filiales:["Ntra. Sra. del Carmen (Barrio 4 de Abril)","Jesús de la Divina Misericordia (Sector Las Tuberías)"] },
+
+  { code:"PZ7-1", zone:"PZ7", name:"PARROQUIA SAN RAFAEL ARCÁNGEL (El Moján)", parroco:"Pbro. Rafael Morales", direccion:"AV. 2 El Moján, Mcpio. Mara", tels:["0416-6667944","0262-8721193"], email:"padrerafaeljmoralesf@hotmail.com", web:"", filiales:["San José","San Benito y Ntra. Sra. Del Perpetuo Socorro","San Isidro Labrador","San Bartolomé Apóstol","Ntra. Sra. De Guadalupe","La Inmaculada Concepción"] },
+  { code:"PZ7-3", zone:"PZ7", name:"PARROQUIA NTRA. SRA. DE LOURDES (Isla de Toas)", parroco:"Pbro. Rafael Morales", direccion:"Av. Principal Campo Elías, Sector el Toro, Mcpio. Insular Padilla", tels:["0416-6667944","0262-8676068"], email:"padrerafaeljmoralesf@hotmail.com", web:"", filiales:["El Carmen (Las Cabeceras)","Ntra. De Coromoto (Sotavento)","San Benito (El Hato)","Santa Lucía (El Semeruco)","Inmaculada Concepción (Isla de San Carlos)"] },
+  { code:"PZ7-6", zone:"PZ7", name:"PARROQUIA MARÍA AUXILIADORA (Santa Cruz de Mara)", parroco:"Pbro. Evelio Pérez", direccion:"Av. Principal Troncal del Caribe Vía al Moján, Santa Cruz de Mara", tels:["0424-6288234"], email:"", web:"", filiales:["Santísima Trinidad (El Palo)","San José de Monteverde","Ntra. Sra. Del Carmen","Exaltación de la Santa Cruz"] },
+  { code:"PZ7-7", zone:"PZ7", name:"PARROQUIA LA INMACULADA CONCEPCIÓN (Carrasquero)", parroco:"Pbro. Yonder Javier Urdaneta Hiza", direccion:"Av. Principal frente a la Plaza Bolívar, Carrasquero, Mcpio. Mara", tels:["0412-1670969","0262-9940227"], email:"", web:"", filiales:["El Carmen (Sector Siloé)","Chiquinquirá (Caña Brava)","María Rosa Mística (Guasare)","San Felipe (Sector La Burra)","Santa Lucía (Las Parchitas)","San José (Cañada del Indio)"] },
+  { code:"PZ7-9", zone:"PZ7", name:"PARROQUIA NTRA. SEÑORA DE COROMOTO Y SAN JOSÉ OBRERO (La Sierrita)", parroco:"Pbro. William Chiquinquirá Ortega Colmenares", direccion:"La Sierrita, Mcpio. Mara", tels:["0424-6539582","0262-8581131"], email:"", web:"", filiales:["Ntra. Sra. Del Carmen (Marcelino 1)","Ntra. Sra. De la Divina Pastora (Cachiri)"] },
+  { code:"PZ7-10", zone:"PZ7", name:"PARROQUIA JESÚS REDENTOR (Tamare)", parroco:"Pbro. Lcdo. José G. Sánchez (in solidum) · Pbro. Valentín Segundo Rodríguez López", direccion:"Mcpio. Mara Km. 29", tels:["0416-4617636","0414-6122354"], email:"pquia.jesusredentor@gmail.com", web:"", filiales:["María Auxiliadora","Santa Rosa De Lima","San Benito y San Juan Evangelista","Perpetuo Socorro","El Carmen"] },
+
+  { code:"PZ8-1", zone:"PZ8", name:"PARROQUIA LA INMACULADA CONCEPCIÓN (La Cañada de Urdaneta)", parroco:"Pbro. Raúl Moreno", direccion:"Av. 1 Gral Rafael Urdaneta, sector la Plaza, La Cañada de Urdaneta", tels:["0414-6326406","0412-6582059"], email:"raulalfredo1963@hotmail.com", web:"", filiales:["Santísima Trinidad","Sagrado Corazón de Jesús","San Benito de Palermo","San Marcos Evangelista","Beata María de San José","Divino Niño Jesús","Ntra. Sra. del Carmen KM56"] },
+  { code:"PZ8-2", zone:"PZ8", name:"PARROQUIA NTRA. SRA. DEL CARMEN (El Carmelo, La Cañada de Urdaneta)", parroco:"Pbro. Daigel Medina", direccion:"El Carmelo, Mcpio. Urdaneta", tels:["0414-6483753"], email:"daigelhml@gmail.com", web:"", filiales:["San Ignacio (Campo Alegre)","San José (Potreritos)","San Antonio (El Carmelo)"] },
+  { code:"PZ8-3", zone:"PZ8", name:"PARROQUIA NTRA. SRA. DE CHIQUINQUIRÁ (La Ensenada)", parroco:"Pbro. José del Carmen Chirinos", direccion:"Av. Principal, La Ensenada, Mcpio. Urdaneta", tels:["0414-6089719","0262-8084331"], email:"", web:"", filiales:["Ntra. Sra. Del Rosario (Palmarejo)"] },
+  { code:"PZ8-4", zone:"PZ8", name:"PARROQUIA SAN ANTONIO DE PADUA Y NTRA. SRA. VIRGEN DE LOS PARRALES", parroco:"Pbro. Fabricio Medina", direccion:"La Cañada de Urdaneta, Panal del Sur Av. Principal", tels:["0414-1695885","0414-6266325"], email:"", web:"", filiales:["Virgen del Carmen y San Benito de los Reyes","Santo Domingo de Guzmán","San Juan Bautista","San Rafael","Santa Rita","Santa Teresita del Niño Jesús"] },
+
+  { code:"PZ9-1", zone:"PZ9", name:"PARROQUIA SAN BARTOLOMÉ APÓSTOL (Sinamaica)", parroco:"Pbro. Santos Xavier Silva Blanco", direccion:"Av. Principal frente a la Plaza Bolívar, Sinamaica, Mcpio. Páez", tels:["0412-1742378","0414-6452186"], email:"padresantosilva@gmail.com", web:"", filiales:["San Benito (El Botoncillo)","N.S. de Coromoto (Las Guardias)","y otras (6 filiales)"] },
+  { code:"PZ9-2", zone:"PZ9", name:"PARROQUIA SAN JOSÉ DE PARAGUAIPOA", parroco:"Pbro. Eduardo José Daboin Bermúdez", vicario:"Diác. Francisco José Núñez Larez", direccion:"Paraguaipoa Plaza Bolívar, Mcpio. Páez", tels:["0414-6690248","0262-9691145"], email:"eduardodaboin1991@gmail.com", web:"", filiales:["Ntra. Sra. De La Consolata","San José Obrero","Santa Elena","y otras (6 filiales)"] },
+  { code:"PZ9-3", zone:"PZ9", name:"PARROQUIA EL SAGRADO CORAZÓN DE JESÚS (Guarero)", parroco:"Pbro. Germán Palmar", direccion:"Guarero, sector Juamana", tels:["0412-7980355"], email:"", web:"", filiales:["Santísima Trinidad (Calié)","Ntra. Sra. del Carmen (Uraichipa)","Inmaculado Corazón de María (Moína)"] },
+  { code:"PZ9-4", zone:"PZ9", name:"PARROQUIA SANTA MARÍA (Guana)", parroco:"Pbro. Dilmer Báez", direccion:"Km. 47 Santa María de Guana, Vía Carrasquero-Guarero", tels:["0426-4604314","0262-5150815"], email:"else-oresmiluz@hotmail.com", web:"", filiales:["Capilla San Benito","Capilla San José Obrero","San Francisco de Asís","La Inmaculada"] },
+  { code:"PZ9-5", zone:"PZ9", name:"Parroquia Personal Eclesiástica Ntra. Sra. del Carmen (Añú)", parroco:"Pbro. Santos Xavier Silva Blanco", direccion:"Laguna de Sinamaica, Mcpio. Páez", tels:["0412-1742378"], email:"padresantosilva@gmail.com", web:"", filiales:["Parroquia personal de la etnia añú"] }
+];
+
+const rectorias = [
+  { code:"RZ6-10", zone:"RZ", name:"RECTORÍA SAN FRANCISCO DE ASÍS", parroco:"R.P. Pedro Enrique Paredes Ramírez IC", direccion:"Av. Milagro Norte (ZP-6)", tels:[], email:"", web:"", filiales:[] },
+  { code:"RZ5-13", zone:"RZ", name:"RECTORÍA EL DIVINO NIÑO", parroco:"", direccion:"ZP-5 Santísimo Salvador", tels:["7320586"], email:"", web:"", filiales:[] },
+  { code:"RZ4-12", zone:"RZ", name:"RECTORÍA SANTO TOMÁS MORO", parroco:"Pbro. Laudi Zambrano", direccion:"Urb. Sucre Calle 62 Nº 130-25 (ZP-4)", tels:["0414-3618152","0261-7591449"], email:"", web:"", filiales:[] },
+  { code:"RZ2-10", zone:"RZ", name:"RECTORÍA HOGAR CLÍNICA SAN RAFAEL", parroco:"R.P. Juan Esteban Padilla Ponce", direccion:"Calle 64 con Av. 3F (ZP-2)", tels:["0424-6224357","0261-7911790"], email:"familiajuandediana@gmail.com", web:"", filiales:[] },
+  { code:"RZ5-12", zone:"RZ", name:"RECTORÍA SAN FRANCISCO JAVIER", parroco:"", direccion:"Av. Principal Barrio Carabobo (ZP-5)", tels:["0261-8144854"], email:"", web:"", filiales:[] },
+  { code:"RZ7-12", zone:"RZ", name:"RECTORÍA LA SANTÍSIMA CRUZ DE MARA", parroco:"Pbro. Evelio Pérez", direccion:"Las Cruces, carretera hacia el Moján, Santa Cruz de Mara", tels:["0424-6288234"], email:"", web:"", filiales:[] },
+  { code:"RZ5-11", zone:"RZ", name:"RECTORÍA JESÚS LA BUENA ESPERANZA", parroco:"Pbro. Carlos Quiva", direccion:"Barrio El Silencio Av. 49A #152-41, Mcpio. San Francisco", tels:["0412-1285174"], email:"padrecarlosquiva@gmail.com", web:"", filiales:["Capilla San Francisco de Asís (Sector El Silencio)"] },
+  { code:"RZ6-SP", zone:"RZ", name:"RECTORÍA SAN ANTONIO DE PADUA", parroco:"R.P. Pedro Enrique Paredes Ramírez IC", direccion:"ZP-6 Ntra. Sra. de la Candelaria", tels:[], email:"", web:"", filiales:[] }
+];
+
+const zoneNames = {
+  PZ1:"Zona 1 · Chiquinquirá", PZ2:"Zona 2 · Sagrado Corazón",
+  PZ3:"Zona 3 · Sagrada Familia", PZ4:"Zona 4 · Coromoto",
+  PZ5:"Zona 5 · San Francisco", PZ6:"Zona 6 · Fátima",
+  PZ7:"Zona 7 · San Rafael del Moján", PZ8:"Zona 8 · Inmaculada Concepción",
+  PZ9:"Zona 9 · San Bartolomé Apóstol"
+};
+
+const coords = {
+  "PZ1-1":[10.64153,-71.60673],"PZ1-2":[10.64683,-71.60438],"PZ1-3":[10.64244,-71.61055],
+  "PZ1-4":[10.6429,-71.61556],"PZ1-5":[10.65484,-71.60191],"PZ1-6":[10.60782,-71.61168],
+  "PZ1-7":[10.63191,-71.61819],"PZ1-8":[10.6281,-71.6167],
+  "PZ2-1":[10.6638,-71.62015],"PZ2-2":[10.66025,-71.63186],"PZ2-3":[10.68082,-71.61324],
+  "PZ2-4":[10.66358,-71.6075],"PZ2-5":[10.67381,-71.59738],"PZ2-6":[10.65597,-71.61869],
+  "PZ2-7":[10.6661782,-71.6023794],"PZ2-8":[10.68205,-71.6051],"PZ2-9":[10.67476,-71.60809],
+  "PZ3-1":[10.64809,-71.63154],"PZ3-2":[10.63044,-71.63683],"PZ3-3":[10.64172,-71.66663],
+  "PZ3-4":[10.61999,-71.62506],"PZ3-5":[10.61999,-71.62506],"PZ3-6":[10.60726,-71.64545],
+  "PZ3-7":[10.66128,-71.6484],"PZ3-8":[10.58803,-71.6532],"PZ3-9":[10.61707,-71.64472],
+  "PZ3-10":[10.64706,-71.66235],
+  "PZ4-1":[10.6212,-71.83646],"PZ4-2":[10.67862,-71.6538],"PZ4-3":[10.6736,-71.6802],
+  "PZ4-4":[10.6917,-71.6754],"PZ4-5":[10.65218,-71.67346],"PZ4-6":[10.68797,-71.66306],
+  "PZ4-7":[10.68276,-71.68422],"PZ4-8":[10.66275,-71.73719],"PZ4-9":[10.67231,-71.66577],
+  "PZ4-10":[10.71643,-71.65307],"PZ4-11":[10.6752,-71.6482],
+  "PZ5-1":[10.58743,-71.63489],"PZ5-2":[10.58754,-71.62244],"PZ5-3":[10.56157,-71.66666],
+  "PZ5-4":[10.54593,-71.62218],"PZ5-5":[10.56654,-71.63242],"PZ5-6":[10.5567,-71.63604],
+  "PZ5-7":[10.57322,-71.63202],"PZ5-8":[10.55821,-71.65205],"PZ5-9":[10.52793,-71.71071],
+  "PZ5-10":[10.58279,-71.65998],"PZ5-11":[10.51689,-71.6362],
+  "PZ6-1":[10.68887,-71.60938],"PZ6-2":[10.70482,-71.61653],"PZ6-3":[10.69056,-71.63001],
+  "PZ6-4":[10.70961,-71.63087],"PZ6-5":[10.70021,-71.60058],"PZ6-6":[10.68314,-71.63073],
+  "PZ6-7":[10.69225,-71.62386],"PZ6-8":[10.72605,-71.62541],
+  "PZ7-1":[10.96189,-71.73028],"PZ7-3":[10.95781,-71.64462],"PZ7-6":[10.79259,-71.6813],
+  "PZ7-7":[11.0344,-72.00582],"PZ7-9":[10.82761,-71.86483],"PZ7-10":[10.86043,-71.76527],
+  "PZ8-1":[10.42352,-71.67371],"PZ8-2":[10.3851,-71.7278],"PZ8-3":[10.44015,-71.64662],"PZ8-4":[10.4031,-71.6953],
+  "PZ9-1":[11.08645,-71.85395],"PZ9-2":[11.34812,-71.96594],"PZ9-3":[11.35959,-72.06582],"PZ9-4":[11.16573,-72.22921],"PZ9-5":[11.0864,-71.853]
+};
+
+const zoneColors = {
+  PZ1:'#c0392b', PZ2:'#e17055', PZ3:'#d4a017',
+  PZ4:'#27ae60', PZ5:'#16a085', PZ6:'#2980b9',
+  PZ7:'#8e44ad', PZ8:'#d63384', PZ9:'#6f42c1', RZ:'#C59B27'
+};
+
+/* ── Card Builder ── */
+function cardHTML(p, isRect=false) {
+  const vicRow  = p.vicario   ? `<div class="meta-row-item"><span class="material-symbols-outlined meta-icon-item" style="font-size:1rem">supervisor_account</span><span><span class="meta-lbl">Vicario:</span><span class="meta-val"> ${p.vicario}</span></span></div>` : '';
+  const dirRow  = p.direccion ? `<div class="meta-row-item"><span class="material-symbols-outlined meta-icon-item" style="font-size:1rem">location_on</span><span class="meta-val">${p.direccion}</span></div>` : '';
+  const telRow  = p.tels.length ? `<div class="meta-row-item"><span class="material-symbols-outlined meta-icon-item" style="font-size:1rem">phone</span><span class="meta-val">${p.tels.map(t=>`<a href="tel:${t.replace(/\D/g,'')}" style="color:inherit">${t}</a>`).join(' · ')}</span></div>` : '';
+  const mailRow = p.email ? `<div class="meta-row-item"><span class="material-symbols-outlined meta-icon-item" style="font-size:1rem">mail</span><a href="mailto:${p.email}" class="meta-val hover:underline">${p.email}</a></div>` : '';
+  const filRow  = p.filiales && p.filiales.length ? `<div class="filiales-row"><strong>Filiales:</strong> ${p.filiales.join(' · ')}</div>` : '';
+  const webBtn  = p.web ? `<a href="${p.web}" target="_blank" class="btn-web-link"><span class="material-symbols-outlined" style="font-size:0.9rem">open_in_new</span> Sitio web</a>` : '';
+  const mapsBtn = coords[p.code] ? `<a href="https://www.google.com/maps?q=${coords[p.code][0]},${coords[p.code][1]}" target="_blank" class="btn-maps"><span class="material-symbols-outlined" style="font-size:0.9rem">map</span> Ubicación</a>` : '';
+
+  return `
+<div class="${isRect?'parish-bento rectoria':'parish-bento'}" data-name="${p.name.toLowerCase()}" data-zone="${p.zone}" data-details="${(p.parroco+' '+p.direccion).toLowerCase()}">
+  <div class="card-img-col">
+    <img src="img/templos/${p.code}.webp" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/7A1A22/fff?text=Templo+Parroquial'">
+    <span class="zone-badge${isRect?' rect':''}">${p.code}</span>
+  </div>
+  <div class="card-body-col">
+    <h3 class="card-parish-title">${p.name}</h3>
+    <div class="meta-grid">
+      <div class="meta-row-item">
+        <span class="material-symbols-outlined meta-icon-item" style="font-size:1rem">person</span>
+        <span><span class="meta-lbl">Párroco:</span><span class="meta-val"> ${p.parroco||'Por confirmar'}</span></span>
+      </div>
+      ${vicRow}${dirRow}${telRow}${mailRow}
+    </div>
+    ${filRow}
+    <div class="card-actions-row">${webBtn}${mapsBtn}</div>
+  </div>
+</div>`;
+}
+
+/* ── Render ── */
+function renderAll() {
+  let html = '';
+  ['PZ1','PZ2','PZ3','PZ4','PZ5','PZ6','PZ7','PZ8','PZ9'].forEach(z => {
+    const grp = parishes.filter(p => p.zone === z);
+    html += `<div class="zone-group-header"><h3>${zoneNames[z]}</h3><span class="zone-count-badge">${grp.length}</span></div>`;
+    grp.forEach(p => html += cardHTML(p));
+  });
+  document.getElementById('parishGrid').innerHTML = html;
+  document.getElementById('rectoriaGrid').innerHTML = rectorias.map(r => cardHTML(r,true)).join('');
+}
+
+/* ── Filter ── */
+function filterAll() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const z = document.getElementById('zoneFilter').value;
+  if (z === 'RZ') { showTab('rectorias'); return; }
+  showTab('parroquias');
+  const cards = document.querySelectorAll('#parishGrid .parish-bento');
+  const headers = document.querySelectorAll('.zone-group-header');
+  let visible = 0;
+  cards.forEach(card => {
+    const match = (!q || card.dataset.name.includes(q) || card.dataset.details.includes(q)) && (z==='all' || card.dataset.zone===z);
+    card.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+  headers.forEach(h => {
+    let sib = h.nextElementSibling, any = false;
+    while (sib && !sib.classList.contains('zone-group-header')) {
+      if (sib.style.display!=='none') any=true;
+      sib=sib.nextElementSibling;
+    }
+    h.style.display = any ? '' : 'none';
+  });
+  document.getElementById('visibleCount').textContent = visible;
+  const mc = document.getElementById('visibleCountMobile');
+  if (mc) mc.textContent = visible;
+  document.getElementById('noResults').style.display = visible===0 ? 'block' : 'none';
+}
+
+/* ── Tab switch ── */
+function showTab(tab, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  if (btn) btn.classList.add('active');
+  else document.querySelectorAll('.tab-nav-btn')[tab==='rectorias'?1:0].classList.add('active');
+}
+
+document.getElementById('searchInput').addEventListener('input', filterAll);
+renderAll();
+
+/* ── Leaflet Map ── */
+const map = L.map('parishMap',{scrollWheelZoom:false}).setView([10.66,-71.65],11);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+  maxZoom:19
+}).addTo(map);
+
+/* Legend */
+const legendEl = document.getElementById('mapLegend');
+Object.entries(zoneNames).forEach(([k,v])=>{
+  legendEl.innerHTML += `<span style="display:inline-flex;align-items:center;gap:5px;font-size:0.72rem;font-family:Poppins,sans-serif;font-weight:600;color:#4A4543;white-space:nowrap;padding:2px 0">
+    <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${zoneColors[k]};border:2px solid rgba(255,255,255,0.9);box-shadow:0 1px 3px rgba(0,0,0,0.2);flex-shrink:0"></span>
+    ${v.split('·')[1]?.trim()||v}
+  </span>`;
+});
+
+/* Markers */
+const allP = [...parishes,...rectorias];
+allP.forEach(p=>{
+  const c = coords[p.code]; if(!c) return;
+  const color = zoneColors[p.zone]||'#636e72';
+  const icon = L.divIcon({
+    className:'',
+    html:`<div style="background:${color};width:14px;height:14px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);transition:transform .2s;"></div>`,
+    iconSize:[14,14], iconAnchor:[7,7]
+  });
+  const shortName = p.name.replace(/^PARROQUIA\s*/i,'').replace(/^RECTORÍA\s*/i,'');
+  L.marker(c,{icon}).addTo(map).bindPopup(
+    `<div class="popup-title">${shortName}</div>`+
+    `<div class="popup-sub">${p.parroco||'Sin párroco asignado'}</div>`+
+    `<a class="popup-cta" href="https://www.google.com/maps?q=${c[0]},${c[1]}" target="_blank">Abrir en Google Maps →</a>`
+  );
+});
+
+function toggleMap(){
+  const el=document.getElementById('parishMap'), lg=document.getElementById('mapLegend'), btn=document.getElementById('mapToggleBtn');
+  if(el.style.display==='none'){
+    el.style.display=''; lg.style.display='';
+    btn.textContent='Ocultar Mapa';
+    setTimeout(()=>map.invalidateSize(),100);
+  } else {
+    el.style.display='none'; lg.style.display='none';
+    btn.textContent='Mostrar Mapa';
+  }
+}
+</script>
+</body></html>

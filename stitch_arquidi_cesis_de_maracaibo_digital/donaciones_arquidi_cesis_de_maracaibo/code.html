@@ -1,0 +1,375 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Donaciones | Arquidiócesis de Maracaibo</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Poppins (Playfair and Outfit removed as requested) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#ffdea5",
+                        "on-surface": "#1e1b18",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fff8f5",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#fed488",
+                        "on-background": "#1e1b18",
+                        "secondary": "#775a19",
+                        "on-primary-fixed-variant": "#842229",
+                        "tertiary-container": "#403f3b",
+                        "inverse-on-surface": "#f8efea",
+                        "primary-fixed": "#ffdad8",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#1c1c18",
+                        "on-primary-fixed": "#410008",
+                        "surface": "#fff8f5",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "primary-fixed-dim": "#ffb3b1",
+                        "surface-dim": "#e1d8d4",
+                        "surface-tint": "#a43a3e",
+                        "surface-container-highest": "#e9e1dc",
+                        "tertiary-fixed": "#e5e2dc",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#574241",
+                        "tertiary": "#292926",
+                        "outline-variant": "#ddc0be",
+                        "surface-container": "#f5ece7",
+                        "inverse-primary": "#ffb3b1",
+                        "surface-variant": "#e9e1dc",
+                        "surface-container-low": "#fbf2ed",
+                        "on-secondary-container": "#785a1a",
+                        "outline": "#8a7170",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#34302c",
+                        "surface-container-high": "#efe6e2",
+                        "secondary-fixed-dim": "#e9c176",
+                        "primary-container": "#7a1a22",
+                        "tertiary-fixed-dim": "#c9c6c1",
+                        "on-secondary-fixed": "#261900",
+                        "on-primary-container": "#ff8888",
+                        "on-error": "#ffffff",
+                        "background": "#fff8f5",
+                        "primary": "#5b000f",
+                        "on-tertiary-fixed-variant": "#474743",
+                        "on-tertiary-container": "#acaaa5",
+                        "crimson-deep": "#7A1A22",
+                        "gold-antique": "#C59B27",
+                        "slate-warm": "#4A4543",
+                        "warm-ivory": "#F9F7F2",
+                        "lake-azure": "#87CEEB"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "section-gap": "5rem",
+                        "stack-lg": "2rem",
+                        "stack-md": "1rem",
+                        "stack-sm": "0.5rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Rotis Sans Serif", "sans-serif"],
+                        "body": ["Poppins", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .bento-card {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+        }
+        body {
+            background-color: #fff8f5;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="font-body text-on-background">
+<!-- Top Navigation Bar -->
+<header class="docked full-width top-0 sticky z-50 bg-surface/85 backdrop-blur-md shadow-sm border-b border-warm-ivory/20 h-20">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto h-full">
+<div class="flex items-center gap-2"><a href="/" class="flex items-center gap-3 group">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQbdS_1jLKgNV4xpbyh2wYLnce7BeYdHZBtzIl9FD5m7qMI_d3CTTZqRJDAcIWPaUhBy4GLo8_JieINuo6HKykKXbeuSTPd8mmGHhH9mIQ6idC-DOUlyVXbUtMGpKkCJW_erSvp-SMajHAVhYaWAMfWdsgd-Y7UL6yQWJbQuZO16gsJPenG6v3QLwVOITJCyD_2uu1RGzrIPi2R7cFFRXvFLsVM8TTz-9ucDcvtyaaPJ-hJCYkruSRjaQi8cIVqspueA" alt="Logo Arquidiócesis de Maracaibo" class="h-10 w-auto object-contain">
+    <div class="flex flex-col justify-center">
+        <span class="font-headline text-[14px] leading-[1.1] font-bold text-crimson-deep uppercase tracking-wider">Arquidiócesis</span>
+        <span class="font-headline text-[14px] leading-[1.1] font-bold text-crimson-deep uppercase tracking-wider">de Maracaibo</span>
+    </div>
+</a></div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-body text-label-lg text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Arquidiócesis</a>
+<a class="font-body text-label-lg text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Pastoral</a>
+<a class="font-body text-label-lg text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Cancillería</a>
+<a class="font-body text-label-lg text-slate-warm hover:text-crimson-deep transition-colors duration-200" href="#">Noticias</a>
+<a class="font-body text-label-lg text-crimson-deep border-b-2 border-gold-antique pb-1 font-bold" href="#">Donaciones</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:block bg-crimson-deep text-white px-5 py-2 rounded-xl font-body text-label-lg hover:bg-primary transition-all">Portal Clero</button>
+<span class="material-symbols-outlined text-crimson-deep cursor-pointer" data-icon="account_circle">account_circle</span>
+<span class="material-symbols-outlined md:hidden text-crimson-deep" data-icon="menu">menu</span>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative py-section-gap overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 space-y-6">
+<h1 class="font-headline text-headline-lg text-crimson-deep leading-tight">Donaciones: Tu aporte hace la diferencia</h1>
+<p class="font-body text-body-lg text-slate-warm leading-relaxed">
+                    Nuestra Iglesia particular en Maracaibo lleva adelante una inmensa labor evangelizadora, educativa y social que requiere de recursos materiales para sostenerse en el tiempo. El sostenimiento de la Iglesia es responsabilidad de todos los bautizados.
+                </p>
+<div class="flex gap-4">
+<a class="bg-crimson-deep text-on-primary px-8 py-3 rounded-xl font-body text-label-lg hover:shadow-lg transition-all" href="#metodos">Ver Métodos de Pago</a>
+<a class="border border-crimson-deep text-crimson-deep px-8 py-3 rounded-xl font-body text-label-lg hover:bg-warm-ivory transition-all" href="#contacto">Contactar Administración</a>
+</div>
+</div>
+<div class="flex-1 relative">
+<div class="w-full h-[500px] rounded-3xl overflow-hidden shadow-2xl relative z-10">
+<img alt="Apoyo Arquidiócesis" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLsp0UzewUkZtkuLp47yP5GgnasP3cjS7WuCBdUiR7Q5GcQbDRJSw-ezCRKK9WlJvIbeC-A--QC3BwX20Za6kPYUIjQHJ8kw9rgsfkEBf57QZGm4ht_JJse4tKJnnNzeO5SgN424kmm-B5D6taOgYOavggKWzAO6hdI66tG_zC_NjOIqkPnL_w7WQ-Xm8SBV8QKpIKKWG6VttMUE-rhIJsuWuyJXt3MWvR_zp5LNZwqOvcioLlf7Q6_l_sQ">
+</div>
+<div class="absolute -bottom-6 -right-6 w-64 h-64 bg-gold-antique/10 rounded-full blur-3xl -z-0"></div>
+</div>
+</div>
+</section>
+<!-- Scripture Quote -->
+<section class="bg-warm-ivory py-stack-lg">
+<div class="max-w-3xl mx-auto text-center px-margin-mobile">
+<p class="font-headline text-headline-sm text-crimson-deep italic opacity-90">
+                «Dios ama al que da con alegría»
+            </p>
+<p class="font-body text-label-lg text-slate-warm mt-2 uppercase tracking-widest">(2 Cor 9, 7)</p>
+</div>
+</section>
+<!-- Bento Grid Donaciones -->
+<section class="py-section-gap max-w-container-max mx-auto px-margin-mobile md:px-gutter" id="metodos">
+<div class="text-center mb-16">
+<h2 class="font-headline text-headline-lg text-crimson-deep mb-4">Medios de Ayuda</h2>
+<p class="font-body text-body-md text-slate-warm max-w-2xl mx-auto">Seleccione el método de su preferencia para realizar su donación. Todas las transacciones son seguras y destinadas a las obras de misericordia.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Transferencia Bancaria (Grand Card) -->
+<div class="md:col-span-8 bento-card bg-surface-container-low border border-outline-variant/30 rounded-3xl p-8 flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="relative z-10">
+<div class="w-12 h-12 bg-crimson-deep/10 rounded-xl flex items-center justify-center text-crimson-deep mb-6">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<h3 class="font-headline text-headline-md text-crimson-deep mb-4 border-b border-gold-antique/30 pb-2 inline-block">Transferencia Bancaria</h3>
+<p class="font-body text-body-md text-slate-warm mb-8">Para aportes en bolívares directamente a la cuenta corriente de la Arquidiócesis.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="space-y-1">
+<span class="font-body text-label-lg text-gold-antique uppercase text-[10px]">Banco</span>
+<p class="font-body text-body-lg text-on-surface font-semibold">Banco Provincial</p>
+</div>
+<div class="space-y-1">
+<span class="font-body text-label-lg text-gold-antique uppercase text-[10px]">RIF</span>
+<p class="font-body text-body-lg text-on-surface font-semibold">G-20000000-0</p>
+</div>
+<div class="sm:col-span-2 space-y-1">
+<span class="font-body text-label-lg text-gold-antique uppercase text-[10px]">Cuenta Corriente</span>
+<div class="flex items-center gap-2">
+<p class="font-body text-body-lg text-on-surface font-mono tracking-wider font-semibold">0108-0000-00-0000000000</p>
+<button class="text-crimson-deep hover:bg-crimson-deep/10 p-1 rounded transition-colors" title="Copiar cuenta">
+<span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[120px]" data-icon="account_balance">account_balance</span>
+</div>
+</div>
+<!-- Pago Móvil (Side Card) -->
+<div class="md:col-span-4 bento-card bg-surface-container-high border border-outline-variant/30 rounded-3xl p-8 shadow-sm flex flex-col relative overflow-hidden">
+<div class="w-12 h-12 bg-crimson-deep/10 rounded-xl flex items-center justify-center text-crimson-deep mb-6">
+<span class="material-symbols-outlined" data-icon="smartphone">smartphone</span>
+</div>
+<h3 class="font-headline text-headline-md text-crimson-deep mb-4 border-b border-gold-antique/30 pb-2 inline-block">Pago Móvil</h3>
+<p class="font-body text-body-md text-slate-warm mb-8">Rápido y sencillo desde su celular.</p>
+<ul class="space-y-4">
+<li class="flex flex-col">
+<span class="font-body text-label-lg text-gold-antique uppercase text-[10px]">Banco</span>
+<span class="font-body text-body-md font-bold">Mercantil (0105)</span>
+</li>
+<li class="flex flex-col">
+<span class="font-body text-label-lg text-gold-antique uppercase text-[10px]">Teléfono</span>
+<span class="font-body text-body-md font-bold">0414-0000000</span>
+</li>
+<li class="flex flex-col">
+<span class="font-body text-label-lg text-gold-antique uppercase text-[10px]">Cédula/RIF</span>
+<span class="font-body text-body-md font-bold">G-20000000-0</span>
+</li>
+</ul>
+</div>
+<!-- Divisas Zelle/Paypal (Middle Card) -->
+<div class="md:col-span-5 bento-card bg-white border border-outline-variant/30 rounded-3xl p-8 shadow-sm relative group overflow-hidden">
+<div class="w-12 h-12 bg-lake-azure/20 rounded-xl flex items-center justify-center text-tertiary mb-6">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<h3 class="font-headline text-headline-md text-crimson-deep mb-4 border-b border-gold-antique/30 pb-2 inline-block">Divisas</h3>
+<p class="font-body text-body-md text-slate-warm mb-8">Aportes desde el exterior o en moneda extranjera.</p>
+<div class="space-y-6">
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/20">
+<span class="font-body text-label-lg text-gold-antique uppercase text-[10px]">Zelle</span>
+<p class="font-body text-body-md font-bold break-all">donaciones@arquidiocesis.org</p>
+<p class="font-body text-[12px] text-slate-warm">Catholic Church Maracaibo</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/20">
+<span class="font-body text-label-lg text-gold-antique uppercase text-[10px]">PayPal</span>
+<p class="font-body text-body-md font-bold">paypal.me/arquimcbo</p>
+</div>
+</div>
+</div>
+<!-- Aportes Presenciales (Large Feature) -->
+<div class="md:col-span-7 bento-card glass-effect bg-warm-ivory/80 border border-gold-antique/20 rounded-3xl p-8 shadow-sm relative overflow-hidden flex flex-col md:flex-row gap-8">
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 bg-gold-antique/20 rounded-xl flex items-center justify-center text-gold-antique mb-6">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
+</div>
+<h3 class="font-headline text-headline-md text-crimson-deep mb-4 border-b border-gold-antique/30 pb-2 inline-block">Aportes Presenciales</h3>
+<p class="font-body text-body-md text-slate-warm mb-4 leading-relaxed">Recibimos donativos en especie (alimentos, medicinas, ropa) y diezmos en efectivo en nuestras oficinas centrales.</p>
+</div>
+<div class="space-y-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-gold-antique" data-icon="location_on">location_on</span>
+<p class="font-body text-label-lg text-on-surface">Sede del Arzobispado o Cáritas Maracaibo. Av. 4 con calle 95.</p>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-gold-antique" data-icon="schedule">schedule</span>
+<p class="font-body text-label-lg text-on-surface">Lunes a Viernes (8:00 AM - 1:00 PM)</p>
+</div>
+</div>
+</div>
+<div class="flex-1 rounded-2xl overflow-hidden min-h-[200px]">
+<img alt="Sede Arzobispado" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLsEQATfdYS4iSOIFr1nV48cIyzVu_lv0jzN94cj0zJt8O1SngMTw8o9bxcOU0dAIKWvIecKRorOYXXkBdMbdBCosSO0Y3H8YPkqdk9Qm7WXH3yiCV051nXCKgnIWynWOGHByIwbjQZS221dj6OosDhc65e7mvNDzNL1eebq-6BwG7yJDngouQAPQ85YFS3whOQEO6iBl8fQy2usvgBUvraFQwPX80MILrqvCLLT2kvJL5ps0Pf3ArB-4Q">
+</div>
+</div>
+</div>
+</section>
+<!-- Notification CTA -->
+<section class="py-section-gap" id="contacto">
+<div class="max-w-4xl mx-auto bg-crimson-deep rounded-3xl p-10 md:p-16 text-center text-on-primary shadow-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -ml-32 -mb-32"></div>
+<div class="relative z-10 space-y-8">
+<span class="material-symbols-outlined text-6xl text-gold-antique" data-icon="mark_email_read">mark_email_read</span>
+<h2 class="font-headline text-headline-lg">¿Ha realizado un donativo?</h2>
+<p class="font-body text-body-lg opacity-90 max-w-xl mx-auto">
+                    Le agradeceríamos reportarlo para nuestra contabilidad y así enviarle un agradecimiento formal y constancia de su aporte.
+                </p>
+<div class="pt-4">
+<a class="inline-flex items-center gap-3 bg-gold-antique text-crimson-deep px-10 py-4 rounded-full font-body text-label-lg font-bold hover:bg-white transition-all transform hover:scale-105" href="mailto:administracion@arquidiocesisdemaracaibo.org">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+                        Notificar Donación a Administración
+                    </a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg bg-surface-container-highest border-t border-outline-variant/30 mt-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="space-y-4">
+<div class="font-headline text-headline-sm text-crimson-deep">Arquidiócesis</div>
+<p class="font-body text-body-md text-on-surface">Av. 4 con calle 95, frente a la Plaza Bolívar. Maracaibo, Estado Zulia.</p>
+<div class="flex gap-4">
+<a class="font-body text-label-lg text-slate-warm hover:text-crimson-deep transition-opacity opacity-90 hover:opacity-100" href="#">Instagram</a>
+<a class="font-body text-label-lg text-slate-warm hover:text-crimson-deep transition-opacity opacity-90 hover:opacity-100" href="#">Twitter</a>
+</div>
+</div>
+<div class="space-y-4">
+<div class="font-body text-label-lg text-crimson-deep font-bold uppercase tracking-wider">Enlaces Rápidos</div>
+<ul class="space-y-2">
+<li class=""><a class="font-body text-label-lg text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline" href="#">Directorio de Parroquias</a></li>
+<li class=""><a class="font-body text-label-lg text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline" href="#">Ambientes Seguros</a></li>
+<li class=""><a class="font-body text-label-lg text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline" href="#">Cancillería</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<div class="font-body text-label-lg text-crimson-deep font-bold uppercase tracking-wider">Soporte</div>
+<ul class="space-y-2">
+<li class=""><a class="font-body text-label-lg text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline" href="#">Privacidad</a></li>
+<li class=""><a class="font-body text-label-lg text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline" href="#">Términos</a></li>
+<li class=""><a class="font-body text-label-lg text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline" href="#">Portal del Clero</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<div class="font-body text-label-lg text-crimson-deep font-bold uppercase tracking-wider">Boletín</div>
+<p class="font-body text-label-lg text-slate-warm">Suscríbase para recibir noticias y decretos.</p>
+<div class="flex">
+<input class="font-body bg-surface border-none rounded-l-xl px-4 py-2 w-full focus:ring-1 focus:ring-gold-antique text-body-md" placeholder="Su email" type="email">
+<button class="bg-crimson-deep text-white px-4 py-2 rounded-r-xl font-body text-label-lg font-bold">OK</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-16 pt-8 border-t border-outline-variant/10 text-center">
+<p class="font-body text-label-lg text-on-surface opacity-70">
+            © 2024 Arquidiócesis de Maracaibo. Todos los derechos reservados. Sacred Modernism.
+        </p>
+</div>
+</footer>
+<!-- Mobile Navigation Menu Script -->
+<script>
+    const mobileMenuBtn = document.querySelector('[data-icon="menu"]');
+    mobileMenuBtn.addEventListener('click', () => {
+        alert('El menú de navegación lateral se activaría en una implementación completa.');
+    });
+
+    // Copy Account Interaction
+    document.querySelectorAll('[data-icon="content_copy"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const text = this.parentElement.previousElementSibling.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalIcon = this.innerText;
+                this.innerText = 'check';
+                setTimeout(() => {
+                    this.innerText = originalIcon;
+                }, 2000);
+            });
+        });
+    });
+</script>
+
+
+
+
+</body></html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Arquidiócesis | Arquidiócesis de Maracaibo</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#ffdea5",
+                    "on-surface": "#1e1b18",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#fff8f5",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#fed488",
+                    "on-background": "#1e1b18",
+                    "secondary": "#775a19",
+                    "on-primary-fixed-variant": "#842229",
+                    "tertiary-container": "#403f3b",
+                    "inverse-on-surface": "#f8efea",
+                    "primary-fixed": "#ffdad8",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#1c1c18",
+                    "on-primary-fixed": "#410008",
+                    "surface": "#fff8f5",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "primary-fixed-dim": "#ffb3b1",
+                    "surface-dim": "#e1d8d4",
+                    "surface-tint": "#a43a3e",
+                    "surface-container-highest": "#e9e1dc",
+                    "tertiary-fixed": "#e5e2dc",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#574241",
+                    "tertiary": "#292926",
+                    "outline-variant": "#ddc0be",
+                    "surface-container": "#f5ece7",
+                    "inverse-primary": "#ffb3b1",
+                    "surface-variant": "#e9e1dc",
+                    "surface-container-low": "#fbf2ed",
+                    "on-secondary-container": "#785a1a",
+                    "outline": "#8a7170",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#34302c",
+                    "surface-container-high": "#efe6e2",
+                    "secondary-fixed-dim": "#e9c176",
+                    "primary-container": "#7a1a22",
+                    "tertiary-fixed-dim": "#c9c6c1",
+                    "on-secondary-fixed": "#261900",
+                    "on-primary-container": "#ff8888",
+                    "on-error": "#ffffff",
+                    "background": "#fff8f5",
+                    "primary": "#5b000f",
+                    "on-tertiary-fixed-variant": "#474743",
+                    "on-tertiary-container": "#acaaa5",
+                    "crimson-deep": "#7A1A22",
+                    "gold-antique": "#C59B27",
+                    "slate-warm": "#4A4543",
+                    "warm-ivory": "#F9F7F2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-md": "1rem",
+                    "stack-lg": "2rem",
+                    "stack-sm": "0.5rem",
+                    "section-gap": "5rem",
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "label-lg": ["Poppins"],
+                    "headline-sm": ["Rotis Sans Serif", "sans-serif"],
+                    "body-md": ["Poppins"],
+                    "display-lg-mobile": ["Rotis Sans Serif", "sans-serif"],
+                    "headline-md": ["Rotis Sans Serif", "sans-serif"],
+                    "label-md": ["Poppins"],
+                    "headline-lg-mobile": ["Rotis Sans Serif", "sans-serif"],
+                    "body-lg": ["Poppins"],
+                    "display-lg": ["Rotis Sans Serif", "sans-serif"],
+                    "headline-lg": ["Rotis Sans Serif", "sans-serif"],
+                    "quote-editorial": ["Rotis Sans Serif", "sans-serif"]
+            },
+            "fontSize": {
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                    "quote-editorial": ["22px", {"lineHeight": "1.4", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(74, 69, 67, 0.12);
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .clero-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F9F7F2; }
+        ::-webkit-scrollbar-thumb { background: #C59B27; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface/85 backdrop-blur-md dark:bg-surface-dim/80 docked full-width top-0 sticky z-50 shadow-sm dark:shadow-none border-b border-warm-ivory/20">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-4">
+<a class="flex items-center gap-4 group" href="/">
+<img alt="Logo Arquidiócesis de Maracaibo" class="h-12 w-auto transition-transform duration-200 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1nj0BnNmkcOCfxL9nJTRUvbFpaYprE21NJtbGCeFfJ3KPeaUu-1NuCoy-MyZ6yfhkM_-ZtGJdEt8VDFnF6q0lBYgJ5lizviYxzJHKY8NTi56pSumbfhchnd3HgCQAvCxnbQc5AqYLEwKEbGySm9wtnHN5-MOk8GMUX9D096iHcbmJUGnU26FunGEEupUGiz2hjHj5odr6E_CZPfdttLG7HhAInEn9hquvwG47L8pwfFCfUIRMjHzNpwyCt_N62hnQJg">
+<div class="flex flex-col max-w-[200px]"><span class="text-label-lg font-headline-md font-bold text-crimson-deep dark:text-primary-fixed tracking-widest uppercase leading-none truncate">Arquidiócesis</span><span class="text-label-md font-label-md font-semibold text-gold-antique uppercase tracking-[0.2em] leading-none mt-1 truncate">de Maracaibo</span></div>
+</a>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-crimson-deep border-b-2 border-gold-antique pb-1 font-bold font-label-md text-label-md" href="#">Arquidiócesis</a>
+<a class="text-slate-warm hover:text-crimson-deep transition-colors duration-200 font-label-md text-label-md" href="#">Pastoral</a>
+<a class="text-slate-warm hover:text-crimson-deep transition-colors duration-200 font-label-md text-label-md" href="#">Cancillería</a>
+<a class="text-slate-warm hover:text-crimson-deep transition-colors duration-200 font-label-md text-label-md" href="#">Noticias</a>
+<a class="text-slate-warm hover:text-crimson-deep transition-colors duration-200 font-label-md text-label-md" href="#">Donaciones</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden lg:block bg-crimson-deep text-on-primary px-6 py-2 rounded-lg font-label-md text-label-md hover:bg-primary transition-all">Portal Clero</button>
+<span class="material-symbols-outlined text-crimson-deep cursor-pointer" data-icon="account_circle">account_circle</span>
+<button class="md:hidden material-symbols-outlined" id="mobile-menu-btn">menu</button>
+</div>
+</div>
+</header>
+<!-- Hero Header -->
+<section class="relative h-[60vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="A grand cinematic view of the Maracaibo Cathedral's ornate facade at sunset, with golden light illuminating the architectural details. The atmosphere is solemn and majestic, captured in a high-end photography style with soft shadows and warm, celestial tones consistent with sacred modernism." src="https://lh3.googleusercontent.com/aida/AP1WRLuT1pj9kvMfoK73_SYUINQ3XDp81JGWA52_DFkXjB3mIMhi0A236Fa4122qIZIyjIl22dGiwPe_MjWHiZAdSGugrK3c8Wafe7121WUpzKYGvIu7DfVc0BXodrgwJzepShKn98DUv61NMzd-Y5l3vjIPA8DfU723qkaynNNY7GRCVi9EyJpX3DEpuiJXuOiQa_wbJOWXu4Vc5DiKYbvWTCQf6-jxo0zwrunEDsxQ39lCATrj5wQzRuwetVY">
+<div class="absolute inset-0 bg-gradient-to-r from-crimson-deep/60 to-transparent"></div>
+</div>
+<div class="relative z-10 px-margin-mobile md:px-gutter max-w-container-max mx-auto w-full">
+<div class="max-w-2xl reveal visible">
+<h1 class="text-white font-display-lg mb-4 text-headline-lg">Nuestra Arquidiócesis</h1>
+<p class="text-warm-ivory font-quote-editorial text-quote-editorial opacity-90">Soberana, intelectual y profundamente acogedora. Conozca la historia, curia y organización eclesial de la grey zuliana.</p>
+</div>
+</div>
+</section>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-gap space-y-section-gap">
+<!-- Iglesia Universal: Asymmetric Layout -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center reveal visible" id="iglesia-universal">
+<div class="lg:col-span-7 space-y-stack-md">
+<span class="text-gold-antique font-label-md text-label-md tracking-widest uppercase">Comunión</span>
+<h2 class="font-headline-lg text-headline-lg text-crimson-deep">Iglesia Universal</h2>
+<p class="text-on-surface-variant font-body-md leading-relaxed">La Arquidiócesis de Maracaibo no es una entidad aislada, sino una porción del Pueblo de Dios integrada plenamente a la Iglesia Católica Universal. Caminamos en estricta fidelidad y comunión con el Santo Padre, el Papa Francisco.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg mt-stack-lg">
+<div class="p-stack-md border-l-2 border-gold-antique">
+<h4 class="font-headline-md text-headline-sm text-primary mb-2">Centralidad en Cristo</h4>
+<p class="text-body-md font-body-md text-slate-warm">Todo nuestro actuar y misión pastoral nacen del encuentro vivo con Jesucristo, buscando hacer presente el Reino de Dios.</p>
+</div>
+<div class="p-stack-md border-l-2 border-gold-antique">
+<h4 class="font-headline-md text-headline-sm text-primary mb-2">Sede Apostólica</h4>
+<p class="text-body-md font-body-md text-slate-warm">Unidos en fe, sacramentos y disciplina con el Sucesor de San Pedro, principio perpetuo de unidad.</p>
+</div>
+</div>
+<a class="inline-flex items-center gap-2 text-crimson-deep font-bold font-body-md hover:gap-4 transition-all" href="https://www.vatican.va/">
+                Sitio Web de la Santa Sede <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="aspect-[4/5] rounded-xl overflow-hidden shadow-xl">
+<img class="w-full h-full object-cover" data-alt="An ethereal wide shot of St. Peter's Square in the Vatican during blue hour. The lighting is soft and atmospheric, highlighting the classical architecture and the dome of the basilica. The visual style is premium and editorial, evoking a sense of global spiritual unity and timeless authority." src="https://lh3.googleusercontent.com/aida/AP1WRLs4tW1Q-UBDexB6aW9e9mYn2fAgzG5uSnyoUEisGx1FVuRrzsKUo6-hHs5jqLV5RWbLNV5jGAsIdqr8bVEaeMNPZwJo_v7vQzNGJS-slr3RNFjNLKNY8zmoI5UEmmBIKZJNbPtr1t3v1q_MUuI5cNys_AoRGNCK8tEpHYftAgkatGrwRe3XSsdSbOXg42d18q9JgVPPWUck_v4vvcnO_LbvmZThUlUY2t8NrRSVsBeL_r6BsVppVLfXIy4">
+</div>
+<div class="absolute -bottom-6 -left-6 w-32 h-32 bg-gold-antique/10 glass-effect border border-gold-antique/20 rounded-xl hidden lg:block"></div>
+</div>
+</section>
+<!-- Historia & Patrona: Bento Grid -->
+<section class="space-y-stack-lg reveal visible">
+<div class="text-center max-w-2xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-crimson-deep">Tradición y Devoción</h2>
+<p class="text-on-surface-variant font-body-md">Un legado que se extiende desde la antigua Diócesis del Zulia hasta la elevación a Arquidiócesis Metropolitana.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter h-full">
+<!-- Historia Card -->
+<div class="md:col-span-8 bg-surface-container-low p-stack-lg rounded-xl flex flex-col justify-between bento-card border border-outline-variant/30">
+<div>
+<h3 class="font-headline-md text-headline-md text-crimson-deep mb-4">Crónica de Nuestra Fe</h3>
+<p class="text-body-md font-body-md text-slate-warm mb-4">Erigida el 28 de julio de 1897 por el Papa León XIII. El 30 de abril de 1966, San Pablo VI elevó la sede al rango de Arquidiócesis Metropolitana, siendo Monseñor Domingo Roa Pérez su primer Arzobispo.</p>
+</div>
+<div class="grid grid-cols-3 gap-4 mt-stack-lg">
+<div class="text-center">
+<div class="text-gold-antique font-bold text-headline-md">1897</div>
+<div class="text-label-md font-label-md uppercase opacity-60">Erección</div>
+</div>
+<div class="text-center">
+<div class="text-gold-antique font-bold text-headline-md">1953</div>
+<div class="text-label-md font-label-md uppercase opacity-60">Nombre</div>
+</div>
+<div class="text-center">
+<div class="text-gold-antique font-bold text-headline-md">1966</div>
+<div class="text-label-md font-label-md uppercase opacity-60">Elevación</div>
+</div>
+</div>
+</div>
+<!-- La Chinita Card -->
+<div class="md:col-span-4 bg-crimson-deep text-white p-stack-lg rounded-xl bento-card flex flex-col justify-end relative overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-700" data-alt="A sacred and reverent close-up of a religious icon surrounded by candlelight and flowers, representing the Virgin of Chiquinquirá. The lighting is warm and flickering, creating a mystical and intimate atmosphere. The style is classic yet clean, emphasizing the deep spiritual devotion of the Zulia region." src="https://lh3.googleusercontent.com/aida/AP1WRLtUx272xPiE2Q_dOS92S1CikDYWUqwV5k2GGc-qA_Iignufk_5QuxAC_yDnMmnb10zwzaB8EF4cSnh7BsJNrXtRngYmQ2iA3gof-nDQgfqOV38FZ6D13nH9VytEtSStPrA2NNKocOMUHDM8QNWiSvVK-dnNiwkJU0uQo2GE0AABPy6LT3OpiAlQPOg4zO0f14zeAffmdDtnmVXpFIbNvTkdLqHHY2E7wVvVCxEtupE9sw8aSTjgPeWTwj0">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md mb-2">La Chinita</h3>
+<p class="text-white/80 text-body-md font-body-md mb-4">Nuestra Señora del Rosario de Chiquinquirá, corazón espiritual y Patrona indiscutible del Zulia desde 1709.</p>
+<button class="bg-gold-antique text-primary px-4 py-2 rounded-lg font-bold font-label-md text-label-md">Conoce el Milagro</button>
+</div>
+</div>
+<!-- Territorio Card -->
+<div class="md:col-span-5 bg-warm-ivory p-stack-lg rounded-xl bento-card border border-outline-variant/30">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-gold-antique" data-icon="map">map</span>
+<h3 class="font-headline-md text-headline-md text-crimson-deep">Territorio</h3>
+</div>
+<p class="text-body-md font-body-md text-slate-warm mb-4">Abarca los municipios Maracaibo, San Francisco, J.E. Lossada, Mara, Almirante Padilla y La Cañada de Urdaneta.</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container-high px-3 py-1 rounded-full font-label-md text-label-md text-slate-warm">Wayúu</span>
+<span class="bg-surface-container-high px-3 py-1 rounded-full font-label-md text-label-md text-slate-warm">Añú</span>
+<span class="bg-surface-container-high px-3 py-1 rounded-full font-label-md text-label-md text-slate-warm">Zulia</span>
+</div>
+</div>
+<!-- Map Visualization Card -->
+<div class="md:col-span-7 rounded-xl overflow-hidden bento-card relative h-64 md:h-auto">
+<img class="w-full h-full object-cover" data-alt="An artistic topographic map rendering of the Maracaibo region, including the lake and surrounding municipalities. The color palette uses elegant shades of ivory, gold, and slate warm. The style is minimalist and clean, representing the administrative and spiritual territory of the Archdiocese." data-location="Maracaibo" src="https://lh3.googleusercontent.com/aida/AP1WRLvx-QP1KoKKLboMAWEh2EaTmNcDUHzDp9r57dMdwYY0VxVWd5fb69MXL1uOTaltxDAK32PiN7FtmjzOEzQSVGNwoXMZiIEtvrDQzShuSsHHsYoV7QlJwENEZ8Z3ubVBNzWoF5tks4Dwk9aT-5yCUggEWpAwySmkt0W4srEGTcVsHqnF7uN3jKmykckiXkV4TICiYV2yuWL5x-bOrhtPw4UWnggw7p_c7E5Ggddu80vnibuXTc69PUg5Z_k">
+<div class="absolute inset-0 bg-crimson-deep/10 pointer-events-none"></div>
+</div>
+</div>
+</section>
+<!-- Clero & Organización -->
+<section class="reveal space-y-stack-lg visible" id="organizacion">
+<div class="flex justify-between items-end border-b border-outline-variant/30 pb-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-crimson-deep">Estructura Eclesial</h2>
+<p class="text-on-surface-variant font-body-md">Gobierno, vicarias y presbiterio al servicio de la grey.</p>
+</div>
+<div class="hidden md:block">
+<button class="bg-surface-container-high text-on-surface px-6 py-2 rounded-lg font-label-md text-label-md hover:bg-gold-antique/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="description">description</span> Descargar Directorio
+                </button>
+</div>
+</div>
+<!-- Vicarios -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="bg-white p-stack-lg rounded-xl shadow-sm border border-warm-ivory transition-all hover:border-gold-antique/30">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 bg-crimson-deep/5 rounded-full flex items-center justify-center text-crimson-deep">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-sm text-crimson-deep">Vicario General</h4>
+<p class="font-bold text-on-surface font-body-md mt-1">Pbro. Jesús Enrique Hernández</p>
+<p class="text-label-md font-label-md text-slate-warm">Moderador de la Curia</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-stack-lg rounded-xl shadow-sm border border-warm-ivory transition-all hover:border-gold-antique/30">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 bg-crimson-deep/5 rounded-full flex items-center justify-center text-crimson-deep">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-sm text-crimson-deep">Vic. Episcopal Maracaibo-Oeste</h4>
+<p class="font-bold text-on-surface font-body-md mt-1">Pbro. Jesús Sandoval</p>
+<p class="text-label-md font-label-md text-slate-warm">Territorio Pastoral</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sacerdotes Incardinados -->
+<div class="bg-white rounded-xl shadow-sm border border-warm-ivory overflow-hidden">
+<div class="bg-surface-container-low px-stack-lg py-stack-md flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-crimson-deep">Presbiterio Arquidiocesano</h3>
+<div class="relative w-64">
+<input class="w-full bg-surface-container-lowest border-none rounded-lg py-2 px-4 font-label-md text-label-md focus:ring-1 focus:ring-gold-antique" placeholder="Buscar sacerdote..." type="text">
+<span class="material-symbols-outlined absolute right-3 top-2 text-slate-warm" data-icon="search">search</span>
+</div>
+</div>
+<div class="p-stack-lg clero-grid gap-y-stack-md gap-x-gutter h-[500px] overflow-y-auto">
+<!-- List generated from content -->
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Alfonso Rodríguez</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Andrade Vecino, José</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Andres Bravo</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Bermúdez C. Héctor</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Báez. Dilmer.</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Carlos Quiva.</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Dainer Prieto</p>
+<p class="text-label-md font-label-md text-slate-warm">Párroco y Rector</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Danilo González</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Diac. Mervin Rincón</p>
+<p class="text-label-md font-label-md text-slate-warm">Diácono</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Dionni José Ríos</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Edgar J. Doria M.</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Eleuterio S. Cuevas</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Ender Alexander Castillo</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Enrique Rojas Peña</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Fabricio Medina.</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Germán Palmar</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Heber J. Rivera C.</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Jesús Colina</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Jesús Vásquez</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Jorge D. Sánchez U.</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">José Andrés Bravo</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">José Miguel Hernández</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Luis Fernando</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Nedward Jorge Andrade</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Néstor Primera</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Oswaldo José Matheus</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Pedro Colmenares</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Rafael Villalobos</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">Silverio A. Osorio</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+<div class="group border-b border-outline-variant/10 pb-2">
+<p class="font-bold text-on-surface font-body-md group-hover:text-crimson-deep transition-colors">William Ch. Ortega</p>
+<p class="text-label-md font-label-md text-slate-warm">Presbítero</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant/30 w-full py-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-gutter max-w-container-max mx-auto opacity-90 hover:opacity-100 transition-opacity">
+<div class="md:col-span-2">
+<span class="font-headline-md text-crimson-deep block mb-4">Arquidiócesis de Maracaibo</span>
+<p class="font-body-md text-on-surface dark:text-inverse-on-surface max-w-sm">
+                Av. 4 con calle 95, frente a la Plaza Bolívar. Maracaibo, Estado Zulia, Venezuela.
+            </p>
+</div>
+<div>
+<span class="font-label-lg text-crimson-deep block mb-4">Enlaces</span>
+<ul class="space-y-2">
+<li class=""><a class="text-label-md font-label-md text-slate-warm hover:text-crimson-deep underline underline-offset-4 decoration-gold-antique transition-all" href="#">Directorio de Parroquias</a></li>
+<li class=""><a class="text-label-md font-label-md text-slate-warm hover:text-crimson-deep underline underline-offset-4 decoration-gold-antique transition-all" href="#">Ambientes Seguros</a></li>
+<li class=""><a class="text-label-md font-label-md text-slate-warm hover:text-crimson-deep underline underline-offset-4 decoration-gold-antique transition-all" href="#">Cancillería</a></li>
+</ul>
+</div>
+<div>
+<span class="font-label-lg text-crimson-deep block mb-4">Legal</span>
+<ul class="space-y-2">
+<li class=""><a class="text-label-md font-label-md text-slate-warm hover:text-crimson-deep transition-all" href="#">Privacidad</a></li>
+<li class=""><a class="text-label-md font-label-md text-slate-warm hover:text-crimson-deep transition-all" href="#">Términos</a></li>
+<li class=""><a class="text-label-md font-label-md text-slate-warm hover:text-crimson-deep transition-all" href="#">Portal del Clero</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-stack-lg pt-stack-md border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-md text-label-md text-slate-warm">© 2024 Arquidiócesis de Maracaibo. Todos los derechos reservados.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-crimson-deep cursor-pointer" data-icon="mail">mail</span>
+<span class="material-symbols-outlined text-crimson-deep cursor-pointer" data-icon="church">church</span>
+<span class="material-symbols-outlined text-crimson-deep cursor-pointer" data-icon="volunteer_activism">volunteer_activism</span>
+</div>
+</div>
+</footer>
+<script>
+    // Intersection Observer for reveal animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Sticky Nav logic
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('shadow-md');
+        } else {
+            header.classList.remove('shadow-md');
+        }
+    });
+</script>
+
+
+
+
+</body></html>

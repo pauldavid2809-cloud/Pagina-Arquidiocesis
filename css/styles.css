@@ -1,0 +1,8 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Arquidiócesis de Maracaibo — styles.css
+   Main entrypoint for stylesheet compilation.
+   Imports modular stylesheets to prevent template modifications.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@import url('_variables.css');
+@import url('_components.css');

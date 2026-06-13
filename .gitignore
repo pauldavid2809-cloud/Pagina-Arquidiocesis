@@ -1,0 +1,19 @@
+# Environment variables (NUNCA subir tokens)
+.env
+.env.local
+.env.production
+
+# Vercel
+.vercel
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Agent folders
+.agent/
+.gemini/

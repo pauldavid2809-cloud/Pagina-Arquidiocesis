@@ -1,0 +1,15 @@
+{
+  "rewrites": [
+    { "source": "/api/instagram", "destination": "/api/instagram" },
+    { "source": "/api/send-email", "destination": "/api/send-email" },
+    { "source": "/api/config", "destination": "/api/config" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "s-maxage=300, stale-while-revalidate=600" }
+      ]
+    }
+  ]
+}
