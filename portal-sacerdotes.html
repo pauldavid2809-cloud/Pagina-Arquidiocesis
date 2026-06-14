@@ -814,17 +814,20 @@
                 <div class="dashboard-layout flex flex-col md:flex-row flex-1">
                     <aside class="dashboard-sidebar w-full md:w-[240px] shrink-0 bg-surface-container-low/50 border-r border-outline-variant/10 p-6 flex flex-col gap-2">
                         <button class="sidebar-menu-btn active w-full text-left px-4 py-3 rounded-xl font-label text-[14px] flex items-center gap-3" onclick="switchDashboardTab('admin', 'tab-admin-sacerdotes', this)">
-                            <i class="ti ti-users text-[18px]"></i> Sacerdotes
+                            <i class="ti ti-users text-[18px]"></i> Solicitudes Sacerdotes
+                        </button>
+                        <button class="sidebar-menu-btn w-full text-left px-4 py-3 rounded-xl font-label text-[14px] flex items-center gap-3" onclick="switchDashboardTab('admin', 'tab-admin-solicitudes-parroquias', this)">
+                            <i class="ti ti-file-text text-[18px]"></i> Solicitudes Parroquias
                         </button>
                         <button class="sidebar-menu-btn w-full text-left px-4 py-3 rounded-xl font-label text-[14px] flex items-center gap-3" onclick="switchDashboardTab('admin', 'tab-admin-parroquias', this)">
-                            <i class="ti ti-building-church text-[18px]"></i> Parroquias
+                            <i class="ti ti-building-church text-[18px]"></i> Control Parroquias
                         </button>
                     </aside>
                     
                     <div class="dashboard-content flex-1 p-6 md:p-10 bg-white/30">
-                        <!-- Tab: All requests list -->
+                        <!-- Tab: Priest requests list -->
                         <div id="tab-admin-sacerdotes" class="dashboard-tab-content" style="display: block;">
-                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-2">Gestión de Solicitudes y Documentación</h3>
+                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-2">Gestión de Solicitudes de Sacerdotes</h3>
                             <p class="font-body text-[14px] text-slate-warm mb-6">Revise las peticiones presentadas por el clero diocesano. Puede evaluar sus solicitudes, escribir retroalimentación, redactar y emitir los decretos y certificados correspondientes.</p>
                             
                             <div class="stats-grid grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
@@ -864,6 +867,54 @@
                                         </tr>
                                     </thead>
                                     <tbody id="admin-requests-table-body" class="divide-y divide-outline-variant/10 text-slate-warm">
+                                        <!-- Dynamically injected -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab: Parish requests list -->
+                        <div id="tab-admin-solicitudes-parroquias" class="dashboard-tab-content" style="display: none;">
+                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-2">Gestión de Solicitudes de Parroquias</h3>
+                            <p class="font-body text-[14px] text-slate-warm mb-6">Revise las peticiones y expedientes de sacramentos presentados por las parroquias y rectorías de la arquidiócesis. Puede evaluar sus solicitudes, escribir retroalimentación, redactar y emitir las dispensas y decretos correspondientes.</p>
+                            
+                            <div class="stats-grid grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
+                                <div class="stat-card glass-panel p-6 rounded-2xl flex items-center gap-4 border-l-4 border-slate-warm bento-card">
+                                    <div class="stat-icon w-12 h-12 rounded-full bg-slate-warm/10 text-slate-warm flex items-center justify-center text-[22px]"><i class="ti ti-files"></i></div>
+                                    <div class="stat-details">
+                                        <h3 class="font-label text-[11px] uppercase tracking-wider text-slate-warm font-semibold">Totales</h3>
+                                        <p id="stat-admin-parish-total" class="font-display text-[26px] font-bold text-slate-warm leading-tight">0</p>
+                                    </div>
+                                </div>
+                                <div class="stat-card glass-panel p-6 rounded-2xl flex items-center gap-4 border-l-4 border-gold-antique bento-card">
+                                    <div class="stat-icon w-12 h-12 rounded-full bg-gold-antique/10 text-gold-antique flex items-center justify-center text-[22px]"><i class="ti ti-clock"></i></div>
+                                    <div class="stat-details">
+                                        <h3 class="font-label text-[11px] uppercase tracking-wider text-gold-antique font-semibold">Pendientes</h3>
+                                        <p id="stat-admin-parish-pending" class="font-display text-[26px] font-bold text-gold-antique leading-tight">0</p>
+                                    </div>
+                                </div>
+                                <div class="stat-card glass-panel p-6 rounded-2xl flex items-center gap-4 border-l-4 border-green-600 bento-card">
+                                    <div class="stat-icon w-12 h-12 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-[22px]"><i class="ti ti-circle-check"></i></div>
+                                    <div class="stat-details">
+                                        <h3 class="font-label text-[11px] uppercase tracking-wider text-green-700 font-semibold">Aprobados</h3>
+                                        <p id="stat-admin-parish-approved" class="font-display text-[26px] font-bold text-green-700 leading-tight">0</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="overflow-x-auto rounded-xl border border-outline-variant/20 shadow-sm bg-white">
+                                <table class="w-full border-collapse font-body text-[14px] text-left">
+                                    <thead>
+                                        <tr class="bg-surface-container-low text-on-surface font-label text-[13px] font-bold uppercase tracking-wider border-b border-outline-variant/20">
+                                            <th class="p-4">Código</th>
+                                            <th class="p-4">Parroquia / Rectoría</th>
+                                            <th class="p-4">Tipo de Trámite</th>
+                                            <th class="p-4">Fecha</th>
+                                            <th class="p-4">Estado</th>
+                                            <th class="p-4">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admin-parish-requests-table-body" class="divide-y divide-outline-variant/10 text-slate-warm">
                                         <!-- Dynamically injected -->
                                     </tbody>
                                 </table>
@@ -933,12 +984,12 @@
                             </div>
 
                             <div class="bg-white/60 border border-outline-variant/20 p-6 rounded-2xl shadow-sm mb-6 flex flex-col gap-4">
-                                <h4 class="font-display text-[16px] font-bold text-crimson-deep border-b-2 border-gold-antique/40 pb-2 mb-2 flex items-center gap-2">
+                                <h4 id="adm-detail-header-text" class="font-display text-[16px] font-bold text-crimson-deep border-b-2 border-gold-antique/40 pb-2 mb-2 flex items-center gap-2">
                                     <i class="ti ti-file-text text-[18px]"></i> Detalles Enviados por el Sacerdote
                                 </h4>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 font-body text-[13px] text-slate-warm">
                                     <p><strong>Código Solicitud:</strong> <span id="adm-view-id" class="text-on-surface font-semibold">REQ-000</span></p>
-                                    <p><strong>Sacerdote Solicitante:</strong> <span id="adm-view-priest" class="text-on-surface font-semibold">Nombre</span></p>
+                                    <p><strong id="adm-label-solicitante">Sacerdote Solicitante:</strong> <span id="adm-view-priest" class="text-on-surface font-semibold">Nombre</span></p>
                                     <p><strong>Correo:</strong> <span id="adm-view-email-detail" class="text-on-surface font-semibold">correo@sacerdote.com</span></p>
                                     <p style="display: none;"><strong>Correo Electrónico:</strong> <span id="adm-view-email">correo</span></p>
                                     <p><strong>Tipo de Documento:</strong> <span id="adm-view-type" class="text-on-surface font-semibold">Tipo</span></p>
@@ -1467,18 +1518,21 @@
     let currentUser = null;
     let selectedRequestId = null;
     let submitAction = '';
+    let lastAdminActiveTab = 'tab-admin-sacerdotes';
     let generatedCodeForForgot = null;
     let targetForgotUser = null;
 
     // Mapper to normalize DB objects to camelCase in frontend
     function mapRequestFields(r) {
         if (!r) return null;
+        const isParish = (r.email === null || r.email === undefined || r.email === '');
         return {
             id: r.id,
             cedula: r.cedula || '',
             email: r.email || r.priest_email || '',
             priestName: r.priest_name || r.priestName || '',
             priestEmail: r.priest_email || r.priestEmail || '',
+            isParish: isParish,
             type: r.type,
             date: r.date,
             subject: r.subject,
@@ -2466,6 +2520,10 @@
         if (target) target.style.display = 'block';
         dashboard.querySelectorAll('.sidebar-menu-btn').forEach(b => b.classList.remove('active'));
         if (btnEl) btnEl.classList.add('active');
+
+        if (role === 'admin' && tabId !== 'tab-admin-manage') {
+            lastAdminActiveTab = tabId;
+        }
     }
 
     // 3. Authentication
@@ -3079,7 +3137,6 @@
 
     // 5. Admin (Chancellor) Dashboard
     async function loadAdminDashboard() {
-        await renderAdminStats();
         await renderAdminRequestsTable();
         await loadAdminParroquias();
     }
@@ -3174,32 +3231,16 @@
         });
     }
 
-    async function renderAdminStats() {
-        let total = 0;
-        let pending = 0;
-        let approved = 0;
-
-        if (isSupabase) {
-            const { data, error } = await supabaseClient.from('tramites').select('status');
-            if (data) {
-                total = data.length;
-                pending = data.filter(r => r.status === 'Pendiente').length;
-                approved = data.filter(r => r.status === 'Aprobado').length;
-            }
-        } else {
-            total = db.requests.length;
-            pending = db.requests.filter(r => r.status === 'Pendiente').length;
-            approved = db.requests.filter(r => r.status === 'Aprobado').length;
-        }
-
-        document.getElementById('stat-total').textContent = total;
-        document.getElementById('stat-pending').textContent = pending;
-        document.getElementById('stat-approved').textContent = approved;
-    }
-
     async function renderAdminRequestsTable() {
-        const tbody = document.getElementById('admin-requests-table-body');
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--gris-medio); padding: 1.5rem;"><i class="ti ti-loader animate-spin"></i> Cargando solicitudes...</td></tr>`;
+        const tbodyPriest = document.getElementById('admin-requests-table-body');
+        const tbodyParish = document.getElementById('admin-parish-requests-table-body');
+        
+        if (tbodyPriest) {
+            tbodyPriest.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--gris-medio); padding: 1.5rem;"><i class="ti ti-loader animate-spin"></i> Cargando solicitudes...</td></tr>`;
+        }
+        if (tbodyParish) {
+            tbodyParish.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--gris-medio); padding: 1.5rem;"><i class="ti ti-loader animate-spin"></i> Cargando solicitudes...</td></tr>`;
+        }
 
         let list = [];
 
@@ -3207,7 +3248,8 @@
             const { data, error } = await supabaseClient.from('tramites').select('*');
             if (error) {
                 console.error("Error al obtener solicitudes de administrador de Supabase:", error);
-                tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--grana); padding: 1.5rem;">Error al recuperar datos en Supabase.</td></tr>`;
+                if (tbodyPriest) tbodyPriest.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--grana); padding: 1.5rem;">Error al recuperar datos en Supabase.</td></tr>`;
+                if (tbodyParish) tbodyParish.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--grana); padding: 1.5rem;">Error al recuperar datos en Supabase.</td></tr>`;
                 return;
             }
             list = (data || []).map(mapRequestFields);
@@ -3215,41 +3257,111 @@
             list = [...db.requests];
         }
 
-        if (list.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--gris-medio); padding: 2rem;">No existen solicitudes registradas en la curia.</td></tr>`;
-            return;
+        function checkIsParishRequest(r) {
+            if (r.isParish === true) return true;
+            if (r.email === null || r.email === undefined || r.email === '') return true;
+            if (r.subject && r.subject.startsWith('[Parroquia]')) return true;
+            return false;
         }
 
-        list.sort((a,b) => b.id.localeCompare(a.id));
+        const parishRequests = list.filter(checkIsParishRequest);
+        const priestRequests = list.filter(r => !checkIsParishRequest(r));
 
-        tbody.innerHTML = '';
-        list.forEach(r => {
-            let badgeClass = 'badge-pending';
-            let stateText = 'Pendiente';
+        priestRequests.sort((a,b) => b.id.localeCompare(a.id));
+        parishRequests.sort((a,b) => b.id.localeCompare(a.id));
 
-            if (r.status === 'Aprobado') {
-                badgeClass = 'badge-approved';
-                stateText = 'Aprobado';
-            } else if (r.status === 'Rechazado') {
-                badgeClass = 'badge-rejected';
-                stateText = 'Rechazado';
+        // Calculate Priest Stats
+        const priestTotal = priestRequests.length;
+        const priestPending = priestRequests.filter(r => r.status === 'Pendiente').length;
+        const priestApproved = priestRequests.filter(r => r.status === 'Aprobado').length;
+
+        document.getElementById('stat-total').textContent = priestTotal;
+        document.getElementById('stat-pending').textContent = priestPending;
+        document.getElementById('stat-approved').textContent = priestApproved;
+
+        // Calculate Parish Stats
+        const parishTotal = parishRequests.length;
+        const parishPending = parishRequests.filter(r => r.status === 'Pendiente').length;
+        const parishApproved = parishRequests.filter(r => r.status === 'Aprobado').length;
+
+        const elParishTotal = document.getElementById('stat-admin-parish-total');
+        const elParishPending = document.getElementById('stat-admin-parish-pending');
+        const elParishApproved = document.getElementById('stat-admin-parish-approved');
+        if (elParishTotal) elParishTotal.textContent = parishTotal;
+        if (elParishPending) elParishPending.textContent = parishPending;
+        if (elParishApproved) elParishApproved.textContent = parishApproved;
+
+        // Render Priest Table
+        if (tbodyPriest) {
+            if (priestRequests.length === 0) {
+                tbodyPriest.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--gris-medio); padding: 2rem;">No existen solicitudes de sacerdotes registradas.</td></tr>`;
+            } else {
+                tbodyPriest.innerHTML = '';
+                priestRequests.forEach(r => {
+                    let badgeClass = 'badge-pending';
+                    let stateText = 'Pendiente';
+
+                    if (r.status === 'Aprobado') {
+                        badgeClass = 'badge-approved';
+                        stateText = 'Aprobado';
+                    } else if (r.status === 'Rechazado') {
+                        badgeClass = 'badge-rejected';
+                        stateText = 'Rechazado';
+                    }
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><strong>${r.id}</strong></td>
+                        <td>${r.priestName}</td>
+                        <td>${r.type}</td>
+                        <td>${r.date}</td>
+                        <td><span class="badge-status ${badgeClass}"><i class="ti ti-point-filled"></i> ${stateText}</span></td>
+                        <td>
+                            <button onclick="manageRequest('${r.id}')" class="btn-table-action">
+                                <i class="ti ti-settings"></i> ${r.status === 'Pendiente' ? 'Gestionar' : 'Revisar'}
+                            </button>
+                        </td>
+                    `;
+                    tbodyPriest.appendChild(tr);
+                });
             }
+        }
 
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td><strong>${r.id}</strong></td>
-                <td>${r.priestName}</td>
-                <td>${r.type}</td>
-                <td>${r.date}</td>
-                <td><span class="badge-status ${badgeClass}"><i class="ti ti-point-filled"></i> ${stateText}</span></td>
-                <td>
-                    <button onclick="manageRequest('${r.id}')" class="btn-table-action">
-                        <i class="ti ti-settings"></i> ${r.status === 'Pendiente' ? 'Gestionar' : 'Revisar'}
-                    </button>
-                </td>
-            `;
-            tbody.appendChild(tr);
-        });
+        // Render Parish Table
+        if (tbodyParish) {
+            if (parishRequests.length === 0) {
+                tbodyParish.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--gris-medio); padding: 2rem;">No existen solicitudes de parroquias registradas.</td></tr>`;
+            } else {
+                tbodyParish.innerHTML = '';
+                parishRequests.forEach(r => {
+                    let badgeClass = 'badge-pending';
+                    let stateText = 'Pendiente';
+
+                    if (r.status === 'Aprobado') {
+                        badgeClass = 'badge-approved';
+                        stateText = 'Aprobado';
+                    } else if (r.status === 'Rechazado') {
+                        badgeClass = 'badge-rejected';
+                        stateText = 'Rechazado';
+                    }
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><strong>${r.id}</strong></td>
+                        <td>${r.priestName}</td>
+                        <td>${r.type}</td>
+                        <td>${r.date}</td>
+                        <td><span class="badge-status ${badgeClass}"><i class="ti ti-point-filled"></i> ${stateText}</span></td>
+                        <td>
+                            <button onclick="manageRequest('${r.id}')" class="btn-table-action">
+                                <i class="ti ti-settings"></i> ${r.status === 'Pendiente' ? 'Gestionar' : 'Revisar'}
+                            </button>
+                        </td>
+                    `;
+                    tbodyParish.appendChild(tr);
+                });
+            }
+        }
     }
 
     async function manageRequest(reqId) {
@@ -3279,6 +3391,20 @@
         document.getElementById('adm-view-institution').textContent = req.institution || 'No especificada';
         document.getElementById('adm-view-parish').textContent = req.parish;
         document.getElementById('adm-view-description').textContent = req.details;
+
+        const isParishReq = req.isParish || (req.email === null || req.email === undefined || req.email === '') || (req.subject && req.subject.startsWith('[Parroquia]'));
+        const labelSolicitante = document.getElementById('adm-label-solicitante');
+        if (labelSolicitante) {
+            labelSolicitante.textContent = isParishReq ? "Parroquia Solicitante:" : "Sacerdote Solicitante:";
+        }
+        const detailHeader = document.getElementById('adm-detail-header-text');
+        if (detailHeader) {
+            if (isParishReq) {
+                detailHeader.innerHTML = `<i class="ti ti-file-text text-[18px]"></i> Detalles Enviados por la Parroquia`;
+            } else {
+                detailHeader.innerHTML = `<i class="ti ti-file-text text-[18px]"></i> Detalles Enviados por el Sacerdote`;
+            }
+        }
 
         const fileSection = document.getElementById('adm-priest-file-section');
         const fileNameSpan = document.getElementById('adm-priest-file-name');
@@ -3526,6 +3652,10 @@
         let priestName = document.getElementById('adm-view-priest').textContent;
         let reqType = document.getElementById('adm-view-type').textContent;
 
+        const isParish = (lastAdminActiveTab === 'tab-admin-solicitudes-parroquias');
+        const greeting = isParish ? `Estimados miembros de la <strong>${priestName}</strong>,` : `Estimado Pbro. <strong>${priestName}</strong>,`;
+        const notificationTarget = isParish ? 'a la parroquia' : 'al sacerdote';
+
         const successText = targetStatus === 'Aprobado' ? 'APROBADA' : 'RECHAZADA';
         const subject = `[Arquidiócesis] Notificación de Trámite ${selectedRequestId} - ${successText}`;
         
@@ -3535,8 +3665,8 @@
                     <h2 style="color: #00235B; margin: 0;">Arquidiócesis de Maracaibo</h2>
                     <span style="color: #F5C518; font-size: 0.9em; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Curia Metropolitana</span>
                 </div>
-                <p style="font-size: 1.1em; color: #0F1729;">Estimado Pbro. <strong>${priestName}</strong>,</p>
-                <p style="color: #3D4F6E; line-height: 1.6;">Le informamos que su solicitud con código <strong>${selectedRequestId}</strong> para el trámite de <strong>${reqType}</strong> ha sido evaluada y aprobada por el Excmo. Mons. José Luis Azuaje Ayala, Arzobispo Metropolitano de Maracaibo, con la siguiente resolución:</p>
+                <p style="font-size: 1.1em; color: #0F1729;">${greeting}</p>
+                <p style="color: #3D4F6E; line-height: 1.6;">Le informamos que su solicitud con código <strong>${selectedRequestId}</strong> para el trámite de <strong>${reqType}</strong> ha sido evaluada y ${targetStatus === 'Aprobado' ? 'aprobada' : 'rechazada'} por el Excmo. Mons. José Luis Azuaje Ayala, Arzobispo Metropolitano de Maracaibo, con la siguiente resolución:</p>
                 
                 <div style="background-color: ${targetStatus === 'Aprobado' ? '#d4edda' : '#f8d7da'}; border-left: 5px solid ${targetStatus === 'Aprobado' ? '#28a745' : '#dc3545'}; padding: 15px; margin: 20px 0; border-radius: 4px;">
                     <p style="margin: 0; font-weight: bold; color: ${targetStatus === 'Aprobado' ? '#155724' : '#721c24'}; font-size: 1.1em;">ESTADO: ${successText}</p>
@@ -3562,7 +3692,7 @@
 
         await callSendEmailAPI(priestEmail, subject, htmlContent, attachments);
 
-        alert(`Solicitud ${selectedRequestId} procesada con éxito y notificada al sacerdote.`);
+        alert(`Solicitud ${selectedRequestId} procesada con éxito y notificada ${notificationTarget}.`);
         
         if (fileInput) fileInput.value = '';
         
@@ -3571,8 +3701,12 @@
     }
 
     function backToAdminList() {
-        const firstMenuBtn = document.querySelector('#view-admin-dashboard .sidebar-menu-btn');
-        switchDashboardTab('admin', 'tab-admin-sacerdotes', firstMenuBtn);
+        const targetTab = lastAdminActiveTab || 'tab-admin-sacerdotes';
+        const btn = Array.from(document.querySelectorAll('#view-admin-dashboard .sidebar-menu-btn')).find(b => {
+            const onclickAttr = b.getAttribute('onclick') || '';
+            return onclickAttr.includes(targetTab);
+        }) || document.querySelector('#view-admin-dashboard .sidebar-menu-btn');
+        switchDashboardTab('admin', targetTab, btn);
     }
 
     // 6. Password Reset Flow
@@ -4161,13 +4295,13 @@
 
         const newReq = {
             id: newId,
-            email: currentUser.email,
-            priestName: currentUser.name,
-            priestEmail: currentUser.email,
+            email: null,
+            priestName: currentUser.name || 'Parroquia',
+            priestEmail: currentUser.email || `${currentUser.code || 'parroquia'}@arquidiocesis.org`,
             type: type,
             date: today,
             subject: subject,
-            parish: currentUser.name,
+            parish: currentUser.name || 'Parroquia',
             details: fullDetails,
             status: "Pendiente",
             feedback: "",
@@ -4184,12 +4318,12 @@
                 .insert([{
                     id: newId,
                     email: null,
-                    priest_name: currentUser.name,
-                    priest_email: currentUser.email,
+                    priest_name: currentUser.name || 'Parroquia',
+                    priest_email: currentUser.email || `${currentUser.code || 'parroquia'}@arquidiocesis.org`,
                     type: type,
                     date: today,
                     subject: subject,
-                    parish: currentUser.name,
+                    parish: currentUser.name || 'Parroquia',
                     details: fullDetails,
                     status: "Pendiente",
                     feedback: "",
@@ -4201,7 +4335,7 @@
 
             if (error) {
                 console.error("Error al registrar trámite parroquial en Supabase:", error);
-                alert("Error al enviar la solicitud en la base de datos.");
+                alert("Error al enviar la solicitud en la base de datos: " + (error.message || error.details || JSON.stringify(error)));
                 return;
             }
         } else {
