@@ -2405,6 +2405,7 @@
 
             if (!db.users) db.users = [];
             if (!db.requests) db.requests = [];
+            if (!db.parroquias) db.parroquias = [];
             
             defaultUsers.forEach(defUser => {
                 if (!db.users.some(u => u.email === defUser.email)) {
@@ -2416,7 +2417,7 @@
 
         // Cargar Parroquias desde el listado autogenerado
         try {
-            const parishesRes = await fetch('/parishes_with_passwords.json');
+            const parishesRes = await fetch('parishes_with_passwords.json');
             if (parishesRes.ok) {
                 db.parroquias = await parishesRes.json();
                 console.log("Parroquias cargadas:", db.parroquias.length);
