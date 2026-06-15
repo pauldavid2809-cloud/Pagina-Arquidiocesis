@@ -875,7 +875,12 @@
 
                         <!-- Tab: Parish requests list -->
                         <div id="tab-admin-solicitudes-parroquias" class="dashboard-tab-content" style="display: none;">
-                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-2">Gestión de Solicitudes de Parroquias</h3>
+                            <div class="flex justify-between items-center mb-4 flex-wrap gap-4">
+                                <h3 class="font-display text-[20px] font-bold text-crimson-deep">Gestión de Solicitudes de Parroquias</h3>
+                                <button onclick="deleteAllSolicitudes()" class="bg-red-600 hover:bg-red-700 text-white px-3.5 py-2 rounded-xl font-bold font-label text-[12.5px] transition-all flex items-center gap-1.5 shadow-md active:scale-95">
+                                    <i class="ti ti-trash"></i> Borrar Todas las Solicitudes
+                                </button>
+                            </div>
                             <p class="font-body text-[14px] text-slate-warm mb-6">Revise las peticiones y expedientes de sacramentos presentados por las parroquias y rectorías de la arquidiócesis. Puede evaluar sus solicitudes, escribir retroalimentación, redactar y emitir las dispensas y decretos correspondientes.</p>
                             
                             <div class="stats-grid grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
@@ -5504,13 +5509,79 @@
         return text;
     }
 
-    function hideParishRequestDetails() {
-        document.getElementById('parish-request-details-view').style.display = 'none';
-        document.getElementById('parish-requests-list-view').style.display = 'block';
+    async function deleteAllSolicitudes() {
+        if (!confirm("⚠️ ¿Está completamente seguro de que desea eliminar permanentemente TODAS las solicitudes registradas?\n\nEsta acción borrará todas las solicitudes de la base de datos y no se puede deshacer.")) {
+            return;
+        }
+
+        try {
+            if (isSupabase) {
+                const { error } = await supabaseClient
+                    .from('tramites')
+                    .delete()
+                    .neq('id', '');
+
+                if (error) {
+                    console.error("Error al borrar solicitudes en Supabase:", error);
+                    alert("Error al borrar las solicitudes: " + error.message);
+                    return;
+                }
+            } else {
+                db.requests = [];
+                saveLocalDB();
+            }
+
+            showNotification("Todas las solicitudes fueron eliminadas correctamente.", "success");
+            
+            if (currentUser && currentUser.role === 'admin') {
+                await loadAdminDashboard();
+            } else {
+                await loadParishRequests();
+            }
+        } catch (err) {
+            console.error("Error al borrar todas las solicitudes:", err);
+            alert("Ocurrió un error inesperado al eliminar las solicitudes.");
+        }
     }
 
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', async () => {
+        // Clear all requests query parameter handler
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('reset') === 'true') {
+            // Clear localStorage key for requests (preserving others)
+            let savedDb = localStorage.getItem('cancilleria_db');
+            if (savedDb) {
+                try {
+                    let parsed = JSON.parse(savedDb);
+                    parsed.requests = [];
+                    localStorage.setItem('cancilleria_db', JSON.stringify(parsed));
+                } catch(e) {
+                    localStorage.removeItem('cancilleria_db');
+                }
+            } else {
+                localStorage.removeItem('cancilleria_db');
+            }
+
+            if (window.supabase) {
+                try {
+                    // Try getting credentials from API config to wipe Supabase if connected
+                    const configRes = await fetch('/api/config').catch(() => null);
+                    const config = configRes ? await configRes.json().catch(() => ({})) : {};
+                    if (config.supabaseUrl && config.supabaseAnonKey) {
+                        const tempClient = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
+                        await tempClient.from('tramites').delete().neq('id', '');
+                    }
+                } catch(e) {
+                    console.error("Error clearing Supabase in reset:", e);
+                }
+            }
+
+            alert("Base de datos local de solicitudes (LocalStorage) y base de datos remota (Supabase) reiniciadas con éxito. Todas las solicitudes han sido eliminadas.");
+            window.location.href = window.location.pathname; // Remove query parameter and reload
+            return;
+        }
+
         await initDB();
         await checkSession();
     });
