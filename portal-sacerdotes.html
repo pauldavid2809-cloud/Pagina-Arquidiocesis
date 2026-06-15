@@ -1263,7 +1263,7 @@
                                         </div>
                                         
                                         <div class="form-group flex flex-col">
-                                            <label for="parish-req-cedula" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Cédula de Identidad del Interesado (Opcional si es menor)</label>
+                                            <label for="parish-req-cedula" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Cédula de Identidad del Interesado <span class="text-[11px] font-normal text-crimson-deep/80">(Subir copia digital; original físico debe presentarse en Cancillería)</span></label>
                                             <input type="text" id="parish-req-cedula" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. V-25.123.456 o Menor">
                                         </div>
                                     </div>
@@ -4238,8 +4238,8 @@
             let interesado = 'N/A';
             if (r.subject && r.subject.includes(' - ')) {
                 interesado = r.subject.split(' - ')[1];
-            } else if (r.details && r.details.includes('Interesado: ')) {
-                const match = r.details.match(/Interesado:\s*([^\n]+)/);
+            } else if (r.details) {
+                const match = r.details.match(/(?:Interesado|Contrayente\(s\)):\s*([^\n]+)/i);
                 if (match) interesado = match[1].trim();
             }
 
@@ -4357,13 +4357,24 @@
                     badgeLabel = "Información";
                 }
 
+                let warningNoteHtml = '';
+                if (reqText.toLowerCase().includes("cédula") || reqText.toLowerCase().includes("cedula")) {
+                    warningNoteHtml = `<div class="mt-1.5 px-3 py-2 bg-crimson-deep/5 border-l-2 border-crimson-deep text-[11px] text-crimson-deep/90 rounded-r-md leading-relaxed font-sans flex items-start gap-1.5">
+                        <i class="ti ti-alert-triangle text-[13px] mt-0.5 shrink-0"></i>
+                        <span><strong>Nota:</strong> Se debe subir una copia digital legible de la cédula. El documento original físico debe presentarse obligatoriamente al acudir a la Cancillería.</span>
+                    </div>`;
+                }
+
                 const card = document.createElement('div');
                 card.className = "p-4 bg-white/40 border border-outline-variant/30 rounded-xl flex flex-col gap-3 font-body text-[13px] text-slate-warm mb-3 shadow-sm";
                 card.innerHTML = `
                     <div class="flex justify-between items-start gap-4">
                         <div class="flex items-start gap-2">
                             <span class="text-gold-antique font-bold mt-0.5">•</span>
-                            <span class="leading-relaxed font-semibold">${reqText}</span>
+                            <div>
+                                <span class="leading-relaxed font-semibold block">${reqText}</span>
+                                ${warningNoteHtml}
+                            </div>
                         </div>
                         <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider shrink-0 ${badgeClass}">${badgeLabel}</span>
                     </div>
@@ -4480,6 +4491,32 @@
     function onParishTypeChange() {
         parishAttachedFiles = {}; // Reset files cache
         activeDigitalIndex = -1; // Reset digital request index
+        
+        // Dynamically toggle main form labels
+        const type = document.getElementById('parish-req-type').value;
+        const labelInteresado = document.querySelector('label[for="parish-req-interesado"]');
+        
+        const isMatrimonial = [
+            "Solicitud de Licencia Matrimonial",
+            "Solicitud de Dispensa de Proclamas",
+            "Solicitud de Dispensa por Disparidad de Culto",
+            "Solicitud de Dispensa por Mixta Religión",
+            "Solicitud de Dispensa por Consanguinidad",
+            "Atestado de Soltería"
+        ].includes(type);
+
+        if (labelInteresado) {
+            if (isMatrimonial) {
+                if (type === "Solicitud de Dispensa por Disparidad de Culto" || type === "Solicitud de Dispensa por Mixta Religión") {
+                    labelInteresado.textContent = "Nombre Completo del Contrayente (Católico)";
+                } else {
+                    labelInteresado.textContent = "Nombre Completo del Contrayente 1";
+                }
+            } else {
+                labelInteresado.textContent = "Nombre Completo del Interesado / Solicitante";
+            }
+        }
+        
         renderParishRequirementsUI();
     }
 
@@ -4540,8 +4577,18 @@
             newId = "REQ-" + (db.requests.length + 1001);
         }
 
+        const isMatrimonial = [
+            "Solicitud de Licencia Matrimonial",
+            "Solicitud de Dispensa de Proclamas",
+            "Solicitud de Dispensa por Disparidad de Culto",
+            "Solicitud de Dispensa por Mixta Religión",
+            "Solicitud de Dispensa por Consanguinidad",
+            "Atestado de Soltería"
+        ].includes(type);
+
+        const subjectLabel = isMatrimonial ? "Contrayente(s)" : "Interesado";
         const subject = `[Parroquia] Solicitud de ${type} - ${interesado}`;
-        const fullDetails = `Interesado: ${interesado}\nCédula: ${cedula || 'No especificada'}\n\nDatos del Sacramento / Descripción:\n${detailsInput}`;
+        const fullDetails = `${subjectLabel}: ${interesado}\nCédula: ${cedula || 'No especificada'}\n\nDatos del Sacramento / Descripción:\n${detailsInput}`;
 
         const newReq = {
             id: newId,
@@ -4638,8 +4685,8 @@
         let interesado = 'N/A';
         if (req.subject && req.subject.includes(' - ')) {
             interesado = req.subject.split(' - ')[1];
-        } else if (req.details && req.details.includes('Interesado: ')) {
-            const match = req.details.match(/Interesado:\s*([^\n]+)/);
+        } else if (req.details) {
+            const match = req.details.match(/(?:Interesado|Contrayente\(s\)):\s*([^\n]+)/i);
             if (match) interesado = match[1].trim();
         }
 

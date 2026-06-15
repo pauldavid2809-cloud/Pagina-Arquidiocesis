@@ -301,8 +301,8 @@
         // Try extracting interested name from subject
         if (req.subject && req.subject.includes(' - ')) {
             interesados = req.subject.split(' - ')[1];
-        } else if (req.details && req.details.includes('Interesado: ')) {
-            const match = req.details.match(/Interesado:\s*([^\n]+)/);
+        } else if (req.details) {
+            const match = req.details.match(/(?:Interesado|Contrayente\(s\)):\s*([^\n]+)/i);
             if (match) interesados = match[1].trim();
         }
 
