@@ -827,7 +827,12 @@
                     <div class="dashboard-content flex-1 p-6 md:p-10 bg-white/30">
                         <!-- Tab: Priest requests list -->
                         <div id="tab-admin-sacerdotes" class="dashboard-tab-content" style="display: block;">
-                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-2">Gestión de Solicitudes de Sacerdotes</h3>
+                            <div class="flex justify-between items-center mb-4 flex-wrap gap-4">
+                                <h3 class="font-display text-[20px] font-bold text-crimson-deep">Gestión de Solicitudes de Sacerdotes</h3>
+                                <button onclick="deleteAllSolicitudes()" class="bg-red-600 hover:bg-red-700 text-white px-3.5 py-2 rounded-xl font-bold font-label text-[12.5px] transition-all flex items-center gap-1.5 shadow-md active:scale-95">
+                                    <i class="ti ti-trash"></i> Borrar Todas las Solicitudes
+                                </button>
+                            </div>
                             <p class="font-body text-[14px] text-slate-warm mb-6">Revise las peticiones presentadas por el clero diocesano. Puede evaluar sus solicitudes, escribir retroalimentación, redactar y emitir los decretos y certificados correspondientes.</p>
                             
                             <div class="stats-grid grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
@@ -1115,9 +1120,14 @@
                                     <h3 class="font-display text-[20px] font-bold text-crimson-deep">Solicitudes Parroquiales</h3>
                                     <p class="font-body text-[13px] text-slate-warm">Trámites y solicitudes de la parroquia o rectoría ante la Curia Metropolitana de Maracaibo.</p>
                                 </div>
-                                <button id="btn-new-parish-request" onclick="showNewParishRequestForm()" class="bg-crimson-deep text-white px-5 py-2.5 rounded-xl font-label text-[13px] font-bold hover:bg-primary transition-all shadow-md flex items-center gap-2">
-                                    <i class="ti ti-plus"></i> Nueva Solicitud
-                                </button>
+                                <div class="flex items-center gap-3">
+                                    <button onclick="deleteAllSolicitudes()" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-xl font-label text-[13px] font-bold transition-all shadow-md flex items-center gap-2 active:scale-95">
+                                        <i class="ti ti-trash"></i> Borrar Todas
+                                    </button>
+                                    <button id="btn-new-parish-request" onclick="showNewParishRequestForm()" class="bg-crimson-deep text-white px-5 py-2.5 rounded-xl font-label text-[13px] font-bold hover:bg-primary transition-all shadow-md flex items-center gap-2">
+                                        <i class="ti ti-plus"></i> Nueva Solicitud
+                                    </button>
+                                </div>
                             </div>
 
                             <!-- Summary cards (Parish Stats) -->
