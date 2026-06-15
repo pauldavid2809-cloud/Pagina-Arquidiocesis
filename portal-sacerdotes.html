@@ -495,7 +495,7 @@
                         <label for="login-password" class="font-label text-[13px] font-bold text-slate-warm block mb-1.5">Contraseña</label>
                         <input type="password" id="login-password" class="w-full bg-warm-ivory/50 border-b-2 border-outline-variant focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="••••••••" required>
                     </div>
-                    <button type="submit" class="w-full bg-crimson-deep text-white py-3.5 rounded-xl font-bold font-label text-[14px] hover:bg-primary hover:shadow-lg active:scale-95 transition-all uppercase tracking-wider flex items-center justify-center gap-2">
+                    <button type="submit" id="btn-login-submit" class="w-full bg-crimson-deep text-white py-3.5 rounded-xl font-bold font-label text-[14px] hover:bg-primary hover:shadow-lg active:scale-95 transition-all uppercase tracking-wider flex items-center justify-center gap-2">
                         <i class="ti ti-login text-[18px]"></i> Ingresar al Portal
                     </button>
                 </form>
@@ -1191,14 +1191,8 @@
                                 </div>
                                 <div id="parish-det-file-section" class="mt-4 border-t border-outline-variant/10 pt-4" style="display: none;">
                                     <h5 class="font-label text-[12px] font-bold text-slate-warm uppercase tracking-wider mb-2">Documentos Adjuntados</h5>
-                                    <div class="flex items-center gap-3 bg-warm-ivory/40 border border-outline-variant/30 p-3 rounded-xl max-w-md">
-                                        <i class="ti ti-file-zip text-2xl text-gold-antique"></i>
-                                        <div class="flex-1 min-w-0">
-                                            <div id="parish-det-file-name" class="text-[12px] font-semibold text-slate-warm truncate">archivo.zip</div>
-                                        </div>
-                                        <a id="parish-det-file-download" href="#" target="_blank" class="bg-crimson-deep text-white p-2 rounded-lg hover:bg-primary transition-colors flex items-center justify-center">
-                                            <i class="ti ti-download text-[16px]"></i>
-                                        </a>
+                                    <div id="parish-det-files-list" class="space-y-3 max-w-md">
+                                        <!-- Dynamically populated list of files -->
                                     </div>
                                 </div>
                                 
@@ -1252,22 +1246,13 @@
                                         </div>
                                     </div>
 
-                                    <!-- Requirements Display Panel with File Uploads One-by-One -->
+                                    <!-- Requirements Display Panel -->
                                     <div id="parish-req-requirements-box" style="display: none;" class="p-5 border border-gold-antique/30 rounded-xl bg-gold-antique/5 animate-fadeIn">
-                                        <h5 class="font-display text-[13.5px] font-bold text-crimson-deep mb-3 flex items-center gap-1.5">
-                                            <i class="ti ti-clipboard-list text-gold-antique text-[18px]"></i> Requisitos y Adjuntos (Subir uno a uno):
+                                        <h5 class="font-display text-[13.5px] font-bold text-crimson-deep mb-3 flex items-center gap-1.5 border-b border-gold-antique/20 pb-2">
+                                            <i class="ti ti-clipboard-list text-gold-antique text-[18px]"></i> Información y Requisitos del Trámite:
                                         </h5>
                                         <div id="parish-req-requirements-list" class="space-y-3 font-body text-[12.5px] text-slate-warm">
-                                            <!-- Dynamically populated with requirements and file inputs -->
-                                        </div>
-                                        <div class="mt-4 pt-3 border-t border-gold-antique/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                                            <div class="text-[11.5px] text-slate-warm/80 leading-snug">
-                                                <strong>¿No dispone del documento físico firmado y sellado?</strong><br>
-                                                Genere una constancia digital oficial certificada con código QR aquí.
-                                            </div>
-                                            <button type="button" onclick="openConstanciaModal()" class="shrink-0 bg-gold-antique hover:bg-secondary text-white px-4 py-2.5 rounded-lg font-bold font-label text-[12.5px] transition-all flex items-center justify-center gap-1.5 shadow-md active:scale-95">
-                                                <i class="ti ti-file-certificate text-[16px]"></i> Generar Constancia Digital
-                                            </button>
+                                            <!-- Dynamically populated with interactive requirement cards -->
                                         </div>
                                     </div>
 
@@ -1596,6 +1581,27 @@
             parishContainer.style.display = 'block';
             emailInput.required = false;
             if (linkForgot) linkForgot.style.display = 'none';
+        }
+    }
+
+    function setLoginLoading(isLoading) {
+        const btn = document.getElementById('btn-login-submit');
+        if (!btn) return;
+        if (isLoading) {
+            btn.disabled = true;
+            btn.dataset.originalHtml = btn.innerHTML;
+            btn.innerHTML = `<i class="ti ti-loader animate-spin text-[18px]"></i> Verificando...`;
+            document.getElementById('login-password').disabled = true;
+            document.getElementById('login-email').disabled = true;
+            document.getElementById('login-parish-search').disabled = true;
+        } else {
+            btn.disabled = false;
+            if (btn.dataset.originalHtml) {
+                btn.innerHTML = btn.dataset.originalHtml;
+            }
+            document.getElementById('login-password').disabled = false;
+            document.getElementById('login-email').disabled = false;
+            document.getElementById('login-parish-search').disabled = false;
         }
     }
 
@@ -2630,6 +2636,7 @@
 
     // 3. Authentication
     async function handleLogin(event) {
+        setLoginLoading(true);
         const passwordInput = document.getElementById('login-password').value;
 
         try {
@@ -2639,6 +2646,7 @@
                 const parishCode = document.getElementById('login-parish').value;
                 if (!parishCode) {
                     alert("Por favor seleccione una parroquia.");
+                    setLoginLoading(false);
                     return;
                 }
 
@@ -2667,6 +2675,7 @@
 
                 if (!user) {
                     alert("La parroquia seleccionada no está registrada.");
+                    setLoginLoading(false);
                     return;
                 }
             } else {
@@ -2684,12 +2693,14 @@
 
                 if (!user) {
                     alert("El correo ingresado no está registrado en el portal de la Cancillería.");
+                    setLoginLoading(false);
                     return;
                 }
             }
 
             if (user.password !== passwordInput) {
                 alert("Contraseña incorrecta. Por favor intente de nuevo.");
+                setLoginLoading(false);
                 return;
             }
 
@@ -2697,20 +2708,22 @@
             sessionStorage.setItem('current_user', JSON.stringify(user));
             
             if (user.role === 'admin') {
-                await loadAdminDashboard();
                 switchView('view-admin-dashboard');
+                loadAdminDashboard();
             } else if (user.role === 'parish' || user.role === 'rectoria') {
-                await loadParishDashboard();
                 switchView('view-parish-dashboard');
+                loadParishDashboard();
             } else {
-                await loadPriestDashboard();
                 switchView('view-priest-dashboard');
+                loadPriestDashboard();
             }
 
             document.getElementById('form-login').reset();
+            setLoginLoading(false);
         } catch (err) {
             console.error("Excepción en handleLogin:", err);
             alert("Error durante el inicio de sesión: " + err.message);
+            setLoginLoading(false);
         }
     }
 
@@ -2725,14 +2738,14 @@
         if (savedUser) {
             currentUser = JSON.parse(savedUser);
             if (currentUser.role === 'admin') {
-                await loadAdminDashboard();
                 switchView('view-admin-dashboard');
+                loadAdminDashboard();
             } else if (currentUser.role === 'parish' || currentUser.role === 'rectoria') {
-                await loadParishDashboard();
                 switchView('view-parish-dashboard');
+                loadParishDashboard();
             } else {
-                await loadPriestDashboard();
                 switchView('view-priest-dashboard');
+                loadPriestDashboard();
             }
         }
     }
@@ -4235,6 +4248,13 @@
         const form = document.getElementById('form-parish-new-request');
         if (form) form.reset();
         
+        parishAttachedFiles = {}; // Reset file attachments cache
+        const statusSpan = document.getElementById('parish-constancia-status');
+        if (statusSpan) {
+            statusSpan.textContent = "No Generada";
+            statusSpan.className = "px-2.5 py-1 bg-red-600/10 text-red-600 border border-red-600/20 rounded text-[11px] font-bold whitespace-nowrap";
+        }
+        
         const fileInfo = document.getElementById('parish-req-file-info');
         if (fileInfo) {
             fileInfo.classList.add('hidden');
@@ -4281,90 +4301,170 @@
     }
 
     let parishAttachedFiles = {};
+    let currentRequirements = [];
+    let activeDigitalIndex = -1;
 
-    function onParishTypeChange() {
+    function classifyRequirement(reqText) {
+        const isInfo = /el trámite lo realizan|datos ciertos|datos aproximados/i.test(reqText);
+        const isOptional = /si es el caso|opcional|menor|opcionales/i.test(reqText) || isInfo;
+        const isDigital = /constancia original de la parroquia|certificado de bautismo original|certificado de confirmación original|carta del párroco|solicitud del párroco/i.test(reqText);
+        return { isInfo, isOptional, isDigital };
+    }
+
+    function renderParishRequirementsUI() {
         const category = document.getElementById('parish-req-category').value;
         const type = document.getElementById('parish-req-type').value;
         const reqBox = document.getElementById('parish-req-requirements-box');
         const reqList = document.getElementById('parish-req-requirements-list');
 
         reqList.innerHTML = '';
-        parishAttachedFiles = {}; // Reset files cache
-
         if (category && type && CANCILLERIA_REQUISITOS[category] && CANCILLERIA_REQUISITOS[category][type]) {
             reqBox.style.display = 'block';
-            CANCILLERIA_REQUISITOS[category][type].forEach((reqText, index) => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = "p-3 bg-white/40 border border-outline-variant/30 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-3 text-left";
+            currentRequirements = CANCILLERIA_REQUISITOS[category][type];
+
+            currentRequirements.forEach((reqText, index) => {
+                const cls = classifyRequirement(reqText);
                 
-                const textCol = document.createElement('div');
-                textCol.className = "flex-1";
-                
-                const textP = document.createElement('p');
-                textP.className = "text-[12.5px] font-semibold text-slate-warm leading-snug";
-                textP.textContent = reqText;
-                
-                textCol.appendChild(textP);
-                
-                const uploadCol = document.createElement('div');
-                uploadCol.className = "shrink-0 flex items-center gap-2";
-                
-                const statusSpan = document.createElement('span');
-                statusSpan.id = `file-status-${index}`;
-                statusSpan.className = "text-[11px] text-gold-antique font-semibold hidden truncate max-w-[150px]";
-                
-                const label = document.createElement('label');
-                label.className = "cursor-pointer bg-crimson-deep text-white px-3.5 py-1.5 rounded-lg text-xs font-bold hover:bg-primary transition-colors flex items-center gap-1.5 shadow-sm";
-                label.innerHTML = '<i class="ti ti-upload text-[14px]"></i> Adjuntar';
-                
-                const fileInput = document.createElement('input');
-                fileInput.type = "file";
-                fileInput.className = "hidden";
-                fileInput.accept = ".pdf,.png,.jpg,.jpeg,.zip";
-                fileInput.dataset.reqName = reqText;
-                fileInput.addEventListener('change', async (e) => {
-                    const file = fileInput.files[0];
-                    if (file) {
-                        if (file.size > 5 * 1024 * 1024) {
-                            alert("El archivo adjunto supera el límite de 5MB.");
-                            fileInput.value = "";
-                            statusSpan.classList.add('hidden');
-                            statusSpan.textContent = "";
-                            delete parishAttachedFiles[index];
-                            return;
-                        }
-                        statusSpan.textContent = file.name;
-                        statusSpan.classList.remove('hidden');
-                        
-                        try {
-                            const content = await readFileAsDataURL(file);
-                            parishAttachedFiles[index] = {
-                                requirement: reqText,
-                                fileName: file.name,
-                                content: content
-                            };
-                        } catch (err) {
-                            console.error("Error reading file:", err);
-                            alert("Error al procesar el archivo.");
-                        }
-                    } else {
-                        statusSpan.classList.add('hidden');
-                        statusSpan.textContent = "";
-                        delete parishAttachedFiles[index];
-                    }
-                });
-                
-                label.appendChild(fileInput);
-                uploadCol.appendChild(statusSpan);
-                uploadCol.appendChild(label);
-                
-                itemDiv.appendChild(textCol);
-                itemDiv.appendChild(uploadCol);
-                reqList.appendChild(itemDiv);
+                // Determine Badges
+                let badgeClass = "bg-crimson-deep/10 text-crimson-deep border border-crimson-deep/20";
+                let badgeLabel = "Obligatorio";
+                if (cls.isOptional) {
+                    badgeClass = "bg-slate-500/10 text-slate-warm border border-slate-500/20";
+                    badgeLabel = "Opcional";
+                } else if (cls.isDigital) {
+                    badgeClass = "bg-gold-antique/10 text-gold-antique border border-gold-antique/20";
+                    badgeLabel = "Digital / Escaneado";
+                }
+
+                if (cls.isInfo) {
+                    badgeClass = "bg-blue-600/10 text-blue-600 border border-blue-600/20";
+                    badgeLabel = "Información";
+                }
+
+                const card = document.createElement('div');
+                card.className = "p-4 bg-white/40 border border-outline-variant/30 rounded-xl flex flex-col gap-3 font-body text-[13px] text-slate-warm mb-3 shadow-sm";
+                card.innerHTML = `
+                    <div class="flex justify-between items-start gap-4">
+                        <div class="flex items-start gap-2">
+                            <span class="text-gold-antique font-bold mt-0.5">•</span>
+                            <span class="leading-relaxed font-semibold">${reqText}</span>
+                        </div>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider shrink-0 ${badgeClass}">${badgeLabel}</span>
+                    </div>
+                    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-dashed border-outline-variant/20">
+                        <div class="text-[11px] font-semibold flex items-center gap-1.5" id="parish-req-status-${index}">
+                            <i class="ti ti-circle-dashed text-slate-warm/50 text-[14px]"></i> Pendiente de adjuntar
+                        </div>
+                        <div class="flex items-center gap-2" id="parish-req-actions-${index}">
+                            <!-- Action buttons -->
+                        </div>
+                    </div>
+                `;
+                reqList.appendChild(card);
+                updateRequirementRowStatus(index, cls);
             });
         } else {
             reqBox.style.display = 'none';
         }
+    }
+
+    function updateRequirementRowStatus(index, cls) {
+        const statusDiv = document.getElementById(`parish-req-status-${index}`);
+        const actionsDiv = document.getElementById(`parish-req-actions-${index}`);
+        if (!statusDiv || !actionsDiv) return;
+
+        const attachment = parishAttachedFiles[index];
+
+        if (attachment) {
+            let fileDesc = attachment.fileName;
+            if (attachment.verificationCode) {
+                fileDesc += ` (Verificación: ${attachment.verificationCode})`;
+            }
+            statusDiv.innerHTML = `<span class="text-green-600 flex items-center gap-1"><i class="ti ti-circle-check-filled text-[15px]"></i> ✓ ${fileDesc}</span>`;
+            actionsDiv.innerHTML = `
+                <button type="button" onclick="removeRequirementAttachment(${index})" class="text-red-600 hover:text-red-800 text-[11px] font-bold flex items-center gap-1 transition-colors">
+                    <i class="ti ti-trash"></i> Eliminar
+                </button>
+            `;
+        } else {
+            if (cls.isInfo) {
+                statusDiv.innerHTML = `<span class="text-slate-warm/60 flex items-center gap-1"><i class="ti ti-info-circle text-[15px]"></i> Cubierto en los datos del formulario</span>`;
+                actionsDiv.innerHTML = ``;
+            } else {
+                statusDiv.innerHTML = `<span class="text-red-500 flex items-center gap-1"><i class="ti ti-circle-x text-[15px]"></i> Pendiente de adjuntar</span>`;
+                
+                let buttonsHtml = '';
+                if (cls.isDigital) {
+                    buttonsHtml += `
+                        <button type="button" onclick="triggerDigitalGeneration(${index})" class="bg-gold-antique hover:bg-secondary text-white px-2.5 py-1.5 rounded-lg font-bold font-label text-[11px] transition-all flex items-center gap-1 shadow-md active:scale-95">
+                            <i class="ti ti-file-certificate"></i> Generar Digital
+                        </button>
+                    `;
+                }
+                
+                buttonsHtml += `
+                    <label class="cursor-pointer border border-outline-variant hover:border-crimson-deep hover:bg-crimson-deep/5 text-slate-warm hover:text-crimson-deep px-2.5 py-1.5 rounded-lg font-bold font-label text-[11px] transition-all flex items-center gap-1 active:scale-95">
+                        <i class="ti ti-upload"></i> Subir Archivo
+                        <input type="file" class="hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="uploadRequirementFile(event, ${index})">
+                    </label>
+                `;
+                actionsDiv.innerHTML = buttonsHtml;
+            }
+        }
+    }
+
+    function triggerDigitalGeneration(index) {
+        activeDigitalIndex = index;
+        openConstanciaModal();
+    }
+
+    async function uploadRequirementFile(event, index) {
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        // 5MB limit
+        if (file.size > 5 * 1024 * 1024) {
+            alert("El archivo seleccionado supera el límite permitido de 5MB.");
+            return;
+        }
+
+        // Warn if LocalStorage is being used (local fallback) and total size is too large
+        if (!isSupabase) {
+            let currentTotalSize = file.size;
+            Object.values(parishAttachedFiles).forEach(f => {
+                if (f && f.content) {
+                    currentTotalSize += Math.round(f.content.length * 0.75);
+                }
+            });
+            if (currentTotalSize > 15 * 1024 * 1024) {
+                alert("Atención: El tamaño acumulado de los archivos supera el límite recomendado de 15MB para el modo local (LocalStorage). Por favor use archivos más pequeños o PDFs optimizados.");
+                return;
+            }
+        }
+
+        try {
+            const base64Data = await readFileAsDataURL(file);
+            parishAttachedFiles[index] = {
+                requirement: currentRequirements[index],
+                fileName: file.name,
+                content: base64Data
+            };
+            renderParishRequirementsUI();
+        } catch (err) {
+            console.error("Error al leer el archivo:", err);
+            alert("Error al procesar el archivo seleccionado.");
+        }
+    }
+
+    function removeRequirementAttachment(index) {
+        delete parishAttachedFiles[index];
+        renderParishRequirementsUI();
+    }
+
+    function onParishTypeChange() {
+        parishAttachedFiles = {}; // Reset files cache
+        activeDigitalIndex = -1; // Reset digital request index
+        renderParishRequirementsUI();
     }
 
     async function handleNewParishRequest(e) {
@@ -4375,14 +4475,37 @@
         const cedula = document.getElementById('parish-req-cedula').value.trim();
         const detailsInput = document.getElementById('parish-req-details').value.trim();
         
-        const filesArray = Object.values(parishAttachedFiles);
-        if (filesArray.length === 0) {
-            alert("Por favor adjunte al menos uno de los documentos requeridos para este trámite.");
-            return;
+        // Validate requirements dynamically
+        const reqs = CANCILLERIA_REQUISITOS[category][type];
+        for (let i = 0; i < reqs.length; i++) {
+            const reqText = reqs[i];
+            const cls = classifyRequirement(reqText);
+            
+            // If requirement is mandatory and not info-only, it must be attached
+            if (!cls.isOptional && !cls.isInfo) {
+                if (!parishAttachedFiles[i]) {
+                    alert(`Por favor cumpla con el requisito obligatorio:\n"${reqText}"\nDebe generarlo digitalmente o subir un archivo escaneado.`);
+                    return;
+                }
+            }
         }
+
+        // Package all attachments into a JSON array
+        const attachments = Object.keys(parishAttachedFiles).map(idx => ({
+            requirement: reqs[idx] || parishAttachedFiles[idx].requirement,
+            fileName: parishAttachedFiles[idx].fileName,
+            content: parishAttachedFiles[idx].content,
+            textContent: parishAttachedFiles[idx].textContent || "",
+            verificationCode: parishAttachedFiles[idx].verificationCode || ""
+        }));
+
+        const fileContent = JSON.stringify(attachments);
         
-        const fileContent = JSON.stringify(filesArray);
-        const fileName = filesArray.map(f => f.fileName).join(', ');
+        let fileName = "Sin adjuntos";
+        if (attachments.length > 0) {
+            const firstFile = attachments[0].fileName;
+            fileName = attachments.length > 1 ? `${firstFile} y ${attachments.length - 1} más` : firstFile;
+        }
 
         const today = new Date().toISOString().split('T')[0];
         let newId = "";
@@ -4478,7 +4601,12 @@
                 <p style="text-align: center; color: #7a8bad; font-size: 0.8em; margin: 0;">Portal de Parroquias | Arquidiócesis de Maracaibo</p>
             </div>
         `;
-        showToastMail(currentUser.email, subjectMail, mailBody);
+        openToastMail(currentUser.email, subjectMail, mailBody);
+        showNotification("¡Solicitud enviada con éxito a la Cancillería!", "success");
+
+        const form = document.getElementById('form-parish-new-request');
+        if (form) form.reset();
+        parishAttachedFiles = {};
 
         hideNewParishRequestForm();
         await loadParishRequests();
@@ -4527,13 +4655,53 @@
         document.getElementById('parish-det-details').textContent = req.details;
 
         const fileSection = document.getElementById('parish-det-file-section');
+        const filesListDiv = document.getElementById('parish-det-files-list');
+        
+        function renderSingleParishFile(name, content) {
+            if (!filesListDiv) return;
+            filesListDiv.innerHTML = `
+                <div class="flex items-center gap-3 bg-warm-ivory/40 border border-outline-variant/30 p-3 rounded-xl max-w-md mt-2">
+                    <i class="ti ti-paperclip text-2xl text-gold-antique"></i>
+                    <div class="flex-1 min-w-0">
+                        <div class="text-[12px] font-semibold text-slate-warm truncate">${name}</div>
+                    </div>
+                    <a href="${content}" download="${name}" class="bg-crimson-deep text-white p-2 rounded-lg hover:bg-primary transition-colors flex items-center justify-center">
+                        <i class="ti ti-download text-[16px]"></i>
+                    </a>
+                </div>
+            `;
+        }
+
         if (req.priestFileContent) {
             fileSection.style.display = 'block';
-            const fName = req.priestFileName || 'documentacion_adjunta';
-            document.getElementById('parish-det-file-name').textContent = fName;
-            const downloadLink = document.getElementById('parish-det-file-download');
-            downloadLink.href = req.priestFileContent;
-            downloadLink.download = fName;
+            if (filesListDiv) {
+                filesListDiv.innerHTML = '';
+                if (req.priestFileContent.startsWith('[')) {
+                    try {
+                        const files = JSON.parse(req.priestFileContent);
+                        files.forEach(f => {
+                            const fileRow = document.createElement('div');
+                            fileRow.className = "flex items-center gap-3 bg-warm-ivory/40 border border-outline-variant/30 p-3 rounded-xl max-w-md mt-2";
+                            fileRow.innerHTML = `
+                                <i class="ti ti-paperclip text-2xl text-gold-antique"></i>
+                                <div class="flex-1 min-w-0">
+                                    <div class="text-[12px] font-semibold text-slate-warm truncate">${f.fileName}</div>
+                                    <div class="text-[10px] text-slate-warm/60 truncate">${f.requirement || ''}</div>
+                                </div>
+                                <a href="${f.content}" download="${f.fileName}" class="bg-crimson-deep text-white p-2 rounded-lg hover:bg-primary transition-colors flex items-center justify-center">
+                                    <i class="ti ti-download text-[16px]"></i>
+                                </a>
+                            `;
+                            filesListDiv.appendChild(fileRow);
+                        });
+                    } catch (err) {
+                        console.error("Error parsing parish multi-files:", err);
+                        renderSingleParishFile(req.priestFileName || 'archivo_adjunto', req.priestFileContent);
+                    }
+                } else {
+                    renderSingleParishFile(req.priestFileName || 'archivo_adjunto', req.priestFileContent);
+                }
+            }
         } else {
             fileSection.style.display = 'none';
         }
@@ -4566,10 +4734,39 @@
         document.getElementById('parish-requests-list-view').style.display = 'block';
     }
 
+    function getConstTypeFromReqType(reqType) {
+        if (!reqType) return "Certificación de Bautismo";
+        const lower = reqType.toLowerCase();
+        if (lower.includes("bautismo")) {
+            if (lower.includes("inserción") || lower.includes("insercion") || lower.includes("justificativo") || lower.includes("inexistencia")) {
+                return "Inexistencia de Bautismo";
+            }
+            return "Certificación de Bautismo";
+        }
+        if (lower.includes("confirmación") || lower.includes("confirmacion")) {
+            if (lower.includes("inserción") || lower.includes("insercion") || lower.includes("justificativo") || lower.includes("inexistencia")) {
+                return "Inexistencia de Confirmación";
+            }
+            return "Certificación de Confirmación";
+        }
+        if (lower.includes("soltería") || lower.includes("solteria") || lower.includes("libertad") || lower.includes("licencia") || lower.includes("dispensa") || lower.includes("impedimento")) {
+            return "Atestado de Soltería";
+        }
+        return "Certificación de Bautismo"; // Fallback
+    }
+
     // ── HERRAMIENTAS DE CONSTANCIA DIGITAL PARROQUIAL ──
     async function openConstanciaModal() {
         const modal = document.getElementById('parish-constancia-modal');
         if (!modal) return;
+
+        // Auto-seleccionar tipo de constancia según el trámite seleccionado
+        const reqType = document.getElementById('parish-req-type').value;
+        const constTypeSelect = document.getElementById('const-type');
+        if (constTypeSelect && reqType) {
+            constTypeSelect.value = getConstTypeFromReqType(reqType);
+            constTypeSelect.disabled = true; // Forzar a ser automático
+        }
 
         // Determinar siguiente ID de solicitud
         let nextId = "";
@@ -4718,19 +4915,7 @@
             return;
         }
 
-        const reqs = CANCILLERIA_REQUISITOS[category][type];
-        let targetIndex = -1;
-        for (let i = 0; i < reqs.length; i++) {
-            const lower = reqs[i].toLowerCase();
-            if (lower.includes('constancia') || lower.includes('carta') || lower.includes('certificado')) {
-                targetIndex = i;
-                break;
-            }
-        }
 
-        if (targetIndex === -1) {
-            targetIndex = 0; // Fallback al primer requisito
-        }
 
         const constType = document.getElementById('const-type').value;
         const interesado = document.getElementById('const-interesado').value.trim();
@@ -4831,23 +5016,36 @@
 </body>
 </html>`;
 
-        // Guardar constancia digital en el listado de adjuntos
-        parishAttachedFiles[targetIndex] = {
-            requirement: reqs[targetIndex],
-            fileName: `Constancia_Digital_${parishCode}.html`,
-            content: "data:text/html;base64," + btoa(unescape(encodeURIComponent(htmlDocContent))),
-            textContent: formattedCertText,
-            verificationCode: verifCode
-        };
-
-        const statusSpan = document.getElementById(`file-status-${targetIndex}`);
-        if (statusSpan) {
-            statusSpan.textContent = `Generada (Digital - ${verifCode})`;
-            statusSpan.classList.remove('hidden');
+        // Resolve which index in requirements array this constancia belongs to
+        let targetIndex = activeDigitalIndex;
+        if (targetIndex === -1) {
+            const reqs = CANCILLERIA_REQUISITOS[category][type];
+            targetIndex = reqs.findIndex(r => classifyRequirement(r).isDigital);
         }
 
+        if (targetIndex !== -1) {
+            parishAttachedFiles[targetIndex] = {
+                requirement: `Constancia Digital Oficial (${constType})`,
+                fileName: `Constancia_Digital_${parishCode}.html`,
+                content: "data:text/html;base64," + btoa(unescape(encodeURIComponent(htmlDocContent))),
+                textContent: formattedCertText,
+                verificationCode: verifCode
+            };
+        } else {
+            parishAttachedFiles["constancia"] = {
+                requirement: `Constancia Digital Oficial (${constType})`,
+                fileName: `Constancia_Digital_${parishCode}.html`,
+                content: "data:text/html;base64," + btoa(unescape(encodeURIComponent(htmlDocContent))),
+                textContent: formattedCertText,
+                verificationCode: verifCode
+            };
+        }
+
+        // Refresh UI status
+        renderParishRequirementsUI();
+
         closeConstanciaModal();
-        alert(`¡Constancia digital oficial generada y adjuntada con éxito al requisito: "${reqs[targetIndex]}"!`);
+        alert(`¡Constancia digital oficial generada con éxito con código de verificación ${verifCode}!`);
     }
 
     function generateCertText(type, interesado, cedula, libro, folio, dateStr, celebrante, detalles) {
