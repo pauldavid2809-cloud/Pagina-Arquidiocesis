@@ -1260,6 +1260,15 @@
                                         <div id="parish-req-requirements-list" class="space-y-3 font-body text-[12.5px] text-slate-warm">
                                             <!-- Dynamically populated with requirements and file inputs -->
                                         </div>
+                                        <div class="mt-4 pt-3 border-t border-gold-antique/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                            <div class="text-[11.5px] text-slate-warm/80 leading-snug">
+                                                <strong>¿No dispone del documento físico firmado y sellado?</strong><br>
+                                                Genere una constancia digital oficial certificada con código QR aquí.
+                                            </div>
+                                            <button type="button" onclick="openConstanciaModal()" class="shrink-0 bg-gold-antique hover:bg-secondary text-white px-4 py-2.5 rounded-lg font-bold font-label text-[12.5px] transition-all flex items-center justify-center gap-1.5 shadow-md active:scale-95">
+                                                <i class="ti ti-file-certificate text-[16px]"></i> Generar Constancia Digital
+                                            </button>
+                                        </div>
                                     </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
@@ -1314,6 +1323,85 @@
             </div>
         </div>
 
+        <!-- 4.1 MODAL: GENERADOR DE CONSTANCIA PARROQUIAL DIGITAL -->
+        <div id="parish-constancia-modal" style="display: none;" class="no-print fixed inset-0 z-[1000] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 overflow-y-auto">
+            <div class="bg-[#fbf9f4] rounded-2xl shadow-2xl border border-outline-variant/30 max-w-5xl w-full flex flex-col md:flex-row overflow-hidden max-h-[90vh] animate-fadeIn">
+                <!-- Formulario left side -->
+                <div class="w-full md:w-1/2 p-6 md:p-8 overflow-y-auto border-r border-outline-variant/20 flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-display text-[18px] font-bold text-crimson-deep flex items-center gap-2 border-b border-outline-variant/20 pb-3 mb-5">
+                            <i class="ti ti-file-certificate"></i> Generar Constancia Parroquial
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="form-group flex flex-col">
+                                <label for="const-type" class="font-label text-[12px] font-bold text-slate-warm mb-1">Tipo de Constancia</label>
+                                <select id="const-type" onchange="updateConstPreview()" class="bg-white border border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-3 py-2 transition-colors font-body text-[13px] rounded-lg">
+                                    <option value="Inexistencia de Bautismo">Inexistencia de Registro de Bautismo</option>
+                                    <option value="Inexistencia de Registro de Bautismo">Inexistencia de Registro de Bautismo</option>
+                                    <option value="Inexistencia de Confirmación">Inexistencia de Registro de Confirmación</option>
+                                    <option value="Certificación de Bautismo">Certificación de Bautismo</option>
+                                    <option value="Certificación de Confirmación">Certificación de Confirmación</option>
+                                    <option value="Atestado de Soltería">Atestado de Soltería y Libertad</option>
+                                </select>
+                            </div>
+                            <div class="form-group flex flex-col">
+                                <label for="const-interesado" class="font-label text-[12px] font-bold text-slate-warm mb-1">Nombre del Interesado</label>
+                                <input type="text" id="const-interesado" oninput="updateConstPreview()" class="bg-white border border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-3 py-2 transition-colors font-body text-[13px] rounded-lg">
+                            </div>
+                            <div class="form-group flex flex-col">
+                                <label for="const-cedula" class="font-label text-[12px] font-bold text-slate-warm mb-1">Cédula del Interesado</label>
+                                <input type="text" id="const-cedula" oninput="updateConstPreview()" class="bg-white border border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-3 py-2 transition-colors font-body text-[13px] rounded-lg">
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="form-group flex flex-col">
+                                    <label for="const-libro" class="font-label text-[12px] font-bold text-slate-warm mb-1">Libro</label>
+                                    <input type="text" id="const-libro" oninput="updateConstPreview()" placeholder="Ej. 14" class="bg-white border border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-3 py-2 transition-colors font-body text-[13px] rounded-lg">
+                                </div>
+                                <div class="form-group flex flex-col">
+                                    <label for="const-folio" class="font-label text-[12px] font-bold text-slate-warm mb-1">Folio / Acta</label>
+                                    <input type="text" id="const-folio" oninput="updateConstPreview()" placeholder="Ej. 85 / 102" class="bg-white border border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-3 py-2 transition-colors font-body text-[13px] rounded-lg">
+                                </div>
+                            </div>
+                            <div class="form-group flex flex-col">
+                                <label for="const-fecha-sacr" class="font-label text-[12px] font-bold text-slate-warm mb-1">Fecha del Sacramento / Hecho (Aprox.)</label>
+                                <input type="date" id="const-fecha-sacr" onchange="updateConstPreview()" class="bg-white border border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-3 py-2 transition-colors font-body text-[13px] rounded-lg">
+                            </div>
+                            <div class="form-group flex flex-col">
+                                <label for="const-celebrante" class="font-label text-[12px] font-bold text-slate-warm mb-1">Ministro / Celebrante</label>
+                                <input type="text" id="const-celebrante" oninput="updateConstPreview()" placeholder="Ej. Pbro. Paul David" class="bg-white border border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-3 py-2 transition-colors font-body text-[13px] rounded-lg">
+                            </div>
+                            <div class="form-group flex flex-col">
+                                <label for="const-detalles" class="font-label text-[12px] font-bold text-slate-warm mb-1">Notas / Testigos / Detalles Adicionales</label>
+                                <textarea id="const-detalles" oninput="updateConstPreview()" rows="3" class="bg-white border border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-3 py-2 transition-colors font-body text-[13px] rounded-lg" style="resize: none;" placeholder="Ej. Padres: José Pérez y María Gómez. Padrinos: Carlos Ruíz..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-3 mt-6 border-t border-outline-variant/20 pt-4">
+                        <button onclick="closeConstanciaModal()" class="flex-grow bg-slate-200 hover:bg-slate-300 text-slate-warm py-2.5 rounded-lg font-bold font-label text-[13px] transition-colors">Cancelar</button>
+                        <button onclick="attachConstanciaToForm()" class="flex-grow bg-crimson-deep hover:bg-primary text-white py-2.5 rounded-lg font-bold font-label text-[13px] transition-colors flex items-center justify-center gap-1.5 shadow-md">
+                            <i class="ti ti-paperclip"></i> Adjuntar al Trámite
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Preview right side -->
+                <div class="hidden md:block w-1/2 bg-white p-8 overflow-y-auto max-h-[90vh]">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-label block">Vista Previa del Documento</span>
+                        <button onclick="printConstPreview()" class="text-crimson-deep hover:text-primary font-label text-[12px] font-bold flex items-center gap-1.5">
+                            <i class="ti ti-printer"></i> Imprimir Constancia
+                        </button>
+                    </div>
+                    
+                    <!-- Paper Simulator -->
+                    <div id="const-preview-paper" class="p-8 border border-[#ebdcb9] bg-[#fffdf9] text-[#2b2518] font-serif text-[12px] leading-relaxed shadow-sm rounded-lg" style="font-family: Georgia, serif;">
+                        <!-- Content populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 5. VIEW: OFFICIAL DOCUMENT VIEWER (PRINTABLE CERTIFICATE) -->
         <div id="view-document" class="view" style="padding: 2rem 0;">
             <div class="no-print max-w-[800px] mx-auto mb-6 flex justify-between items-center gap-4">
@@ -1359,9 +1447,14 @@
                     </div>
                 </div>
 
-                <div class="document-footer font-body text-[11px]">
-                    <div>Código de Verificación: <strong id="doc-render-id">REQ-0000</strong></div>
-                    <div>Arquidiócesis de Maracaibo — Estado Zulia, Venezuela</div>
+                <div class="document-footer font-body text-[11px] flex justify-between items-center mt-12 border-t border-[#ebdcb9] pt-4">
+                    <div class="space-y-1">
+                        <div>Código de Verificación: <strong id="doc-render-id">REQ-0000</strong></div>
+                        <div>Arquidiócesis de Maracaibo — Estado Zulia, Venezuela</div>
+                        <div class="text-[10px] text-slate-500">Documento de Cancillería digital legalmente verificado.</div>
+                    </div>
+                    <!-- QR Code container -->
+                    <div id="doc-render-qr" style="width: 75px; height: 75px; background: white; padding: 2px; border: 1px solid #ebdcb9;" class="shrink-0"></div>
                 </div>
             </div>
         </div>
@@ -3932,6 +4025,13 @@
         document.getElementById('doc-render-body').textContent = req.documentContent || 'Sin redactar.';
         document.getElementById('doc-render-id').textContent = req.id;
 
+        // Generar Código QR de verificación para la resolución de Cancillería
+        const validationUrl = `${window.location.origin}/validar.html?code=${req.id}`;
+        const qrContainer = document.getElementById('doc-render-qr');
+        if (qrContainer) {
+            qrContainer.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(validationUrl)}" alt="QR de Validación" style="width: 100%; height: 100%; object-fit: contain;">`;
+        }
+
         switchView('view-document');
     }
 
@@ -4448,6 +4548,241 @@
         document.getElementById('parish-requests-list-view').style.display = 'none';
         document.getElementById('parish-new-request-view').style.display = 'none';
         document.getElementById('parish-request-details-view').style.display = 'block';
+    }
+
+    function hideParishRequestDetails() {
+        document.getElementById('parish-request-details-view').style.display = 'none';
+        document.getElementById('parish-requests-list-view').style.display = 'block';
+    }
+
+    // ── HERRAMIENTAS DE CONSTANCIA DIGITAL PARROQUIAL ──
+    async function openConstanciaModal() {
+        const modal = document.getElementById('parish-constancia-modal');
+        if (!modal) return;
+
+        // Determinar siguiente ID de solicitud
+        let nextId = "";
+        if (isSupabase) {
+            try {
+                const { count } = await supabaseClient
+                    .from('tramites')
+                    .select('*', { count: 'exact', head: true });
+                nextId = "REQ-" + ((count || 0) + 1001);
+            } catch(e) {
+                console.error("Error pre-generando ID:", e);
+                nextId = "REQ-" + (db.requests.length + 1001);
+            }
+        } else {
+            nextId = "REQ-" + (db.requests.length + 1001);
+        }
+
+        // Agregar input oculto para rastrear el ID pre-generado
+        let tempInput = document.getElementById('const-temp-req-id');
+        if (!tempInput) {
+            tempInput = document.createElement('input');
+            tempInput.type = "hidden";
+            tempInput.id = "const-temp-req-id";
+            document.body.appendChild(tempInput);
+        }
+        tempInput.value = nextId;
+
+        // Auto-llenar campos desde el formulario principal
+        const nameInput = document.getElementById('parish-req-interesado');
+        const cedulaInput = document.getElementById('parish-req-cedula');
+        const detailsInput = document.getElementById('parish-req-details');
+
+        document.getElementById('const-interesado').value = nameInput ? nameInput.value.trim() : '';
+        document.getElementById('const-cedula').value = cedulaInput ? cedulaInput.value.trim() : '';
+        document.getElementById('const-detalles').value = detailsInput ? detailsInput.value.trim() : '';
+        document.getElementById('const-libro').value = '';
+        document.getElementById('const-folio').value = '';
+        document.getElementById('const-fecha-sacr').value = '';
+        document.getElementById('const-celebrante').value = currentUser.parroco || '';
+
+        // Abrir modal
+        modal.style.display = 'flex';
+        updateConstPreview();
+    }
+
+    function closeConstanciaModal() {
+        const modal = document.getElementById('parish-constancia-modal');
+        if (modal) modal.style.display = 'none';
+    }
+
+    function updateConstPreview() {
+        const type = document.getElementById('const-type').value;
+        const interesado = document.getElementById('const-interesado').value.trim() || '[Nombre del Interesado]';
+        const cedula = document.getElementById('const-cedula').value.trim() || '[Cédula de Identidad]';
+        const libro = document.getElementById('const-libro').value.trim() || '[Libro]';
+        const folio = document.getElementById('const-folio').value.trim() || '[Folio]';
+        const dateSacr = document.getElementById('const-fecha-sacr').value;
+        const celebrante = document.getElementById('const-celebrante').value.trim() || '[Ministro Celebrante]';
+        const detalles = document.getElementById('const-detalles').value.trim() || '[Detalles Adicionales / Testigos]';
+
+        const dateStr = dateSacr ? formatDateToLocale(dateSacr) : '[Fecha del Sacramento]';
+        const text = generateCertText(type, interesado, cedula, libro, folio, dateStr, celebrante, detalles);
+
+        let tempReqId = document.getElementById('const-temp-req-id') ? document.getElementById('const-temp-req-id').value : '';
+        if (!tempReqId) {
+            tempReqId = "REQ-" + (db.requests.length + 1001);
+        }
+
+        const parishCode = currentUser.code || 'PZ0-0';
+        const verifCode = `CP-${parishCode}-${new Date().getFullYear()}-${tempReqId}`;
+        const validationUrl = `${window.location.origin}/validar.html?code=${verifCode}`;
+
+        const paper = document.getElementById('const-preview-paper');
+        if (paper) {
+            paper.innerHTML = `
+                <div class="text-center border-b pb-4 mb-6" style="border-color: #ebdcb9;">
+                    <img src="img/logo-arquidiocesis.webp" alt="Logo" class="mx-auto" style="width: 50px; height: 50px; margin-bottom: 0.5rem;">
+                    <h5 class="text-[12px] font-bold text-[#4a3e26] uppercase m-0 leading-tight">Arquidiócesis de Maracaibo</h5>
+                    <h6 class="text-[10px] font-bold text-[#8c7853] uppercase m-0 mt-1">${currentUser.name || 'Parroquia'}</h6>
+                </div>
+                
+                <h5 class="text-center font-bold text-[13px] text-[#5c4d31] mb-6 uppercase tracking-wider">${type}</h5>
+                
+                <div class="whitespace-pre-line text-justify text-[11px] leading-relaxed mb-8" style="font-family: Georgia, serif;">
+                    ${text}
+                </div>
+                
+                <div class="flex justify-between items-end mt-12 gap-4">
+                    <div class="text-center flex-1">
+                        <div class="border-t border-[#ebdcb9] pt-2 text-[10px] font-bold text-[#4a3e26]">Pbro. ${currentUser.parroco || 'Párroco'}</div>
+                        <div class="text-[9px] text-[#8c7853] uppercase">Párroco / Administrador</div>
+                    </div>
+                    <div class="text-center" style="width: 90px;">
+                        <div style="border: 2px dashed #9c2b2b; color: #9c2b2b; font-size: 8px; border-radius: 50%; width: 65px; height: 65px; display: flex; align-items: center; justify-content: center; text-transform: uppercase; font-weight: bold; transform: rotate(-8deg); margin: 0 auto; line-height: 1.2; padding: 4px;">
+                            <span>Sello<br>Parroquia<br>${parishCode}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-[#ebdcb9] mt-8 pt-4 flex justify-between items-center text-[9px] text-[#8c7853] font-sans">
+                    <div class="space-y-1">
+                        <div>Código de Verificación: <strong class="font-mono text-[9.5px]">${verifCode}</strong></div>
+                        <div>Validez legal mediante verificación digital.</div>
+                    </div>
+                    <div style="width: 60px; height: 60px; background: white; padding: 2px; border: 1px solid #ebdcb9;">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(validationUrl)}" alt="QR" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    function printConstPreview() {
+        const content = document.getElementById('const-preview-paper').innerHTML;
+        const printWindow = window.open('', '_blank', 'width=800,height=900');
+        printWindow.document.write(`
+            <html>
+                <head>
+                    <title>Imprimir Constancia Parroquial</title>
+                    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+                    <style>
+                        body { background: white; padding: 2cm; font-family: Georgia, serif; }
+                    </style>
+                </head>
+                <body>
+                    <div style="max-width: 800px; margin: 0 auto;">
+                        ${content}
+                    </div>
+                    <script>
+                        window.onload = function() {
+                            window.print();
+                            window.onafterprint = function() { window.close(); };
+                        };
+                    </script>
+                </body>
+            </html>
+        `);
+        printWindow.document.close();
+    }
+
+    function attachConstanciaToForm() {
+        const category = document.getElementById('parish-req-category').value;
+        const type = document.getElementById('parish-req-type').value;
+        if (!category || !type) {
+            alert("Por favor seleccione primero una categoría y tipo de trámite en el formulario principal.");
+            return;
+        }
+
+        const reqs = CANCILLERIA_REQUISITOS[category][type];
+        let targetIndex = -1;
+        for (let i = 0; i < reqs.length; i++) {
+            const lower = reqs[i].toLowerCase();
+            if (lower.includes('constancia') || lower.includes('carta') || lower.includes('certificado')) {
+                targetIndex = i;
+                break;
+            }
+        }
+
+        if (targetIndex === -1) {
+            targetIndex = 0; // Fallback al primer requisito
+        }
+
+        const constType = document.getElementById('const-type').value;
+        const interesado = document.getElementById('const-interesado').value.trim();
+        const cedula = document.getElementById('const-cedula').value.trim();
+        const libro = document.getElementById('const-libro').value.trim();
+        const folio = document.getElementById('const-folio').value.trim();
+        const dateSacr = document.getElementById('const-fecha-sacr').value;
+        const celebrante = document.getElementById('const-celebrante').value.trim();
+        const detalles = document.getElementById('const-detalles').value.trim();
+
+        if (!interesado) {
+            alert("Por favor ingrese el nombre del interesado.");
+            return;
+        }
+
+        const dateStr = dateSacr ? formatDateToLocale(dateSacr) : 'No especificada';
+        const formattedCertText = generateCertText(constType, interesado, cedula, libro, folio, dateStr, celebrante, detalles);
+
+        let tempReqId = document.getElementById('const-temp-req-id') ? document.getElementById('const-temp-req-id').value : '';
+        if (!tempReqId) {
+            tempReqId = "REQ-" + (db.requests.length + 1001);
+        }
+
+        const parishCode = currentUser.code || 'PZ0-0';
+        const verifCode = `CP-${parishCode}-${new Date().getFullYear()}-${tempReqId}`;
+
+        // Guardar constancia digital en el listado de adjuntos
+        parishAttachedFiles[targetIndex] = {
+            requirement: reqs[targetIndex],
+            fileName: `Constancia_Digital_${parishCode}.html`,
+            content: "data:text/html;base64," + btoa(unescape(encodeURIComponent(formattedCertText))),
+            textContent: formattedCertText,
+            verificationCode: verifCode
+        };
+
+        const statusSpan = document.getElementById(`file-status-${targetIndex}`);
+        if (statusSpan) {
+            statusSpan.textContent = `Generada (Digital - ${verifCode})`;
+            statusSpan.classList.remove('hidden');
+        }
+
+        closeConstanciaModal();
+        alert(`¡Constancia digital oficial generada y adjuntada con éxito al requisito: "${reqs[targetIndex]}"!`);
+    }
+
+    function generateCertText(type, interesado, cedula, libro, folio, dateStr, celebrante, detalles) {
+        const parishName = currentUser.name || 'Parroquia';
+        const today = new Date();
+        const emisionDate = today.getDate() + " de " + today.toLocaleString('es-ES', { month: 'long' }) + " de " + today.getFullYear();
+
+        let text = "";
+        if (type === "Inexistencia de Bautismo") {
+            text = `CONSTANCIA PARROQUIAL DE INEXISTENCIA DE REGISTRO DE BAUTISMO\n\nEl suscrito Párroco de la PARROQUIA ${parishName.toUpperCase()}, en uso de sus facultades canónicas, hace constar que, habiéndose examinado minuciosamente los Libros Parroquiales de Bautismo de esta comunidad, NO SE ENCONTRÓ ninguna partida ni registro a nombre de:\n\nCIUDADANO(A): ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\n\nSegún los datos declarados, se presume que recibió el sacramento en fecha aproximada: ${dateStr}, siendo el ministro celebrante: ${celebrante || 'No registrado'}.\n\nSe expide la presente constancia a petición del interesado(a), para ser presentada ante la Cancillería de la Arquidiócesis de Maracaibo a los fines legales de inserción de partida.\n\nMaracaibo, a los ${emisionDate}.`;
+        } else if (type === "Inexistencia de Confirmación") {
+            text = `CONSTANCIA PARROQUIAL DE INEXISTENCIA DE REGISTRO DE CONFIRMACIÓN\n\nEl suscrito Párroco de la PARROQUIA ${parishName.toUpperCase()}, en uso de sus facultades canónicas, hace constar que, habiéndose examinado minuciosamente los Libros Parroquiales de Confirmación de esta comunidad, NO SE ENCONTRÓ ninguna partida ni registro a nombre de:\n\nCIUDADANO(A): ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\n\nSe expide la presente constancia a petición del interesado(a), para ser presentada ante la Cancillería de la Arquidiócesis de Maracaibo a los fines de inserción/justificativo del sacramento.\n\nMaracaibo, a los ${emisionDate}.`;
+        } else if (type === "Certificación de Bautismo") {
+            text = `CERTIFICACIÓN DE REGISTRO DE BAUTISMO\n\nEl suscrito Párroco de la PARROQUIA ${parishName.toUpperCase()}, en uso de sus facultades, certifica la veracidad del siguiente asiento del libro de Bautismos:\n\nINTERESADO(A): ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\nLIBRO: ${libro || 'N/A'}\tFOLIO: ${folio || 'N/A'}\nFECHA DEL SACRAMENTO: ${dateStr}\nMINISTRO CELEBRANTE: ${celebrante || 'No especificado'}\n\nDETALLES / NOTAS: ${detalles || 'Ninguna.'}\n\nPara fe pública del hecho eclesiástico, se emite la presente en Maracaibo, a los ${emisionDate}.`;
+        } else if (type === "Certificación de Confirmación") {
+            text = `CERTIFICACIÓN DE REGISTRO DE CONFIRMACIÓN\n\nEl suscrito Párroco de la PARROQUIA ${parishName.toUpperCase()}, en uso de sus facultades, certifica la veracidad del siguiente asiento del libro de Confirmaciones:\n\nINTERESADO(A): ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\nLIBRO: ${libro || 'N/A'}\tFOLIO: ${folio || 'N/A'}\nFECHA DEL SACRAMENTO: ${dateStr}\nMINISTRO CELEBRANTE: ${celebrante || 'No especificado'}\n\nDETALLES / NOTAS: ${detalles || 'Ninguna.'}\n\nPara fe pública del hecho eclesiástico, se emite la presente en Maracaibo, a los ${emisionDate}.`;
+        } else {
+            text = `ATESTADO PARROQUIAL DE LIBERTAD Y SOLTERÍA\n\nEl suscrito Párroco de la PARROQUIA ${parishName.toUpperCase()}, hace constar por las presentes letras que el ciudadano(a):\n\nNOMBRE: ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\n\nHa cumplido con el examen de libertad correspondiente. De las averiguaciones y testimonios recibidos, consta que el interesado goza de estado libre y soltero, no teniendo ningún impedimento matrimonial canónico para contraer nupcias eclesiásticas.\n\nTestigos que atestiguan la soltería: ${detalles || 'No registrados.'}\n\nDada en el Despacho Parroquial el ${emisionDate}.`;
+        }
+        return text;
     }
 
     function hideParishRequestDetails() {
