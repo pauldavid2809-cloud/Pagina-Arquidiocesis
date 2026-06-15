@@ -3411,7 +3411,7 @@
         let list = [];
 
         if (isSupabase) {
-            const { data, error } = await supabaseClient.from('tramites').select('*');
+            const { data, error } = await supabaseClient.from('tramites').select('id, email, priest_name, priest_email, type, date, subject, parish, details, status, feedback, institution, priest_file_name');
             if (error) {
                 console.error("Error al obtener solicitudes de administrador de Supabase:", error);
                 if (tbodyPriest) tbodyPriest.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--grana); padding: 1.5rem;">Error al recuperar datos en Supabase.</td></tr>`;
@@ -4216,7 +4216,7 @@
                 // Filter by priest_email because that stores the parish's email (bypassing FK constraints on email column)
                 const { data, error } = await supabaseClient
                     .from('tramites')
-                    .select('*')
+                    .select('id, email, priest_name, priest_email, type, date, subject, parish, details, status, feedback, institution, priest_file_name')
                     .eq('priest_email', currentUser.email);
 
                 if (error) {
@@ -4775,8 +4775,25 @@
         await loadParishRequests();
     }
 
-    function viewParishRequestDetails(reqId) {
-        const req = parishRequestsCache.find(r => r.id === reqId);
+    async function viewParishRequestDetails(reqId) {
+        let req = null;
+        if (isSupabase) {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('tramites')
+                    .select('*')
+                    .eq('id', reqId)
+                    .single();
+                if (data) {
+                    req = mapRequestFields(data);
+                }
+            } catch(e) {
+                console.error("Error fetching request details for parish:", e);
+            }
+        }
+        if (!req) {
+            req = parishRequestsCache.find(r => r.id === reqId);
+        }
         if (!req) return;
 
         document.getElementById('parish-det-id').textContent = req.id;
