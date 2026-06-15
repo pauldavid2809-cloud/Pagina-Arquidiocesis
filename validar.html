@@ -112,6 +112,17 @@
                 }
             }
         }
+
+        // Cargar Parroquias desde el listado autogenerado para nombres de párrocos
+        try {
+            const parishesRes = await fetch('parishes_with_passwords.json');
+            if (parishesRes.ok) {
+                db.parroquias = await parishesRes.json();
+                console.log("Parroquias cargadas en validar:", db.parroquias.length);
+            }
+        } catch (e) {
+            console.error("Error al cargar parishes_with_passwords.json en validar:", e);
+        }
     }
 
     // Main validation function
@@ -295,6 +306,30 @@
             if (match) interesados = match[1].trim();
         }
 
+        // Extract parish code from validation code
+        let parishCode = "PZ0-0";
+        if (originalCode) {
+            const parts = originalCode.split('-');
+            if (parts.length > 2) {
+                parishCode = parts[1];
+            }
+        }
+
+        // Lookup priest name dynamically in database
+        let priestName = "";
+        if (parishCode) {
+            const parishData = (db.parroquias || []).find(p => p.code === parishCode);
+            if (parishData && parishData.parroco) {
+                priestName = parishData.parroco;
+            }
+        }
+        if (!priestName) {
+            priestName = req.priestName || "Párroco / Administrador";
+        }
+        if (priestName && !/^(pbro\.|mons\.|r\.p\.|r\.\s*p\.|fray|pbros\.|diac\.)/i.test(priestName)) {
+            priestName = "Pbro. " + priestName;
+        }
+
         resultDiv.innerHTML = `
             <div class="validation-card overflow-hidden animate-fadeIn">
                 <div class="verified-badge p-6 flex items-center justify-center gap-3 font-label font-bold text-[14px] uppercase tracking-wider">
@@ -304,7 +339,7 @@
                 <div class="p-8">
                     <div class="border-b border-slate-100 pb-4 mb-6">
                         <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-label block">Constancia Parroquial Digital</span>
-                        <h3 class="font-display text-[22px] font-bold text-slate-warm mt-1">Constancia de ${req.type.replace('Solicitud de ', '')}</h3>
+                        <h3 class="font-display text-[22px] font-bold text-slate-warm mt-1">Constancia de ${req.type.replace('Solicitud de ', '').replace('Solicitud por ', '')}</h3>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 font-body text-[13px]">
@@ -326,14 +361,49 @@
                         </div>
                     </div>
 
-                    <div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10 font-body text-[13px] text-slate-warm leading-relaxed mb-6">
-                        <span class="text-[10px] font-bold text-crimson-deep uppercase tracking-widest font-label block mb-3 border-b border-outline-variant/20 pb-1.5">Texto Certificado Parroquial</span>
-                        <div class="font-sans whitespace-pre-line text-slate-900 text-justify text-[13.5px] leading-relaxed" style="font-family: Arial, sans-serif;">
-                            ${constanciaText || `Certificamos que se ha registrado una solicitud digital en esta parroquia el día ${formatDateToLocale(req.date)} para el trámite de ${req.type}.\n\nDetalles del Trámite:\n${req.details}`}
+                    <!-- Facsímil Impreso Premium -->
+                    <div class="mt-8 border-[12px] border-double border-[#C59B27]/40 bg-[#fffdf9] text-[#2b2518] p-8 rounded-lg relative overflow-hidden shadow-inner text-[12px] leading-relaxed" style="font-family: Arial, sans-serif;">
+                        <!-- Background Watermark -->
+                        <div class="absolute inset-0 flex items-center justify-center opacity-[0.025] pointer-events-none z-0">
+                            <img src="img/logo-arquidiocesis.webp" alt="Watermark" class="w-full max-w-[220px] object-contain">
+                        </div>
+
+                        <div class="relative z-10 flex flex-col justify-between h-full">
+                            <header class="text-center mb-6">
+                                <img src="img/logo-arquidiocesis.webp" alt="Logo" class="mx-auto mb-2" style="width: 50px; height: 50px;" onerror="this.src='https://placehold.co/50x50/7A1A22/ffffff?text=AM'">
+                                <h4 class="font-bold text-[14px] text-[#7A1A22] uppercase tracking-[0.12em] border-b-2 border-[#C59B27]/30 pb-2.5 mb-1.5" style="font-family: Arial, sans-serif;">Arquidiócesis de Maracaibo</h4>
+                                <h5 class="text-[11px] italic text-slate-500 font-medium mt-1">${req.parish}</h5>
+                            </header>
+                            
+                            <article class="text-justify px-2 mb-6">
+                                <h6 class="text-center font-bold text-[12px] text-[#7A1A22] mb-5 uppercase tracking-wider">${req.type}</h6>
+                                <div class="whitespace-pre-line text-[11px] text-[#2b2518]">
+                                    ${constanciaText || `Certificamos que se ha registrado una solicitud digital en esta parroquia el día ${formatDateToLocale(req.date)} para el trámite de ${req.type}.\n\nDetalles del Trámite:\n${req.details}`}
+                                </div>
+                            </article>
+                            
+                            <footer class="mt-4">
+                                <div class="flex justify-between items-end gap-4 px-2 mb-4">
+                                    <div class="text-center flex-1">
+                                        <div class="border-t border-slate-300 pt-1.5 text-[10px] font-bold text-[#4a3e26]">${priestName}</div>
+                                        <div class="text-[8.5px] text-slate-400 uppercase tracking-wider font-semibold">Párroco / Administrador</div>
+                                    </div>
+                                    <div class="text-center shrink-0" style="width: 75px;">
+                                        <div style="border: 2px dashed #9c2b2b; color: #9c2b2b; font-size: 7.5px; border-radius: 50%; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; text-transform: uppercase; font-weight: bold; transform: rotate(-8deg); margin: 0 auto; line-height: 1.2; padding: 2px; background: rgba(255, 255, 255, 0.85);">
+                                            <span>Sello<br>Parroquia<br>${parishCode}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="border-t border-[#C59B27]/20 pt-3 flex justify-between items-center text-[8.5px] text-slate-400">
+                                    <div>Código de Verificación: <strong class="font-mono text-[9px] text-[#7A1A22]">${originalCode}</strong></div>
+                                    <div class="opacity-75">Validez legal mediante verificación digital diocesana.</div>
+                                </div>
+                            </footer>
                         </div>
                     </div>
 
-                    <div class="text-center text-[11px] text-slate-400 font-mono">
+                    <div class="mt-6 text-center text-[11px] text-slate-400 font-mono">
                         Validación digital verificada con éxito el ${new Date().toLocaleDateString('es-ES')}
                     </div>
                 </div>
