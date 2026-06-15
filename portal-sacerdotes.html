@@ -996,7 +996,7 @@
                                     <p><strong>Institución Destinataria:</strong> <span id="adm-view-institution" class="text-on-surface font-semibold">Banco Mercantil</span></p>
                                     <p><strong>Parroquia / Destino:</strong> <span id="adm-view-parish" class="text-on-surface font-semibold">Parroquia</span></p>
                                 </div>
-                                <div class="font-body text-[14px] bg-white p-4 rounded-xl border border-outline-variant/20 white-space-pre-line my-2">
+                                <div class="font-body text-[14px] bg-white p-4 rounded-xl border border-outline-variant/20 whitespace-pre-line my-2">
                                     <strong class="text-on-surface block mb-1">Motivo de la solicitud:</strong>
                                     <p id="adm-view-description" class="text-slate-warm leading-relaxed">Cuerpo</p>
                                 </div>
@@ -1176,6 +1176,8 @@
                                         <p class="font-body text-[13px] text-slate-warm mb-2"><strong>Tipo de Trámite:</strong> <span id="parish-det-type" class="text-on-surface font-semibold">-</span></p>
                                         <p class="font-body text-[13px] text-slate-warm mb-2"><strong>Interesado:</strong> <span id="parish-det-interesado" class="text-on-surface font-semibold">-</span></p>
                                         <p class="font-body text-[13px] text-slate-warm mb-2"><strong>Cédula Interesado:</strong> <span id="parish-det-cedula" class="text-on-surface font-semibold">-</span></p>
+                                        <p id="parish-det-interesado2-row" class="font-body text-[13px] text-slate-warm mb-2" style="display: none;"><strong>Contrayente 2:</strong> <span id="parish-det-interesado2" class="text-on-surface font-semibold">-</span></p>
+                                        <p id="parish-det-cedula2-row" class="font-body text-[13px] text-slate-warm mb-2" style="display: none;"><strong>Cédula Contrayente 2:</strong> <span id="parish-det-cedula2" class="text-on-surface font-semibold">-</span></p>
                                         <p class="font-body text-[13px] text-slate-warm mb-2"><strong>Fecha de Solicitud:</strong> <span id="parish-det-date" class="text-on-surface">-</span></p>
                                     </div>
                                     <div>
@@ -1265,6 +1267,19 @@
                                         <div class="form-group flex flex-col">
                                             <label for="parish-req-cedula" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Cédula de Identidad del Interesado <span class="text-[11px] font-normal text-crimson-deep/80">(Subir copia digital; original físico debe presentarse en Cancillería)</span></label>
                                             <input type="text" id="parish-req-cedula" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. V-25.123.456 o Menor">
+                                        </div>
+                                    </div>
+
+                                    <!-- Dynamic Contrayente 2 group for matrimonial requests -->
+                                    <div id="parish-req-contrayente2-group" class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5" style="display: none;">
+                                        <div class="form-group flex flex-col">
+                                            <label id="parish-req-interesado2-label" for="parish-req-interesado2" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Nombre Completo del Contrayente 2</label>
+                                            <input type="text" id="parish-req-interesado2" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. María Valentina Gómez Silva">
+                                        </div>
+                                        
+                                        <div class="form-group flex flex-col">
+                                            <label id="parish-req-cedula2-label" for="parish-req-cedula2" class="font-label text-[13px] font-bold text-slate-warm mb-1.5">Cédula de Identidad del Contrayente 2 <span class="text-[11px] font-normal text-crimson-deep/80">(Subir copia digital; original físico debe presentarse en Cancillería)</span></label>
+                                            <input type="text" id="parish-req-cedula2" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[14px] rounded-t-lg" placeholder="Ej. V-26.789.012 o Menor">
                                         </div>
                                     </div>
 
@@ -1488,6 +1503,9 @@
 <script>StitchLayout.init({ activePage: 'portal-sacerdotes' });</script>
 
 <script>
+    // Global Logo Base64 (WebP) to support offline rendering
+    const logoBase64 = "UklGRjheAABXRUJQVlA4WAoAAAAQAAAAcwEACAIAQUxQSNgiAAAB8AcAgCKn2f/N7J7fxQWCJSFIKO7uUNy1uLZAFS99oMWKVOChghaoAEVCoSkUh+LuEoEQgsSTi5ytzPxTmNvdu9ud96MRMQHg/+uc0QfHVI2NrVo50qxj6Bi0VO0yZenGX3fu/PWnNXNHtY0yQerFhLZZ9FdasdPD8TzHucqy7/7+UX0LpFnQGD9s9xMX9hIVX17ZKVJHrYzVJyY9F7CEYsndtQMr66kUW23c7mceLDEqu7+hRwh9grbev73gEJYeOW4urKurU9Dq+MtUDsuMio+Or8RSJF38lCN2hOXnMzZ3DmMoEQzrszXDgxWJSi9+WldPhWD8Fw/dCCtVKDzc30aBzI1/zENYyfzD+TX1lIeNmXCsDCscZe/sFQ5pjr7xqnQPVjxyXltQk6E3TPeDhQj7opC/o7We0jCho256sK86T44KZ2kMW3tBGsK+60lb0chIX/SNN2aJ2JdR/u4eJtpifftIGcI+7rwyIhjSFBgx4bqIfV98+lkCS09gxfdv89gfoldbWptpCVt9VTqH/SMqOTwomI7oG24uRdhvem5Pj6QhpvZ7nNifihnzK0LqETTsaCn2r2Lm8niWckRMv+PG/lbM29DMQDNg1LznIvbD5X+0N9ILptqi5wj7ZVdyTxOt0Dda80LEftpxdqiNTuib/1KAsN9235oUTCPYZjvs2J8LGdOC6YOuZVIJ9u/oyQfhkDKYuh5xYH+PHs+pwlIFS/8zLuz/xazVdViKYBx0mcOBEOV+WwNSA12vqzwOjCh7dTykBJZ+lzkcKMUX3ySwVMA69JqAA6eY/W0iSwH0/a4LOJCi/DU1Gc1nePuygAMryllTHWo8y6CrPA606MWqeFbTmQddF3DgRS+XxnMaTtfrEo8DMXq5qBLUbLquF3gcmFHG7Eio0UxvX+RxoBbTZ8VATWbqcY7HgVvMnBeqxXQdjnhwIEep463ai2mYVI4Du3B9qFlrsbW3FOFA7z7b26ytmIR1hSjgYeeJHiYtBSsuzUVYBbqPdTNqqKAPnyGsCop0HW+s0k21qiohVYtGWmlAjBY97KGK1iAq+iYGayDzoBo/VI8pbGq2FDJ2OerCaRFkzI6Hm0bXcU4rVTD/g0itwzbYWYJUBuZuTw3WOHHby7H65O+Sig";
+
     // Helper to format Date string to DD/MM/YYYY local format
     function formatDateToLocale(dateStr) {
         if (!dateStr) return '';
@@ -4448,6 +4466,14 @@
     async function uploadRequirementFile(event, index) {
         const file = event.target.files[0];
         if (!file) return;
+
+        // Check file extension
+        const allowedExtensions = ['pdf', 'jpg', 'jpeg', 'png'];
+        const fileExt = file.name.split('.').pop().toLowerCase();
+        if (!allowedExtensions.includes(fileExt)) {
+            alert("Formato de archivo no permitido. Solo se aceptan PDFs e imágenes (JPG, JPEG, PNG).");
+            return;
+        }
         
         // 5MB limit
         if (file.size > 5 * 1024 * 1024) {
@@ -4495,6 +4521,7 @@
         // Dynamically toggle main form labels
         const type = document.getElementById('parish-req-type').value;
         const labelInteresado = document.querySelector('label[for="parish-req-interesado"]');
+        const labelCedula = document.querySelector('label[for="parish-req-cedula"]');
         
         const isMatrimonial = [
             "Solicitud de Licencia Matrimonial",
@@ -4505,8 +4532,20 @@
             "Atestado de Soltería"
         ].includes(type);
 
+        const hasContrayente2 = isMatrimonial && type !== "Atestado de Soltería";
+        const c2Group = document.getElementById('parish-req-contrayente2-group');
+        const inputInteresado2 = document.getElementById('parish-req-interesado2');
+
+        if (c2Group) {
+            c2Group.style.display = hasContrayente2 ? 'grid' : 'none';
+        }
+        if (inputInteresado2) {
+            inputInteresado2.required = hasContrayente2;
+        }
+
+        // Update Label 1
         if (labelInteresado) {
-            if (isMatrimonial) {
+            if (hasContrayente2) {
                 if (type === "Solicitud de Dispensa por Disparidad de Culto" || type === "Solicitud de Dispensa por Mixta Religión") {
                     labelInteresado.textContent = "Nombre Completo del Contrayente (Católico)";
                 } else {
@@ -4514,6 +4553,35 @@
                 }
             } else {
                 labelInteresado.textContent = "Nombre Completo del Interesado / Solicitante";
+            }
+        }
+
+        // Update Cédula 1 Label
+        if (labelCedula) {
+            if (hasContrayente2) {
+                if (type === "Solicitud de Dispensa por Disparidad de Culto" || type === "Solicitud de Dispensa por Mixta Religión") {
+                    labelCedula.innerHTML = 'Cédula del Contrayente (Católico) <span class="text-[11px] font-normal text-crimson-deep/80">(Subir copia digital; original físico debe presentarse en Cancillería)</span>';
+                } else {
+                    labelCedula.innerHTML = 'Cédula del Contrayente 1 <span class="text-[11px] font-normal text-crimson-deep/80">(Subir copia digital; original físico debe presentarse en Cancillería)</span>';
+                }
+            } else {
+                labelCedula.innerHTML = 'Cédula de Identidad del Interesado <span class="text-[11px] font-normal text-crimson-deep/80">(Subir copia digital; original físico debe presentarse en Cancillería)</span>';
+            }
+        }
+
+        // Update Label 2
+        const labelInteresado2 = document.getElementById('parish-req-interesado2-label');
+        const labelCedula2 = document.getElementById('parish-req-cedula2-label');
+        if (labelInteresado2 && labelCedula2) {
+            if (type === "Solicitud de Dispensa por Disparidad de Culto") {
+                labelInteresado2.textContent = "Nombre Completo de la Parte No Bautizada";
+                labelCedula2.innerHTML = 'Cédula de la Parte No Bautizada <span class="text-[11px] font-normal text-crimson-deep/80">(Subir copia digital; original físico debe presentarse en Cancillería)</span>';
+            } else if (type === "Solicitud de Dispensa por Mixta Religión") {
+                labelInteresado2.textContent = "Nombre Completo de la Parte No Católica (Bautizada)";
+                labelCedula2.innerHTML = 'Cédula de la Parte No Católica (Bautizada) <span class="text-[11px] font-normal text-crimson-deep/80">(Subir copia digital; original físico debe presentarse en Cancillería)</span>';
+            } else {
+                labelInteresado2.textContent = "Nombre Completo del Contrayente 2";
+                labelCedula2.innerHTML = 'Cédula del Contrayente 2 <span class="text-[11px] font-normal text-crimson-deep/80">(Subir copia digital; original físico debe presentarse en Cancillería)</span>';
             }
         }
         
@@ -4586,9 +4654,26 @@
             "Atestado de Soltería"
         ].includes(type);
 
+        const hasContrayente2 = isMatrimonial && type !== "Atestado de Soltería";
         const subjectLabel = isMatrimonial ? "Contrayente(s)" : "Interesado";
-        const subject = `[Parroquia] Solicitud de ${type} - ${interesado}`;
-        const fullDetails = `${subjectLabel}: ${interesado}\nCédula: ${cedula || 'No especificada'}\n\nDatos del Sacramento / Descripción:\n${detailsInput}`;
+        
+        let subject = "";
+        let fullDetails = "";
+        
+        if (hasContrayente2) {
+            const interesado2 = document.getElementById('parish-req-interesado2') ? document.getElementById('parish-req-interesado2').value.trim() : '';
+            const cedula2 = document.getElementById('parish-req-cedula2') ? document.getElementById('parish-req-cedula2').value.trim() : '';
+            
+            subject = `[Parroquia] Solicitud de ${type} - ${interesado}${interesado2 ? ' y ' + interesado2 : ''}`;
+            fullDetails = `Contrayente 1: ${interesado}\nCédula 1: ${cedula || 'No especificada'}\n`;
+            if (interesado2) {
+                fullDetails += `Contrayente 2: ${interesado2}\nCédula 2: ${cedula2 || 'No especificada'}\n`;
+            }
+            fullDetails += `\nDatos del Sacramento / Descripción:\n${detailsInput}`;
+        } else {
+            subject = `[Parroquia] Solicitud de ${type} - ${interesado}`;
+            fullDetails = `${subjectLabel}: ${interesado}\nCédula: ${cedula || 'No especificada'}\n\nDatos del Sacramento / Descripción:\n${detailsInput}`;
+        }
 
         const newReq = {
             id: newId,
@@ -4681,24 +4766,111 @@
 
         document.getElementById('parish-det-id').textContent = req.id;
         document.getElementById('parish-det-type').textContent = req.type;
-        
-        let interesado = 'N/A';
-        if (req.subject && req.subject.includes(' - ')) {
-            interesado = req.subject.split(' - ')[1];
-        } else if (req.details) {
-            const match = req.details.match(/(?:Interesado|Contrayente\(s\)):\s*([^\n]+)/i);
-            if (match) interesado = match[1].trim();
-        }
-
-        let cedula = 'No especificada';
-        if (req.details && req.details.includes('Cédula: ')) {
-            const match = req.details.match(/Cédula:\s*([^\n]+)/);
-            if (match) cedula = match[1].trim();
-        }
-
-        document.getElementById('parish-det-interesado').textContent = interesado;
-        document.getElementById('parish-det-cedula').textContent = cedula;
         document.getElementById('parish-det-date').textContent = req.date;
+
+        const isMatrimonial = [
+            "Solicitud de Licencia Matrimonial",
+            "Solicitud de Dispensa de Proclamas",
+            "Solicitud de Dispensa por Disparidad de Culto",
+            "Solicitud de Dispensa por Mixta Religión",
+            "Solicitud de Dispensa por Consanguinidad",
+            "Atestado de Soltería"
+        ].includes(req.type);
+
+        const hasContrayente2 = isMatrimonial && req.type !== "Atestado de Soltería";
+
+        let interesado1 = 'N/A';
+        let cedula1 = 'No especificada';
+        let interesado2 = '';
+        let cedula2 = '';
+
+        if (req.details) {
+            const c1Match = req.details.match(/(?:Interesado|Contrayente 1|Parte Católica):\s*([^\n]+)/i);
+            if (c1Match) {
+                interesado1 = c1Match[1].trim();
+            } else {
+                const legacyMatch = req.details.match(/(?:Interesado|Contrayente\(s\)):\s*([^\n]+)/i);
+                if (legacyMatch) interesado1 = legacyMatch[1].trim();
+            }
+
+            const ci1Match = req.details.match(/(?:Cédula Interesado|Cédula 1):\s*([^\n]+)/i);
+            if (ci1Match) {
+                cedula1 = ci1Match[1].trim();
+            } else {
+                const legacyMatch = req.details.match(/(?:Cédula Interesado|Cédula):\s*([^\n]+)/i);
+                if (legacyMatch) cedula1 = legacyMatch[1].trim();
+            }
+
+            const c2Match = req.details.match(/(?:Contrayente 2|Parte No Bautizada|Parte No Católica Bautizada):\s*([^\n]+)/i);
+            if (c2Match) interesado2 = c2Match[1].trim();
+
+            const ci2Match = req.details.match(/(?:Cédula 2):\s*([^\n]+)/i);
+            if (ci2Match) cedula2 = ci2Match[1].trim();
+        }
+
+        if (interesado1 === 'N/A' && req.subject && req.subject.includes(' - ')) {
+            const namesPart = req.subject.split(' - ')[1];
+            if (namesPart.includes(' y ')) {
+                const parts = namesPart.split(' y ');
+                interesado1 = parts[0].trim();
+                interesado2 = parts[1].trim();
+            } else {
+                interesado1 = namesPart.trim();
+            }
+        }
+
+        // Update dynamically label texts
+        const pInt = document.getElementById('parish-det-interesado').parentElement;
+        if (pInt) {
+            const strong = pInt.querySelector('strong');
+            if (strong) {
+                strong.textContent = hasContrayente2 ? 
+                    ((req.type.includes('Disparidad') || req.type.includes('Mixta')) ? 'Contrayente (Católico):' : 'Contrayente 1:') : 'Interesado:';
+            }
+        }
+        const pCed = document.getElementById('parish-det-cedula').parentElement;
+        if (pCed) {
+            const strong = pCed.querySelector('strong');
+            if (strong) {
+                strong.textContent = hasContrayente2 ? 
+                    ((req.type.includes('Disparidad') || req.type.includes('Mixta')) ? 'Cédula Contrayente (Católico):' : 'Cédula Contrayente 1:') : 'Cédula Interesado:';
+            }
+        }
+
+        document.getElementById('parish-det-interesado').textContent = interesado1;
+        document.getElementById('parish-det-cedula').textContent = cedula1;
+
+        const rowInt2 = document.getElementById('parish-det-interesado2-row');
+        const rowCed2 = document.getElementById('parish-det-cedula2-row');
+
+        if (hasContrayente2 && (interesado2 || (req.details && req.details.includes('Contrayente 2:')))) {
+            if (rowInt2 && rowCed2) {
+                rowInt2.style.display = 'block';
+                rowCed2.style.display = 'block';
+                
+                const labelInt2 = rowInt2.querySelector('strong');
+                const labelCed2 = rowCed2.querySelector('strong');
+                
+                if (req.type === "Solicitud de Dispensa por Disparidad de Culto") {
+                    if (labelInt2) labelInt2.textContent = "Parte No Bautizada:";
+                    if (labelCed2) labelCed2.textContent = "Cédula Parte No Bautizada:";
+                } else if (req.type === "Solicitud de Dispensa por Mixta Religión") {
+                    if (labelInt2) labelInt2.textContent = "Parte No Católica:";
+                    if (labelCed2) labelCed2.textContent = "Cédula Parte No Católica:";
+                } else {
+                    if (labelInt2) labelInt2.textContent = "Contrayente 2:";
+                    if (labelCed2) labelCed2.textContent = "Cédula Contrayente 2:";
+                }
+                
+                document.getElementById('parish-det-interesado2').textContent = interesado2 || 'No registrado';
+                document.getElementById('parish-det-cedula2').textContent = cedula2 || 'No especificada';
+            }
+        } else {
+            if (rowInt2 && rowCed2) {
+                rowInt2.style.display = 'none';
+                rowCed2.style.display = 'none';
+            }
+        }
 
         const statusEl = document.getElementById('parish-det-status');
         statusEl.textContent = req.status;
@@ -4881,11 +5053,13 @@
         document.getElementById('const-interesado').value = nameInput ? nameInput.value.trim() : '';
         document.getElementById('const-cedula').value = cedulaInput ? cedulaInput.value.trim() : '';
         document.getElementById('const-detalles').value = detailsInput ? detailsInput.value.trim() : '';
+        const name2Input = document.getElementById('parish-req-interesado2');
+        const cedula2Input = document.getElementById('parish-req-cedula2');
         if (document.getElementById('const-interesado2')) {
-            document.getElementById('const-interesado2').value = '';
+            document.getElementById('const-interesado2').value = name2Input ? name2Input.value.trim() : '';
         }
         if (document.getElementById('const-cedula2')) {
-            document.getElementById('const-cedula2').value = '';
+            document.getElementById('const-cedula2').value = cedula2Input ? cedula2Input.value.trim() : '';
         }
         document.getElementById('const-libro').value = '';
         document.getElementById('const-folio').value = '';
@@ -4997,12 +5171,12 @@
             paper.innerHTML = `
                 <!-- Background Watermark -->
                 <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none z-0">
-                    <img src="img/logo-arquidiocesis.webp" alt="Watermark" class="w-full max-w-[260px] object-contain">
+                    <img src="data:image/webp;base64,${logoBase64}" alt="Watermark" class="w-full max-w-[260px] object-contain">
                 </div>
 
                 <div class="relative z-10 flex flex-col h-full justify-between">
                     <header class="text-center mb-8">
-                        <img src="img/logo-arquidiocesis.webp" alt="Logo" class="mx-auto mb-3" style="width: 55px; height: 55px;">
+                        <img src="data:image/webp;base64,${logoBase64}" alt="Logo" class="mx-auto mb-3" style="width: 55px; height: 55px;">
                         <h4 class="font-display text-[15px] font-bold text-crimson-deep uppercase tracking-[0.12em] border-b-2 border-gold-antique/30 pb-3 mb-2">Arquidiócesis de Maracaibo</h4>
                         <h5 class="font-display text-[12px] italic text-slate-warm font-medium mt-1">${currentUser.name || 'Parroquia'}</h5>
                     </header>
@@ -5127,6 +5301,17 @@
             return;
         }
 
+        // Write values back to the main form
+        const mainInteresado = document.getElementById('parish-req-interesado');
+        const mainCedula = document.getElementById('parish-req-cedula');
+        const mainInteresado2 = document.getElementById('parish-req-interesado2');
+        const mainCedula2 = document.getElementById('parish-req-cedula2');
+
+        if (mainInteresado) mainInteresado.value = interesado;
+        if (mainCedula) mainCedula.value = cedula;
+        if (mainInteresado2) mainInteresado2.value = interesado2;
+        if (mainCedula2) mainCedula2.value = cedula2;
+
         const dateStr = dateSacr ? formatDateToLocale(dateSacr) : 'No especificada';
         const formattedCertText = generateCertText(constType, interesado, cedula, libro, folio, dateStr, celebrante, detalles, interesado2, cedula2);
 
@@ -5139,8 +5324,6 @@
         const verifCode = `CP-${parishCode}-${new Date().getFullYear()}-${tempReqId}`;
         const validationUrl = `${window.location.origin}/validar.html?code=${verifCode}`;
         const parishName = currentUser.name || 'Parroquia';
-
-        const logoBase64 = "UklGRjheAABXRUJQVlA4WAoAAAAQAAAAcwEACAIAQUxQSNgiAAAB8AcAgCKn2f/N7J7fxQWCJSFIKO7uUNy1uLZAFS99oMWKVOChghaoAEVCoSkUh+LuEoEQgsSTi5ytzPxTmNvdu9ud96MRMQHg/+uc0QfHVI2NrVo50qxj6Bi0VO0yZenGX3fu/PWnNXNHtY0yQerFhLZZ9FdasdPD8TzHucqy7/7+UX0LpFnQGD9s9xMX9hIVX17ZKVJHrYzVJyY9F7CEYsndtQMr66kUW23c7mceLDEqu7+hRwh9grbev73gEJYeOW4urKurU9Dq+MtUDsuMio+Or8RSJF38lCN2hOXnMzZ3DmMoEQzrszXDgxWJSi9+WldPhWD8Fw/dCCtVKDzc30aBzI1/zENYyfzD+TX1lIeNmXCsDCscZe/sFQ5pjr7xqnQPVjxyXltQk6E3TPeDhQj7opC/o7We0jCho256sK86T44KZ2kMW3tBGsK+60lb0chIX/SNN2aJ2JdR/u4eJtpifftIGcI+7rwyIhjSFBgx4bqIfV98+lkCS09gxfdv89gfoldbWptpCVt9VTqH/SMqOTwomI7oG24uRdhvem5Pj6QhpvZ7nNifihnzK0LqETTsaCn2r2Lm8niWckRMv+PG/lbM29DMQDNg1LznIvbD5X+0N9ILptqi5wj7ZVdyTxOt0Dda80LEftpxdqiNTuib/1KAsN9235oUTCPYZjvs2J8LGdOC6YOuZVIJ9u/oyQfhkDKYuh5xYH+PHs+pwlIFS/8zLuz/xazVdViKYBx0mcOBEOV+WwNSA12vqzwOjCh7dTykBJZ+lzkcKMUX3ySwVMA69JqAA6eY/W0iSwH0/a4LOJCi/DU1Gc1nePuygAMryllTHWo8y6CrPA606MWqeFbTmQddF3DgRS+XxzMaTtfrEo8DMXq5qBLUbLquF3gcmFHG7Eio0UxvX+RxoBbTZ8VATWbqcY7HgVvMnBeqxXQdjnhwIEep463ai2mYVI4Du3B9qFlrsbW3FOFA7z7b26ytmIR1hSjgYeeJHiYtBSsuzUVYBbqPdTNqqKAPnyGsCop0HW+s0k21qiohVYtGWmlAjBY97KGK1iAq+iYGayDzoBo/VI8pbGq2FDJ2OerCaRFkzI6Hm0bXcU4rVpTD/g0itwzbYWYJUBuZuTw3WOHHby7H65O+Sig";
 
         let formattedCelebrante = celebrante;
         if (formattedCelebrante && !/^(pbro\.|mons\.|r\.p\.|r\.\s*p\.|fray|pbros\.|diac\.)/i.test(formattedCelebrante)) {

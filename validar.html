@@ -87,6 +87,9 @@
     let isSupabase = false;
     let db = { requests: [], parroquias: [] };
 
+    // Global Logo Base64 (WebP) to support offline rendering
+    const logoBase64 = "UklGRjheAABXRUJQVlA4WAoAAAAQAAAAcwEACAIAQUxQSNgiAAAB8AcAgCKn2f/N7J7fxQWCJSFIKO7uUNy1uLZAFS99oMWKVOChghaoAEVCoSkUh+LuEoEQgsSTi5ytzPxTmNvdu9ud96MRMQHg/+uc0QfHVI2NrVo50qxj6Bi0VO0yZenGX3fu/PWnNXNHtY0yQerFhLZZ9FdasdPD8TzHucqy7/7+UX0LpFnQGD9s9xMX9hIVX17ZKVJHrYzVJyY9F7CEYsndtQMr66kUW23c7mceLDEqu7+hRwh9grbev73gEJYeOW4urKurU9Dq+MtUDsuMio+Or8RSJF38lCN2hOXnMzZ3DmMoEQzrszXDgxWJSi9+WldPhWD8Fw/dCCtVKDzc30aBzI1/zENYyfzD+TX1lIeNmXCsDCscZe/sFQ5pjr7xqnQPVjxyXltQk6E3TPeDhQj7opC/o7We0jCho256sK86T44KZ2kMW3tBGsK+60lb0chIX/SNN2aJ2JdR/u4eJtpifftIGcI+7rwyIhjSFBgx4bqIfV98+lkCS09gxfdv89gfoldbWptpCVt9VTqH/SMqOTwomI7oG24uRdhvem5Pj6QhpvZ7nNifihnzK0LqETTsaCn2r2Lm8niWckRMv+PG/lbM29DMQDNg1LznIvbD5X+0N9ILptqi5wj7ZVdyTxOt0Dda80LEftpxdqiNTuib/1KAsN9235oUTCPYZjvs2J8LGdOC6YOuZVIJ9u/oyQfhkDKYuh5xYH+PHs+pwlIFS/8zLuz/xazVdViKYBx0mcOBEOV+WwNSA12vqzwOjCh7dTykBJZ+lzkcKMUX3ySwVMA69JqAA6eY/W0iSwH0/a4LOJCi/DU1Gc1nePuygAMryllTHWo8y6CrPA606MWqeFbTmQddF3DgRS+XxnMaTtfrEo8DMXq5qBLUbLquF3gcmFHG7Eio0UxvX+RxoBbTZ8VATWbqcY7HgVvMnBeqxXQdjnhwIEep463ai2mYVI4Du3B9qFlrsbW3FOFA7z7b26ytmIR1hSjgYeeJHiYtBSsuzUVYBbqPdTNqqKAPnyGsCop0HW+s0k21qiohVYtGWmlAjBY97KGK1iAq+iYGayDzoBo/VI8pbGq2FDJ2OerCaRFkzI6Hm0bXcU4rVTD/g0itwzbYWYJUBuZuTw3WOHHby7H65O+Sig";
+
     // Initialize DB connection
     async function initDB() {
         try {
@@ -365,12 +368,12 @@
                     <div class="mt-8 border-[12px] border-double border-[#C59B27]/40 bg-[#fffdf9] text-[#2b2518] p-8 rounded-lg relative overflow-hidden shadow-inner text-[12px] leading-relaxed" style="font-family: Arial, sans-serif;">
                         <!-- Background Watermark -->
                         <div class="absolute inset-0 flex items-center justify-center opacity-[0.025] pointer-events-none z-0">
-                            <img src="img/logo-arquidiocesis.webp" alt="Watermark" class="w-full max-w-[220px] object-contain">
+                            <img src="data:image/webp;base64,${logoBase64}" alt="Watermark" class="w-full max-w-[220px] object-contain">
                         </div>
 
                         <div class="relative z-10 flex flex-col justify-between h-full">
                             <header class="text-center mb-6">
-                                <img src="img/logo-arquidiocesis.webp" alt="Logo" class="mx-auto mb-2" style="width: 50px; height: 50px;" onerror="this.src='https://placehold.co/50x50/7A1A22/ffffff?text=AM'">
+                                <img src="data:image/webp;base64,${logoBase64}" alt="Logo" class="mx-auto mb-2" style="width: 50px; height: 50px;" onerror="this.src='https://placehold.co/50x50/7A1A22/ffffff?text=AM'">
                                 <h4 class="font-bold text-[14px] text-[#7A1A22] uppercase tracking-[0.12em] border-b-2 border-[#C59B27]/30 pb-2.5 mb-1.5" style="font-family: Arial, sans-serif;">Arquidiócesis de Maracaibo</h4>
                                 <h5 class="text-[11px] italic text-slate-500 font-medium mt-1">${req.parish}</h5>
                             </header>
