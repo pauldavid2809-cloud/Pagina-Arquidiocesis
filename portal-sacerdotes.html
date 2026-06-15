@@ -1645,7 +1645,11 @@
     // 1. Database Initialization (Supabase vs LocalStorage)
     async function initDB() {
         try {
-            const configRes = await fetch('/api/config');
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 800);
+            
+            const configRes = await fetch('/api/config', { signal: controller.signal });
+            clearTimeout(timeoutId);
             const config = await configRes.json().catch(() => ({}));
 
             if (config.supabaseUrl && config.supabaseAnonKey && window.supabase) {
@@ -1654,7 +1658,7 @@
                 console.log("Conectado con éxito a Supabase.");
             }
         } catch (err) {
-            console.warn("Fallo al conectar con la API de configuración. Se usará LocalStorage.", err);
+            console.warn("Fallo al conectar con la API de configuración o tiempo de espera agotado. Se usará LocalStorage.", err);
         }
 
         updateDBBadges();
@@ -2417,7 +2421,11 @@
 
         // Cargar Parroquias desde el listado autogenerado
         try {
-            const parishesRes = await fetch('parishes_with_passwords.json');
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 1000);
+            
+            const parishesRes = await fetch('parishes_with_passwords.json', { signal: controller.signal });
+            clearTimeout(timeoutId);
             if (parishesRes.ok) {
                 db.parroquias = await parishesRes.json();
                 console.log("Parroquias cargadas:", db.parroquias.length);
@@ -3231,8 +3239,10 @@
 
     // 5. Admin (Chancellor) Dashboard
     async function loadAdminDashboard() {
-        await renderAdminRequestsTable();
-        await loadAdminParroquias();
+        await Promise.all([
+            renderAdminRequestsTable(),
+            loadAdminParroquias()
+        ]);
     }
 
     async function loadAdminParroquias() {
