@@ -4746,12 +4746,86 @@
 
         const parishCode = currentUser.code || 'PZ0-0';
         const verifCode = `CP-${parishCode}-${new Date().getFullYear()}-${tempReqId}`;
+        const validationUrl = `${window.location.origin}/validar.html?code=${verifCode}`;
+        const parishName = currentUser.name || 'Parroquia';
+
+        // Construir documento HTML completo y auto-imprimible con estilos oficiales y QR
+        const htmlDocContent = `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Constancia Digital - ${verifCode}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #f8f6f0; padding: 2rem; font-family: Georgia, serif; }
+        .document-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fffdf9;
+            padding: 3rem;
+            border: 1px solid #ebdcb9;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            color: #2b2518;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .document-container { border: none; box-shadow: none; padding: 1.5cm; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="no-print max-w-[800px] mx-auto mb-6 flex justify-between items-center">
+        <div class="text-xs text-slate-500 font-sans">Documento Parroquial Digital Oficial</div>
+        <button onclick="window.print()" class="bg-[#7A1A22] hover:bg-red-800 text-white font-sans text-xs font-bold px-4 py-2 rounded shadow transition-colors flex items-center gap-1.5">
+            Imprimir / Guardar a PDF
+        </button>
+    </div>
+    
+    <div class="document-container">
+        <div class="text-center border-b pb-4 mb-6" style="border-color: #ebdcb9;">
+            <img src="https://arquidiocesis-maracaibo.vercel.app/img/logo-arquidiocesis.webp" alt="Logo" class="mx-auto" style="width: 55px; height: 55px; margin-bottom: 0.5rem;" onerror="this.src='https://placehold.co/55x55/7A1A22/ffffff?text=AM'">
+            <h5 class="text-[14px] font-bold text-[#4a3e26] uppercase m-0 leading-tight">Arquidiócesis de Maracaibo</h5>
+            <h6 class="text-[12px] font-bold text-[#8c7853] uppercase m-0 mt-1">${parishName}</h6>
+        </div>
+        
+        <h5 class="text-center font-bold text-[14px] text-[#5c4d31] mb-8 uppercase tracking-wider">${constType}</h5>
+        
+        <div class="whitespace-pre-line text-justify text-[13px] leading-relaxed mb-10" style="font-family: Georgia, serif;">
+            ${formattedCertText}
+        </div>
+        
+        <div class="flex justify-between items-end mt-16 gap-4">
+            <div class="text-center flex-1">
+                <div class="border-t border-[#ebdcb9] pt-2 text-[11px] font-bold text-[#4a3e26]">Pbro. ${celebrante || 'Párroco'}</div>
+                <div class="text-[9px] text-[#8c7853] uppercase">Párroco / Administrador</div>
+            </div>
+            <div class="text-center" style="width: 100px;">
+                <div style="border: 2px dashed #9c2b2b; color: #9c2b2b; font-size: 8px; border-radius: 50%; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; text-transform: uppercase; font-weight: bold; transform: rotate(-8deg); margin: 0 auto; line-height: 1.2; padding: 4px;">
+                    <span>Sello<br>Parroquia<br>${parishCode}</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-[#ebdcb9] mt-12 pt-4 flex justify-between items-center text-[10px] text-[#8c7853] font-sans">
+            <div class="space-y-1">
+                <div>Código de Verificación: <strong class="font-mono text-[10.5px]">${verifCode}</strong></div>
+                <div>Validez legal mediante verificación digital.</div>
+            </div>
+            <div style="width: 70px; height: 70px; background: white; padding: 2px; border: 1px solid #ebdcb9;">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(validationUrl)}" alt="QR" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+        </div>
+    </div>
+</body>
+</html>`;
 
         // Guardar constancia digital en el listado de adjuntos
         parishAttachedFiles[targetIndex] = {
             requirement: reqs[targetIndex],
             fileName: `Constancia_Digital_${parishCode}.html`,
-            content: "data:text/html;base64," + btoa(unescape(encodeURIComponent(formattedCertText))),
+            content: "data:text/html;base64," + btoa(unescape(encodeURIComponent(htmlDocContent))),
             textContent: formattedCertText,
             verificationCode: verifCode
         };
@@ -4768,20 +4842,24 @@
 
     function generateCertText(type, interesado, cedula, libro, folio, dateStr, celebrante, detalles) {
         const parishName = currentUser.name || 'Parroquia';
+        let normalizedParishName = parishName.toUpperCase();
+        if (!normalizedParishName.startsWith("PARROQUIA")) {
+            normalizedParishName = "PARROQUIA " + normalizedParishName;
+        }
         const today = new Date();
         const emisionDate = today.getDate() + " de " + today.toLocaleString('es-ES', { month: 'long' }) + " de " + today.getFullYear();
 
         let text = "";
         if (type === "Inexistencia de Bautismo") {
-            text = `CONSTANCIA PARROQUIAL DE INEXISTENCIA DE REGISTRO DE BAUTISMO\n\nEl suscrito Párroco de la PARROQUIA ${parishName.toUpperCase()}, en uso de sus facultades canónicas, hace constar que, habiéndose examinado minuciosamente los Libros Parroquiales de Bautismo de esta comunidad, NO SE ENCONTRÓ ninguna partida ni registro a nombre de:\n\nCIUDADANO(A): ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\n\nSegún los datos declarados, se presume que recibió el sacramento en fecha aproximada: ${dateStr}, siendo el ministro celebrante: ${celebrante || 'No registrado'}.\n\nSe expide la presente constancia a petición del interesado(a), para ser presentada ante la Cancillería de la Arquidiócesis de Maracaibo a los fines legales de inserción de partida.\n\nMaracaibo, a los ${emisionDate}.`;
+            text = `CONSTANCIA PARROQUIAL DE INEXISTENCIA DE REGISTRO DE BAUTISMO\n\nEl suscrito Párroco de la ${normalizedParishName}, en uso de sus facultades canónicas, hace constar que, habiéndose examinado minuciosamente los Libros Parroquiales de Bautismo de esta comunidad, NO SE ENCONTRÓ ninguna partida ni registro a nombre de:\n\nCIUDADANO(A): ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\n\nSegún los datos declarados, se presume que recibió el sacramento en fecha aproximada: ${dateStr}, siendo el ministro celebrante: ${celebrante || 'No registrado'}.\n\nSe expide la presente constancia a petición del interesado(a), para ser presentada ante la Cancillería de la Arquidiócesis de Maracaibo a los fines legales de inserción de partida.\n\nMaracaibo, a los ${emisionDate}.`;
         } else if (type === "Inexistencia de Confirmación") {
-            text = `CONSTANCIA PARROQUIAL DE INEXISTENCIA DE REGISTRO DE CONFIRMACIÓN\n\nEl suscrito Párroco de la PARROQUIA ${parishName.toUpperCase()}, en uso de sus facultades canónicas, hace constar que, habiéndose examinado minuciosamente los Libros Parroquiales de Confirmación de esta comunidad, NO SE ENCONTRÓ ninguna partida ni registro a nombre de:\n\nCIUDADANO(A): ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\n\nSe expide la presente constancia a petición del interesado(a), para ser presentada ante la Cancillería de la Arquidiócesis de Maracaibo a los fines de inserción/justificativo del sacramento.\n\nMaracaibo, a los ${emisionDate}.`;
+            text = `CONSTANCIA PARROQUIAL DE INEXISTENCIA DE REGISTRO DE CONFIRMACIÓN\n\nEl suscrito Párroco de la ${normalizedParishName}, en uso de sus facultades canónicas, hace constar que, habiéndose examinado minuciosamente los Libros Parroquiales de Confirmación de esta comunidad, NO SE ENCONTRÓ ninguna partida ni registro a nombre de:\n\nCIUDADANO(A): ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\n\nSe expide la presente constancia a petición del interesado(a), para ser presentada ante la Cancillería de la Arquidiócesis de Maracaibo a los fines de inserción/justificativo del sacramento.\n\nMaracaibo, a los ${emisionDate}.`;
         } else if (type === "Certificación de Bautismo") {
-            text = `CERTIFICACIÓN DE REGISTRO DE BAUTISMO\n\nEl suscrito Párroco de la PARROQUIA ${parishName.toUpperCase()}, en uso de sus facultades, certifica la veracidad del siguiente asiento del libro de Bautismos:\n\nINTERESADO(A): ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\nLIBRO: ${libro || 'N/A'}\tFOLIO: ${folio || 'N/A'}\nFECHA DEL SACRAMENTO: ${dateStr}\nMINISTRO CELEBRANTE: ${celebrante || 'No especificado'}\n\nDETALLES / NOTAS: ${detalles || 'Ninguna.'}\n\nPara fe pública del hecho eclesiástico, se emite la presente en Maracaibo, a los ${emisionDate}.`;
+            text = `CERTIFICACIÓN DE REGISTRO DE BAUTISMO\n\nEl suscrito Párroco de la ${normalizedParishName}, en uso de sus facultades, certifica la veracidad del siguiente asiento del libro de Bautismos:\n\nINTERESADO(A): ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\nLIBRO: ${libro || 'N/A'}\tFOLIO: ${folio || 'N/A'}\nFECHA DEL SACRAMENTO: ${dateStr}\nMINISTRO CELEBRANTE: ${celebrante || 'No especificado'}\n\nDETALLES / NOTAS: ${detalles || 'Ninguna.'}\n\nPara fe pública del hecho eclesiástico, se emite la presente en Maracaibo, a los ${emisionDate}.`;
         } else if (type === "Certificación de Confirmación") {
-            text = `CERTIFICACIÓN DE REGISTRO DE CONFIRMACIÓN\n\nEl suscrito Párroco de la PARROQUIA ${parishName.toUpperCase()}, en uso de sus facultades, certifica la veracidad del siguiente asiento del libro de Confirmaciones:\n\nINTERESADO(A): ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\nLIBRO: ${libro || 'N/A'}\tFOLIO: ${folio || 'N/A'}\nFECHA DEL SACRAMENTO: ${dateStr}\nMINISTRO CELEBRANTE: ${celebrante || 'No especificado'}\n\nDETALLES / NOTAS: ${detalles || 'Ninguna.'}\n\nPara fe pública del hecho eclesiástico, se emite la presente en Maracaibo, a los ${emisionDate}.`;
+            text = `CERTIFICACIÓN DE REGISTRO DE CONFIRMACIÓN\n\nEl suscrito Párroco de la ${normalizedParishName}, en uso de sus facultades, certifica la veracidad del siguiente asiento del libro de Confirmaciones:\n\nINTERESADO(A): ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\nLIBRO: ${libro || 'N/A'}\tFOLIO: ${folio || 'N/A'}\nFECHA DEL SACRAMENTO: ${dateStr}\nMINISTRO CELEBRANTE: ${celebrante || 'No especificado'}\n\nDETALLES / NOTAS: ${detalles || 'Ninguna.'}\n\nPara fe pública del hecho eclesiástico, se emite la presente en Maracaibo, a los ${emisionDate}.`;
         } else {
-            text = `ATESTADO PARROQUIAL DE LIBERTAD Y SOLTERÍA\n\nEl suscrito Párroco de la PARROQUIA ${parishName.toUpperCase()}, hace constar por las presentes letras que el ciudadano(a):\n\nNOMBRE: ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\n\nHa cumplido con el examen de libertad correspondiente. De las averiguaciones y testimonios recibidos, consta que el interesado goza de estado libre y soltero, no teniendo ningún impedimento matrimonial canónico para contraer nupcias eclesiásticas.\n\nTestigos que atestiguan la soltería: ${detalles || 'No registrados.'}\n\nDada en el Despacho Parroquial el ${emisionDate}.`;
+            text = `ATESTADO PARROQUIAL DE LIBERTAD Y SOLTERÍA\n\nEl suscrito Párroco de la ${normalizedParishName}, hace constar por las presentes letras que el ciudadano(a):\n\nNOMBRE: ${interesado}\nCÉDULA DE IDENTIDAD: ${cedula || 'No especificada'}\n\nHa cumplido con el examen de libertad correspondiente. De las averiguaciones y testimonios recibidos, consta que el interesado goza de estado libre y soltero, no teniendo ningún impedimento matrimonial canónico para contraer nupcias eclesiásticas.\n\nTestigos que atestiguan la soltería: ${detalles || 'No registrados.'}\n\nDada en el Despacho Parroquial el ${emisionDate}.`;
         }
         return text;
     }
