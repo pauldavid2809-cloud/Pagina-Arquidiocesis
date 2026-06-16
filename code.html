@@ -1532,6 +1532,10 @@
     <div class="toast-mail-body">
         <div class="toast-mail-field"><strong>Para:</strong> <span id="toast-to">correo@sacerdote.com</span></div>
         <div class="toast-mail-field"><strong>Asunto:</strong> <span id="toast-subj">Código de Seguridad</span></div>
+        <div class="toast-mail-field" id="toast-attachments-field" style="display: none;">
+            <strong>Adjuntos:</strong>
+            <div id="toast-attachments-container" style="display: flex; flex-wrap: wrap; margin-top: 4px;"></div>
+        </div>
         <div id="toast-content" style="background: #0f172a; padding: 0.75rem; border-radius: 4px; color: #e2e8f0; font-family: monospace; font-size: 0.8rem; overflow-wrap: break-word;">
             Contenido del correo electrónico...
         </div>
@@ -3272,7 +3276,15 @@
             let adminAttachments = null;
             if (fileContent && fileName) {
                 const base64Content = fileContent.split(',')[1];
-                adminAttachments = [{ filename: fileName, content: base64Content }];
+                let contentType = 'application/octet-stream';
+                if (fileContent.includes(';base64,')) {
+                    contentType = fileContent.split(';')[0].split(':')[1] || contentType;
+                }
+                adminAttachments = [{ 
+                    filename: fileName, 
+                    content: base64Content,
+                    contentType: contentType
+                }];
             }
             await callSendEmailAPI('cancilleria@arquidiocesisdemaracaibo.org', subjectAdmin, adminHtml, adminAttachments);
         })();
@@ -3836,6 +3848,7 @@
     async function getBase64ImageFromUrl(imageUrl) {
         try {
             const res = await fetch(imageUrl);
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
             const blob = await res.blob();
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -3868,7 +3881,7 @@
         doc.rect(11.5, 11.5, 193, 256); // Inner border
 
         // 2. Add header logo
-        const logoUrl = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBwA_WLOeM2SqpiNB8tqTn3YKrqPWYr_y8RGFGLuh89XZeUat7tXojr9Bcoz5zQHK3SvDEIvv0rNwEp9FIQQjF7eosV8uHZfxKpBz5D7m4Kl7M2AMbnXoGNdZLgycD6e7MPn_XxoIplHPL8IZ3GEVy7Wt03s8oyryyWvn3ItI1mhwxcEgb89RxGEny8RLhS4_fuuFX5tI5C5KtIuEgwiV_lPCxSBNSJjJAu8Q7YvoFT-HobMp4Tk4cOdePtiY8UODTXhw';
+        const logoUrl = window.location.origin + '/img/logo-arquidiocesis.png';
         const logoBase64 = await getBase64ImageFromUrl(logoUrl);
         if (logoBase64) {
             try {
@@ -4114,7 +4127,11 @@
             try {
                 fileDataUrl = await readFileAsDataURL(file);
                 const base64Content = fileDataUrl.split(',')[1];
-                attachments.push({ filename: file.name, content: base64Content });
+                attachments.push({ 
+                    filename: file.name, 
+                    content: base64Content,
+                    contentType: file.type || 'application/octet-stream'
+                });
                 fileName = file.name;
             } catch (err) {
                 console.error("Error al leer el archivo adjunto:", err);
@@ -4139,7 +4156,8 @@
                     const pdfBase64 = pdfDataUri.split(',')[1];
                     attachments.push({
                         filename: `Resolucion_Oficial_${selectedRequestId}.pdf`,
-                        content: pdfBase64
+                        content: pdfBase64,
+                        contentType: 'application/pdf'
                     });
                     console.log("PDF de resolución adjuntado correctamente.");
                 }
@@ -4471,27 +4489,87 @@
             if (response.ok) {
                 console.log('API de correo ejecutada con éxito:', data);
                 if (data.emulated) {
-                    openToastMail(toEmail, subject, htmlContent);
+                    openToastMail(toEmail, subject, htmlContent, attachments);
                     return { success: true, emulated: true };
                 }
                 return { success: true, emulated: false };
             } else {
                 console.error('Fallo en la API de correo:', data);
-                openToastMail(toEmail, `${subject} (SIMULACIÓN DE FALLO DE CONEXIÓN)`, htmlContent);
+                openToastMail(toEmail, `${subject} (SIMULACIÓN DE FALLO DE CONEXIÓN)`, htmlContent, attachments);
                 return { success: false, emulated: true };
             }
         } catch (err) {
             console.error('Error al conectar con la API de envío de correo:', err);
-            openToastMail(toEmail, `${subject} (LOCAL OFFLINE DEV)`, htmlContent);
+            openToastMail(toEmail, `${subject} (LOCAL OFFLINE DEV)`, htmlContent, attachments);
             return { success: false, emulated: true };
         }
     }
 
     // 8. Email Toast Viewer (Dev/Demo)
-    function openToastMail(to, subject, content) {
+    function openToastMail(to, subject, content, attachments = null) {
         document.getElementById('toast-to').textContent = to;
         document.getElementById('toast-subj').textContent = subject;
         document.getElementById('toast-content').innerHTML = content;
+        
+        const attachmentsField = document.getElementById('toast-attachments-field');
+        const attachmentsContainer = document.getElementById('toast-attachments-container');
+        if (attachmentsField && attachmentsContainer) {
+            attachmentsContainer.innerHTML = '';
+            if (attachments && attachments.length > 0) {
+                attachments.forEach(att => {
+                    const attElem = document.createElement('div');
+                    attElem.style.display = 'inline-flex';
+                    attElem.style.alignItems = 'center';
+                    attElem.style.margin = '4px 8px 4px 0';
+                    attElem.style.padding = '4px 10px';
+                    attElem.style.background = '#334155';
+                    attElem.style.color = '#f8fafc';
+                    attElem.style.borderRadius = '6px';
+                    attElem.style.fontSize = '12px';
+                    attElem.style.gap = '6px';
+                    attElem.style.border = '1px solid #475569';
+                    
+                    const icon = document.createElement('i');
+                    icon.className = 'ti ti-file-text';
+                    icon.style.color = '#c59b27';
+                    attElem.appendChild(icon);
+                    
+                    const nameSpan = document.createElement('span');
+                    nameSpan.textContent = att.filename || att.fileName;
+                    nameSpan.style.maxWidth = '150px';
+                    nameSpan.style.overflow = 'hidden';
+                    nameSpan.style.textOverflow = 'ellipsis';
+                    nameSpan.style.whiteSpace = 'nowrap';
+                    attElem.appendChild(nameSpan);
+                    
+                    const base64Content = att.content || att.fileContent;
+                    if (base64Content) {
+                        const downloadLink = document.createElement('a');
+                        let href = base64Content;
+                        if (!href.startsWith('data:')) {
+                            const name = (att.filename || att.fileName || '').toLowerCase();
+                            let mime = 'application/octet-stream';
+                            if (name.endsWith('.pdf')) mime = 'application/pdf';
+                            else if (name.endsWith('.png')) mime = 'image/png';
+                            else if (name.endsWith('.jpg') || name.endsWith('.jpeg')) mime = 'image/jpeg';
+                            href = `data:${mime};base64,${base64Content}`;
+                        }
+                        downloadLink.href = href;
+                        downloadLink.download = att.filename || att.fileName;
+                        downloadLink.innerHTML = '<i class="ti ti-download"></i>';
+                        downloadLink.style.color = '#38bdf8';
+                        downloadLink.style.textDecoration = 'none';
+                        downloadLink.style.marginLeft = '4px';
+                        downloadLink.title = 'Descargar archivo';
+                        attElem.appendChild(downloadLink);
+                    }
+                    attachmentsContainer.appendChild(attElem);
+                });
+                attachmentsField.style.display = 'block';
+            } else {
+                attachmentsField.style.display = 'none';
+            }
+        }
         document.getElementById('toast-mail').style.display = 'flex';
     }
 
@@ -5188,7 +5266,7 @@
                 <p style="text-align: center; color: #7a8bad; font-size: 0.8em; margin: 0;">Portal de Parroquias | Arquidiócesis de Maracaibo</p>
             </div>
         `;
-        openToastMail(currentUser.email, subjectMail, mailBody);
+        openToastMail(currentUser.email, subjectMail, mailBody, attachments);
         showNotification("¡Solicitud enviada con éxito a la Cancillería!", "success");
 
         const form = document.getElementById('form-parish-new-request');
