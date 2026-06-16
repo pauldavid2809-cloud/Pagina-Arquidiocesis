@@ -3925,21 +3925,21 @@
         doc.text(docTitle, 108, 61, { align: 'center' });
 
         // 5. Document Body Text (Dynamic Font Sizing to force Single Page)
-        let fontSize = 11;
-        let lineHeight = 5.5;
+        let fontSize = 12;
+        let lineHeight = 5.8;
         let maxWidth = 156;
         let textLines = doc.splitTextToSize(content, maxWidth);
         
         // Scale down if it exceeds the single-page limit (~18 lines for centered layout)
         if (textLines.length > 18) {
-            fontSize = 9.5;
-            lineHeight = 4.8;
+            fontSize = 10.5;
+            lineHeight = 5.0;
             maxWidth = 162;
             textLines = doc.splitTextToSize(content, maxWidth);
         }
         if (textLines.length > 24) {
-            fontSize = 8.5;
-            lineHeight = 4.2;
+            fontSize = 9;
+            lineHeight = 4.4;
             maxWidth = 166;
             textLines = doc.splitTextToSize(content, maxWidth);
         }
@@ -3948,9 +3948,13 @@
         doc.setFontSize(fontSize);
         doc.setTextColor(27, 28, 25); // on-surface dark
 
+        // Adjust jsPDF's internal line height factor to match our dynamic lineHeight
+        const factor = lineHeight / (fontSize * 0.352778);
+        doc.setLineHeightFactor(factor);
+
         let startY = 69;
         
-        // Render justified paragraphs line by line (strictly on a single page)
+        // Render justified paragraphs (strictly on a single page)
         const linesRaw = content.split('\n');
         linesRaw.forEach(lineRaw => {
             const trimmed = lineRaw.trim();
@@ -3960,14 +3964,8 @@
             }
             
             const pLines = doc.splitTextToSize(trimmed, maxWidth);
-            pLines.forEach((line, lIdx) => {
-                if (lIdx === pLines.length - 1) {
-                    doc.text(line, 26, startY, { align: 'left' });
-                } else {
-                    doc.text(line, 26, startY, { align: 'justify', maxWidth: maxWidth });
-                }
-                startY += lineHeight;
-            });
+            doc.text(trimmed, 26, startY, { align: 'justify', maxWidth: maxWidth });
+            startY += pLines.length * lineHeight;
         });
 
         // 6. Signatures section (keep at bottom, max bound to avoid overflow/overlap)
