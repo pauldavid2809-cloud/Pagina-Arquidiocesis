@@ -3652,6 +3652,7 @@
 
         document.getElementById('adm-view-id').textContent = req.id;
         document.getElementById('adm-view-priest').textContent = req.priestName;
+        document.getElementById('adm-view-email').textContent = req.email || req.priestEmail;
         document.getElementById('adm-view-email-detail').textContent = req.email || req.priestEmail;
         document.getElementById('adm-view-type').textContent = req.type;
         document.getElementById('adm-view-institution').textContent = req.institution || 'No especificada';
