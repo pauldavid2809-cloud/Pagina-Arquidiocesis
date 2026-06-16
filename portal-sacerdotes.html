@@ -3927,18 +3927,21 @@
         // 5. Document Body Text (Dynamic Font Sizing to force Single Page)
         let fontSize = 11;
         let lineHeight = 5.5;
-        let textLines = doc.splitTextToSize(content, 156);
+        let maxWidth = 156;
+        let textLines = doc.splitTextToSize(content, maxWidth);
         
         // Scale down if it exceeds the single-page limit (~21 lines)
         if (textLines.length > 21) {
             fontSize = 9.5;
             lineHeight = 4.8;
-            textLines = doc.splitTextToSize(content, 162);
+            maxWidth = 162;
+            textLines = doc.splitTextToSize(content, maxWidth);
         }
         if (textLines.length > 27) {
             fontSize = 8.5;
             lineHeight = 4.2;
-            textLines = doc.splitTextToSize(content, 166);
+            maxWidth = 166;
+            textLines = doc.splitTextToSize(content, maxWidth);
         }
 
         doc.setFont('Times', 'normal'); // Times/Georgia style serif font
@@ -3947,10 +3950,24 @@
 
         let startY = 69;
         
-        // Render body line by line (strictly on a single page)
-        textLines.forEach(line => {
-            doc.text(line, 26, startY);
-            startY += lineHeight;
+        // Render justified paragraphs line by line (strictly on a single page)
+        const linesRaw = content.split('\n');
+        linesRaw.forEach(lineRaw => {
+            const trimmed = lineRaw.trim();
+            if (trimmed === '') {
+                startY += 3.5; // Spacing for empty line
+                return;
+            }
+            
+            const pLines = doc.splitTextToSize(trimmed, maxWidth);
+            pLines.forEach((line, lIdx) => {
+                if (lIdx === pLines.length - 1) {
+                    doc.text(line, 26, startY, { align: 'left' });
+                } else {
+                    doc.text(line, 26, startY, { align: 'justify', maxWidth: maxWidth });
+                }
+                startY += lineHeight;
+            });
         });
 
         // 6. Signatures section (keep at bottom, max bound to avoid overflow/overlap)
