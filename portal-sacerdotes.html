@@ -3930,14 +3930,14 @@
         let maxWidth = 156;
         let textLines = doc.splitTextToSize(content, maxWidth);
         
-        // Scale down if it exceeds the single-page limit (~21 lines)
-        if (textLines.length > 21) {
+        // Scale down if it exceeds the single-page limit (~18 lines for centered layout)
+        if (textLines.length > 18) {
             fontSize = 9.5;
             lineHeight = 4.8;
             maxWidth = 162;
             textLines = doc.splitTextToSize(content, maxWidth);
         }
-        if (textLines.length > 27) {
+        if (textLines.length > 24) {
             fontSize = 8.5;
             lineHeight = 4.2;
             maxWidth = 166;
@@ -3971,25 +3971,17 @@
         });
 
         // 6. Signatures section (keep at bottom, max bound to avoid overflow/overlap)
-        let sigY = Math.min(Math.max(startY + 8, 188), 212);
+        let sigY = Math.min(Math.max(startY + 30, 195), 228);
 
-        // Draw signatures
+        // Draw Archbishop signature (centered)
         doc.setFont('Helvetica', 'bold');
         doc.setFontSize(9);
         doc.setTextColor(74, 69, 67); // Slate warm
-        doc.line(26, sigY, 96, sigY); // Left line
-        doc.text("Mons. José Luis Azuaje Ayala", 61, sigY + 4.5, { align: 'center' });
+        doc.line(73, sigY, 143, sigY); // Centered line
+        doc.text("Mons. José Luis Azuaje Ayala", 108, sigY + 4.5, { align: 'center' });
         doc.setFont('Helvetica', 'normal');
         doc.setFontSize(7.5);
-        doc.text("Arzobispo Metropolitano de Maracaibo", 61, sigY + 8.5, { align: 'center' });
-
-        doc.setFont('Helvetica', 'bold');
-        doc.setFontSize(9);
-        doc.line(120, sigY, 190, sigY); // Right line
-        doc.text("Registro General", 155, sigY + 4.5, { align: 'center' });
-        doc.setFont('Helvetica', 'normal');
-        doc.setFontSize(7.5);
-        doc.text("Archivo de Cancillería Metropolitana", 155, sigY + 8.5, { align: 'center' });
+        doc.text("Arzobispo Metropolitano de Maracaibo", 108, sigY + 8.5, { align: 'center' });
 
         // 7. Footer details
         doc.setFont('Helvetica', 'bold');
@@ -4003,13 +3995,13 @@
         doc.text("Arquidiócesis de Maracaibo — Estado Zulia, Venezuela", 26, 254);
         doc.text("Documento de Cancillería digital legalmente verificado y sellado.", 26, 258);
 
-        // 8. Validation QR Code
+        // 8. Validation QR Code (Centered above the Archbishop signature line)
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(validationUrl)}`;
         const qrBase64 = await getBase64ImageFromUrl(qrUrl);
         if (qrBase64) {
             try {
-                // Add QR code image at bottom right (above footer separator)
-                doc.addImage(qrBase64, 'PNG', 168, 222, 20, 20);
+                // Add QR code image centered above signature
+                doc.addImage(qrBase64, 'PNG', 98, sigY - 25, 20, 20);
             } catch (e) {
                 console.error("Error al renderizar QR en PDF:", e);
             }
