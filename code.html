@@ -4114,6 +4114,7 @@
         const feedback = document.getElementById('adm-feedback').value.trim();
         const docContent = document.getElementById('adm-document-text').value.trim();
         const fileInput = document.getElementById('adm-upload-file');
+        const reqType = document.getElementById('adm-view-type').textContent;
 
         let targetStatus = submitAction === 'Aprobar' ? 'Aprobado' : 'Rechazado';
         let targetDoc = docContent; // Save document content for both approval and rejection
@@ -4196,7 +4197,6 @@
 
         let priestEmail = document.getElementById('adm-view-email').textContent;
         let priestName = document.getElementById('adm-view-priest').textContent;
-        let reqType = document.getElementById('adm-view-type').textContent;
 
         const isParish = (lastAdminActiveTab === 'tab-admin-solicitudes-parroquias');
         const greeting = isParish ? `Estimados miembros de la <strong>${priestName}</strong>,` : `Estimado Pbro. <strong>${priestName}</strong>,`;
