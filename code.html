@@ -19,6 +19,8 @@
 <!-- Supabase SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
 
 <style>
     /* ── Sacred Modernism — CSS Variables & Utility Styles ── */
@@ -445,6 +447,20 @@
         }
     }
 </style>
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pagina-arquidiocesis.vercel.app/portal-sacerdotes.html">
+<meta property="og:title" content="Portal de Sacerdotes | Arquidiócesis de Maracaibo">
+<meta property="og:description" content="Plataforma digital de trámites del clero de la Arquidiócesis de Maracaibo. Acceso exclusivo para sacerdotes y personal de la Curia Metropolitana.">
+<meta property="og:image" content="https://pagina-arquidiocesis.vercel.app/img/logo-arquidiocesis.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://pagina-arquidiocesis.vercel.app/portal-sacerdotes.html">
+<meta property="twitter:title" content="Portal de Sacerdotes | Arquidiócesis de Maracaibo">
+<meta property="twitter:description" content="Plataforma digital de trámites del clero de la Arquidiócesis de Maracaibo. Acceso exclusivo para sacerdotes y personal de la Curia Metropolitana.">
+<meta property="twitter:image" content="https://pagina-arquidiocesis.vercel.app/img/logo-arquidiocesis.png">
 </head>
 <body class="bg-background text-on-surface font-body">
 
@@ -1076,21 +1092,15 @@
                                 <div class="form-group flex flex-col" id="adm-doc-section">
                                     <label for="adm-document-text" class="font-label text-[13px] font-bold text-slate-warm mb-1.5 flex justify-between items-center flex-wrap gap-2">
                                         <span>Redacción del Documento Oficial Emitido / Resolución</span>
-                                        <div class="flex gap-3">
-                                            <button type="button" onclick="generateDocWithAI()" id="btn-generate-ai" class="bg-crimson-deep hover:bg-primary text-white font-label text-[12px] font-bold py-1.5 px-3 rounded-lg flex items-center gap-1 shadow-sm transition-all active:scale-95">
-                                                <i class="ti ti-sparkles"></i> Generar con IA (Groq)
-                                            </button>
-                                            <button type="button" onclick="loadDocTemplate()" class="text-gold-antique hover:text-secondary font-label text-[12px] font-bold flex items-center gap-1">
-                                                <i class="ti ti-file-symlink"></i> Plantilla Estática
+                                        <div class="flex gap-3 items-center">
+                                            <span class="text-[11px] text-slate-warm/50 font-normal hidden sm:inline">Complete «Motivación» antes de cargar</span>
+                                            <button type="button" onclick="loadDocTemplate()" class="bg-gold-antique/10 hover:bg-gold-antique/20 border border-gold-antique/40 text-gold-antique font-label text-[12px] font-bold py-1.5 px-3 rounded-lg flex items-center gap-1.5 shadow-sm transition-all active:scale-95">
+                                                <i class="ti ti-file-certificate"></i> Cargar Plantilla Canónica
                                             </button>
                                         </div>
                                     </label>
                                     <div class="relative">
-                                        <textarea id="adm-document-text" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[15px] rounded-t-lg" rows="12" placeholder="Redacte el texto que figurará en el certificado eclesiástico formal o resolución..." style="font-family: Georgia, serif; resize: vertical; line-height: 1.6;"></textarea>
-                                        <div id="ai-loading-overlay" class="absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center gap-2 rounded-lg hidden transition-all">
-                                            <i class="ti ti-loader text-crimson-deep text-3xl animate-spin"></i>
-                                            <span class="font-label text-[13px] font-bold text-crimson-deep">Redactando resolución con Groq IA...</span>
-                                        </div>
+                                        <textarea id="adm-document-text" class="w-full bg-warm-ivory/40 border-b-2 border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none px-4 py-3 transition-colors font-body text-[15px] rounded-t-lg" rows="12" placeholder="Haga clic en «Cargar Plantilla Canónica» para generar el texto oficial de la resolución según el tipo de trámite y la decisión seleccionada..." style="font-family: Georgia, serif; resize: vertical; line-height: 1.6;"></textarea>
                                     </div>
                                 </div>
 
@@ -2507,18 +2517,15 @@
 
         // Cargar Parroquias desde el listado autogenerado
         try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 1000);
-            
-            const parishesRes = await fetch('parishes_with_passwords.json', { signal: controller.signal });
-            clearTimeout(timeoutId);
+            const parishesRes = await fetch('parishes.json');
             if (parishesRes.ok) {
                 db.parroquias = await parishesRes.json();
                 console.log("Parroquias cargadas:", db.parroquias.length);
             }
         } catch (e) {
-            console.error("Error al cargar parishes_with_passwords.json:", e);
+            console.error("Error al cargar parishes.json:", e);
         }
+
 
         populateParishDropdown();
     }
@@ -2720,7 +2727,10 @@
         const passwordInput = document.getElementById('login-password').value;
 
         try {
-            let user = null;
+            let payload = {
+                loginType: currentLoginType,
+                password: passwordInput
+            };
 
             if (currentLoginType === 'parish') {
                 const parishCode = document.getElementById('login-parish').value;
@@ -2729,57 +2739,37 @@
                     setLoginLoading(false);
                     return;
                 }
-
-                if (isSupabase) {
-                    const { data, error } = await supabaseClient
-                        .from('parroquias')
-                        .select('*')
-                        .eq('code', parishCode)
-                        .single();
-                    if (data) user = data;
-                } else {
-                    const parish = db.parroquias.find(p => p.code === parishCode);
-                    if (parish) {
-                        user = {
-                            code: parish.code,
-                            name: parish.name,
-                            email: parish.email,
-                            phone: parish.phone,
-                            password: parish.password,
-                            role: parish.role || 'parish',
-                            direccion: parish.direccion || parish.address || "",
-                            parroco: parish.parroco || ""
-                        };
-                    }
-                }
-
-                if (!user) {
-                    alert("La parroquia seleccionada no está registrada.");
-                    setLoginLoading(false);
-                    return;
-                }
+                payload.parishCode = parishCode;
             } else {
                 const emailInput = document.getElementById('login-email').value.trim().toLowerCase();
-                if (isSupabase) {
-                    const { data, error } = await supabaseClient
-                        .from('sacerdotes')
-                        .select('*')
-                        .eq('email', emailInput)
-                        .single();
-                    if (data) user = data;
-                } else {
-                    user = db.users.find(u => u.email && u.email.toLowerCase() === emailInput);
-                }
-
-                if (!user) {
-                    alert("El correo ingresado no está registrado en el portal de la Cancillería.");
+                if (!emailInput) {
+                    alert("Por favor ingrese su correo electrónico.");
                     setLoginLoading(false);
                     return;
                 }
+                payload.email = emailInput;
             }
 
-            if (user.password !== passwordInput) {
-                alert("Contraseña incorrecta. Por favor intente de nuevo.");
+            // Call secure serverless authentication endpoint
+            const res = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await res.json().catch(() => ({}));
+
+            if (!res.ok) {
+                alert(data.error || "Error de inicio de sesión. Por favor verifique sus datos.");
+                setLoginLoading(false);
+                return;
+            }
+
+            const user = data.user;
+            if (!user) {
+                alert("No se pudo recuperar los detalles del usuario.");
                 setLoginLoading(false);
                 return;
             }
@@ -2805,6 +2795,7 @@
             alert("Error durante el inicio de sesión: " + err.message);
             setLoginLoading(false);
         }
+
     }
 
     function handleLogout() {
@@ -3836,8 +3827,11 @@
 
         document.getElementById('adm-doc-section').style.display = 'block';
 
+        // Si la solicitud no tiene documento previo, se deja el campo vacío.
+        // El canciller debe escribir primero la motivación y luego pulsar
+        // «Cargar Plantilla Canónica» para obtener el texto estructurado.
         if (!req.documentContent) {
-            loadDocTemplate();
+            document.getElementById('adm-document-text').value = '';
         }
 
         const tabContentArea = document.getElementById('tab-admin-manage').closest('.dashboard-content');
@@ -3845,7 +3839,20 @@
         document.getElementById('tab-admin-manage').style.display = 'block';
     }
 
+    async function generateQRCodeDataURL(text) {
+        if (window.QRCode) {
+            try {
+                return await window.QRCode.toDataURL(text, { width: 150, margin: 1 });
+            } catch (err) {
+                console.error("Error al generar código QR localmente:", err);
+            }
+        }
+        // Fallback to external API if library not loaded
+        return `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(text)}`;
+    }
+
     async function getBase64ImageFromUrl(imageUrl) {
+
         try {
             const res = await fetch(imageUrl);
             if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -3994,8 +4001,7 @@
         doc.text("Documento de Cancillería digital legalmente verificado y sellado.", 26, 258);
 
         // 8. Validation QR Code (Centered above the Archbishop signature line)
-        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(validationUrl)}`;
-        const qrBase64 = await getBase64ImageFromUrl(qrUrl);
+        const qrBase64 = await generateQRCodeDataURL(validationUrl);
         if (qrBase64) {
             try {
                 // Add QR code image centered above signature
@@ -4004,6 +4010,7 @@
                 console.error("Error al renderizar QR en PDF:", e);
             }
         }
+
 
         return doc.output('datauristring'); // Returns base64 DataURL (e.g. data:application/pdf;base64,...)
     }
@@ -4075,22 +4082,497 @@
         }
     }
 
+    // ══════════════════════════════════════════════════════════════════
+    // PLANTILLAS FIJAS DE RESOLUCIÓN CANÓNICA — CURIA METROPOLITANA
+    // Cubren todos los tipos de trámite × Aprobación y Rechazo.
+    // Incluyen todos los elementos canónicos obligatorios:
+    //   encabezado · número de expediente · identificación del solicitante
+    //   objeto de la solicitud · motivación · parte dispositiva ·
+    //   plazo y vía de recurso (can. 1734, sólo en rechazos) · firma y fecha
+    // ══════════════════════════════════════════════════════════════════
+
     function loadDocTemplate() {
-        const type = document.getElementById('adm-view-type').textContent;
-        const priest = document.getElementById('adm-view-priest').textContent;
-        const parish = document.getElementById('adm-view-parish').textContent;
-        const id = document.getElementById('adm-view-id').textContent;
+        // Leer datos del panel de gestión
+        const type    = document.getElementById('adm-view-type').textContent.trim();
+        const priest  = document.getElementById('adm-view-priest').textContent.trim();
+        const parish  = document.getElementById('adm-view-parish').textContent.trim();
+        const id      = document.getElementById('adm-view-id').textContent.trim();
+        const institution = document.getElementById('adm-view-institution').textContent.trim();
+        const feedback = (document.getElementById('adm-feedback').value || '').trim();
+
+        // Decisión actual seleccionada en los radios
+        const decisionRadio = document.querySelector('input[name="adm-decision"]:checked');
+        const decision = decisionRadio ? decisionRadio.value : 'Aprobar';
+        const isApproval = (decision === 'Aprobar');
+
+        // Fecha en formato canónico
         const today = new Date();
-        const dateStr = today.getDate() + " de " + today.toLocaleString('es-ES', { month: 'long' }) + " de " + today.getFullYear();
+        const dia   = today.getDate();
+        const mes   = today.toLocaleString('es-ES', { month: 'long' });
+        const anio  = today.getFullYear();
+        const dateStr = `${dia} de ${mes} de ${anio}`;
 
-        let template = "";
+        // Número de resolución: año + código de expediente
+        const resNum = `${id}/${anio}`;
 
-        if (type === "Licencia Ministerial") {
-            template = `DECRETO ARZOBISPAL Nº 082/2026\n\nMaracaibo, ${dateStr}\n\nPor cuanto el reverendo presbítero ${priest} goza del aprecio doctrinal, pastoral y moral en nuestra Arquidiócesis de Maracaibo, desempeñando actualmente su ministerio en la ${parish}.\n\nPor las presentes letras y en virtud de nuestras facultades ordinarias, CONCEDEMOS a dicho presbítero la prórroga de su LICENCIA MINISTERIAL por el período de un año fiscal, facultándole para la celebración pública del Santo Sacrificio de la Eucaristía, la predicación de la Palabra de Dios y la administración de los sacramentos litúrgicos correspondientes a su ministerio pastoral, en conformidad con las normas de la Iglesia Católica y las disposiciones locales.\n\nNotifíquese a los interesados.\n\nMons. José Luis Azuaje Ayala, Arzobispo Metropolitano.`;
-        } else if (type.includes("Celebret") || type.includes("Idoneidad")) {
-            template = `CERTIFICADO DE IDONEIDAD MINISTERIAL (CELEBRET)\n\nMaracaibo, ${dateStr}\n\nLa Curia Metropolitana de la Arquidiócesis de Maracaibo certifica por la presente que el reverendo presbítero ${priest} es sacerdote ordenado en comunión con la Sede Apostólica y con el Arzobispado metropolitano.\n\nEl mencionado presbítero goza de una conducta moral intachable y está plenamente autorizado para ejercer las funciones ministeriales y los sacramentos en el territorio de su jurisdicción, no teniendo ningún impedimento canónico para la celebración del culto divino.\n\nRecomendamos fraternalmente su acogida litúrgica a las autoridades eclesiásticas del lugar adonde se traslada temporalmente.\n\nDada en el Arzobispado de Maracaibo, bajo el registro de archivo ${id}.\n\nMons. José Luis Azuaje Ayala, Arzobispo Metropolitano.`;
+        // Motivación / fundamento (el canciller lo escribe en el campo feedback)
+        const motivacion = feedback
+            ? feedback
+            : '[Escriba aquí los fundamentos de hecho y de derecho de esta resolución antes de cargar la plantilla]';
+
+        // ── Cláusula de recurso (obligatoria en rechazos, can. 1734 §1) ──
+        const clausulaRecurso = `\nVÍA DE RECURSO: Contra la presente resolución, el interesado podrá interponer recurso jerárquico ante esta Cancillería dentro del plazo perentorio de diez (10) días hábiles contados desde la notificación de este acto administrativo, de conformidad con el can. 1734 §1 del Código de Derecho Canónico. Transcurrido dicho plazo sin que se interponga recurso, la presente resolución adquirirá firmeza canónica.\n`;
+
+        let template = '';
+
+        // ══════════════════════════════════════════════════════════════════
+        // 1. LICENCIA MINISTERIAL (Prórroga / Renovación)
+        // ══════════════════════════════════════════════════════════════════
+        if (type === 'Licencia Ministerial') {
+
+            if (isApproval) {
+                template =
+`RESOLUCIÓN DE CANCILLERÍA
+Nº ${resNum}
+
+Dada en el Arzobispado de Maracaibo, a ${dateStr}.
+
+ENCABEZADO
+La Curia Metropolitana de la Arquidiócesis de Maracaibo, en ejercicio de las facultades conferidas por el Arzobispo Metropolitano, Mons. José Luis Azuaje Ayala.
+
+IDENTIFICACIÓN DEL SOLICITANTE Y OBJETO
+El reverendo presbítero ${priest}, adscrito a la ${parish}, ha presentado ante esta Cancillería solicitud de Licencia Ministerial (Prórroga/Renovación), con código de expediente ${id}${institution && institution !== 'No especificada' ? `, para ser presentada ante: ${institution}` : ''}.
+
+MOTIVACIÓN
+Examinada la solicitud y los documentos presentados, y habiendo verificado que el solicitante:
+${motivacion}
+
+Esta Cancillería considera que el presbítero cumple los requisitos canónicos y pastorales establecidos por las normas diocesanas para la renovación de la Licencia Ministerial, conforme a los cánones 764, 966 y concordantes del Código de Derecho Canónico.
+
+PARTE DISPOSITIVA
+En virtud de lo expuesto, SE CONCEDE al reverendo presbítero ${priest} la renovación de su LICENCIA MINISTERIAL por el período de un (1) año a partir de la fecha de la presente resolución, facultándole para:
+— La celebración pública del Santo Sacrificio de la Eucaristía.
+— La predicación de la Palabra de Dios en los términos del can. 764.
+— La administración de los sacramentos correspondientes a su ministerio.
+
+Todo ello en el territorio de la Arquidiócesis de Maracaibo y según las disposiciones pastorales locales.
+
+Notifíquese a los interesados y asiéntese en el Registro de Cancillería bajo el código ${id}.
+
+Pbro. Silverio Osorio
+Canciller de la Arquidiócesis de Maracaibo
+
+Mons. José Luis Azuaje Ayala
+Arzobispo Metropolitano de Maracaibo`;
+
+            } else {
+                template =
+`RESOLUCIÓN DE CANCILLERÍA
+Nº ${resNum}
+
+Dada en el Arzobispado de Maracaibo, a ${dateStr}.
+
+ENCABEZADO
+La Curia Metropolitana de la Arquidiócesis de Maracaibo, en ejercicio de las facultades conferidas por el Arzobispo Metropolitano, Mons. José Luis Azuaje Ayala.
+
+IDENTIFICACIÓN DEL SOLICITANTE Y OBJETO
+El reverendo presbítero ${priest}, adscrito a la ${parish}, ha presentado ante esta Cancillería solicitud de Licencia Ministerial (Prórroga/Renovación), con código de expediente ${id}.
+
+MOTIVACIÓN
+Examinada la solicitud y los antecedentes obrantes en el expediente, esta Cancillería ha determinado lo siguiente:
+${motivacion}
+
+Por las razones expuestas, y en ejercicio de la potestad administrativa ordinaria conferida al Ordinario del lugar por los cánones 134 y 381 del Código de Derecho Canónico, no concurren los requisitos necesarios para la concesión del documento solicitado.
+
+PARTE DISPOSITIVA
+En virtud de lo expuesto, SE DENIEGA la Licencia Ministerial solicitada por el reverendo presbítero ${priest}.
+
+${clausulaRecurso}
+Notifíquese al interesado de conformidad con el can. 1509 del Código de Derecho Canónico, dejando constancia de la notificación en el Registro de Cancillería bajo el código ${id}.
+
+Pbro. Silverio Osorio
+Canciller de la Arquidiócesis de Maracaibo
+
+Mons. José Luis Azuaje Ayala
+Arzobispo Metropolitano de Maracaibo`;
+            }
+
+        // ══════════════════════════════════════════════════════════════════
+        // 2. CERTIFICADO DE IDONEIDAD (CELEBRET)
+        // ══════════════════════════════════════════════════════════════════
+        } else if (type.includes('Celebret') || type.includes('Idoneidad')) {
+
+            if (isApproval) {
+                template =
+`CERTIFICADO DE IDONEIDAD MINISTERIAL
+(CELEBRET)
+Nº ${resNum}
+
+Dada en el Arzobispado de Maracaibo, a ${dateStr}.
+
+ENCABEZADO
+La Curia Metropolitana de la Arquidiócesis de Maracaibo, en nombre del Arzobispo Metropolitano, Mons. José Luis Azuaje Ayala.
+
+IDENTIFICACIÓN DEL SOLICITANTE
+El reverendo presbítero ${priest}, adscrito a la ${parish}, código de expediente ${id}.
+
+CERTIFICACIÓN
+Habiendo sido verificada la condición canónica, la idoneidad moral y pastoral del solicitante, y constando que:
+${motivacion}
+
+Esta Cancillería CERTIFICA que el reverendo presbítero ${priest} es sacerdote válidamente ordenado, en plena comunión con la Sede Apostólica y con el Ordinario de esta Arquidiócesis, sin que conste impedimento canónico alguno para el ejercicio de las funciones ministeriales.
+
+PARTE DISPOSITIVA
+SE EXPIDE el presente Certificado de Idoneidad Ministerial (Celebret), por el que se acredita que el mencionado presbítero está autorizado para:
+— Celebrar el Santo Sacrificio de la Eucaristía.
+— Administrar el sacramento de la Penitencia.
+— Predicar la Palabra de Dios.
+
+Se recomienda fraternalmente a las autoridades eclesiásticas y ordinarios del lugar su acogida y cooperación pastoral${institution && institution !== 'No especificada' ? `, especialmente ante: ${institution}` : ''}.
+
+Válido hasta el día ${new Date(today.getFullYear() + 1, today.getMonth(), today.getDate()).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}.
+
+Código de verificación: ${id}
+
+Pbro. Silverio Osorio
+Canciller de la Arquidiócesis de Maracaibo
+
+Mons. José Luis Azuaje Ayala
+Arzobispo Metropolitano de Maracaibo`;
+
+            } else {
+                template =
+`RESOLUCIÓN DE CANCILLERÍA
+Nº ${resNum}
+
+Dada en el Arzobispado de Maracaibo, a ${dateStr}.
+
+ENCABEZADO
+La Curia Metropolitana de la Arquidiócesis de Maracaibo, en ejercicio de las facultades del Arzobispo Metropolitano, Mons. José Luis Azuaje Ayala.
+
+IDENTIFICACIÓN DEL SOLICITANTE Y OBJETO
+El reverendo presbítero ${priest}, adscrito a la ${parish}, ha solicitado ante esta Cancillería la expedición del Certificado de Idoneidad Ministerial (Celebret), código de expediente ${id}.
+
+MOTIVACIÓN
+Examinado el expediente y los antecedentes obrantes en esta Cancillería, se ha determinado:
+${motivacion}
+
+En atención a dichas circunstancias, y conforme a los cánones 764, 903 y concordantes, no procede la expedición del certificado solicitado en este momento.
+
+PARTE DISPOSITIVA
+SE DENIEGA la expedición del Certificado de Idoneidad Ministerial (Celebret) solicitado por el reverendo presbítero ${priest}.
+
+${clausulaRecurso}
+Notifíquese al interesado y asiéntese en el Registro de Cancillería bajo el código ${id}.
+
+Pbro. Silverio Osorio
+Canciller de la Arquidiócesis de Maracaibo
+
+Mons. José Luis Azuaje Ayala
+Arzobispo Metropolitano de Maracaibo`;
+            }
+
+        // ══════════════════════════════════════════════════════════════════
+        // 3. CONSTANCIA DE TRABAJO
+        // ══════════════════════════════════════════════════════════════════
+        } else if (type === 'Constancia de Trabajo') {
+
+            if (isApproval) {
+                template =
+`CONSTANCIA DE TRABAJO
+Nº ${resNum}
+
+Dada en el Arzobispado de Maracaibo, a ${dateStr}.
+
+ENCABEZADO
+La Curia Metropolitana de la Arquidiócesis de Maracaibo, en nombre del Arzobispo Metropolitano, Mons. José Luis Azuaje Ayala.
+
+IDENTIFICACIÓN DEL SOLICITANTE
+El reverendo presbítero ${priest}, código de expediente ${id}.
+
+CONSTANCIA
+Por medio de la presente, esta Cancillería HACE CONSTAR que el reverendo presbítero ${priest} presta actualmente sus servicios ministeriales en la ${parish}, en el ejercicio de las funciones propias de su estado clerical, bajo la dependencia jerárquica de esta Arquidiócesis.
+
+MOTIVACIÓN Y VERIFICACIÓN
+${motivacion}
+
+PARTE DISPOSITIVA
+SE EXPIDE la presente Constancia de Trabajo a solicitud del interesado${institution && institution !== 'No especificada' ? `, para ser presentada ante: ${institution}` : ', para los fines que estime convenientes'}.
+
+La presente constancia tiene validez de noventa (90) días a partir de la fecha de su emisión.
+
+Código de verificación: ${id}
+
+Pbro. Silverio Osorio
+Canciller de la Arquidiócesis de Maracaibo
+
+Mons. José Luis Azuaje Ayala
+Arzobispo Metropolitano de Maracaibo`;
+
+            } else {
+                template =
+`RESOLUCIÓN DE CANCILLERÍA
+Nº ${resNum}
+
+Dada en el Arzobispado de Maracaibo, a ${dateStr}.
+
+IDENTIFICACIÓN DEL SOLICITANTE Y OBJETO
+El reverendo presbítero ${priest}, adscrito a la ${parish}, ha solicitado ante esta Cancillería una Constancia de Trabajo, código de expediente ${id}.
+
+MOTIVACIÓN
+Examinado el expediente, esta Cancillería ha determinado:
+${motivacion}
+
+PARTE DISPOSITIVA
+SE DENIEGA la expedición de la Constancia de Trabajo solicitada por el reverendo presbítero ${priest}.
+
+${clausulaRecurso}
+Notifíquese al interesado y asiéntese en el Registro de Cancillería bajo el código ${id}.
+
+Pbro. Silverio Osorio
+Canciller de la Arquidiócesis de Maracaibo
+
+Mons. José Luis Azuaje Ayala
+Arzobispo Metropolitano de Maracaibo`;
+            }
+
+        // ══════════════════════════════════════════════════════════════════
+        // 4. TESTIMONIO DE BUENA CONDUCTA
+        // ══════════════════════════════════════════════════════════════════
+        } else if (type === 'Testimonio de Buena Conducta') {
+
+            if (isApproval) {
+                template =
+`TESTIMONIO DE BUENA CONDUCTA
+Nº ${resNum}
+
+Dada en el Arzobispado de Maracaibo, a ${dateStr}.
+
+ENCABEZADO
+La Curia Metropolitana de la Arquidiócesis de Maracaibo, en nombre del Arzobispo Metropolitano, Mons. José Luis Azuaje Ayala.
+
+IDENTIFICACIÓN DEL SOLICITANTE
+El reverendo presbítero ${priest}, adscrito a la ${parish}, código de expediente ${id}.
+
+TESTIMONIO
+Esta Cancillería, a tenor del can. 1051 y normas concordantes, ATESTIGUA que el reverendo presbítero ${priest} ha desempeñado su ministerio con fidelidad, rectitud de vida y recta doctrina, sin que en los registros de esta Curia conste impedimento moral, canónico o disciplinario alguno.
+
+MOTIVACIÓN Y VERIFICACIÓN
+${motivacion}
+
+PARTE DISPOSITIVA
+SE EXPIDE el presente Testimonio de Buena Conducta${institution && institution !== 'No especificada' ? ` para ser presentado ante: ${institution}` : ', a los fines que el interesado estime convenientes'}.
+
+La presente constancia tiene validez de noventa (90) días a partir de la fecha de su emisión.
+
+Código de verificación: ${id}
+
+Pbro. Silverio Osorio
+Canciller de la Arquidiócesis de Maracaibo
+
+Mons. José Luis Azuaje Ayala
+Arzobispo Metropolitano de Maracaibo`;
+
+            } else {
+                template =
+`RESOLUCIÓN DE CANCILLERÍA
+Nº ${resNum}
+
+Dada en el Arzobispado de Maracaibo, a ${dateStr}.
+
+IDENTIFICACIÓN DEL SOLICITANTE Y OBJETO
+El reverendo presbítero ${priest}, adscrito a la ${parish}, ha solicitado ante esta Cancillería un Testimonio de Buena Conducta, código de expediente ${id}.
+
+MOTIVACIÓN
+Examinados los antecedentes obrantes en esta Cancillería, se ha determinado:
+${motivacion}
+
+PARTE DISPOSITIVA
+SE DENIEGA la expedición del Testimonio de Buena Conducta solicitado por el reverendo presbítero ${priest}.
+
+${clausulaRecurso}
+Notifíquese al interesado y asiéntese en el Registro de Cancillería bajo el código ${id}.
+
+Pbro. Silverio Osorio
+Canciller de la Arquidiócesis de Maracaibo
+
+Mons. José Luis Azuaje Ayala
+Arzobispo Metropolitano de Maracaibo`;
+            }
+
+        // ══════════════════════════════════════════════════════════════════
+        // 5. TRÁMITES PARROQUIALES (Dispensas, Correcciones, Atestados…)
+        // ══════════════════════════════════════════════════════════════════
+        } else if (
+            type.includes('Dispensa') || type.includes('Corrección') ||
+            type.includes('Inserción') || type.includes('Atestado') ||
+            type.includes('Licencia Matrimonial') || type.includes('Proclamas') ||
+            type.includes('Justificativo') || type.includes('Celebración de Bautismo') ||
+            type.includes('Compromiso') || type.includes('Bautismo') ||
+            type.includes('Confirmación') || type.includes('Matrimon')
+        ) {
+
+            // Determinar título y norma canónica aplicable
+            let tituloDoc = 'RESOLUCIÓN DE CANCILLERÍA';
+            let normaCanonica = 'los cánones pertinentes del Código de Derecho Canónico';
+
+            if (type.includes('Dispensa') && type.includes('Disparidad')) {
+                tituloDoc = 'DECRETO DE DISPENSA DEL IMPEDIMENTO DE DISPARIDAD DE CULTO';
+                normaCanonica = 'el can. 1086 del Código de Derecho Canónico';
+            } else if (type.includes('Dispensa') && type.includes('Mixta')) {
+                tituloDoc = 'DECRETO DE DISPENSA DEL IMPEDIMENTO DE MIXTA RELIGIÓN';
+                normaCanonica = 'el can. 1124 del Código de Derecho Canónico';
+            } else if (type.includes('Dispensa') && type.includes('Consanguinidad')) {
+                tituloDoc = 'DECRETO DE DISPENSA DEL IMPEDIMENTO DE CONSANGUINIDAD';
+                normaCanonica = 'el can. 1078 del Código de Derecho Canónico';
+            } else if (type.includes('Proclamas')) {
+                tituloDoc = 'DECRETO DE DISPENSA DE PROCLAMAS';
+                normaCanonica = 'el can. 1067 del Código de Derecho Canónico';
+            } else if (type.includes('Licencia Matrimonial')) {
+                tituloDoc = 'RESOLUCIÓN SOBRE LICENCIA MATRIMONIAL';
+                normaCanonica = 'el can. 1071 del Código de Derecho Canónico';
+            } else if (type.includes('Atestado') || type.includes('Libertad') || type.includes('Soltería')) {
+                tituloDoc = 'ATESTADO DE LIBERTAD Y SOLTERÍA';
+                normaCanonica = 'el can. 1066 del Código de Derecho Canónico';
+            } else if (type.includes('Inserción') || type.includes('Corrección')) {
+                tituloDoc = 'RESOLUCIÓN SOBRE CORRECCIÓN E INSERCIÓN DE PARTIDA SACRAMENTAL';
+                normaCanonica = 'el can. 535 §2 del Código de Derecho Canónico';
+            } else if (type.includes('Justificativo') || type.includes('Celebración') || type.includes('Bautismo de Adultos')) {
+                tituloDoc = 'RESOLUCIÓN SOBRE BAUTISMO';
+                normaCanonica = 'los cánones 864 ss. del Código de Derecho Canónico';
+            } else if (type.includes('Compromiso') || type.includes('Confirmación')) {
+                tituloDoc = 'RESOLUCIÓN SOBRE CONFIRMACIÓN';
+                normaCanonica = 'los cánones 879 ss. del Código de Derecho Canónico';
+            }
+
+            const nombreParroquia = parish.startsWith('(') ? '[Nombre de la Parroquia]' : parish;
+
+            if (isApproval) {
+                template =
+`${tituloDoc}
+Nº ${resNum}
+
+Dada en el Arzobispado de Maracaibo, a ${dateStr}.
+
+ENCABEZADO
+La Curia Metropolitana de la Arquidiócesis de Maracaibo, en nombre del Arzobispo Metropolitano, Mons. José Luis Azuaje Ayala, con arreglo a ${normaCanonica}.
+
+IDENTIFICACIÓN DEL SOLICITANTE Y OBJETO
+La parroquia/rectoría ${nombreParroquia} ha presentado ante esta Cancillería la solicitud de trámite correspondiente a: "${type}", con código de expediente ${id}.
+
+MOTIVACIÓN
+Examinada la solicitud y los documentos presentados, y habiéndose verificado lo siguiente:
+${motivacion}
+
+Esta Cancillería, tras evaluar las circunstancias de hecho y de derecho, considera que concurren los requisitos establecidos por la disciplina canónica para la concesión del presente trámite.
+
+PARTE DISPOSITIVA
+En virtud de lo expuesto, SE CONCEDE la resolución favorable correspondiente al trámite "${type}", quedando autorizada su ejecución en los términos establecidos por el Derecho Canónico y las normas diocesanas de la Arquidiócesis de Maracaibo.
+
+Asiéntese la presente resolución en los libros correspondientes y notifíquese a los interesados. Código de verificación: ${id}.
+
+Pbro. Silverio Osorio
+Canciller de la Arquidiócesis de Maracaibo
+
+Mons. José Luis Azuaje Ayala
+Arzobispo Metropolitano de Maracaibo`;
+
+            } else {
+                template =
+`${tituloDoc} — RESOLUCIÓN DENEGATORIA
+Nº ${resNum}
+
+Dada en el Arzobispado de Maracaibo, a ${dateStr}.
+
+ENCABEZADO
+La Curia Metropolitana de la Arquidiócesis de Maracaibo, en nombre del Arzobispo Metropolitano, Mons. José Luis Azuaje Ayala, con arreglo a ${normaCanonica}.
+
+IDENTIFICACIÓN DEL SOLICITANTE Y OBJETO
+La parroquia/rectoría ${nombreParroquia} ha presentado ante esta Cancillería la solicitud de trámite correspondiente a: "${type}", con código de expediente ${id}.
+
+MOTIVACIÓN
+Examinada la solicitud y los antecedentes obrantes en el expediente, esta Cancillería ha determinado:
+${motivacion}
+
+En atención a dichas circunstancias y conforme a la normativa canónica aplicable, no concurren en este momento los requisitos necesarios para la concesión del trámite solicitado.
+
+PARTE DISPOSITIVA
+SE DENIEGA la resolución favorable sobre el trámite "${type}" solicitado por la parroquia ${nombreParroquia}.
+
+${clausulaRecurso}
+Notifíquese a los interesados con arreglo al can. 1509 del Código de Derecho Canónico y asiéntese en el Registro de Cancillería bajo el código ${id}.
+
+Pbro. Silverio Osorio
+Canciller de la Arquidiócesis de Maracaibo
+
+Mons. José Luis Azuaje Ayala
+Arzobispo Metropolitano de Maracaibo`;
+            }
+
+        // ══════════════════════════════════════════════════════════════════
+        // 6. OTRO TIPO DE TRÁMITE (genérico)
+        // ══════════════════════════════════════════════════════════════════
         } else {
-            template = `RESOLUCIÓN ARZOBISPAL\n\nMaracaibo, ${dateStr}\n\nEn atención a la solicitud presentada por el presbítero ${priest} adscrito a la ${parish}, referente a la solicitud de: "${type}".\n\nEste Arzobispado metropolitano, oído el parecer del Ordinario del lugar y habiendo cumplido con los requerimientos documentales exigidos por la disciplina eclesiástica, CONCEDE la autorización oficial correspondiente para el fin descrito en su solicitud, debiendo asentarse la respectiva acta de ejecución en los libros parroquiales de origen.\n\nDado para fe pública de lo decretado.\n\nMons. José Luis Azuaje Ayala, Arzobispo Metropolitano.`;
+
+            if (isApproval) {
+                template =
+`RESOLUCIÓN DE CANCILLERÍA
+Nº ${resNum}
+
+Dada en el Arzobispado de Maracaibo, a ${dateStr}.
+
+ENCABEZADO
+La Curia Metropolitana de la Arquidiócesis de Maracaibo, en ejercicio de las facultades del Arzobispo Metropolitano, Mons. José Luis Azuaje Ayala.
+
+IDENTIFICACIÓN DEL SOLICITANTE Y OBJETO
+${priest ? `El reverendo presbítero ${priest}, adscrito a la ${parish}, ha` : `La parroquia ${parish} ha`} presentado ante esta Cancillería solicitud de: "${type}", con código de expediente ${id}${institution && institution !== 'No especificada' ? `, para ser presentada ante: ${institution}` : ''}.
+
+MOTIVACIÓN
+Examinada la solicitud y los documentos presentados:
+${motivacion}
+
+Esta Cancillería considera que concurren los requisitos necesarios para la resolución favorable del trámite solicitado.
+
+PARTE DISPOSITIVA
+SE CONCEDE la autorización oficial correspondiente al trámite "${type}".
+
+Notifíquese a los interesados y asiéntese en el Registro de Cancillería bajo el código ${id}.
+
+Pbro. Silverio Osorio
+Canciller de la Arquidiócesis de Maracaibo
+
+Mons. José Luis Azuaje Ayala
+Arzobispo Metropolitano de Maracaibo`;
+
+            } else {
+                template =
+`RESOLUCIÓN DE CANCILLERÍA
+Nº ${resNum}
+
+Dada en el Arzobispado de Maracaibo, a ${dateStr}.
+
+ENCABEZADO
+La Curia Metropolitana de la Arquidiócesis de Maracaibo, en ejercicio de las facultades del Arzobispo Metropolitano, Mons. José Luis Azuaje Ayala.
+
+IDENTIFICACIÓN DEL SOLICITANTE Y OBJETO
+${priest ? `El reverendo presbítero ${priest}, adscrito a la ${parish}, ha` : `La parroquia ${parish} ha`} presentado ante esta Cancillería solicitud de: "${type}", con código de expediente ${id}.
+
+MOTIVACIÓN
+Examinada la solicitud y los antecedentes obrantes en esta Cancillería:
+${motivacion}
+
+PARTE DISPOSITIVA
+SE DENIEGA la resolución favorable sobre el trámite "${type}".
+
+${clausulaRecurso}
+Notifíquese al interesado y asiéntese en el Registro de Cancillería bajo el código ${id}.
+
+Pbro. Silverio Osorio
+Canciller de la Arquidiócesis de Maracaibo
+
+Mons. José Luis Azuaje Ayala
+Arzobispo Metropolitano de Maracaibo`;
+            }
         }
 
         document.getElementById('adm-document-text').value = template;
@@ -4604,8 +5086,11 @@
         const validationUrl = `${window.location.origin}/validar.html?code=${req.id}`;
         const qrContainer = document.getElementById('doc-render-qr');
         if (qrContainer) {
-            qrContainer.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(validationUrl)}" alt="QR de Validación" style="width: 100%; height: 100%; object-fit: contain;">`;
+            generateQRCodeDataURL(validationUrl).then(qrBase64 => {
+                qrContainer.innerHTML = `<img src="${qrBase64}" alt="QR de Validación" style="width: 100%; height: 100%; object-fit: contain;">`;
+            });
         }
+
 
         switchView('view-document');
     }
@@ -5620,8 +6105,9 @@
         if (modal) modal.style.display = 'none';
     }
 
-    function updateConstPreview() {
+    async function updateConstPreview() {
         const type = document.getElementById('const-type').value;
+
 
         // Toggle contrayente 2 fields & dynamic labels
         const contrayente2Group = document.getElementById('const-contrayente2-group');
@@ -5693,8 +6179,10 @@
         const parishCode = currentUser.code || 'PZ0-0';
         const verifCode = `CP-${parishCode}-${new Date().getFullYear()}-${tempReqId}`;
         const validationUrl = `${window.location.origin}/validar.html?code=${verifCode}`;
+        const qrBase64 = await generateQRCodeDataURL(validationUrl);
 
         // Formatear firma sin repetir títulos
+
         let formattedCelebrante = celebrante;
         if (formattedCelebrante && formattedCelebrante !== '[Ministro Celebrante]' && !/^(pbro\.|mons\.|r\.p\.|r\.\s*p\.|fray|pbros\.|diac\.)/i.test(formattedCelebrante)) {
             formattedCelebrante = "Pbro. " + formattedCelebrante;
@@ -5741,8 +6229,9 @@
                                 <div class="opacity-75">Validez legal mediante verificación digital diocesana.</div>
                             </div>
                             <div style="width: 55px; height: 55px; background: white; padding: 2px; border: 1px solid rgba(197, 155, 39, 0.3);" class="shrink-0 shadow-sm">
-                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(validationUrl)}" alt="QR" style="width: 100%; height: 100%; object-fit: contain;">
+                                <img src="${qrBase64}" alt="QR" style="width: 100%; height: 100%; object-fit: contain;">
                             </div>
+
                         </div>
                     </footer>
                 </div>
@@ -5795,8 +6284,9 @@
         printWindow.document.close();
     }
 
-    function attachConstanciaToForm() {
+    async function attachConstanciaToForm() {
         const category = document.getElementById('parish-req-category').value;
+
         const type = document.getElementById('parish-req-type').value;
         if (!category || !type) {
             alert("Por favor seleccione primero una categoría y tipo de trámite en el formulario principal.");
@@ -5857,7 +6347,9 @@
         const parishCode = currentUser.code || 'PZ0-0';
         const verifCode = `CP-${parishCode}-${new Date().getFullYear()}-${tempReqId}`;
         const validationUrl = `${window.location.origin}/validar.html?code=${verifCode}`;
+        const qrBase64 = await generateQRCodeDataURL(validationUrl);
         const parishName = currentUser.name || 'Parroquia';
+
 
         let formattedCelebrante = celebrante;
         if (formattedCelebrante && !/^(pbro\.|mons\.|r\.p\.|r\.\s*p\.|fray|pbros\.|diac\.)/i.test(formattedCelebrante)) {
@@ -5964,8 +6456,9 @@
                     <div>Validez legal mediante verificación digital diocesana.</div>
                 </div>
                 <div style="width: 70px; height: 70px; background: white; padding: 2px; border: 1px solid #ebdcb9;">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(validationUrl)}" alt="QR" style="width: 100%; height: 100%; object-fit: contain;">
+                    <img src="${qrBase64}" alt="QR" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
+
             </div>
         </div>
     </div>

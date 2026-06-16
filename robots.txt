@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pagina-arquidiocesis.vercel.app/sitemap.xml

@@ -1,15 +1,8 @@
-export default function handler(req, res) {
-  // CORS configuration
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
+import { handleCors } from './_cors.js';
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
+export default function handler(req, res) {
+  if (!handleCors(req, res)) {
+    return;
   }
 
   if (req.method !== 'GET') {
@@ -22,3 +15,4 @@ export default function handler(req, res) {
     supabaseAnonKey: process.env.SUPABASE_ANON_KEY || ''
   });
 }
+

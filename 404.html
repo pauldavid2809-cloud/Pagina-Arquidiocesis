@@ -1,0 +1,67 @@
+<!DOCTYPE html><html class="light" lang="es">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Página no encontrada | Arquidiócesis de Maracaibo</title>
+<meta content="Página no encontrada. El recurso al que intenta acceder no está disponible." name="description">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pagina-arquidiocesis.vercel.app/404.html">
+<meta property="og:title" content="Página no encontrada | Arquidiócesis de Maracaibo">
+<meta property="og:description" content="Página no encontrada. El recurso al que intenta acceder no está disponible.">
+<meta property="og:image" content="https://pagina-arquidiocesis.vercel.app/img/logo-arquidiocesis.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://pagina-arquidiocesis.vercel.app/404.html">
+<meta property="twitter:title" content="Página no encontrada | Arquidiócesis de Maracaibo">
+<meta property="twitter:description" content="Página no encontrada. El recurso al que intenta acceder no está disponible.">
+<meta property="twitter:image" content="https://pagina-arquidiocesis.vercel.app/img/logo-arquidiocesis.png">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/stitch-config.js"></script>
+
+<!-- Core Styles -->
+<link href="css/stitch-core.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen flex flex-col justify-between">
+<!-- Navbar injected by JS -->
+<div id="stitch-navbar"></div>
+
+<main class="flex-1 flex flex-col items-center justify-center py-20 px-margin-mobile md:px-gutter text-center">
+  <div class="max-w-md space-y-6">
+    <!-- Icon/Graphic -->
+    <div class="w-24 h-24 mx-auto flex items-center justify-center rounded-full bg-crimson-deep/10 text-crimson-deep">
+      <span class="material-symbols-outlined text-5xl">warning</span>
+    </div>
+    <!-- Title -->
+    <h1 class="font-display text-5xl font-bold text-crimson-deep leading-none">404</h1>
+    <h2 class="font-headline text-2xl font-bold text-slate-warm">Página no encontrada</h2>
+    <!-- Message -->
+    <p class="font-body text-[16px] text-slate-warm/80 leading-relaxed">
+      Lo sentimos, el enlace al que intenta acceder no existe, ha sido eliminado o se encuentra temporalmente inactivo.
+    </p>
+    <!-- Button -->
+    <div class="pt-4">
+      <a href="index.html" class="inline-flex bg-crimson-deep text-white px-8 py-3.5 rounded-full font-label text-[14px] font-bold hover:bg-primary transition-all duration-150 shadow-md hover:shadow-lg active:scale-95 uppercase tracking-wider">
+        Volver al Inicio
+      </a>
+    </div>
+  </div>
+</main>
+
+<!-- Footer injected by JS -->
+<div id="stitch-footer"></div>
+
+<script src="js/stitch-components.js"></script>
+<script>StitchLayout.init({ activePage: '404' });</script>
+</body>
+</html>

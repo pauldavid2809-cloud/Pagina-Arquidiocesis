@@ -40,6 +40,20 @@
             border: 1px solid #fca5a5;
         }
     </style>
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pagina-arquidiocesis.vercel.app/validar.html">
+<meta property="og:title" content="Validador de Documentos | Arquidiócesis de Maracaibo">
+<meta property="og:description" content="Sistema de verificación y validación legal de documentos de la Arquidiócesis de Maracaibo.">
+<meta property="og:image" content="https://pagina-arquidiocesis.vercel.app/img/logo-arquidiocesis.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://pagina-arquidiocesis.vercel.app/validar.html">
+<meta property="twitter:title" content="Validador de Documentos | Arquidiócesis de Maracaibo">
+<meta property="twitter:description" content="Sistema de verificación y validación legal de documentos de la Arquidiócesis de Maracaibo.">
+<meta property="twitter:image" content="https://pagina-arquidiocesis.vercel.app/img/logo-arquidiocesis.png">
 </head>
 <body class="bg-[#fbf9f4] min-h-screen flex flex-col">
 
@@ -118,14 +132,15 @@
 
         // Cargar Parroquias desde el listado autogenerado para nombres de párrocos
         try {
-            const parishesRes = await fetch('parishes_with_passwords.json');
+            const parishesRes = await fetch('parishes.json');
             if (parishesRes.ok) {
                 db.parroquias = await parishesRes.json();
                 console.log("Parroquias cargadas en validar:", db.parroquias.length);
             }
         } catch (e) {
-            console.error("Error al cargar parishes_with_passwords.json en validar:", e);
+            console.error("Error al cargar parishes.json en validar:", e);
         }
+
     }
 
     // Main validation function
