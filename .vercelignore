@@ -5,6 +5,7 @@
 # Exclude development text and binary files
 *.txt
 *.pdf
+!vos-estis-lux-mundi.pdf
 *.docx
 imagenes_originales/
 
