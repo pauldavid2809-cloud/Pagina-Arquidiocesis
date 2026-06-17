@@ -17,7 +17,6 @@ PAGES = [
     "seminario.html",
     "vida-consagrada.html",
     "ambientes.html",
-    "portal-cancilleria.html",
 ]
 
 STITCH_HEAD = """<!DOCTYPE html>
