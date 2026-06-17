@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marco Legal | Ambientes Seguros - Arquidiócesis de Maracaibo</title>
+  <meta name="description" content="Protocolo CEV, Código de Conducta y leyes nacionales venezolanas para la protección de menores y adultos vulnerables." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="Ambiemtes Seguros.png" alt="Ambientes Seguros Logo" />
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-item">Inicio</a>
+        <a href="escucha.html" class="nav-item nav-item--alert">Escucha</a>
+        <a href="formacion.html" class="nav-item">Formación</a>
+        <a href="marco-legal.html" class="nav-item active">Marco Legal</a>
+        <a href="contacto.html" class="nav-item">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero page-hero--dark">
+    <canvas id="hero-canvas"></canvas>
+    <div class="container">
+      <span class="hero-badge"><i class="fa-solid fa-scale-balanced"></i> Documentación Oficial</span>
+      <h1>Marco Legal y Documentación</h1>
+      <p>Conoce los protocolos canónicos y las leyes civiles venezolanas que fundamentan nuestro compromiso con la protección de los más vulnerables.</p>
+    </div>
+  </section>
+
+  <!-- PROTOCOLO CEV -->
+  <section class="section section--white" id="protocolo-cev">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Protocolo Eclesial</span>
+        <h2>Protocolo CEV</h2>
+        <p>Documento oficial de la Conferencia Episcopal Venezolana para la Prevención de Abusos.</p>
+      </div>
+      <div class="legal-card" id="doc-cev">
+        <div class="legal-card__icon"><i class="fa-solid fa-book-bible"></i></div>
+        <div class="legal-card__content">
+          <h3>Protocolo para la Prevención de Abusos</h3>
+          <p class="legal-issuer">Conferencia Episcopal Venezolana (CEV)</p>
+          <p>Este protocolo establece los procedimientos canónicos y pastorales que deben seguir todas las diócesis y arquidiócesis de Venezuela ante casos de abuso sexual, abuso de poder, abuso de conciencia y abuso contra menores.</p>
+          <ul class="legal-highlights">
+            <li><i class="fa-solid fa-circle-check"></i> Procedimiento de denuncia interne canónica</li>
+            <li><i class="fa-solid fa-circle-check"></i> Protección de la identidad del denunciante</li>
+            <li><i class="fa-solid fa-circle-check"></i> Cooperación obligatoria con autoridades civiles</li>
+            <li><i class="fa-solid fa-circle-check"></i> Medidas cautelares durante la investigación</li>
+          </ul>
+          <span class="badge badge--info">Documento en preparación</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓDIGO DE CONDUCTA -->
+  <section class="section section--light" id="codigo">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Normas Internas</span>
+        <h2>Código de Conducta</h2>
+        <p>Normas específicas para el trato con menores y adultos vulnerables en Maracaibo.</p>
+      </div>
+      <div class="conduct-grid" id="clero">
+        <div class="conduct-item" id="regla-1">
+          <div class="conduct-number">01</div>
+          <h3>Nunca estar a solas</h3>
+          <p>Ningún adulto puede estar solo con un menor en espacios cerrados o sin visión directa de otro adulto responsable.</p>
+        </div>
+        <div class="conduct-item" id="regla-2">
+          <div class="conduct-number">02</div>
+          <h3>Lenguaje apropiado</h3>
+          <p>El lenguaje, los gestos y el contacto físico deben ser siempre apropiados para la edad y el contexto pastoral.</p>
+        </div>
+        <div class="conduct-item" id="regla-3">
+          <div class="conduct-number">03</div>
+          <h3>Comunicación transparente</h3>
+          <p>Toda comunicación digital con menores debe incluir a los padres o tutores en copia, y realizarse por canales oficiales.</p>
+        </div>
+        <div class="conduct-item" id="regla-4">
+          <div class="conduct-number">04</div>
+          <h3>Reporte inmediato</h3>
+          <p>Cualquier sospecha, insinuación o comportamiento inapropiado debe reportarse de inmediato a la Comisión y a las autoridades civiles.</p>
+        </div>
+        <div class="conduct-item" id="regla-5">
+          <div class="conduct-number">05</div>
+          <h3>No represalias</h3>
+          <p>Está estrictamente prohibido tomar represalias contra quienes denuncien de buena fe una situación de abuso o preocupación.</p>
+        </div>
+        <div class="conduct-item" id="regla-6">
+          <div class="conduct-number">06</div>
+          <h3>Formación continua</h3>
+          <p>Todo el personal pastoral debe renovar su formación en Ambientes Seguros cada dos años como mínimo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="Ambiemtes Seguros.png" alt="Logo Ambientes Seguros" class="footer-logo" />
+          <p>Comisión Arquidiocesana para la Promoción de Ambientes Seguros — Arquidiócesis de Maracaibo.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Páginas</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="escucha.html">Escucha y Asistencia</a></li>
+            <li><a href="formacion.html">Formación y Prevención</a></li>
+            <li><a href="marco-legal.html">Marco Legal</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Línea de Ayuda</h4>
+          <p><i class="fa-solid fa-envelope"></i> ambientesseguros@arquidiocesisdemaracaibo.org</p>
+          <p class="footer-emergency"><strong>Emergencia: llama al 171 o al Ministerio Público</strong></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Comisión Arquidiocesana para la Promoción de Ambientes Seguros · Arquidiócesis de Maracaibo</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

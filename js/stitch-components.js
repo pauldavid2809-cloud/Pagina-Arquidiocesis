@@ -57,8 +57,8 @@ const StitchLayout = (() => {
 
         <!-- Actions -->
         <div class="flex items-center gap-3">
-          <a class="hidden md:inline-flex bg-crimson-deep text-white px-6 py-2.5 rounded-full font-label text-[13px] font-bold hover:bg-primary transition-all active:scale-95 duration-150 items-center gap-2" href="portal-sacerdotes.html">
-            Portal Clero
+          <a class="hidden md:inline-flex bg-crimson-deep text-white px-6 py-2.5 rounded-full font-label text-[13px] font-bold hover:bg-primary transition-all active:scale-95 duration-150 items-center gap-2" href="portal-cancilleria.html">
+            Portal de Cancillería
           </a>
           <a class="hidden md:inline-flex items-center justify-center w-10 h-10 hover:bg-warm-ivory rounded-full transition-all" href="donaciones.html" title="Donaciones">
             <span class="material-symbols-outlined text-crimson-deep text-xl">volunteer_activism</span>
@@ -109,8 +109,8 @@ const StitchLayout = (() => {
         </nav>
         <!-- Footer -->
         <div class="p-6 border-t border-outline-variant/10 space-y-3">
-          <a class="block w-full bg-crimson-deep text-white text-center py-3.5 rounded-xl font-label font-bold text-[14px] hover:bg-primary transition-colors" href="portal-sacerdotes.html">
-            Portal del Clero
+          <a class="block w-full bg-crimson-deep text-white text-center py-3.5 rounded-xl font-label font-bold text-[14px] hover:bg-primary transition-colors" href="portal-cancilleria.html">
+            Portal de Cancillería
           </a>
           <a class="block w-full border-2 border-gold-antique text-gold-antique text-center py-3 rounded-xl font-label font-bold text-[14px] hover:bg-gold-antique hover:text-white transition-all" href="donaciones.html">
             Hacer Donación
@@ -165,7 +165,7 @@ const StitchLayout = (() => {
             <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="vida-consagrada.html">Vida Consagrada</a></li>
             <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="https://tribunaleclesiasticomaracaibo.org/" target="_blank" rel="noopener">Tribunal Eclesiástico</a></li>
             <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="pastoral.html">Vicaría de Pastoral</a></li>
-            <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all font-bold text-crimson-deep" href="portal-sacerdotes.html">Portal del Clero</a></li>
+            <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all font-bold text-crimson-deep" href="portal-cancilleria.html">Portal de Cancillería</a></li>
           </ul>
         </div>
 

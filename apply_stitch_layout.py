@@ -17,7 +17,7 @@ PAGES = [
     "seminario.html",
     "vida-consagrada.html",
     "ambientes.html",
-    "portal-sacerdotes.html",
+    "portal-cancilleria.html",
 ]
 
 STITCH_HEAD = """<!DOCTYPE html>
@@ -211,7 +211,7 @@ Maracaibo, Estado Zulia, Venezuela.
 <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="cancilleria.html">Cancillería</a></li>
 <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="donaciones.html">Donaciones</a></li>
 <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="noticias.html">Noticias</a></li>
-<li><a class="text-on-surface-variant hover:text-primary transition-colors font-bold text-secondary" href="portal-sacerdotes.html">Portal de Sacerdotes</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-bold text-secondary" href="portal-cancilleria.html">Portal de Cancillería</a></li>
 </ul>
 </div>
 <div>

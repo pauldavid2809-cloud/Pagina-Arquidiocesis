@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formación y Prevención | Ambientes Seguros - Arquidiócesis de Maracaibo</title>
+  <meta name="description" content="Sistema de formación, requisitos para voluntarios y material didáctico para catequistas y docentes. Arquidiócesis de Maracaibo." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="Ambiemtes Seguros.png" alt="Ambientes Seguros Logo" />
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-item">Inicio</a>
+        <a href="escucha.html" class="nav-item nav-item--alert">Escucha</a>
+        <a href="formacion.html" class="nav-item active">Formación</a>
+        <a href="marco-legal.html" class="nav-item">Marco Legal</a>
+        <a href="contacto.html" class="nav-item">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero page-hero--blue">
+    <canvas id="hero-canvas"></canvas>
+    <div class="container">
+      <span class="hero-badge"><i class="fa-solid fa-graduation-cap"></i> Compliance & Formación</span>
+      <h1>Formación y Prevención</h1>
+      <p>La más efectiva prevención es la educación. Conoce los talleres, requisitos y materiales disponibles dentro de la comunidad.</p>
+    </div>
+  </section>
+
+  <!-- SISTEMA DE FORMACIÓN -->
+  <section class="section section--white" id="formacion">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Talleres y Capacitación</span>
+        <h2>Sistema de Formación</h2>
+        <p>Ofreceremos talleres presenciales y virtuales sobre la cultura del buen trato y la protección de menores y adultos vulnerables.</p>
+      </div>
+      <div class="courses-grid">
+        <div class="course-card" id="taller-buen-trato">
+          <div class="course-card__badge">Obligatorio</div>
+          <div class="course-card__icon"><i class="fa-solid fa-people-group"></i></div>
+          <h3>Taller de Ambientes Seguros</h3>
+          <p>Formación básica y obligatoria para todos los voluntarios, empleados y Agentes Pastorales que trabajan con menores.</p>
+          <div class="course-meta">
+            <span><i class="fa-solid fa-clock"></i> 6 horas</span>
+            <span><i class="fa-solid fa-location-dot"></i> Presencial / Virtual</span>
+          </div>
+          <a href="contacto.html" class="btn btn--primary btn--sm">Inscribirse</a>
+        </div>
+        <div class="course-card" id="taller-catequistas">
+          <div class="course-card__badge course-card__badge--teal">Recomendado</div>
+          <div class="course-card__icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+          <h3>Formación para Catequistas</h3>
+          <p>Taller especializado para educadores de fe: cómo crear entornos seguros, detectar señales de alarma y actuar correctamente.</p>
+          <div class="course-meta">
+            <span><i class="fa-solid fa-clock"></i> 4 horas</span>
+            <span><i class="fa-solid fa-location-dot"></i> Parroquial</span>
+          </div>
+          <a href="contacto.html" class="btn btn--primary btn--sm">Inscribirse</a>
+        </div>
+        <div class="course-card" id="taller-familias">
+          <div class="course-card__badge course-card__badge--light">Abierto</div>
+          <div class="course-card__icon"><i class="fa-solid fa-house-chimney-heart"></i></div>
+          <h3>Educación Familiar</h3>
+          <p>Charla para padres y familias sobre cómo hablar de límites, confianza y seguridad con sus hijos en el hogar y la parroquia.</p>
+          <div class="course-meta">
+            <span><i class="fa-solid fa-clock"></i> 2 horas</span>
+            <span><i class="fa-solid fa-location-dot"></i> Parroquial</span>
+          </div>
+          <a href="contacto.html" class="btn btn--primary btn--sm">Más info</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUISITOS VOLUNTARIOS -->
+  <section class="section section--light" id="voluntarios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Compliance</span>
+        <h2>Requisitos para Agentes Pastorales</h2>
+        <p>Toda persona que trabaje con menores y adultos vulnerables en la Arquidiócesis debe cumplir los siguientes requisitos.</p>
+      </div>
+      <div class="checklist-container">
+        <div class="checklist-card" id="req-cedula">
+          <div class="checklist-item">
+            <div class="check-icon"><i class="fa-solid fa-id-card"></i></div>
+            <div>
+              <h3>Cédula de Identidad</h3>
+              <p>Presentación de documento de identidad vigente para registro en el sistema parroquial.</p>
+            </div>
+          </div>
+        </div>
+        <div class="checklist-card" id="req-antecedentes">
+          <div class="checklist-item">
+            <div class="check-icon"><i class="fa-solid fa-fingerprint"></i></div>
+            <div>
+              <h3>Antecedentes Penales</h3>
+              <p>Presentación del certificado de antecedentes penales vigente emitido por el CICPC o autoridad competente.</p>
+            </div>
+          </div>
+        </div>
+        <div class="checklist-card" id="req-taller">
+          <div class="checklist-item">
+            <div class="check-icon"><i class="fa-solid fa-certificate"></i></div>
+            <div>
+              <h3>Taller de Ambientes Seguros</h3>
+              <p>Completar y aprobar el taller oficial de formación de la Comisión Arquidiocesana antes de iniciar actividades.</p>
+            </div>
+          </div>
+        </div>
+        <div class="checklist-card" id="req-referencia">
+          <div class="checklist-item">
+            <div class="check-icon"><i class="fa-solid fa-person-circle-check"></i></div>
+            <div>
+              <h3>Referencias Parroquiales</h3>
+              <p>Al menos una carta de recomendación de un párroco o Agente Pastoral de la comunidad.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIAL DIDÁCTICO -->
+  <section class="section section--white" id="material">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Recursos Descargables</span>
+        <h2>Material Didáctico</h2>
+        <p>Guías y documentos para catequistas, docentes y familias. Descarga gratuita.</p>
+      </div>
+      <div class="downloads-grid">
+        <div class="download-card" id="guia-catequistas">
+          <div class="download-card__icon"><i class="fa-solid fa-file-pdf"></i></div>
+          <div class="download-card__info">
+            <h3>Guía para Catequistas</h3>
+            <p>Protocolo de actuación y señales de alarma.</p>
+            <span class="file-tag">PDF · Próximamente</span>
+          </div>
+          <button class="btn btn--outline btn--sm" disabled>Descargar</button>
+        </div>
+        <div class="download-card" id="guia-padres">
+          <div class="download-card__icon"><i class="fa-solid fa-file-pdf"></i></div>
+          <div class="download-card__info">
+            <h3>Guía para Padres y Familias</h3>
+            <p>Cómo hablar de seguridad con tus hijos.</p>
+            <span class="file-tag">PDF · Próximamente</span>
+          </div>
+          <button class="btn btn--outline btn--sm" disabled>Descargar</button>
+        </div>
+        <div class="download-card" id="codigo-conducta">
+          <div class="download-card__icon"><i class="fa-solid fa-file-pdf"></i></div>
+          <div class="download-card__info">
+            <h3>Código de Conducta</h3>
+            <p>Normas de comportamiento para agentes pastorales.</p>
+            <span class="file-tag">PDF · Próximamente</span>
+          </div>
+          <button class="btn btn--outline btn--sm" disabled>Descargar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="Ambiemtes Seguros.png" alt="Logo Ambientes Seguros" class="footer-logo" />
+          <p>Comisión Arquidiocesana para la Promoción de Ambientes Seguros — Arquidiócesis de Maracaibo.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Páginas</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="escucha.html">Escucha y Asistencia</a></li>
+            <li><a href="formacion.html">Formación y Prevención</a></li>
+            <li><a href="marco-legal.html">Marco Legal</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Línea de Ayuda</h4>
+          <p><i class="fa-solid fa-envelope"></i> ambientesseguros@arquidiocesisdemaracaibo.org</p>
+          <p class="footer-emergency"><strong>Emergencia: llama al 171 o al Ministerio Público</strong></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Comisión Arquidiocesana para la Promoción de Ambientes Seguros · Arquidiócesis de Maracaibo</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+          

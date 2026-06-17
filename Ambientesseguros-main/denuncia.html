@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Denuncia y Asistencia | Ambientes Seguros - Arquidiócesis de Maracaibo</title>
+  <meta name="description" content="Protocolo de denuncia y asistencia a víctimas. Línea de ayuda y pasos claros para reportar un abuso en la Arquidiócesis de Maracaibo." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="Ambiemtes Seguros.png" alt="Ambientes Seguros Logo" />
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-item">Inicio</a>
+        <a href="denuncia.html" class="nav-item nav-item--alert active">Denunciar</a>
+        <a href="formacion.html" class="nav-item">Formación</a>
+        <a href="marco-legal.html" class="nav-item">Marco Legal</a>
+        <a href="contacto.html" class="nav-item">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero page-hero--danger">
+    <canvas id="hero-canvas"></canvas>
+    <div class="container">
+      <span class="hero-badge"><i class="fa-solid fa-triangle-exclamation"></i> Área Prioritaria</span>
+      <h1>Denuncia y Asistencia</h1>
+      <p>Si tú o alguien que conoces ha sufrido un abuso, no estás solo/a. Aquí encontrarás los pasos claros y el apoyo que necesitas.</p>
+    </div>
+  </section>
+
+  <!-- ALERTA URGENTE -->
+  <section class="section section--white" id="urgente">
+    <div class="container">
+      <div class="alert-box alert-box--danger">
+        <div class="alert-box__icon"><i class="fa-solid fa-phone-emergency"></i></div>
+        <div class="alert-box__content">
+          <h2>¿Estás en peligro inmediato?</h2>
+          <p>Llama <strong>PRIMERO</strong> a las autoridades civiles. La Iglesia no sustituye a la justicia civil.</p>
+          <div class="emergency-contacts">
+            <div class="emergency-contact" id="contact-cicpc">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span><strong>CICPC</strong> · Línea 171</span>
+            </div>
+            <div class="emergency-contact" id="contact-mp">
+              <i class="fa-solid fa-scale-balanced"></i>
+              <span><strong>Ministerio Público</strong> · Fiscalía</span>
+            </div>
+            <div class="emergency-contact" id="contact-lopna">
+              <i class="fa-solid fa-child-reaching"></i>
+              <span><strong>LOPNA</strong> · Tribunal de Protección</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROTOCOLO PASO A PASO -->
+  <section class="section section--light" id="protocolo">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Protocolo Oficial</span>
+        <h2>Pasos para Denunciar</h2>
+        <p>Sigue estos pasos claros para asegurar que la denuncia sea atendida correctamente.</p>
+      </div>
+      <div class="steps-container">
+        <div class="step-card" id="paso-1">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3><i class="fa-solid fa-phone"></i> Llama a las autoridades civiles</h3>
+            <p>La seguridad inmediata es la prioridad. Contacta al CICPC (171), Ministerio Público o Tribunal de Protección de Niños, Niñas y Adolescentes (LOPNA).</p>
+          </div>
+        </div>
+        <div class="step-card" id="paso-2">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3><i class="fa-solid fa-envelope"></i> Contacta a la Comisión Arquidiocesana</h3>
+            <p>Una vez garantizada la seguridad, comunícate con nuestra comisión por correo electrónico o teléfono. Tu identidad será protegida con confidencialidad total.</p>
+          </div>
+        </div>
+        <div class="step-card" id="paso-3">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3><i class="fa-solid fa-clipboard-user"></i> Investigación canónica</h3>
+            <p>La Arquidiócesis inicia la investigación interna conforme al Derecho Canónico, con plena cooperación con las autoridades civiles y total transparencia.</p>
+          </div>
+        </div>
+        <div class="step-card" id="paso-4">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <h3><i class="fa-solid fa-hand-holding-heart"></i> Acompañamiento a la víctima</h3>
+            <p>Durante todo el proceso, la víctima recibe apoyo psicológico, jurídico y espiritual de nuestro equipo multidisciplinario.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASISTENCIA A VÍCTIMAS -->
+  <section class="section section--white" id="victimas">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Tu Bienestar es Primero</span>
+        <h2>Asistencia a Víctimas y Supervivientes</h2>
+        <p>Contamos con un equipo multidisciplinario disponible para acompañarte en tu proceso de sanación.</p>
+      </div>
+      <div class="support-grid">
+        <div class="support-card" id="apoyo-psicologico">
+          <div class="support-card__icon support-card__icon--blue"><i class="fa-solid fa-brain"></i></div>
+          <h3>Apoyo Psicológico</h3>
+          <p>Atención con profesionales especializados en trauma. Las sesiones son completamente confidenciales y gratuitas.</p>
+        </div>
+        <div class="support-card" id="apoyo-juridico">
+          <div class="support-card__icon support-card__icon--teal"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h3>Asesoría Jurídica</h3>
+          <p>Orientación legal para conocer tus derechos y opciones en el marco de la LOPNA y las leyes venezolanas.</p>
+        </div>
+        <div class="support-card" id="apoyo-espiritual">
+          <div class="support-card__icon support-card__icon--gold"><i class="fa-solid fa-dove"></i></div>
+          <h3>Acompañamiento Espiritual</h3>
+          <p>Sacerdote o agente pastoral capacitado para acompañar el proceso de sanación interior y restauración de la fe.</p>
+        </div>
+      </div>
+      <div class="contact-card" id="contact-comision">
+        <div class="contact-card__text">
+          <h3>Contactar a la Comisión directamente</h3>
+          <p>Coordinador: <strong>Alberto Sobalvarro</strong> y equipo</p>
+          <p><i class="fa-solid fa-envelope"></i> ambientesseguros@arquidiocesisdemaracaibo.org</p>
+        </div>
+        <a href="contacto.html" class="btn btn--primary btn--lg">Ir a Contacto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="Ambiemtes Seguros.png" alt="Logo Ambientes Seguros" class="footer-logo" />
+          <p>Comisión Arquidiocesana para la Promoción de Ambientes Seguros — Arquidiócesis de Maracaibo.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Páginas</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="denuncia.html">Denuncia y Asistencia</a></li>
+            <li><a href="formacion.html">Formación y Prevención</a></li>
+            <li><a href="marco-legal.html">Marco Legal</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Línea de Ayuda</h4>
+          <p><i class="fa-solid fa-envelope"></i> ambientesseguros@arquidiocesisdemaracaibo.org</p>
+          <p class="footer-emergency"><strong>Emergencia: llama al 171 o al Ministerio Público</strong></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Comisión Arquidiocesana para la Promoción de Ambientes Seguros · Arquidiócesis de Maracaibo</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

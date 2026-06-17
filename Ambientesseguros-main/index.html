@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ambientes Seguros | Arquidiócesis de Maracaibo</title>
+  <meta name="description" content="Comisión Arquidiocesana para la Promoción de Ambientes Seguros y Protección de menores y Adultos Vulnerables - Arquidiócesis de Maracaibo." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="Ambiemtes Seguros.png" alt="Ambientes Seguros Logo" />
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-item active">Inicio</a>
+        <a href="escucha.html" class="nav-item nav-item--alert">Escucha</a>
+        <a href="formacion.html" class="nav-item">Formación</a>
+        <a href="marco-legal.html" class="nav-item">Marco Legal</a>
+        <a href="contacto.html" class="nav-item">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-content">
+      <span class="hero-badge"><i class="fa-solid fa-shield-halved"></i> Hacia la Cultura del Buen Trato</span>
+      <h1 class="hero-title">Ambientes Seguros para Todos</h1>
+      <p class="hero-subtitle">La Arquidiócesis de Maracaibo está comprometida con la protección de menores y adultos vulnerables en todos nuestros espacios pastorales.</p>
+      <div class="hero-actions">
+        <a href="escucha.html" class="btn btn--danger btn--lg pulse-btn" id="hero-report-btn">
+          <i class="fa-solid fa-triangle-exclamation"></i> Estamos para escucharte
+        </a>
+        <a href="formacion.html" class="btn btn--outline-white btn--lg">
+          <i class="fa-solid fa-book-open"></i> Conocer más
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUATRO PILARES -->
+  <section class="section section--light" id="pilares">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Acceso Rápido</span>
+        <h2>¿Cómo podemos ayudarte?</h2>
+        <p>Selecciona tu perfil para encontrar la información que necesitas.</p>
+      </div>
+      <div class="pillars-grid">
+        <a href="escucha.html#victimas" class="pillar-card pillar-card--1" id="pilar-victimas">
+          <div class="pillar-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <h3>Fieles</h3>
+          <p>¿Necesitas ayuda o ser escuchado? Aquí encontrarás apoyo psicológico, jurídico y espiritual.</p>
+          <span class="pillar-link">Ver recursos <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="formacion.html#familias" class="pillar-card pillar-card--2" id="pilar-familias">
+          <div class="pillar-icon"><i class="fa-solid fa-people-roof"></i></div>
+          <h3>Padres y Familias</h3>
+          <p>Cómo debemos comportarnos en nuestros espacios eclesiales.</p>
+          <span class="pillar-link">Ver guías <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="formacion.html#voluntarios" class="pillar-card pillar-card--3" id="pilar-voluntarios">
+          <div class="pillar-icon"><i class="fa-solid fa-users"></i></div>
+          <h3>Agentes Pastorales</h3>
+          <p>Requisitos de cumplimiento y formación obligatoria para trabajar con menores en la Arquidiócesis.</p>
+          <span class="pillar-link">Ver requisitos <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="marco-legal.html#clero" class="pillar-card pillar-card--4" id="pilar-clero">
+          <div class="pillar-icon"><i class="fa-solid fa-cross"></i></div>
+          <h3>Clero y Religiosos</h3>
+          <p>Protocolo de Actuación y Manual de Conducta y Buenas Prácticas.</p>
+          <span class="pillar-link">Ver protocolo <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENSAJE ARZOBISPO -->
+  <section class="section section--dark-blue" id="mensaje-arzobispo">
+    <div class="container container--split">
+      <div class="archbishop-visual">
+        <div class="archbishop-emblem">
+          <img src="arzobispo.webp" alt="Mons. José Luis Azuaje Ayala, Arzobispo de Maracaibo" />
+        </div>
+        <div class="archbishop-quote-bg"></div>
+      </div>
+      <div class="archbishop-content">
+        <span class="section-tag section-tag--light">Compromiso Arquidiocesano</span>
+        <h2>Mensaje del Arzobispo</h2>
+        <blockquote>
+          "La protección de los más vulnerables no es una opción pastoral: es una exigencia del Evangelio. Nuestra Arquidiócesis asume el compromiso de <strong>tolerancia cero</strong> frente a cualquier forma de abuso, y ponemos todos los medios a nuestro alcance para que nuestros espacios sean verdaderamente seguros."
+        </blockquote>
+        <cite>— Mons. José Luis Azuaje Ayala<br><small>Arzobispo de Maracaibo</small></cite>
+        <div class="commitment-badges">
+          <span class="badge"><i class="fa-solid fa-check"></i> Tolerancia Cero</span>
+          <span class="badge"><i class="fa-solid fa-check"></i> Escucha Activa</span>
+          <span class="badge"><i class="fa-solid fa-check"></i> Protocolos CEV</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTADÍSTICAS / COMPROMISOS -->
+  <section class="section section--white" id="compromisos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Transparencia</span>
+        <h2>Nuestro Compromiso en Números</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card" id="stat-parroquias">
+          <i class="fa-solid fa-church stat-icon"></i>
+          <span class="stat-number" data-target="78">0</span>
+          <span class="stat-label">Parroquias comprometidas</span>
+        </div>
+        <div class="stat-card" id="stat-formados">
+          <i class="fa-solid fa-graduation-cap stat-icon"></i>
+          <div class="stat-loading-bar">
+            <div class="stat-loading-fill"></div>
+            <span class="stat-loading-text">Cargando...</span>
+          </div>
+          <span class="stat-label">Agentes Pastorales en formación</span>
+        </div>
+        <div class="stat-card" id="stat-protocolos">
+          <i class="fa-solid fa-file-shield stat-icon"></i>
+          <span class="stat-number" data-target="2">0</span>
+          <span class="stat-label">Protocolos oficiales vigentes</span>
+        </div>
+        <div class="stat-card" id="stat-anos">
+          <i class="fa-solid fa-calendar-check stat-icon"></i>
+          <span class="stat-number" data-target="2023">0</span>
+          <span class="stat-label">Año de implementación</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LLAMADA A LA ACCIÓN FINAL -->
+  <section class="section cta-section" id="cta">
+    <div class="container cta-container">
+      <i class="fa-solid fa-shield-heart cta-icon"></i>
+      <h2 style="color:#ffffff;">Juntos construimos ambientes seguros</h2>
+      <p>Descarga el material de formación, conoce los protocolos y únete a nuestra misión de proteger a los más vulnerables.</p>
+      <div class="cta-buttons">
+        <a href="formacion.html" class="btn btn--primary btn--lg" id="cta-formacion">Ver Formación</a>
+        <a href="contacto.html" class="btn btn--outline btn--lg" id="cta-contacto">Contactar Comisión</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="Ambiemtes Seguros.png" alt="Logo Ambientes Seguros" class="footer-logo" />
+          <p>Comisión Arquidiocesana para la Promoción de Ambientes Seguros — Arquidiócesis de Maracaibo.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Páginas</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="escucha.html">Escucha y Asistencia</a></li>
+            <li><a href="formacion.html">Formación y Prevención</a></li>
+            <li><a href="marco-legal.html">Marco Legal</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Línea de Ayuda</h4>
+          <p><i class="fa-solid fa-phone"></i> Contactar a la Comisión</p>
+          <p><i class="fa-solid fa-envelope"></i> ambientesseguros@arquidiocesisdemaracaibo.org</p>
+          <p class="footer-emergency"><strong>Emergencia: llama al 171 o al Ministerio Público</strong></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Comisión Arquidiocesana para la Promoción de Ambientes Seguros · Arquidiócesis de Maracaibo</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+                                                                                                                                 
