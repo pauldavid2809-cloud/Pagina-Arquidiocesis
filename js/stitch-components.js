@@ -161,7 +161,7 @@ const StitchLayout = (() => {
         <div class="md:col-span-1">
           <h4 class="font-label text-[12px] text-crimson-deep uppercase tracking-widest mb-5 font-bold">Instituciones</h4>
           <ul class="space-y-3">
-            <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="seminario.html">Seminario Conciliar</a></li>
+            <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="seminario.html">Seminario Mayor</a></li>
             <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="vida-consagrada.html">Vida Consagrada</a></li>
             <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="https://tribunaleclesiasticomaracaibo.org/" target="_blank" rel="noopener">Tribunal Eclesiástico</a></li>
             <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="pastoral.html">Vicaría de Pastoral</a></li>

@@ -216,7 +216,7 @@ Maracaibo, Estado Zulia, Venezuela.
 <div>
 <h5 class="font-bold text-primary mb-8 uppercase tracking-widest text-xs">Instituciones</h5>
 <ul class="space-y-4 font-label-sm text-label-sm">
-<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="seminario.html">Seminario Conciliar</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors" href="seminario.html">Seminario Mayor</a></li>
 <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="vida-consagrada.html">Vida Consagrada</a></li>
 <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="https://tribunaleclesiasticomaracaibo.org/" target="_blank" rel="noopener">Tribunal Eclesiástico</a></li>
 <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="pastoral.html">Vicaría de Pastoral</a></li>
