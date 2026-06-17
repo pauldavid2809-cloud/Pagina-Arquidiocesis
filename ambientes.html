@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Ambientes Seguros | Arquidiócesis de Maracaibo</title>
-<meta content="Programa de Ambientes Seguros de la Arquidiócesis de Maracaibo. Información, protocolos y formación para la prevención de abusos en espacios de la Iglesia." name="description">
+<meta content="Comisión Arquidiocesana para la Promoción de Ambientes Seguros y Protección de menores y Adultos Vulnerables - Arquidiócesis de Maracaibo." name="description">
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
@@ -15,19 +15,30 @@
 <!-- Core Styles -->
 <link href="css/stitch-core.css" rel="stylesheet">
 
-<!-- Open Graph / Facebook -->
+<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://pagina-arquidiocesis.vercel.app/ambientes.html">
 <meta property="og:title" content="Ambientes Seguros | Arquidiócesis de Maracaibo">
-<meta property="og:description" content="Programa de Ambientes Seguros de la Arquidiócesis de Maracaibo. Información, protocolos y formación para la prevención de abusos en espacios de la Iglesia.">
+<meta property="og:description" content="Comisión Arquidiocesana para la Promoción de Ambientes Seguros y Protección de menores y Adultos Vulnerables.">
 <meta property="og:image" content="https://pagina-arquidiocesis.vercel.app/img/logo-arquidiocesis.png">
-
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://pagina-arquidiocesis.vercel.app/ambientes.html">
 <meta property="twitter:title" content="Ambientes Seguros | Arquidiócesis de Maracaibo">
-<meta property="twitter:description" content="Programa de Ambientes Seguros de la Arquidiócesis de Maracaibo. Información, protocolos y formación para la prevención de abusos en espacios de la Iglesia.">
+<meta property="twitter:description" content="Comisión Arquidiocesana para la Promoción de Ambientes Seguros y Protección de menores y Adultos Vulnerables.">
 <meta property="twitter:image" content="https://pagina-arquidiocesis.vercel.app/img/logo-arquidiocesis.png">
+
+<style>
+  /* Counter animation */
+  @keyframes countUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .stat-animate { animation: countUp 0.6s ease-out forwards; }
+  /* Pill nav scrollbar hide */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  /* Pillar hover lift */
+  .pillar-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .pillar-lift:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(122,26,34,0.12); }
+</style>
 </head>
 <body class="bg-background text-on-surface font-body">
 
@@ -37,41 +48,43 @@
 <!-- ═══════════════════════════════════════════════════════════
      HERO SECTION
 ═══════════════════════════════════════════════════════════ -->
-<section class="relative min-h-[560px] flex items-center justify-center overflow-hidden">
+<section class="relative min-h-[540px] flex items-center justify-center overflow-hidden">
   <!-- Background -->
   <div class="absolute inset-0 bg-crimson-deep">
     <img
       src="img/ambientes.webp"
-      alt="Ambientes Seguros — Protección de Menores"
+      alt="Ambientes Seguros — Protección de Menores y Adultos Vulnerables"
       onerror="this.src='https://placehold.co/1600x600/7A1A22/ffffff?text=Ambientes+Seguros'"
-      class="w-full h-full object-cover mix-blend-overlay opacity-30"
+      class="w-full h-full object-cover mix-blend-overlay opacity-25"
     >
-    <!-- gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-b from-crimson-deep/60 via-crimson-deep/40 to-crimson-deep/80"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-crimson-deep/70 via-crimson-deep/50 to-crimson-deep/90"></div>
   </div>
 
   <!-- Hero Content -->
   <div class="relative z-10 max-w-container-max mx-auto px-margin-mobile md:px-gutter text-center py-24">
     <div class="animate-fade-in-up">
-      <span class="inline-block px-4 py-1.5 mb-6 rounded-full border border-gold-antique text-gold-antique font-label text-label-lg bg-gold-antique/10 tracking-widest uppercase">
-        CAPAS
-      </span>
+      <!-- CAPAS Logo Badge -->
+      <div class="inline-flex items-center gap-3 px-5 py-2 mb-6 rounded-full border border-gold-antique/40 bg-gold-antique/10 backdrop-blur-sm">
+        <img src="img/ambientes-seguros-logo.png" alt="Logo CAPAS" class="w-8 h-8 object-contain" onerror="this.style.display='none'">
+        <span class="font-label text-label-lg text-gold-antique tracking-widest uppercase">Hacia la Cultura del Buen Trato</span>
+      </div>
+
       <h1 class="font-display text-display-lg text-white mb-6 leading-tight md:text-headline-lg">
-        Ambientes Seguros
+        Ambientes Seguros para Todos
       </h1>
-      <p class="font-body text-body-lg text-warm-ivory max-w-2xl mx-auto italic opacity-90 leading-relaxed">
-        "Comisión Arquidiocesana para la Promoción de Ambientes Seguros: Un compromiso inquebrantable con la dignidad humana."
+      <p class="font-body text-body-lg text-warm-ivory max-w-2xl mx-auto opacity-90 leading-relaxed">
+        La Arquidiócesis de Maracaibo está comprometida con la protección de menores y adultos vulnerables en todos nuestros espacios pastorales.
       </p>
       <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#contacto"
-           class="inline-flex items-center gap-2 bg-gold-antique text-white px-8 py-4 rounded-xl font-label text-label-lg hover:brightness-110 transition-all shadow-lg">
-          <span class="material-symbols-outlined text-[20px]">report</span>
-          Canal de Denuncias
+        <a href="ambientes-escucha.html"
+           class="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-4 rounded-xl font-label text-label-lg hover:bg-red-700 transition-all shadow-lg animate-pulse-slow" id="hero-report-btn">
+          <span class="material-symbols-outlined text-[20px]">warning</span>
+          Estamos para Escucharte
         </a>
-        <a href="#documentos"
+        <a href="ambientes-formacion.html"
            class="inline-flex items-center gap-2 bg-white/10 border border-white/30 text-white px-8 py-4 rounded-xl font-label text-label-lg hover:bg-white/20 transition-all backdrop-blur-sm">
-          <span class="material-symbols-outlined text-[20px]">folder_open</span>
-          Recursos y Documentos
+          <span class="material-symbols-outlined text-[20px]">menu_book</span>
+          Conocer Más
         </a>
       </div>
     </div>
@@ -79,93 +92,287 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════
-     MAIN BENTO GRID
+     SUB-NAVIGATION
 ═══════════════════════════════════════════════════════════ -->
-<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-gap">
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<nav class="bg-white/90 backdrop-blur-md border-b border-outline-variant/20 sticky top-[64px] z-40 shadow-sm" id="ambientes-subnav">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+    <div class="flex items-center gap-1 overflow-x-auto py-3 no-scrollbar">
+      <span class="material-symbols-outlined text-crimson-deep mr-2 shrink-0 text-[20px]">verified_user</span>
+      <a href="ambientes.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] bg-crimson-deep text-white font-bold transition-all whitespace-nowrap">
+        Inicio
+      </a>
+      <a href="ambientes-escucha.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">
+        Escucha
+      </a>
+      <a href="ambientes-formacion.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">
+        Formación
+      </a>
+      <a href="ambientes-marco-legal.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">
+        Marco Legal
+      </a>
+      <a href="ambientes-contacto.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">
+        Contacto
+      </a>
+    </div>
+  </div>
+</nav>
 
-    <!-- Policy Card (large) -->
-    <div class="md:col-span-8 bento-card glass-panel bg-white/70 border border-warm-ivory p-8 rounded-xl flex flex-col justify-center reveal">
-      <div class="flex items-center gap-4 mb-6">
-        <div class="w-14 h-14 rounded-xl bg-crimson-deep/10 flex items-center justify-center shrink-0">
-          <span class="material-symbols-outlined text-crimson-deep" style="font-size:32px;">verified_user</span>
-        </div>
-        <h2 class="font-headline text-headline-md text-crimson-deep">Cero Tolerancia a los Abusos</h2>
-      </div>
-      <p class="font-body text-body-lg text-slate-warm mb-8 leading-relaxed">
-        La Iglesia particular de Maracaibo está firmemente comprometida con la protección de menores y personas vulnerables, implementando protocolos estrictos de prevención, formación de agentes de pastoral y atención a las víctimas. No solo es una obligación legal, sino un mandato moral y espiritual asegurar que cada espacio eclesial sea un refugio de paz y santidad.
+<!-- ═══════════════════════════════════════════════════════════
+     CUATRO PILARES — ACCESO RÁPIDO
+═══════════════════════════════════════════════════════════ -->
+<section class="py-section-gap bg-background" id="pilares">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+    <div class="text-center mb-14 reveal">
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase block mb-3">Acceso Rápido</span>
+      <h2 class="font-headline text-headline-lg text-crimson-deep">¿Cómo podemos ayudarte?</h2>
+      <div class="h-1 w-20 bg-gold-antique mx-auto mt-4"></div>
+      <p class="font-body text-body-lg text-slate-warm max-w-2xl mx-auto mt-6 leading-relaxed">
+        Selecciona tu perfil para encontrar la información que necesitas.
       </p>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal-stagger">
-        <div class="reveal p-4 bg-surface-container rounded-xl border-l-4 border-gold-antique">
-          <span class="material-symbols-outlined text-gold-antique mb-2 block">shield</span>
-          <p class="font-label text-label-lg text-on-surface">Prevención Estricta</p>
-          <p class="font-body text-sm text-slate-warm/80 mt-1">Protocolos y normas de conducta para todos los agentes pastorales.</p>
-        </div>
-        <div class="reveal p-4 bg-surface-container rounded-xl border-l-4 border-gold-antique">
-          <span class="material-symbols-outlined text-gold-antique mb-2 block">school</span>
-          <p class="font-label text-label-lg text-on-surface">Formación Integral</p>
-          <p class="font-body text-sm text-slate-warm/80 mt-1">Capacitación continua y sensibilización para todo el clero y laicado.</p>
-        </div>
-        <div class="reveal p-4 bg-surface-container rounded-xl border-l-4 border-gold-antique">
-          <span class="material-symbols-outlined text-gold-antique mb-2 block">volunteer_activism</span>
-          <p class="font-label text-label-lg text-on-surface">Atención a Víctimas</p>
-          <p class="font-body text-sm text-slate-warm/80 mt-1">Acompañamiento profesional y pastoral a quienes han sufrido abusos.</p>
-        </div>
-      </div>
     </div>
 
-    <!-- Image Support -->
-    <div class="md:col-span-4 rounded-xl overflow-hidden shadow-lg min-h-[300px] reveal">
-      <img
-        src="img/ambientes.webp"
-        alt="Compromiso con la protección de menores"
-        onerror="this.src='https://placehold.co/600x500/7A1A22/ffffff?text=Cuidado+y+Protección'"
-        class="w-full h-full object-cover"
-      >
-    </div>
-
-    <!-- CAPAS Commission Info (crimson card) -->
-    <div class="md:col-span-4 bg-crimson-deep text-white p-8 rounded-xl flex flex-col justify-between reveal">
-      <div>
-        <h3 class="font-headline text-headline-sm mb-4 text-primary-fixed">La Comisión CAPAS</h3>
-        <p class="font-body text-body-md opacity-90 mb-6 leading-relaxed">
-          Equipo multidisciplinario encargado de supervisar los protocolos de seguridad, realizar auditorías constantes y capacitar a todos los agentes de pastoral en el territorio arquidiocesano.
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter reveal-stagger">
+      <!-- Pilar 1: Fieles -->
+      <a href="ambientes-escucha.html" class="reveal pillar-lift bento-card bg-white border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 group cursor-pointer" id="pilar-fieles">
+        <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center group-hover:bg-red-100 transition-colors">
+          <span class="material-symbols-outlined text-red-600" style="font-size:28px;">volunteer_activism</span>
+        </div>
+        <h3 class="font-headline text-headline-sm text-crimson-deep">Fieles</h3>
+        <p class="font-body text-body-md text-slate-warm leading-relaxed flex-1">
+          ¿Necesitas ayuda o ser escuchado? Aquí encontrarás apoyo psicológico, jurídico y espiritual.
         </p>
+        <span class="inline-flex items-center gap-1 font-label text-label-lg text-gold-antique group-hover:gap-2 transition-all">
+          Ver recursos <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </span>
+      </a>
+
+      <!-- Pilar 2: Padres y Familias -->
+      <a href="ambientes-formacion.html#familias" class="reveal pillar-lift bento-card bg-white border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 group cursor-pointer" id="pilar-familias">
+        <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+          <span class="material-symbols-outlined text-blue-600" style="font-size:28px;">family_restroom</span>
+        </div>
+        <h3 class="font-headline text-headline-sm text-crimson-deep">Padres y Familias</h3>
+        <p class="font-body text-body-md text-slate-warm leading-relaxed flex-1">
+          Cómo debemos comportarnos en nuestros espacios eclesiales.
+        </p>
+        <span class="inline-flex items-center gap-1 font-label text-label-lg text-gold-antique group-hover:gap-2 transition-all">
+          Ver guías <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </span>
+      </a>
+
+      <!-- Pilar 3: Agentes Pastorales -->
+      <a href="ambientes-formacion.html#voluntarios" class="reveal pillar-lift bento-card bg-white border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 group cursor-pointer" id="pilar-agentes">
+        <div class="w-14 h-14 rounded-2xl bg-teal-50 flex items-center justify-center group-hover:bg-teal-100 transition-colors">
+          <span class="material-symbols-outlined text-teal-600" style="font-size:28px;">groups</span>
+        </div>
+        <h3 class="font-headline text-headline-sm text-crimson-deep">Agentes Pastorales</h3>
+        <p class="font-body text-body-md text-slate-warm leading-relaxed flex-1">
+          Requisitos de cumplimiento y formación obligatoria para trabajar con menores en la Arquidiócesis.
+        </p>
+        <span class="inline-flex items-center gap-1 font-label text-label-lg text-gold-antique group-hover:gap-2 transition-all">
+          Ver requisitos <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </span>
+      </a>
+
+      <!-- Pilar 4: Clero y Religiosos -->
+      <a href="ambientes-marco-legal.html#clero" class="reveal pillar-lift bento-card bg-white border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 group cursor-pointer" id="pilar-clero">
+        <div class="w-14 h-14 rounded-2xl bg-amber-50 flex items-center justify-center group-hover:bg-amber-100 transition-colors">
+          <span class="material-symbols-outlined text-amber-700" style="font-size:28px;">church</span>
+        </div>
+        <h3 class="font-headline text-headline-sm text-crimson-deep">Clero y Religiosos</h3>
+        <p class="font-body text-body-md text-slate-warm leading-relaxed flex-1">
+          Protocolo de Actuación y Manual de Conducta y Buenas Prácticas.
+        </p>
+        <span class="inline-flex items-center gap-1 font-label text-label-lg text-gold-antique group-hover:gap-2 transition-all">
+          Ver protocolo <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MENSAJE DEL ARZOBISPO
+═══════════════════════════════════════════════════════════ -->
+<section class="py-section-gap bg-crimson-deep relative overflow-hidden" id="mensaje-arzobispo">
+  <!-- Decorative pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-10 right-10"><span class="material-symbols-outlined text-white" style="font-size:200px;">cross</span></div>
+  </div>
+
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter relative z-10">
+    <div class="flex flex-col md:flex-row gap-12 items-center">
+
+      <!-- Archbishop Image -->
+      <div class="w-full md:w-5/12 reveal">
+        <div class="relative">
+          <div class="w-64 h-64 md:w-80 md:h-80 mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-gold-antique/30">
+            <img src="Ambientesseguros-main/arzobispo.webp" alt="Mons. José Luis Azuaje Ayala, Arzobispo de Maracaibo"
+                 onerror="this.src='https://placehold.co/400x400/7A1A22/ffffff?text=Arzobispo'"
+                 class="w-full h-full object-cover">
+          </div>
+          <!-- Decorative accent -->
+          <div class="absolute -bottom-3 -right-3 w-24 h-24 bg-gold-antique/20 rounded-2xl -z-10"></div>
+        </div>
       </div>
-      <ul class="space-y-3">
-        <li class="flex items-center gap-2 font-label text-label-lg">
-          <span class="material-symbols-outlined text-gold-antique">check_circle</span>
-          Auditoría de Parroquias
-        </li>
-        <li class="flex items-center gap-2 font-label text-label-lg">
-          <span class="material-symbols-outlined text-gold-antique">check_circle</span>
-          Manuales de Convivencia
-        </li>
-        <li class="flex items-center gap-2 font-label text-label-lg">
-          <span class="material-symbols-outlined text-gold-antique">check_circle</span>
-          Apoyo Psicológico Profesional
-        </li>
-        <li class="flex items-center gap-2 font-label text-label-lg">
-          <span class="material-symbols-outlined text-gold-antique">check_circle</span>
-          Protocolos de Prevención
-        </li>
-      </ul>
+
+      <!-- Archbishop Content -->
+      <div class="w-full md:w-7/12 reveal">
+        <span class="font-label text-sm text-gold-antique tracking-widest uppercase block mb-4">Compromiso Arquidiocesano</span>
+        <h2 class="font-headline text-headline-lg text-white mb-6">Mensaje del Arzobispo</h2>
+        <div class="h-1 w-20 bg-gold-antique mb-8"></div>
+
+        <blockquote class="font-body text-body-lg text-white/90 leading-relaxed mb-8 pl-6 border-l-4 border-gold-antique italic">
+          "La protección de los más vulnerables no es una opción pastoral: es una exigencia del Evangelio. Nuestra Arquidiócesis asume el compromiso de <strong class="text-gold-antique">tolerancia cero</strong> frente a cualquier forma de abuso, y ponemos todos los medios a nuestro alcance para que nuestros espacios sean verdaderamente seguros."
+        </blockquote>
+
+        <cite class="block font-headline text-headline-sm text-white not-italic mb-1">— Mons. José Luis Azuaje Ayala</cite>
+        <span class="font-label text-label-lg text-white/60">Arzobispo de Maracaibo</span>
+
+        <div class="flex flex-wrap gap-3 mt-8">
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 font-label text-label-lg text-white">
+            <span class="material-symbols-outlined text-gold-antique text-[18px]">check_circle</span> Tolerancia Cero
+          </span>
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 font-label text-label-lg text-white">
+            <span class="material-symbols-outlined text-gold-antique text-[18px]">check_circle</span> Escucha Activa
+          </span>
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 font-label text-label-lg text-white">
+            <span class="material-symbols-outlined text-gold-antique text-[18px]">check_circle</span> Protocolos CEV
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CERO TOLERANCIA — POLÍTICA
+═══════════════════════════════════════════════════════════ -->
+<section class="py-section-gap bg-background" id="politica">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+
+      <!-- Policy Card (large) -->
+      <div class="md:col-span-8 bento-card glass-panel bg-white/70 border border-warm-ivory p-8 rounded-xl flex flex-col justify-center reveal">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-14 h-14 rounded-xl bg-crimson-deep/10 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-crimson-deep" style="font-size:32px;">verified_user</span>
+          </div>
+          <h2 class="font-headline text-headline-md text-crimson-deep">Cero Tolerancia a los Abusos</h2>
+        </div>
+        <p class="font-body text-body-lg text-slate-warm mb-8 leading-relaxed">
+          La Iglesia particular de Maracaibo está firmemente comprometida con la protección de menores y personas vulnerables, implementando protocolos estrictos de prevención, formación de agentes de pastoral y atención a las víctimas. No solo es una obligación legal, sino un mandato moral y espiritual asegurar que cada espacio eclesial sea un refugio de paz y santidad.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal-stagger">
+          <div class="reveal p-4 bg-surface-container rounded-xl border-l-4 border-gold-antique">
+            <span class="material-symbols-outlined text-gold-antique mb-2 block">shield</span>
+            <p class="font-label text-label-lg text-on-surface">Prevención Estricta</p>
+            <p class="font-body text-sm text-slate-warm/80 mt-1">Protocolos y normas de conducta para todos los agentes pastorales.</p>
+          </div>
+          <div class="reveal p-4 bg-surface-container rounded-xl border-l-4 border-gold-antique">
+            <span class="material-symbols-outlined text-gold-antique mb-2 block">school</span>
+            <p class="font-label text-label-lg text-on-surface">Formación Integral</p>
+            <p class="font-body text-sm text-slate-warm/80 mt-1">Capacitación continua y sensibilización para todo el clero y laicado.</p>
+          </div>
+          <div class="reveal p-4 bg-surface-container rounded-xl border-l-4 border-gold-antique">
+            <span class="material-symbols-outlined text-gold-antique mb-2 block">volunteer_activism</span>
+            <p class="font-label text-label-lg text-on-surface">Atención a Víctimas</p>
+            <p class="font-body text-sm text-slate-warm/80 mt-1">Acompañamiento profesional y pastoral a quienes han sufrido abusos.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAPAS Commission Sidebar -->
+      <div class="md:col-span-4 bg-crimson-deep text-white p-8 rounded-xl flex flex-col justify-between reveal">
+        <div>
+          <div class="w-16 h-16 mb-4 mx-auto">
+            <img src="img/ambientes-seguros-logo.png" alt="Logo CAPAS" class="w-full h-full object-contain" onerror="this.style.display='none'">
+          </div>
+          <h3 class="font-headline text-headline-sm mb-4 text-primary-fixed text-center">La Comisión CAPAS</h3>
+          <p class="font-body text-body-md opacity-90 mb-6 leading-relaxed">
+            Equipo multidisciplinario encargado de supervisar los protocolos de seguridad, realizar auditorías constantes y capacitar a todos los agentes de pastoral en el territorio arquidiocesano.
+          </p>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-2 font-label text-label-lg">
+            <span class="material-symbols-outlined text-gold-antique">check_circle</span>
+            Auditoría de Parroquias
+          </li>
+          <li class="flex items-center gap-2 font-label text-label-lg">
+            <span class="material-symbols-outlined text-gold-antique">check_circle</span>
+            Manuales de Convivencia
+          </li>
+          <li class="flex items-center gap-2 font-label text-label-lg">
+            <span class="material-symbols-outlined text-gold-antique">check_circle</span>
+            Apoyo Psicológico Profesional
+          </li>
+          <li class="flex items-center gap-2 font-label text-label-lg">
+            <span class="material-symbols-outlined text-gold-antique">check_circle</span>
+            Protocolos de Prevención
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ESTADÍSTICAS / COMPROMISOS EN NÚMEROS
+═══════════════════════════════════════════════════════════ -->
+<section class="py-section-gap bg-surface-container-low" id="compromisos">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+    <div class="text-center mb-14 reveal">
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase block mb-3">Transparencia</span>
+      <h2 class="font-headline text-headline-lg text-crimson-deep">Nuestro Compromiso en Números</h2>
+      <div class="h-1 w-20 bg-gold-antique mx-auto mt-4"></div>
     </div>
 
-    <!-- Contact & Reporting -->
-    <div class="md:col-span-8 bento-card bg-warm-ivory border-2 border-crimson-deep/10 p-8 rounded-xl relative overflow-hidden reveal" id="contacto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter reveal-stagger">
+      <div class="reveal bento-card bg-white rounded-2xl p-8 text-center border border-outline-variant/10" id="stat-parroquias">
+        <span class="material-symbols-outlined text-crimson-deep mb-3 block" style="font-size:36px;">church</span>
+        <span class="font-display text-display-lg text-crimson-deep block stat-number" data-target="78">0</span>
+        <span class="font-label text-label-lg text-slate-warm mt-2 block">Parroquias comprometidas</span>
+      </div>
+      <div class="reveal bento-card bg-white rounded-2xl p-8 text-center border border-outline-variant/10" id="stat-formados">
+        <span class="material-symbols-outlined text-crimson-deep mb-3 block" style="font-size:36px;">school</span>
+        <div class="h-3 bg-surface-container rounded-full overflow-hidden mb-2">
+          <div class="h-full bg-gradient-to-r from-gold-antique to-crimson-deep rounded-full stat-bar" style="width:0%" data-target="65"></div>
+        </div>
+        <span class="font-label text-label-lg text-slate-warm block">Agentes en formación</span>
+      </div>
+      <div class="reveal bento-card bg-white rounded-2xl p-8 text-center border border-outline-variant/10" id="stat-protocolos">
+        <span class="material-symbols-outlined text-crimson-deep mb-3 block" style="font-size:36px;">description</span>
+        <span class="font-display text-display-lg text-crimson-deep block stat-number" data-target="2">0</span>
+        <span class="font-label text-label-lg text-slate-warm mt-2 block">Protocolos vigentes</span>
+      </div>
+      <div class="reveal bento-card bg-white rounded-2xl p-8 text-center border border-outline-variant/10" id="stat-ano">
+        <span class="material-symbols-outlined text-crimson-deep mb-3 block" style="font-size:36px;">event_available</span>
+        <span class="font-display text-display-lg text-crimson-deep block stat-number" data-target="2023">0</span>
+        <span class="font-label text-label-lg text-slate-warm mt-2 block">Año de implementación</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CANAL DE CONTACTO RÁPIDO
+═══════════════════════════════════════════════════════════ -->
+<section class="py-section-gap bg-background" id="contacto-rapido">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+    <div class="bento-card bg-warm-ivory border-2 border-crimson-deep/10 p-8 md:p-12 rounded-2xl relative overflow-hidden reveal">
       <!-- Decorative watermark -->
       <div class="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
         <span class="material-symbols-outlined" style="font-size:160px;">mail</span>
       </div>
       <div class="relative z-10">
-        <span class="font-label text-sm text-gold-antique tracking-widest uppercase block mb-2">Denuncias Confidenciales</span>
-        <h3 class="font-headline text-headline-md text-crimson-deep mb-3">Canal de Denuncias</h3>
+        <span class="font-label text-sm text-gold-antique tracking-widest uppercase block mb-2">Comunicación Confidencial</span>
+        <h3 class="font-headline text-headline-md text-crimson-deep mb-3">Contacta a la Comisión</h3>
         <div class="h-1 w-16 bg-gold-antique mb-6"></div>
         <p class="font-body text-body-md text-slate-warm mb-8 max-w-lg leading-relaxed">
-          Si usted o alguien que conoce ha sido víctima de cualquier tipo de abuso en el entorno eclesial, o tiene alguna denuncia o duda sobre la conducta de algún agente pastoral, presbítero o colaborador de la Arquidiócesis de Maracaibo, póngase en contacto de forma confidencial:
+          Si tienes conocimiento de alguna transgresión al Manual de Comportamiento y Buenas Prácticas o los Protocolos, comunícate con nosotros. Todas las comunicaciones son tratadas con estricta confidencialidad.
         </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Email -->
           <div class="flex flex-col gap-2">
             <label class="font-label text-label-lg text-crimson-deep flex items-center gap-2">
@@ -173,235 +380,43 @@
               Email Confidencial
             </label>
             <a class="font-headline text-headline-sm text-slate-warm hover:text-crimson-deep transition-colors underline decoration-gold-antique underline-offset-8 break-all"
-               href="mailto:capasmaracaibo@gmail.com">
-              capasmaracaibo@gmail.com
+               href="mailto:ambientesseguros@arquidiocesisdemaracaibo.org">
+              ambientesseguros@<br>arquidiocesisdemaracaibo.org
             </a>
           </div>
-          <!-- Phone -->
+          <!-- Coordinador -->
           <div class="flex flex-col gap-2">
             <label class="font-label text-label-lg text-crimson-deep flex items-center gap-2">
-              <span class="material-symbols-outlined text-[18px]">phone</span>
-              Teléfono CAPAS
+              <span class="material-symbols-outlined text-[18px]">person</span>
+              Coordinador
             </label>
-            <a class="font-headline text-headline-sm text-slate-warm hover:text-crimson-deep transition-colors"
-               href="tel:+584246178392">
-              0424-6178392
-            </a>
+            <p class="font-headline text-headline-sm text-slate-warm">
+              Abg. Alberto Jesús Álvaro Núñez
+            </p>
+          </div>
+          <!-- Emergencia -->
+          <div class="flex flex-col gap-2">
+            <label class="font-label text-label-lg text-crimson-deep flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">warning</span>
+              ¿Emergencia?
+            </label>
+            <p class="font-body text-slate-warm text-sm">Llama primero a las autoridades civiles:</p>
+            <p class="font-label text-label-lg text-crimson-deep font-bold">CICPC: 171 · Ministerio Público</p>
           </div>
         </div>
         <div class="mt-8 flex flex-col sm:flex-row gap-4">
-          <a href="mailto:capasmaracaibo@gmail.com"
+          <a href="ambientes-contacto.html"
              class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-crimson-deep text-white rounded-xl font-label text-label-lg shadow-lg hover:brightness-110 hover:shadow-xl transition-all">
             <span class="material-symbols-outlined text-[20px]">send</span>
-            Enviar Denuncia por Email
+            Contactar a la Comisión
           </a>
-          <a href="tel:+584246178392"
+          <a href="ambientes-escucha.html"
              class="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-crimson-deep text-crimson-deep rounded-xl font-label text-label-lg hover:bg-crimson-deep hover:text-white transition-all">
-            <span class="material-symbols-outlined text-[20px]">phone</span>
-            Llamar Ahora
+            <span class="material-symbols-outlined text-[20px]">hearing</span>
+            Ver Protocolo de Escucha
           </a>
         </div>
       </div>
-    </div>
-
-    <!-- Documents & Resources -->
-    <div class="md:col-span-12 glass-panel bg-surface-container-high/50 p-8 rounded-xl border border-outline-variant/30 reveal" id="documentos">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-        <div>
-          <span class="font-label text-sm text-gold-antique tracking-widest uppercase block mb-2">Biblioteca CAPAS</span>
-          <h3 class="font-headline text-headline-md text-on-surface">Recursos y Documentación</h3>
-        </div>
-        <p class="font-label text-label-lg text-slate-warm">Documentos oficiales de la Santa Sede y la Arquidiócesis.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 reveal-stagger">
-        <a class="reveal flex items-center p-4 bg-white rounded-xl hover:bg-warm-ivory transition-all group border border-outline-variant/10 hover:border-gold-antique/30 hover:shadow-md" href="#">
-          <span class="material-symbols-outlined text-crimson-deep mr-4 shrink-0">description</span>
-          <div class="flex-grow">
-            <p class="font-label text-label-lg text-on-surface group-hover:text-crimson-deep transition-colors">Motu Proprio "Vos estis lux mundi"</p>
-            <p class="font-label text-label-sm text-slate-warm opacity-70 mt-0.5">Papa Francisco</p>
-          </div>
-          <span class="material-symbols-outlined text-gold-antique opacity-0 group-hover:opacity-100 transition-opacity shrink-0">download</span>
-        </a>
-        <a class="reveal flex items-center p-4 bg-white rounded-xl hover:bg-warm-ivory transition-all group border border-outline-variant/10 hover:border-gold-antique/30 hover:shadow-md" href="#">
-          <span class="material-symbols-outlined text-crimson-deep mr-4 shrink-0">policy</span>
-          <div class="flex-grow">
-            <p class="font-label text-label-lg text-on-surface group-hover:text-crimson-deep transition-colors">Protocolo Arquidiocesano 2024</p>
-            <p class="font-label text-label-sm text-slate-warm opacity-70 mt-0.5">Documento PDF (2.4 MB)</p>
-          </div>
-          <span class="material-symbols-outlined text-gold-antique opacity-0 group-hover:opacity-100 transition-opacity shrink-0">download</span>
-        </a>
-        <a class="reveal flex items-center p-4 bg-white rounded-xl hover:bg-warm-ivory transition-all group border border-outline-variant/10 hover:border-gold-antique/30 hover:shadow-md" href="#">
-          <span class="material-symbols-outlined text-crimson-deep mr-4 shrink-0">gavel</span>
-          <div class="flex-grow">
-            <p class="font-label text-label-lg text-on-surface group-hover:text-crimson-deep transition-colors">Normas de Conducta para el Clero</p>
-            <p class="font-label text-label-sm text-slate-warm opacity-70 mt-0.5">Actualizado Enero 2024</p>
-          </div>
-          <span class="material-symbols-outlined text-gold-antique opacity-0 group-hover:opacity-100 transition-opacity shrink-0">download</span>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</main>
-
-<!-- ═══════════════════════════════════════════════════════════
-     FORMATION SECTION
-═══════════════════════════════════════════════════════════ -->
-<section class="bg-surface-container-low py-section-gap">
-  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
-    <div class="flex flex-col md:flex-row gap-12 items-center">
-
-      <!-- Text -->
-      <div class="w-full md:w-1/2 reveal">
-        <span class="font-label text-sm text-gold-antique tracking-widest uppercase block mb-4">Formación y Prevención</span>
-        <h2 class="font-headline text-headline-lg text-crimson-deep mb-6">Formación Permanente</h2>
-        <div class="h-1 w-20 bg-gold-antique mb-8"></div>
-        <p class="font-body text-body-lg text-slate-warm mb-8 leading-relaxed">
-          La prevención nace del conocimiento. Todos nuestros sacerdotes, diáconos, religiosos y voluntarios laicos participan en jornadas obligatorias de sensibilización y capacitación psicológica para detectar señales de riesgo.
-        </p>
-        <div class="space-y-6">
-          <div class="flex gap-4 reveal">
-            <div class="w-12 h-12 rounded-full bg-gold-antique/10 flex items-center justify-center shrink-0">
-              <span class="material-symbols-outlined text-gold-antique">group</span>
-            </div>
-            <div>
-              <h4 class="font-label text-label-lg text-on-surface mb-1">Talleres para Catequistas</h4>
-              <p class="font-body text-slate-warm/80 text-sm leading-relaxed">Herramientas pedagógicas seguras para el trato con menores en todos los ambientes parroquiales.</p>
-            </div>
-          </div>
-          <div class="flex gap-4 reveal">
-            <div class="w-12 h-12 rounded-full bg-gold-antique/10 flex items-center justify-center shrink-0">
-              <span class="material-symbols-outlined text-gold-antique">psychology</span>
-            </div>
-            <div>
-              <h4 class="font-label text-label-lg text-on-surface mb-1">Apoyo Profesional</h4>
-              <p class="font-body text-slate-warm/80 text-sm leading-relaxed">Alianza con psicólogos y expertos en derecho canónico para brindar acompañamiento especializado.</p>
-            </div>
-          </div>
-          <div class="flex gap-4 reveal">
-            <div class="w-12 h-12 rounded-full bg-gold-antique/10 flex items-center justify-center shrink-0">
-              <span class="material-symbols-outlined text-gold-antique">fact_check</span>
-            </div>
-            <div>
-              <h4 class="font-label text-label-lg text-on-surface mb-1">Evaluación y Seguimiento</h4>
-              <p class="font-body text-slate-warm/80 text-sm leading-relaxed">Monitoreo continuo de los protocolos y actualización periódica de las normas conforme a directrices de la Santa Sede.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Image -->
-      <div class="w-full md:w-1/2 reveal">
-        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-          <img
-            src="img/ambientes.webp"
-            alt="Formación CAPAS — Taller de Sensibilización"
-            onerror="this.src='https://placehold.co/800x500/7A1A22/ffffff?text=Formación+CAPAS'"
-            class="w-full h-auto aspect-video object-cover"
-          >
-          <div class="absolute inset-0 bg-gradient-to-t from-crimson-deep/40 to-transparent"></div>
-          <!-- badge overlay -->
-          <div class="absolute bottom-6 left-6 right-6">
-            <div class="glass-panel rounded-xl p-4">
-              <p class="font-label text-label-lg text-crimson-deep font-bold">Jornadas de Formación 2024</p>
-              <p class="font-body text-sm text-slate-warm mt-1">Sacerdotes, diáconos, religiosos y laicos comprometidos con la protección de la infancia.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     COMMITMENTS SECTION
-═══════════════════════════════════════════════════════════ -->
-<section class="py-section-gap bg-background">
-  <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
-    <div class="text-center mb-14 reveal">
-      <span class="font-label text-sm text-gold-antique tracking-widest uppercase block mb-3">Nuestros Compromisos</span>
-      <h2 class="font-headline text-headline-lg text-crimson-deep">Un Compromiso Institucional</h2>
-      <div class="h-1 w-20 bg-gold-antique mx-auto mt-4"></div>
-      <p class="font-body text-body-lg text-slate-warm max-w-2xl mx-auto mt-6 leading-relaxed">
-        La Arquidiócesis de Maracaibo asume con total seriedad la responsabilidad de proteger a los más vulnerables en cada una de sus instituciones.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter reveal-stagger">
-
-      <div class="reveal bento-card bg-white border border-outline-variant/20 rounded-xl p-8 flex flex-col gap-4">
-        <div class="w-12 h-12 rounded-xl bg-crimson-deep/10 flex items-center justify-center">
-          <span class="material-symbols-outlined text-crimson-deep">balance</span>
-        </div>
-        <h3 class="font-headline text-headline-sm text-crimson-deep">Marco Legal y Canónico</h3>
-        <p class="font-body text-body-md text-slate-warm leading-relaxed">
-          Aplicación estricta del Derecho Canónico y las leyes civiles venezolanas en todos los procedimientos de investigación y sanción.
-        </p>
-      </div>
-
-      <div class="reveal bento-card bg-white border border-outline-variant/20 rounded-xl p-8 flex flex-col gap-4">
-        <div class="w-12 h-12 rounded-xl bg-crimson-deep/10 flex items-center justify-center">
-          <span class="material-symbols-outlined text-crimson-deep">lock</span>
-        </div>
-        <h3 class="font-headline text-headline-sm text-crimson-deep">Confidencialidad Total</h3>
-        <p class="font-body text-body-md text-slate-warm leading-relaxed">
-          Toda denuncia recibida es tratada con absoluta reserva, protegiendo la identidad del denunciante y de las víctimas en todo momento.
-        </p>
-      </div>
-
-      <div class="reveal bento-card bg-white border border-outline-variant/20 rounded-xl p-8 flex flex-col gap-4">
-        <div class="w-12 h-12 rounded-xl bg-crimson-deep/10 flex items-center justify-center">
-          <span class="material-symbols-outlined text-crimson-deep">healing</span>
-        </div>
-        <h3 class="font-headline text-headline-sm text-crimson-deep">Acompañamiento Integral</h3>
-        <p class="font-body text-body-md text-slate-warm leading-relaxed">
-          Las víctimas reciben acompañamiento psicológico, espiritual y jurídico sin costo alguno, durante todo el proceso de recuperación.
-        </p>
-      </div>
-
-      <div class="reveal bento-card bg-white border border-outline-variant/20 rounded-xl p-8 flex flex-col gap-4">
-        <div class="w-12 h-12 rounded-xl bg-crimson-deep/10 flex items-center justify-center">
-          <span class="material-symbols-outlined text-crimson-deep">manage_search</span>
-        </div>
-        <h3 class="font-headline text-headline-sm text-crimson-deep">Investigación Transparente</h3>
-        <p class="font-body text-body-md text-slate-warm leading-relaxed">
-          Cada denuncia es investigada con rigor e imparcialidad, con plazos definidos y comunicación constante con las partes involucradas.
-        </p>
-      </div>
-
-      <div class="reveal bento-card bg-white border border-outline-variant/20 rounded-xl p-8 flex flex-col gap-4">
-        <div class="w-12 h-12 rounded-xl bg-crimson-deep/10 flex items-center justify-center">
-          <span class="material-symbols-outlined text-crimson-deep">child_care</span>
-        </div>
-        <h3 class="font-headline text-headline-sm text-crimson-deep">Protección de Menores</h3>
-        <p class="font-body text-body-md text-slate-warm leading-relaxed">
-          Protocolos especiales de verificación de antecedentes para todo voluntario o empleado que trabaje con niños, niñas y adolescentes.
-        </p>
-      </div>
-
-      <div class="reveal bento-card bg-crimson-deep rounded-xl p-8 flex flex-col gap-4">
-        <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
-          <span class="material-symbols-outlined text-gold-antique">campaign</span>
-        </div>
-        <h3 class="font-headline text-headline-sm text-white">Contacto CAPAS</h3>
-        <p class="font-body text-body-md text-white/80 leading-relaxed">
-          ¿Tienes alguna denuncia o necesitas orientación?
-        </p>
-        <div class="mt-auto space-y-2">
-          <a href="mailto:capasmaracaibo@gmail.com"
-             class="flex items-center gap-2 text-gold-antique font-label text-label-lg hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-[18px]">mail</span>
-            capasmaracaibo@gmail.com
-          </a>
-          <a href="tel:+584246178392"
-             class="flex items-center gap-2 text-gold-antique font-label text-label-lg hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-[18px]">phone</span>
-            0424-6178392
-          </a>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -412,16 +427,23 @@
 <section class="bg-crimson-deep py-16">
   <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter text-center reveal">
     <h2 class="font-headline text-headline-lg text-white mb-4">
-      Tu voz protege a los más vulnerables
+      Juntos construimos ambientes seguros
     </h2>
     <p class="font-body text-body-lg text-white/80 max-w-xl mx-auto mb-8 leading-relaxed">
-      Si conoces o sospechas de una situación de abuso en el entorno eclesial, no dudes en comunicarte. Toda denuncia es bienvenida y tratada con absoluta confidencialidad.
+      Descarga el material de formación, conoce los protocolos y únete a nuestra misión de proteger a los más vulnerables.
     </p>
-    <a href="mailto:capasmaracaibo@gmail.com"
-       class="inline-flex items-center gap-2 bg-gold-antique text-white px-10 py-4 rounded-xl font-label text-label-lg hover:brightness-110 transition-all shadow-lg">
-      <span class="material-symbols-outlined text-[20px]">send</span>
-      Contactar a CAPAS ahora
-    </a>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="ambientes-formacion.html"
+         class="inline-flex items-center gap-2 bg-gold-antique text-white px-10 py-4 rounded-xl font-label text-label-lg hover:brightness-110 transition-all shadow-lg">
+        <span class="material-symbols-outlined text-[20px]">school</span>
+        Ver Formación
+      </a>
+      <a href="ambientes-contacto.html"
+         class="inline-flex items-center gap-2 bg-white/10 border border-white/30 text-white px-10 py-4 rounded-xl font-label text-label-lg hover:bg-white/20 transition-all backdrop-blur-sm">
+        <span class="material-symbols-outlined text-[20px]">mail</span>
+        Contactar Comisión
+      </a>
+    </div>
   </div>
 </section>
 
@@ -429,6 +451,36 @@
 <div id="stitch-footer"></div>
 
 <script src="js/stitch-components.js"></script>
-<script>StitchLayout.init({ activePage: 'ambientes' });</script>
+<script>
+  StitchLayout.init({ activePage: 'ambientes' });
+
+  /* ── Counter Animation ─────────────────────────────────── */
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Animate numbers
+        entry.target.querySelectorAll('.stat-number').forEach(el => {
+          const target = parseInt(el.dataset.target);
+          const duration = target > 100 ? 2000 : 1200;
+          const start = performance.now();
+          const animate = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(eased * target);
+            if (progress < 1) requestAnimationFrame(animate);
+            else el.textContent = target;
+          };
+          requestAnimationFrame(animate);
+        });
+        // Animate bars
+        entry.target.querySelectorAll('.stat-bar').forEach(el => {
+          setTimeout(() => { el.style.width = el.dataset.target + '%'; el.style.transition = 'width 1.5s ease-out'; }, 300);
+        });
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('#compromisos .grid').forEach(el => counterObserver.observe(el));
+</script>
 
 </body></html>
