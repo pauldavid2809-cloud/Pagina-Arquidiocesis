@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escucha y Asistencia — Ambientes Seguros | Arquidiócesis de Maracaibo</title>
+    <meta name="description" content="Canal de escucha y asistencia para la protección de menores y adultos vulnerables. Comunícate con la Comisión Arquidiocesana de Ambientes Seguros.">
+
+    <!-- OG Meta Tags -->
+    <meta property="og:title" content="Escucha y Asistencia — Ambientes Seguros | Arquidiócesis de Maracaibo">
+    <meta property="og:description" content="Canal de escucha y asistencia para la protección de menores y adultos vulnerables. Comunícate con la Comisión Arquidiocesana de Ambientes Seguros.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arquidiocesisdemaracaibo.org/ambientes-escucha.html">
+    <meta property="og:image" content="https://arquidiocesisdemaracaibo.org/img/og-ambientes-escucha.jpg">
+    <meta property="og:locale" content="es_VE">
+    <meta property="og:site_name" content="Arquidiócesis de Maracaibo">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Escucha y Asistencia — Ambientes Seguros | Arquidiócesis de Maracaibo">
+    <meta name="twitter:description" content="Canal de escucha y asistencia para la protección de menores y adultos vulnerables.">
+    <meta name="twitter:image" content="https://arquidiocesisdemaracaibo.org/img/og-ambientes-escucha.jpg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="js/stitch-config.js"></script>
+    <link href="css/stitch-core.css" rel="stylesheet">
+
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .step-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+        .support-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .support-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+        }
+        .emergency-contact {
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .emergency-contact:hover {
+            transform: scale(1.03);
+        }
+        .hero-escucha {
+            background: linear-gradient(135deg, #8B1A1A 0%, #A52A2A 30%, #7B1818 70%, #6B1515 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-escucha::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(212,175,55,0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-escucha::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to top, rgba(0,0,0,0.15), transparent);
+            pointer-events: none;
+        }
+        .pulse-ring {
+            animation: pulseRing 2.5s ease-in-out infinite;
+        }
+        @keyframes pulseRing {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body">
+
+    <!-- Navbar -->
+    <div id="stitch-navbar"></div>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero-escucha min-h-[400px] flex items-center justify-center text-white relative">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-20 text-center relative z-10">
+            <!-- Badge -->
+            <div class="reveal inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
+                <span class="material-symbols-outlined text-[20px] text-yellow-300 pulse-ring">warning</span>
+                <span class="font-label text-label-sm text-white/90 tracking-wider uppercase">Área Prioritaria</span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="reveal font-display text-headline-lg-mobile md:text-display-lg text-white mb-6 leading-tight">
+                Escucha y Asistencia
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="reveal font-body text-body-lg text-white/85 max-w-3xl mx-auto leading-relaxed">
+                Si tienes conocimiento de alguna transgresión al Manual de Comportamiento y Buenas Prácticas o los Protocolos, comunícate con nosotros.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================== SUB-NAVIGATION ===================== -->
+    <nav class="bg-white/90 backdrop-blur-md border-b border-outline-variant/20 sticky top-[64px] z-40 shadow-sm">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <div class="flex items-center gap-1 overflow-x-auto py-3 no-scrollbar">
+                <span class="material-symbols-outlined text-crimson-deep mr-2 shrink-0 text-[20px]">verified_user</span>
+                <a href="ambientes.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Inicio</a>
+                <a href="ambientes-escucha.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] bg-crimson-deep text-white font-bold transition-all whitespace-nowrap">Escucha</a>
+                <a href="ambientes-formacion.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Formación</a>
+                <a href="ambientes-marco-legal.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Marco Legal</a>
+                <a href="ambientes-contacto.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================== EMERGENCY ALERT ===================== -->
+    <section class="py-section-gap">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <div class="reveal bg-red-50 border-2 border-red-200 rounded-2xl p-5 md:p-12 relative overflow-hidden">
+                <!-- Decorative element -->
+                <div class="absolute top-0 right-0 w-40 h-40 bg-red-100/50 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+
+                <div class="relative z-10">
+                    <!-- Alert Header -->
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <span class="material-symbols-outlined text-white text-[28px]">emergency</span>
+                        </div>
+                        <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-red-800">¿Estás en peligro inmediato?</h2>
+                    </div>
+
+                    <p class="font-body text-body-lg text-red-700 mb-8 max-w-2xl">
+                        Llama <strong>PRIMERO</strong> a las autoridades civiles. La Iglesia no sustituye a la justicia civil.
+                    </p>
+
+                    <!-- Emergency Contacts Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- CICPC -->
+                        <div class="emergency-contact bg-white rounded-xl p-6 border border-red-100 shadow-sm text-center">
+                            <div class="w-14 h-14 bg-red-600/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="material-symbols-outlined text-red-600 text-[32px]">shield</span>
+                            </div>
+                            <h3 class="font-headline text-headline-sm text-red-800 mb-1">CICPC</h3>
+                            <p class="font-display text-display-lg text-red-600 mb-2">171</p>
+                            <p class="font-body text-body-md text-slate-warm">Cuerpo de Investigaciones</p>
+                        </div>
+
+                        <!-- Ministerio Público -->
+                        <div class="emergency-contact bg-white rounded-xl p-6 border border-red-100 shadow-sm text-center">
+                            <div class="w-14 h-14 bg-red-600/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="material-symbols-outlined text-red-600 text-[32px]">balance</span>
+                            </div>
+                            <h3 class="font-headline text-headline-sm text-red-800 mb-1">Ministerio Público</h3>
+                            <p class="font-display text-headline-md text-red-600 mb-2">Fiscalía</p>
+                            <p class="font-body text-body-md text-slate-warm">Denuncia formal ante el MP</p>
+                        </div>
+
+                        <!-- LOPNA -->
+                        <div class="emergency-contact bg-white rounded-xl p-6 border border-red-100 shadow-sm text-center">
+                            <div class="w-14 h-14 bg-red-600/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="material-symbols-outlined text-red-600 text-[32px]">child_care</span>
+                            </div>
+                            <h3 class="font-headline text-headline-sm text-red-800 mb-1">LOPNA</h3>
+                            <p class="font-display text-headline-md text-red-600 mb-2">Tribunal de Protección</p>
+                            <p class="font-body text-body-md text-slate-warm">Protección de menores</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PROTOCOL STEPS ===================== -->
+    <section class="py-section-gap bg-surface-container/30">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="reveal inline-flex items-center gap-2 bg-crimson-deep/5 border border-crimson-deep/15 rounded-full px-5 py-2 mb-6">
+                    <span class="material-symbols-outlined text-crimson-deep text-[18px]">fact_check</span>
+                    <span class="font-label text-label-sm text-crimson-deep tracking-wider uppercase">Protocolo Oficial</span>
+                </div>
+                <h2 class="reveal font-display text-headline-lg-mobile md:text-display-lg text-on-surface mb-4">Pasos para ser Escuchado</h2>
+            </div>
+
+            <!-- Steps -->
+            <div class="space-y-6 max-w-4xl mx-auto">
+                <!-- Step 01 -->
+                <div class="reveal step-card bg-white rounded-2xl border border-outline-variant/15 shadow-sm overflow-hidden">
+                    <div class="flex flex-col md:flex-row">
+                        <!-- Step Number -->
+                        <div class="bg-crimson-deep/5 border-b md:border-b-0 md:border-r border-crimson-deep/10 px-8 py-6 md:py-8 flex items-center justify-center md:min-w-[140px]">
+                            <span class="font-display text-[4rem] leading-none text-crimson-deep/20 font-bold">01</span>
+                        </div>
+                        <!-- Content -->
+                        <div class="p-6 md:p-8 flex-1 border-l-4 border-crimson-deep md:border-l-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-crimson-deep/10 rounded-xl flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-crimson-deep text-[28px]">mail</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline text-headline-sm text-on-surface mb-2">Contacta a la Comisión Arquidiocesana</h3>
+                                    <p class="font-body text-body-md text-slate-warm leading-relaxed">
+                                        Acércate a nuestra Oficina o comunícate con nuestra comisión por correo electrónico o teléfono. Tu identidad será protegida con confidencialidad total.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="reveal step-card bg-white rounded-2xl border border-outline-variant/15 shadow-sm overflow-hidden">
+                    <div class="flex flex-col md:flex-row">
+                        <!-- Step Number -->
+                        <div class="bg-crimson-deep/5 border-b md:border-b-0 md:border-r border-crimson-deep/10 px-8 py-6 md:py-8 flex items-center justify-center md:min-w-[140px]">
+                            <span class="font-display text-[4rem] leading-none text-crimson-deep/20 font-bold">02</span>
+                        </div>
+                        <!-- Content -->
+                        <div class="p-6 md:p-8 flex-1 border-l-4 border-crimson-deep md:border-l-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-crimson-deep/10 rounded-xl flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-crimson-deep text-[28px]">assignment</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline text-headline-sm text-on-surface mb-2">Investigación canónica</h3>
+                                    <p class="font-body text-body-md text-slate-warm leading-relaxed">
+                                        Activación del Protocolo Arquidiocesano para la protección de menores y Adultos vulnerables.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="reveal step-card bg-white rounded-2xl border border-outline-variant/15 shadow-sm overflow-hidden">
+                    <div class="flex flex-col md:flex-row">
+                        <!-- Step Number -->
+                        <div class="bg-crimson-deep/5 border-b md:border-b-0 md:border-r border-crimson-deep/10 px-8 py-6 md:py-8 flex items-center justify-center md:min-w-[140px]">
+                            <span class="font-display text-[4rem] leading-none text-crimson-deep/20 font-bold">03</span>
+                        </div>
+                        <!-- Content -->
+                        <div class="p-6 md:p-8 flex-1 border-l-4 border-crimson-deep md:border-l-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-crimson-deep/10 rounded-xl flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-crimson-deep text-[28px]">volunteer_activism</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline text-headline-sm text-on-surface mb-2">Acompañamiento a quien ha sido escuchado</h3>
+                                    <p class="font-body text-body-md text-slate-warm leading-relaxed">
+                                        Si el caso lo requiere, se iniciará una investigación interna conforme al derecho canónico y al motu proprio <em>"Vos estis lux mundi"</em>. Con plena cooperación con las autoridades civiles si fuese necesario, y acatando el principio de total transparencia.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== ASSISTANCE TO THE FAITHFUL ===================== -->
+    <section class="py-section-gap">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="reveal inline-flex items-center gap-2 bg-crimson-deep/5 border border-crimson-deep/15 rounded-full px-5 py-2 mb-6">
+                    <span class="material-symbols-outlined text-crimson-deep text-[18px]">favorite</span>
+                    <span class="font-label text-label-sm text-crimson-deep tracking-wider uppercase">Tu Bienestar es Primero</span>
+                </div>
+                <h2 class="reveal font-display text-headline-lg-mobile md:text-display-lg text-on-surface mb-4">Asistencia a la Feligresía</h2>
+                <p class="reveal font-body text-body-lg text-slate-warm max-w-2xl mx-auto leading-relaxed">
+                    Contamos con un equipo multidisciplinario disponible para acompañarte en tu proceso de sanación.
+                </p>
+            </div>
+
+            <!-- Support Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+                <!-- Apoyo Psicológico -->
+                <div class="reveal support-card bg-white rounded-2xl border border-outline-variant/15 shadow-sm p-5 md:p-8 text-center group">
+                    <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-blue-600 text-[36px]">psychology</span>
+                    </div>
+                    <h3 class="font-headline text-headline-sm text-on-surface mb-3">Apoyo Psicológico</h3>
+                    <div class="w-12 h-1 bg-blue-500 rounded-full mx-auto mb-4"></div>
+                    <p class="font-body text-body-md text-slate-warm leading-relaxed">
+                        Atención primaria con profesionales especializados en trauma.
+                    </p>
+                </div>
+
+                <!-- Asesoría Jurídica -->
+                <div class="reveal support-card bg-white rounded-2xl border border-outline-variant/15 shadow-sm p-5 md:p-8 text-center group">
+                    <div class="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-teal-600 text-[36px]">gavel</span>
+                    </div>
+                    <h3 class="font-headline text-headline-sm text-on-surface mb-3">Asesoría Jurídica</h3>
+                    <div class="w-12 h-1 bg-teal-500 rounded-full mx-auto mb-4"></div>
+                    <p class="font-body text-body-md text-slate-warm leading-relaxed">
+                        Orientación legal para conocer tus derechos.
+                    </p>
+                </div>
+
+                <!-- Acompañamiento Espiritual -->
+                <div class="reveal support-card bg-white rounded-2xl border border-outline-variant/15 shadow-sm p-5 md:p-8 text-center group">
+                    <div class="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-amber-600 text-[36px]">self_improvement</span>
+                    </div>
+                    <h3 class="font-headline text-headline-sm text-on-surface mb-3">Acompañamiento Espiritual</h3>
+                    <div class="w-12 h-1 bg-amber-500 rounded-full mx-auto mb-4"></div>
+                    <p class="font-body text-body-md text-slate-warm leading-relaxed">
+                        Sacerdote o Agente Pastoral capacitado para acompañar el proceso de sanación interior y restauración de la fe.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CONTACT CARD ===================== -->
+    <section class="py-section-gap bg-surface-container/30">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <div class="reveal max-w-3xl mx-auto">
+                <div class="bg-crimson-deep rounded-3xl p-5 md:p-12 text-white relative overflow-hidden shadow-xl">
+                    <!-- Decorative elements -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3"></div>
+                    <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/3 -translate-x-1/4"></div>
+
+                    <div class="relative z-10 text-center">
+                        <!-- Icon -->
+                        <div class="w-16 h-16 bg-white/15 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <span class="material-symbols-outlined text-white text-[36px]">contact_mail</span>
+                        </div>
+
+                        <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-white mb-2">Comisión Arquidiocesana</h2>
+                        <p class="font-headline text-headline-sm text-white/90 mb-2">Coordinador</p>
+                        <p class="font-display text-headline-md text-white mb-6">Abg. Alberto Jesús Álvaro Núñez</p>
+
+                        <!-- Email -->
+                        <div class="flex items-center justify-center gap-3 mb-8">
+                            <span class="material-symbols-outlined text-white/70 text-[20px]">email</span>
+                            <a href="mailto:ambientesseguros@arquidiocesisdemaracaibo.org" class="font-body text-body-lg text-white/90 hover:text-white underline underline-offset-4 decoration-white/30 hover:decoration-white transition-colors">
+                                ambientesseguros@arquidiocesisdemaracaibo.org
+                            </a>
+                        </div>
+
+                        <!-- CTA Button -->
+                        <a href="ambientes-contacto.html" class="inline-flex items-center gap-2 bg-white text-crimson-deep font-label text-label-lg px-8 py-4 rounded-full hover:bg-white/90 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                            <span>Ir a Contacto</span>
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="stitch-footer"></div>
+
+    <!-- Scripts -->
+    <script src="js/stitch-components.js"></script>
+    <script>StitchLayout.init({ activePage: 'ambientes' });</script>
+</body>
+</html>

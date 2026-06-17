@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco Legal y Documentación — Ambientes Seguros | Arquidiócesis de Maracaibo</title>
+    <meta name="description" content="Conoce los protocolos canónicos y las leyes civiles venezolanas que fundamentan nuestro compromiso con la protección de los más vulnerables en la Arquidiócesis de Maracaibo.">
+
+    <!-- OG Meta Tags -->
+    <meta property="og:title" content="Marco Legal y Documentación — Ambientes Seguros | Arquidiócesis de Maracaibo">
+    <meta property="og:description" content="Protocolos canónicos, leyes civiles y normativas internas para la protección de menores y adultos vulnerables.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arquidiocesisdemaracaibo.org/ambientes-marco-legal.html">
+    <meta property="og:image" content="https://arquidiocesisdemaracaibo.org/img/og-ambientes-marco-legal.jpg">
+    <meta property="og:locale" content="es_VE">
+    <meta property="og:site_name" content="Arquidiócesis de Maracaibo">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Marco Legal y Documentación — Ambientes Seguros | Arquidiócesis de Maracaibo">
+    <meta name="twitter:description" content="Protocolos canónicos, leyes civiles y normativas internas para la protección de menores y adultos vulnerables.">
+    <meta name="twitter:image" content="https://arquidiocesisdemaracaibo.org/img/og-ambientes-marco-legal.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="js/stitch-config.js"></script>
+    <link href="css/stitch-core.css" rel="stylesheet">
+
+    <style>
+        .no-scrollbar::-webkit-scrollbar{display:none}
+        .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+
+        .hero-marco-legal {
+            background: linear-gradient(135deg, #1a0a0e 0%, #3d0f1e 30%, #6b1830 60%, #8b1a2b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-marco-legal::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 80%, rgba(139,26,43,0.4) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 20%, rgba(184,115,51,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero-marco-legal::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0v60M0 30h60' stroke='%23ffffff' stroke-opacity='0.03' stroke-width='0.5'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .rule-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .rule-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(139,26,43,0.12);
+        }
+        .rule-number {
+            position: absolute;
+            top: -10px;
+            right: 12px;
+            font-size: 5rem;
+            font-weight: 900;
+            opacity: 0.07;
+            line-height: 1;
+            pointer-events: none;
+            color: currentColor;
+        }
+
+        .doc-card {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .doc-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(139,26,43,0.14);
+        }
+
+        .protocol-panel {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139,26,43,0.08);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.7s ease-out forwards;
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-scale-in {
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body">
+
+    <!-- Navbar -->
+    <div id="stitch-navbar"></div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero-marco-legal py-section-gap relative">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <!-- Badge -->
+                <div class="reveal inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full px-5 py-2.5 mb-8">
+                    <span class="material-symbols-outlined text-gold-antique text-[20px]">gavel</span>
+                    <span class="font-label text-label-sm text-gold-antique tracking-wider uppercase">Documentación Oficial</span>
+                </div>
+
+                <!-- Title -->
+                <h1 class="reveal font-display text-headline-lg-mobile md:text-display-lg text-white mb-6 leading-tight">
+                    Marco Legal y<br>Documentación
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="reveal text-body-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+                    Conoce los protocolos canónicos y las leyes civiles venezolanas que fundamentan nuestro compromiso con la protección de los más vulnerables.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SUB-NAVIGATION ==================== -->
+    <nav class="bg-white/90 backdrop-blur-md border-b border-outline-variant/20 sticky top-[64px] z-40 shadow-sm">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <div class="flex items-center gap-1 overflow-x-auto py-3 no-scrollbar">
+                <span class="material-symbols-outlined text-crimson-deep mr-2 shrink-0 text-[20px]">verified_user</span>
+                <a href="ambientes.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Inicio</a>
+                <a href="ambientes-escucha.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Escucha</a>
+                <a href="ambientes-formacion.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Formación</a>
+                <a href="ambientes-marco-legal.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] bg-crimson-deep text-white font-bold transition-all whitespace-nowrap">Marco Legal</a>
+                <a href="ambientes-contacto.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== PROTOCOLO CEV ==================== -->
+    <section id="protocolo-cev" class="py-section-gap bg-surface-container-low">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <!-- Section Header -->
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 bg-crimson-deep/8 rounded-full px-4 py-1.5 mb-4">
+                    <span class="material-symbols-outlined text-crimson-deep text-[16px]">church</span>
+                    <span class="font-label text-label-sm text-crimson-deep tracking-wider uppercase">Protocolo Eclesial</span>
+                </div>
+                <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">Protocolo CEV</h2>
+                <p class="text-body-lg text-slate-warm max-w-2xl mx-auto">
+                    Documento oficial de la Conferencia Episcopal Venezolana para la Prevención de Abusos.
+                </p>
+            </div>
+
+            <!-- Main Protocol Card -->
+            <div class="protocol-panel rounded-3xl p-8 md:p-12 mb-12 reveal">
+                <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+                    <!-- Icon -->
+                    <div class="shrink-0 w-20 h-20 rounded-2xl bg-crimson-deep/10 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-crimson-deep text-[40px]">menu_book</span>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="flex-1">
+                        <h3 class="font-display text-headline-md text-on-surface mb-2">
+                            Protocolo para la Prevención de Abusos
+                        </h3>
+                        <p class="font-label text-label-lg text-crimson-deep mb-4">
+                            Conferencia Episcopal Venezolana (CEV)
+                        </p>
+                        <p class="text-body-lg text-slate-warm leading-relaxed mb-8">
+                            Este protocolo establece los procedimientos canónicos y pastorales que deben seguir todas las diócesis y arquidiócesis de Venezuela ante casos de abuso sexual, abuso de poder, abuso de conciencia y abuso contra menores.
+                        </p>
+
+                        <!-- Highlights -->
+                        <div class="grid sm:grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-emerald-600 text-[20px] mt-0.5 shrink-0">check_circle</span>
+                                <span class="text-body-md text-on-surface">Procedimiento de denuncia interna canónica</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-emerald-600 text-[20px] mt-0.5 shrink-0">check_circle</span>
+                                <span class="text-body-md text-on-surface">Protección de la identidad del denunciante</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-emerald-600 text-[20px] mt-0.5 shrink-0">check_circle</span>
+                                <span class="text-body-md text-on-surface">Cooperación obligatoria con autoridades civiles</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-emerald-600 text-[20px] mt-0.5 shrink-0">check_circle</span>
+                                <span class="text-body-md text-on-surface">Medidas cautelares durante la investigación</span>
+                            </div>
+                        </div>
+
+                        <!-- Info Badge -->
+                        <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-5 py-2.5">
+                            <span class="material-symbols-outlined text-blue-600 text-[18px]">info</span>
+                            <span class="font-label text-label-sm text-blue-700">Documento en preparación</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Document Cards Grid -->
+            <div class="grid md:grid-cols-2 gap-gutter reveal-stagger">
+                <!-- Vos estis lux mundi -->
+                <div class="doc-card bg-white rounded-2xl p-8 border border-outline-variant/15 shadow-sm">
+                    <div class="flex items-start gap-5">
+                        <div class="shrink-0 w-14 h-14 rounded-xl bg-gold-antique/15 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-gold-antique text-[28px]">auto_stories</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-display text-headline-sm text-on-surface mb-1">Vos estis lux mundi</h3>
+                            <p class="text-body-md text-slate-warm mb-4">
+                                Motu Proprio del Papa Francisco que establece nuevas normas para combatir los abusos sexuales y el encubrimiento en la Iglesia universal.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-crimson-deep/8 rounded-full px-4 py-2">
+                                <span class="material-symbols-outlined text-crimson-deep text-[16px]">download</span>
+                                <span class="font-label text-label-sm text-crimson-deep">Disponible próximamente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Protocolo Arquidiocesano -->
+                <div class="doc-card bg-white rounded-2xl p-8 border border-outline-variant/15 shadow-sm">
+                    <div class="flex items-start gap-5">
+                        <div class="shrink-0 w-14 h-14 rounded-xl bg-crimson-deep/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-crimson-deep text-[28px]">description</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-display text-headline-sm text-on-surface mb-1">Protocolo Arquidiocesano 2024</h3>
+                            <p class="text-body-md text-slate-warm mb-4">
+                                Normativa local adaptada a la realidad pastoral de la Arquidiócesis de Maracaibo para la prevención y respuesta ante abusos.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-crimson-deep/8 rounded-full px-4 py-2">
+                                <span class="material-symbols-outlined text-crimson-deep text-[16px]">download</span>
+                                <span class="font-label text-label-sm text-crimson-deep">Disponible próximamente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CÓDIGO DE CONDUCTA ==================== -->
+    <section id="codigo" class="py-section-gap bg-background">
+        <div id="clero" class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <!-- Section Header -->
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 bg-crimson-deep/8 rounded-full px-4 py-1.5 mb-4">
+                    <span class="material-symbols-outlined text-crimson-deep text-[16px]">shield</span>
+                    <span class="font-label text-label-sm text-crimson-deep tracking-wider uppercase">Normas Internas</span>
+                </div>
+                <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">Código de Conducta</h2>
+                <p class="text-body-lg text-slate-warm max-w-2xl mx-auto">
+                    Normas específicas para el trato con menores y adultos vulnerables en Maracaibo.
+                </p>
+            </div>
+
+            <!-- Rules Grid -->
+            <div class="grid md:grid-cols-2 gap-gutter reveal-stagger">
+                <!-- Rule 01 -->
+                <div class="rule-card bg-white rounded-2xl p-8 border-l-4 border-crimson-deep shadow-sm">
+                    <span class="rule-number font-display text-crimson-deep">01</span>
+                    <h3 class="font-display text-headline-sm text-on-surface mb-3 relative z-10">Nunca estar a solas</h3>
+                    <p class="text-body-md text-slate-warm leading-relaxed relative z-10">
+                        Ningún adulto puede estar solo con un menor en espacios cerrados o sin visión directa de otro adulto responsable.
+                    </p>
+                </div>
+
+                <!-- Rule 02 -->
+                <div class="rule-card bg-white rounded-2xl p-8 border-l-4 border-crimson-deep shadow-sm">
+                    <span class="rule-number font-display text-crimson-deep">02</span>
+                    <h3 class="font-display text-headline-sm text-on-surface mb-3 relative z-10">Lenguaje apropiado</h3>
+                    <p class="text-body-md text-slate-warm leading-relaxed relative z-10">
+                        El lenguaje, los gestos y el contacto físico deben ser siempre apropiados para la edad y el contexto pastoral.
+                    </p>
+                </div>
+
+                <!-- Rule 03 -->
+                <div class="rule-card bg-white rounded-2xl p-8 border-l-4 border-crimson-deep shadow-sm">
+                    <span class="rule-number font-display text-crimson-deep">03</span>
+                    <h3 class="font-display text-headline-sm text-on-surface mb-3 relative z-10">Comunicación transparente</h3>
+                    <p class="text-body-md text-slate-warm leading-relaxed relative z-10">
+                        Toda comunicación digital con menores debe incluir a los padres o tutores en copia, y realizarse por canales oficiales.
+                    </p>
+                </div>
+
+                <!-- Rule 04 -->
+                <div class="rule-card bg-white rounded-2xl p-8 border-l-4 border-crimson-deep shadow-sm">
+                    <span class="rule-number font-display text-crimson-deep">04</span>
+                    <h3 class="font-display text-headline-sm text-on-surface mb-3 relative z-10">Reporte inmediato</h3>
+                    <p class="text-body-md text-slate-warm leading-relaxed relative z-10">
+                        Cualquier sospecha, insinuación o comportamiento inapropiado debe reportarse de inmediato a la Comisión y a las autoridades civiles.
+                    </p>
+                </div>
+
+                <!-- Rule 05 -->
+                <div class="rule-card bg-white rounded-2xl p-8 border-l-4 border-crimson-deep shadow-sm">
+                    <span class="rule-number font-display text-crimson-deep">05</span>
+                    <h3 class="font-display text-headline-sm text-on-surface mb-3 relative z-10">No represalias</h3>
+                    <p class="text-body-md text-slate-warm leading-relaxed relative z-10">
+                        Está estrictamente prohibido tomar represalias contra quienes denuncien de buena fe una situación de abuso o preocupación.
+                    </p>
+                </div>
+
+                <!-- Rule 06 -->
+                <div class="rule-card bg-white rounded-2xl p-8 border-l-4 border-crimson-deep shadow-sm">
+                    <span class="rule-number font-display text-crimson-deep">06</span>
+                    <h3 class="font-display text-headline-sm text-on-surface mb-3 relative z-10">Formación continua</h3>
+                    <p class="text-body-md text-slate-warm leading-relaxed relative z-10">
+                        Todo el personal pastoral debe renovar su formación en Ambientes Seguros cada dos años como mínimo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="stitch-footer"></div>
+
+    <!-- Scripts -->
+    <script src="js/stitch-components.js"></script>
+    <script>StitchLayout.init({ activePage: 'ambientes' });</script>
+
+</body>
+</html>

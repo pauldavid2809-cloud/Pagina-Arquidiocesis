@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formación y Prevención · Ambientes Seguros · Arquidiócesis de Maracaibo</title>
+    <meta name="description" content="Talleres de formación, requisitos para agentes pastorales y materiales descargables sobre prevención y protección de menores en la Arquidiócesis de Maracaibo.">
+
+    <!-- OG Meta Tags -->
+    <meta property="og:title" content="Formación y Prevención · Ambientes Seguros · Arquidiócesis de Maracaibo">
+    <meta property="og:description" content="Talleres de formación, requisitos para agentes pastorales y materiales descargables sobre prevención y protección de menores en la Arquidiócesis de Maracaibo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arquidiocesisdemaracaibo.org/ambientes-formacion.html">
+    <meta property="og:image" content="https://arquidiocesisdemaracaibo.org/img/og-ambientes-formacion.jpg">
+    <meta property="og:site_name" content="Arquidiócesis de Maracaibo">
+    <meta property="og:locale" content="es_VE">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Formación y Prevención · Ambientes Seguros · Arquidiócesis de Maracaibo">
+    <meta name="twitter:description" content="Talleres de formación, requisitos para agentes pastorales y materiales descargables sobre prevención y protección de menores.">
+    <meta name="twitter:image" content="https://arquidiocesisdemaracaibo.org/img/og-ambientes-formacion.jpg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="js/stitch-config.js"></script>
+    <link href="css/stitch-core.css" rel="stylesheet">
+
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .course-card {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .course-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.12);
+        }
+
+        .checklist-item {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .checklist-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 8px 24px -8px rgba(0,0,0,0.08);
+        }
+
+        .download-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .download-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px -8px rgba(0,0,0,0.1);
+        }
+
+        .hero-formacion {
+            background: linear-gradient(135deg, #1a365d 0%, #2b4c7e 25%, #3d5a80 50%, #8b1a2b 85%, #6b1520 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-formacion::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 80%, rgba(139, 26, 43, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-formacion::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body">
+
+    <!-- Navbar -->
+    <div id="stitch-navbar"></div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- HERO -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="hero-formacion min-h-[400px] flex items-center justify-center relative">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-20 text-center relative z-10">
+            <div class="reveal">
+                <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white/90 font-label text-label-sm px-4 py-1.5 rounded-full mb-6">
+                    <span class="material-symbols-outlined text-[18px]">school</span>
+                    Compliance & Formación
+                </span>
+            </div>
+            <h1 class="font-display text-headline-lg-mobile md:text-display-lg text-white mb-4 reveal" style="animation-delay: 0.1s;">
+                Formación y Prevención
+            </h1>
+            <p class="text-body-lg text-white/80 max-w-2xl mx-auto reveal" style="animation-delay: 0.2s;">
+                La más efectiva prevención es la educación. Conoce los talleres, requisitos y materiales disponibles dentro de la comunidad.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- SUB-NAVIGATION BAR -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <nav class="bg-white/90 backdrop-blur-md border-b border-outline-variant/20 sticky top-[64px] z-40 shadow-sm">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <div class="flex items-center gap-1 overflow-x-auto py-3 no-scrollbar">
+                <span class="material-symbols-outlined text-crimson-deep mr-2 shrink-0 text-[20px]">verified_user</span>
+                <a href="ambientes.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Inicio</a>
+                <a href="ambientes-escucha.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Escucha</a>
+                <a href="ambientes-formacion.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] bg-crimson-deep text-white font-bold transition-all whitespace-nowrap">Formación</a>
+                <a href="ambientes-marco-legal.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Marco Legal</a>
+                <a href="ambientes-contacto.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- SECTION 1: TRAINING COURSES -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="formacion" class="py-section-gap bg-surface-container-low">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <!-- Section Header -->
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-crimson-deep/8 text-crimson-deep font-label text-label-sm px-4 py-1.5 rounded-full mb-4">
+                    <span class="material-symbols-outlined text-[16px]">school</span>
+                    Talleres y Capacitación
+                </span>
+                <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-on-surface mb-3">
+                    Sistema de Formación
+                </h2>
+                <p class="text-body-lg text-slate-warm max-w-2xl mx-auto">
+                    Ofreceremos talleres presenciales y virtuales sobre la cultura del buen trato y la protección de menores y adultos vulnerables.
+                </p>
+            </div>
+
+            <!-- Course Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter reveal-stagger">
+
+                <!-- Card 1: Taller de Ambientes Seguros -->
+                <div class="course-card bg-white rounded-2xl shadow-md border border-outline-variant/10 overflow-hidden relative">
+                    <div class="h-1.5 bg-gradient-to-r from-crimson-deep to-crimson-deep/70"></div>
+                    <div class="p-6 md:p-8">
+                        <!-- Badge -->
+                        <div class="flex items-start justify-between mb-5">
+                            <div class="w-14 h-14 rounded-2xl bg-crimson-deep/8 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-crimson-deep text-[28px]">groups</span>
+                            </div>
+                            <span class="inline-flex items-center bg-crimson-deep/10 text-crimson-deep font-label text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                                Obligatorio
+                            </span>
+                        </div>
+                        <h3 class="font-display text-headline-sm text-on-surface mb-3">
+                            Taller de Ambientes Seguros
+                        </h3>
+                        <p class="text-body-md text-slate-warm mb-6 leading-relaxed">
+                            Formación básica y obligatoria para todos los voluntarios, empleados y Agentes Pastorales que trabajan con menores.
+                        </p>
+                        <!-- Meta -->
+                        <div class="flex items-center gap-4 text-label-sm text-slate-warm/70 mb-6">
+                            <span class="inline-flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">schedule</span>
+                                6 horas
+                            </span>
+                            <span class="inline-flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Presencial / Virtual
+                            </span>
+                        </div>
+                        <!-- CTA -->
+                        <a href="ambientes-contacto.html" class="inline-flex items-center gap-2 bg-crimson-deep text-white font-label text-label-lg px-6 py-3 rounded-xl hover:bg-crimson-deep/90 transition-colors w-full justify-center">
+                            <span class="material-symbols-outlined text-[18px]">how_to_reg</span>
+                            Inscribirse
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Formación para Catequistas -->
+                <div class="course-card bg-white rounded-2xl shadow-md border border-outline-variant/10 overflow-hidden relative">
+                    <div class="h-1.5 bg-gradient-to-r from-teal-600 to-teal-400"></div>
+                    <div class="p-6 md:p-8">
+                        <!-- Badge -->
+                        <div class="flex items-start justify-between mb-5">
+                            <div class="w-14 h-14 rounded-2xl bg-teal-600/8 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-teal-600 text-[28px]">co_present</span>
+                            </div>
+                            <span class="inline-flex items-center bg-teal-600/10 text-teal-700 font-label text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                                Recomendado
+                            </span>
+                        </div>
+                        <h3 class="font-display text-headline-sm text-on-surface mb-3">
+                            Formación para Catequistas
+                        </h3>
+                        <p class="text-body-md text-slate-warm mb-6 leading-relaxed">
+                            Taller especializado para educadores de fe: cómo crear entornos seguros, detectar señales de alarma y actuar correctamente.
+                        </p>
+                        <!-- Meta -->
+                        <div class="flex items-center gap-4 text-label-sm text-slate-warm/70 mb-6">
+                            <span class="inline-flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">schedule</span>
+                                4 horas
+                            </span>
+                            <span class="inline-flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Parroquial
+                            </span>
+                        </div>
+                        <!-- CTA -->
+                        <a href="ambientes-contacto.html" class="inline-flex items-center gap-2 bg-teal-600 text-white font-label text-label-lg px-6 py-3 rounded-xl hover:bg-teal-700 transition-colors w-full justify-center">
+                            <span class="material-symbols-outlined text-[18px]">how_to_reg</span>
+                            Inscribirse
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Educación Familiar -->
+                <div id="familias" class="course-card bg-white rounded-2xl shadow-md border border-outline-variant/10 overflow-hidden relative">
+                    <div class="h-1.5 bg-gradient-to-r from-gold-antique to-amber-400"></div>
+                    <div class="p-6 md:p-8">
+                        <!-- Badge -->
+                        <div class="flex items-start justify-between mb-5">
+                            <div class="w-14 h-14 rounded-2xl bg-gold-antique/15 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-gold-antique text-[28px]">family_restroom</span>
+                            </div>
+                            <span class="inline-flex items-center bg-gold-antique/15 text-amber-700 font-label text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                                Abierto
+                            </span>
+                        </div>
+                        <h3 class="font-display text-headline-sm text-on-surface mb-3">
+                            Educación Familiar
+                        </h3>
+                        <p class="text-body-md text-slate-warm mb-6 leading-relaxed">
+                            Charla para padres y familias sobre cómo hablar de límites, confianza y seguridad con sus hijos en el hogar y la parroquia.
+                        </p>
+                        <!-- Meta -->
+                        <div class="flex items-center gap-4 text-label-sm text-slate-warm/70 mb-6">
+                            <span class="inline-flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">schedule</span>
+                                2 horas
+                            </span>
+                            <span class="inline-flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Parroquial
+                            </span>
+                        </div>
+                        <!-- CTA -->
+                        <a href="ambientes-contacto.html" class="inline-flex items-center gap-2 bg-gold-antique text-white font-label text-label-lg px-6 py-3 rounded-xl hover:bg-amber-600 transition-colors w-full justify-center">
+                            <span class="material-symbols-outlined text-[18px]">info</span>
+                            Más info
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- SECTION 2: REQUIREMENTS FOR PASTORAL AGENTS -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="voluntarios" class="py-section-gap bg-background">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <!-- Section Header -->
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-gold-antique/10 text-gold-antique font-label text-label-sm px-4 py-1.5 rounded-full mb-4">
+                    <span class="material-symbols-outlined text-[16px]">verified</span>
+                    Compliance
+                </span>
+                <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-on-surface mb-3">
+                    Requisitos para Agentes Pastorales
+                </h2>
+                <p class="text-body-lg text-slate-warm max-w-2xl mx-auto">
+                    Toda persona que trabaje con menores y adultos vulnerables en la Arquidiócesis debe cumplir los siguientes requisitos.
+                </p>
+            </div>
+
+            <!-- Checklist -->
+            <div class="max-w-3xl mx-auto flex flex-col gap-5 reveal-stagger">
+
+                <!-- Item 1 -->
+                <div class="checklist-item bg-white rounded-2xl shadow-sm border border-outline-variant/10 border-l-4 border-l-gold-antique p-6 flex items-start gap-5">
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-12 h-12 rounded-xl bg-gold-antique/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-gold-antique text-[24px]">badge</span>
+                        </div>
+                        <span class="material-symbols-outlined text-emerald-500 text-[22px]">check_circle</span>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-headline-sm text-on-surface mb-1.5">
+                            Cédula de Identidad
+                        </h3>
+                        <p class="text-body-md text-slate-warm leading-relaxed">
+                            Presentación de documento de identidad vigente para registro en el sistema parroquial.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="checklist-item bg-white rounded-2xl shadow-sm border border-outline-variant/10 border-l-4 border-l-gold-antique p-6 flex items-start gap-5">
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-12 h-12 rounded-xl bg-gold-antique/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-gold-antique text-[24px]">fingerprint</span>
+                        </div>
+                        <span class="material-symbols-outlined text-emerald-500 text-[22px]">check_circle</span>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-headline-sm text-on-surface mb-1.5">
+                            Antecedentes Penales
+                        </h3>
+                        <p class="text-body-md text-slate-warm leading-relaxed">
+                            Presentación del certificado de antecedentes penales vigente emitido por el CICPC o autoridad competente.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="checklist-item bg-white rounded-2xl shadow-sm border border-outline-variant/10 border-l-4 border-l-gold-antique p-6 flex items-start gap-5">
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-12 h-12 rounded-xl bg-gold-antique/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-gold-antique text-[24px]">workspace_premium</span>
+                        </div>
+                        <span class="material-symbols-outlined text-emerald-500 text-[22px]">check_circle</span>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-headline-sm text-on-surface mb-1.5">
+                            Taller de Ambientes Seguros
+                        </h3>
+                        <p class="text-body-md text-slate-warm leading-relaxed">
+                            Completar y aprobar el taller oficial de formación de la Comisión Arquidiocesana antes de iniciar actividades.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="checklist-item bg-white rounded-2xl shadow-sm border border-outline-variant/10 border-l-4 border-l-gold-antique p-6 flex items-start gap-5">
+                    <div class="flex flex-col items-center gap-2 shrink-0">
+                        <div class="w-12 h-12 rounded-xl bg-gold-antique/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-gold-antique text-[24px]">how_to_reg</span>
+                        </div>
+                        <span class="material-symbols-outlined text-emerald-500 text-[22px]">check_circle</span>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-headline-sm text-on-surface mb-1.5">
+                            Referencias Parroquiales
+                        </h3>
+                        <p class="text-body-md text-slate-warm leading-relaxed">
+                            Al menos una carta de recomendación de un párroco o Agente Pastoral de la comunidad.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- SECTION 3: DOWNLOADABLE MATERIALS -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="material" class="py-section-gap bg-surface-container-low">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <!-- Section Header -->
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-crimson-deep/8 text-crimson-deep font-label text-label-sm px-4 py-1.5 rounded-full mb-4">
+                    <span class="material-symbols-outlined text-[16px]">download</span>
+                    Recursos Descargables
+                </span>
+                <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-on-surface mb-3">
+                    Material Didáctico
+                </h2>
+                <p class="text-body-lg text-slate-warm max-w-2xl mx-auto">
+                    Guías y documentos para catequistas, docentes y familias. Descarga gratuita.
+                </p>
+            </div>
+
+            <!-- Download Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter reveal-stagger">
+
+                <!-- Download Card 1 -->
+                <div class="download-card bg-white rounded-2xl shadow-sm border border-outline-variant/10 p-6 md:p-8 flex flex-col">
+                    <div class="w-14 h-14 rounded-2xl bg-crimson-deep/8 flex items-center justify-center mb-5">
+                        <span class="material-symbols-outlined text-crimson-deep text-[28px]">description</span>
+                    </div>
+                    <h3 class="font-display text-headline-sm text-on-surface mb-2">
+                        Guía para Catequistas
+                    </h3>
+                    <p class="text-body-md text-slate-warm mb-4 leading-relaxed flex-1">
+                        Protocolo de actuación y señales de alarma.
+                    </p>
+                    <div class="flex items-center gap-2 text-label-sm text-slate-warm/60 mb-5">
+                        <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+                        PDF · Próximamente
+                    </div>
+                    <button disabled class="inline-flex items-center gap-2 bg-slate-200 text-slate-400 font-label text-label-lg px-6 py-3 rounded-xl cursor-not-allowed w-full justify-center">
+                        <span class="material-symbols-outlined text-[18px]">download</span>
+                        Descargar
+                    </button>
+                </div>
+
+                <!-- Download Card 2 -->
+                <div class="download-card bg-white rounded-2xl shadow-sm border border-outline-variant/10 p-6 md:p-8 flex flex-col">
+                    <div class="w-14 h-14 rounded-2xl bg-crimson-deep/8 flex items-center justify-center mb-5">
+                        <span class="material-symbols-outlined text-crimson-deep text-[28px]">description</span>
+                    </div>
+                    <h3 class="font-display text-headline-sm text-on-surface mb-2">
+                        Guía para Padres y Familias
+                    </h3>
+                    <p class="text-body-md text-slate-warm mb-4 leading-relaxed flex-1">
+                        Cómo hablar de seguridad con tus hijos.
+                    </p>
+                    <div class="flex items-center gap-2 text-label-sm text-slate-warm/60 mb-5">
+                        <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+                        PDF · Próximamente
+                    </div>
+                    <button disabled class="inline-flex items-center gap-2 bg-slate-200 text-slate-400 font-label text-label-lg px-6 py-3 rounded-xl cursor-not-allowed w-full justify-center">
+                        <span class="material-symbols-outlined text-[18px]">download</span>
+                        Descargar
+                    </button>
+                </div>
+
+                <!-- Download Card 3 -->
+                <div class="download-card bg-white rounded-2xl shadow-sm border border-outline-variant/10 p-6 md:p-8 flex flex-col">
+                    <div class="w-14 h-14 rounded-2xl bg-crimson-deep/8 flex items-center justify-center mb-5">
+                        <span class="material-symbols-outlined text-crimson-deep text-[28px]">description</span>
+                    </div>
+                    <h3 class="font-display text-headline-sm text-on-surface mb-2">
+                        Código de Conducta
+                    </h3>
+                    <p class="text-body-md text-slate-warm mb-4 leading-relaxed flex-1">
+                        Normas de comportamiento para agentes pastorales.
+                    </p>
+                    <div class="flex items-center gap-2 text-label-sm text-slate-warm/60 mb-5">
+                        <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+                        PDF · Próximamente
+                    </div>
+                    <button disabled class="inline-flex items-center gap-2 bg-slate-200 text-slate-400 font-label text-label-lg px-6 py-3 rounded-xl cursor-not-allowed w-full justify-center">
+                        <span class="material-symbols-outlined text-[18px]">download</span>
+                        Descargar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="stitch-footer"></div>
+
+    <!-- Stitch Components Init -->
+    <script src="js/stitch-components.js"></script>
+    <script>StitchLayout.init({ activePage: 'ambientes' });</script>
+
+</body>
+</html>

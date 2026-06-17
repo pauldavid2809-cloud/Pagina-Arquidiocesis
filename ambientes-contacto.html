@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto — Ambientes Seguros | Arquidiócesis de Maracaibo</title>
+    <meta name="description" content="Contacta a la Comisión de Ambientes Seguros de la Arquidiócesis de Maracaibo. Todas las comunicaciones son tratadas con estricta confidencialidad.">
+
+    <!-- OG Meta Tags -->
+    <meta property="og:title" content="Contacto — Ambientes Seguros | Arquidiócesis de Maracaibo">
+    <meta property="og:description" content="Contacta a la Comisión de Ambientes Seguros. Todas las comunicaciones son confidenciales y tu identidad está protegida.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arquidiocesisdemaracaibo.org/ambientes-contacto.html">
+    <meta property="og:image" content="https://arquidiocesisdemaracaibo.org/images/og-ambientes-contacto.jpg">
+    <meta property="og:locale" content="es_VE">
+    <meta property="og:site_name" content="Arquidiócesis de Maracaibo">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contacto — Ambientes Seguros | Arquidiócesis de Maracaibo">
+    <meta name="twitter:description" content="Contacta a la Comisión de Ambientes Seguros. Todas las comunicaciones son confidenciales y tu identidad está protegida.">
+    <meta name="twitter:image" content="https://arquidiocesisdemaracaibo.org/images/og-ambientes-contacto.jpg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Stitch Design System -->
+    <script src="js/stitch-config.js"></script>
+    <link href="css/stitch-core.css" rel="stylesheet">
+
+    <style>
+        .no-scrollbar::-webkit-scrollbar{display:none}
+        .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+
+        .hero-contact {
+            background: linear-gradient(135deg, rgba(20, 80, 60, 0.92) 0%, rgba(139, 30, 63, 0.88) 50%, rgba(20, 80, 60, 0.85) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-contact::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 20%, rgba(46, 139, 87, 0.25) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 80%, rgba(139, 30, 63, 0.2) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-contact::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .info-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+
+        .icon-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .location-pin-decor {
+            position: relative;
+        }
+
+        .location-pin-decor::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 30, 63, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-pattern {
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M20 20.5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zM0 20.5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zM40 20.5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zM20 .5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zM20 40.5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .float-anim {
+            animation: floatIcon 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body">
+
+    <!-- Navbar -->
+    <div id="stitch-navbar"></div>
+
+    <!-- ============================================ -->
+    <!-- HERO SECTION -->
+    <!-- ============================================ -->
+    <section class="hero-contact py-20 md:py-28 lg:py-32">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <!-- Badge -->
+                <div class="reveal inline-flex items-center gap-2 bg-white/15 backdrop-blur-md text-white/90 px-5 py-2.5 rounded-full font-label text-label-sm mb-8 border border-white/20">
+                    <span class="material-symbols-outlined text-[18px]">lock</span>
+                    Comunicación Confidencial
+                </div>
+
+                <!-- Title -->
+                <h1 class="reveal font-display text-headline-lg-mobile md:text-display-lg text-white mb-6 leading-tight">
+                    Contacta a la Comisión
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="reveal text-body-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+                    Todas las comunicaciones son tratadas con estricta confidencialidad. Tu identidad está protegida.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SUB-NAVIGATION -->
+    <!-- ============================================ -->
+    <nav class="bg-white/90 backdrop-blur-md border-b border-outline-variant/20 sticky top-[64px] z-40 shadow-sm">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <div class="flex items-center gap-1 overflow-x-auto py-3 no-scrollbar">
+                <span class="material-symbols-outlined text-crimson-deep mr-2 shrink-0 text-[20px]">verified_user</span>
+                <a href="ambientes.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Inicio</a>
+                <a href="ambientes-escucha.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Escucha</a>
+                <a href="ambientes-formacion.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Formación</a>
+                <a href="ambientes-marco-legal.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] text-slate-warm hover:text-crimson-deep hover:bg-warm-ivory transition-all whitespace-nowrap">Marco Legal</a>
+                <a href="ambientes-contacto.html" class="shrink-0 px-4 py-2 rounded-full font-label text-[13px] bg-crimson-deep text-white font-bold transition-all whitespace-nowrap">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- CONTACT INFORMATION -->
+    <!-- ============================================ -->
+    <section id="formulario" class="py-section-gap bg-surface-container-low">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+
+            <!-- Section Header -->
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-crimson-deep/10 text-crimson-deep px-4 py-2 rounded-full font-label text-label-sm mb-4">
+                    <span class="material-symbols-outlined text-[18px]">contact_support</span>
+                    Información de Contacto
+                </span>
+                <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">Canales de Comunicación</h2>
+                <p class="text-body-lg text-slate-warm max-w-2xl mx-auto">Múltiples vías para comunicarte con la Comisión de Ambientes Seguros de manera segura y confidencial.</p>
+            </div>
+
+            <!-- Info Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter reveal-stagger">
+
+                <!-- Card: Coordinador -->
+                <div class="info-card bento-card bg-white rounded-2xl shadow-sm p-5 md:p-8 border border-outline-variant/10">
+                    <div class="icon-circle bg-crimson-deep/10 mb-6">
+                        <span class="material-symbols-outlined text-crimson-deep text-[28px]">person</span>
+                    </div>
+                    <h3 class="font-headline text-headline-sm text-on-surface mb-3">Coordinador de la Comisión</h3>
+                    <p class="text-body-md text-slate-warm leading-relaxed">
+                        Abg. Alberto Jesús Álvaro Núñez y equipo multidisciplinario
+                    </p>
+                </div>
+
+                <!-- Card: Email -->
+                <div class="info-card bento-card bg-white rounded-2xl shadow-sm p-5 md:p-8 border border-outline-variant/10">
+                    <div class="icon-circle bg-teal-600/10 mb-6">
+                        <span class="material-symbols-outlined text-teal-700 text-[28px]">mail</span>
+                    </div>
+                    <h3 class="font-headline text-headline-sm text-on-surface mb-3">Correo Electrónico</h3>
+                    <a href="mailto:ambientesseguros@arquidiocesisdemaracaibo.org" class="text-body-md text-crimson-deep hover:underline underline-offset-4 decoration-crimson-deep/40 transition-colors break-all">
+                        ambientesseguros@arquidiocesisdemaracaibo.org
+                    </a>
+                </div>
+
+                <!-- Card: Emergencia -->
+                <div class="info-card bento-card bg-red-50 rounded-2xl shadow-sm p-5 md:p-8 border-2 border-red-200 md:col-span-2 lg:col-span-1">
+                    <div class="icon-circle bg-red-100 mb-6">
+                        <span class="material-symbols-outlined text-red-600 text-[28px]">warning</span>
+                    </div>
+                    <h3 class="font-headline text-headline-sm text-red-700 mb-3">¿Emergencia?</h3>
+                    <p class="text-body-md text-slate-warm mb-4">Llama directamente a:</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-body-md text-on-surface">
+                            <span class="material-symbols-outlined text-red-500 text-[18px]">phone</span>
+                            <span><strong>CICPC:</strong> 171</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-body-md text-on-surface">
+                            <span class="material-symbols-outlined text-red-500 text-[18px]">gavel</span>
+                            <span>Ministerio Público</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-body-md text-on-surface">
+                            <span class="material-symbols-outlined text-red-500 text-[18px]">balance</span>
+                            <span>Tribunal LOPNA</span>
+                        </li>
+                    </ul>
+                    <a href="ambientes-escucha.html" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-full font-label text-label-lg transition-all shadow-sm hover:shadow-md">
+                        <span class="material-symbols-outlined text-[18px]">description</span>
+                        Ver protocolo completo
+                    </a>
+                </div>
+
+                <!-- Card: Tiempo de Respuesta -->
+                <div class="info-card bento-card bg-white rounded-2xl shadow-sm p-5 md:p-8 border border-outline-variant/10">
+                    <div class="icon-circle bg-amber-100 mb-6">
+                        <span class="material-symbols-outlined text-amber-700 text-[28px]">schedule</span>
+                    </div>
+                    <h3 class="font-headline text-headline-sm text-on-surface mb-3">Tiempo de Respuesta</h3>
+                    <p class="text-body-md text-slate-warm leading-relaxed">
+                        Respondemos en un plazo de <strong class="text-on-surface">72 horas hábiles</strong>. En casos urgentes, nos comunicaremos a la brevedad posible.
+                    </p>
+                </div>
+
+                <!-- Card: Portal Web -->
+                <div class="info-card bento-card bg-white rounded-2xl shadow-sm p-5 md:p-8 border border-outline-variant/10">
+                    <div class="icon-circle bg-indigo-100 mb-6">
+                        <span class="material-symbols-outlined text-indigo-600 text-[28px]">language</span>
+                    </div>
+                    <h3 class="font-headline text-headline-sm text-on-surface mb-3">Portal Web</h3>
+                    <p class="text-body-md text-slate-warm leading-relaxed">
+                        ambientesseguros.arquidiocesisdemaracaibo.org
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- LOCATION / SEDE -->
+    <!-- ============================================ -->
+    <section id="sede" class="py-section-gap bg-background">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+
+            <!-- Section Header -->
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-crimson-deep/10 text-crimson-deep px-4 py-2 rounded-full font-label text-label-sm mb-4">
+                    <span class="material-symbols-outlined text-[18px]">location_on</span>
+                    Ubicación
+                </span>
+                <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">Sede Arquidiocesana</h2>
+                <p class="text-body-lg text-slate-warm max-w-2xl mx-auto">Puedes encontrarnos en las oficinas de la Curia Arquidiocesana de Maracaibo.</p>
+            </div>
+
+            <!-- Location Card -->
+            <div class="max-w-2xl mx-auto reveal">
+                <div class="location-pin-decor bg-warm-ivory rounded-2xl p-10 md:p-14 text-center border border-outline-variant/10 shadow-sm">
+                    <!-- Decorative Pin Icon -->
+                    <div class="float-anim inline-flex items-center justify-center w-20 h-20 rounded-full bg-crimson-deep/10 mb-8">
+                        <span class="material-symbols-outlined text-crimson-deep text-[40px]">location_on</span>
+                    </div>
+
+                    <h3 class="font-display text-headline-md text-on-surface mb-3">Curia Arquidiocesana de Maracaibo</h3>
+                    <p class="text-body-lg text-slate-warm mb-2">Maracaibo, Estado Zulia, Venezuela</p>
+                    <div class="inline-flex items-center gap-2 bg-crimson-deep/10 text-crimson-deep px-4 py-2 rounded-full font-label text-label-sm mt-4">
+                        <span class="material-symbols-outlined text-[16px]">verified_user</span>
+                        Comisión de Ambientes Seguros
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- CTA SECTION -->
+    <!-- ============================================ -->
+    <section class="bg-crimson-deep relative overflow-hidden">
+        <div class="cta-pattern absolute inset-0"></div>
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-gap relative z-10">
+            <div class="max-w-3xl mx-auto text-center reveal">
+                <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-white mb-6">Tu voz importa</h2>
+                <p class="text-body-lg text-white/80 mb-10 max-w-xl mx-auto leading-relaxed">
+                    No dudes en comunicarte. Toda consulta es bienvenida y tratada con absoluta confidencialidad.
+                </p>
+                <a href="mailto:ambientesseguros@arquidiocesisdemaracaibo.org" class="inline-flex items-center gap-3 bg-white text-crimson-deep px-8 py-4 rounded-full font-label text-label-lg font-bold hover:bg-warm-ivory transition-all shadow-lg hover:shadow-xl hover:scale-[1.03] active:scale-[0.98]">
+                    <span class="material-symbols-outlined text-[22px]">mail</span>
+                    Enviar correo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="stitch-footer"></div>
+
+    <!-- Stitch Components & Init -->
+    <script src="js/stitch-components.js"></script>
+    <script>StitchLayout.init({ activePage: 'ambientes' });</script>
+
+</body>
+</html>
