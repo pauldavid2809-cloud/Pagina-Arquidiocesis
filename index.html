@@ -115,7 +115,7 @@ Ambientes Seguros
 <span class="inline-block px-3 py-1 bg-primary-container text-white text-[10px] font-bold font-label rounded-full uppercase tracking-widest">Pastor Metropolitano</span>
 <h3 class="font-headline text-2xl md:text-headline-md text-crimson-deep leading-tight">Arzobispo</h3>
 <p class="font-editorial italic text-lg text-slate-warm leading-relaxed">
-Mensajes, homilías, cartas pastorales y la labor del Excmo. Mons. José Luis Azuaje Ayala.
+Labor del Excmo. Mons. José Luis Azuaje Ayala.
 </p>
 </div>
 <a class="text-crimson-deep font-label flex items-center gap-2 hover:translate-x-1 transition-transform mt-4" href="arzobispo.html">
@@ -132,8 +132,8 @@ VER PERFIL <span class="material-symbols-outlined">arrow_forward</span>
 Encuentre su parroquia, horarios de misas y contactos de todos los templos.
 </p>
 <div class="mt-stack-md flex bg-white rounded-lg shadow-inner p-1">
-<input class="flex-1 bg-transparent border-none font-label text-sm focus:ring-0 px-3" placeholder="¿Qué templo busca? Ej: Chiquinquirá..." type="text">
-<a href="directorio.html" class="bg-gold-antique text-white px-4 py-2 rounded-md font-label text-sm">Buscar</a>
+<input id="homeSearchInput" class="flex-1 bg-transparent border-none font-label text-sm focus:ring-0 px-3" placeholder="¿Qué templo busca? Ej: Chiquinquirá..." type="text" onkeydown="if(event.key==='Enter') executeHomeSearch()">
+<button onclick="executeHomeSearch()" class="bg-gold-antique text-white px-4 py-2 rounded-md font-label text-sm">Buscar</button>
 </div>
 </div>
 <div class="hidden lg:block absolute -right-10 -bottom-10 opacity-10 transform -rotate-12">
@@ -439,5 +439,15 @@ Hacer una Donación
             });
         }
     })();
+</script>
+<script>
+  function executeHomeSearch() {
+    const query = document.getElementById('homeSearchInput').value.trim();
+    if (query) {
+      window.location.href = `directorio.html?q=${encodeURIComponent(query)}`;
+    } else {
+      window.location.href = 'directorio.html';
+    }
+  }
 </script>
 </body></html>

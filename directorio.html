@@ -520,6 +520,17 @@ function showTab(tab, btn) {
 document.getElementById('searchInput').addEventListener('input', filterAll);
 renderAll();
 
+// Parse query parameters from home search
+const params = new URLSearchParams(window.location.search);
+const qParam = params.get('q');
+if (qParam) {
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    searchInput.value = qParam;
+    filterAll();
+  }
+}
+
 /* ── Leaflet Map ── */
 const map = L.map('parishMap',{scrollWheelZoom:false}).setView([10.66,-71.65],11);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
