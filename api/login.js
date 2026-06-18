@@ -135,7 +135,7 @@ export default async function handler(req, res) {
             name: "Mons. José Luis Azuaje Ayala",
             email: "cancilleria@arquidiocesisdemaracaibo.org",
             password: "canciller123",
-            phone: "0412-0000000",
+            phone: "0412-5470157",
             role: "admin",
             parish: "Curia Metropolitana"
           };

@@ -43,7 +43,7 @@ ALTER TABLE tramites DISABLE ROW LEVEL SECURITY;
 
 -- Insertar Sacerdotes del Directorio
 INSERT INTO sacerdotes (email, name, password, phone, role) VALUES
-('cancilleria@arquidiocesisdemaracaibo.org', 'Mons. José Luis Azuaje Ayala', 'canciller123', '0412-0000000', 'admin'),
+('cancilleria@arquidiocesisdemaracaibo.org', 'Mons. José Luis Azuaje Ayala', 'canciller123', '0412-5470157', 'admin'),
 ('pauldavid2809@gmail.com', 'Pbro. Paul David', 'sacerdote123', '0412-2809280', 'priest'),
 ('pauldd28@gmail.com', 'Pbro. Paul David (Alt)', 'sacerdote123', '0412-2809280', 'priest'),
 ('nprimera40@gmail.com', 'Pbro. Néstor Primera', 'sacerdote123', '0412-7885662', 'priest'),
