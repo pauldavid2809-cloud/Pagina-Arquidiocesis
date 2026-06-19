@@ -13,9 +13,11 @@ export function handleCors(req, res) {
                         origin.startsWith('http://localhost') || 
                         origin.startsWith('http://127.0.0.1');
     const isVercel = origin.endsWith('.vercel.app');
+    const isArquimcbo = origin.endsWith('arquimcbo.com');
+    const isArquidiocesis = origin.endsWith('arquidiocesisdemaracaibo.org');
     const isExplicitlyAllowed = allowedOrigins.includes(origin);
     
-    if (isLocalhost || isVercel || isExplicitlyAllowed) {
+    if (isLocalhost || isVercel || isExplicitlyAllowed || isArquimcbo || isArquidiocesis) {
       allowedOrigin = origin;
     } else {
       isAllowed = false;
