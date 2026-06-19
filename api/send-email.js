@@ -47,7 +47,7 @@ export default async function handler(req, res) {
 
   try {
     const payload = {
-      from: 'Cancillería Arquidiocesana <cancilleria@arquidiocesisdemaracaibo.org>',
+      from: 'Cancillería Arquidiocesana <cancilleria@arquimcbo.com>',
       to: [to],
       subject: subject,
       html: html
