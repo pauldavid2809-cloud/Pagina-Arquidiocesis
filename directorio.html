@@ -481,8 +481,12 @@ function renderAll() {
 }
 
 /* ── Filter ── */
+function removeAccents(str) {
+  return str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
+}
+
 function filterAll() {
-  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const q = removeAccents(document.getElementById('searchInput').value.toLowerCase().trim());
   const z = document.getElementById('zoneFilter').value;
   if (z === 'RZ') { showTab('rectorias'); return; }
   showTab('parroquias');
@@ -490,7 +494,9 @@ function filterAll() {
   const headers = document.querySelectorAll('.zone-group-header');
   let visible = 0;
   cards.forEach(card => {
-    const match = (!q || card.dataset.name.includes(q) || card.dataset.details.includes(q)) && (z==='all' || card.dataset.zone===z);
+    const nameNorm = removeAccents(card.dataset.name);
+    const detailsNorm = removeAccents(card.dataset.details);
+    const match = (!q || nameNorm.includes(q) || detailsNorm.includes(q)) && (z==='all' || card.dataset.zone===z);
     card.style.display = match ? '' : 'none';
     if (match) visible++;
   });

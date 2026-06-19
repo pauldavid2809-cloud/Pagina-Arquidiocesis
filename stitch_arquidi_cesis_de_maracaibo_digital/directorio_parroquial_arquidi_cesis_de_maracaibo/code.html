@@ -743,13 +743,18 @@
     }
 
     // Search logic
+    function removeAccents(str) {
+        return str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
+    }
+
     document.getElementById('searchInput').addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
+        const query = removeAccents(e.target.value.toLowerCase().trim());
         const items = document.querySelectorAll('.bento-item');
         let count = 0;
         
         items.forEach(item => {
-            const matches = item.dataset.name.includes(query);
+            const nameNorm = removeAccents(item.dataset.name);
+            const matches = nameNorm.includes(query);
             item.style.display = matches ? 'block' : 'none';
             if (matches) count++;
         });

@@ -1,72 +1,80 @@
-- `img/templos/PZ1-1.webp` para PARROQUIA EL SAGRARIO
-- `img/templos/PZ1-2.webp` para PARROQUIA SANTA LUCIA
+- `img/templos/PZ1-1.webp` para PARROQUIA EL SAGRARIO · Catedral de los Santos Apóstoles Pedro y Pablo
+- `img/templos/PZ1-2.webp` para PARROQUIA SANTA LUCÍA
 - `img/templos/PZ1-3.webp` para PARROQUIA SANTA BÁRBARA
-- `img/templos/PZ1-4.webp` para PARROQUIA SAN JUAN DE
-- `img/templos/PZ1-5.webp` para PARROQUIA SAN BENITO DE
-- `img/templos/PZ1-6.webp` para PARROQUIA NTRA
-- `img/templos/PZ1-7.webp` para PARROQUIA NTRA
-- `img/templos/PZ1-8.webp` para PARROQUIA SANTO CRISTO
+- `img/templos/PZ1-4.webp` para PARROQUIA SAN JUAN DE DIOS Y BASÍLICA SANTUARIO DE NTRA. SRA. DE CHIQUINQUIRÁ
+- `img/templos/PZ1-5.webp` para PARROQUIA SAN BENITO DE PALERMO
+- `img/templos/PZ1-6.webp` para PARROQUIA NTRA. SRA. DE LA ASUNCIÓN
+- `img/templos/PZ1-7.webp` para PARROQUIA NTRA. SRA. DE LA MEDALLA MILAGROSA
+- `img/templos/PZ1-8.webp` para PARROQUIA SANTO CRISTO DE ARANZA
 - `img/templos/PZ2-1.webp` para PARROQUIA SAN JOSÉ
-- `img/templos/PZ2-2.webp` para PARROQUIA SAN ALFONSO
-- `img/templos/PZ2-3.webp` para PARROQUIA NTRA
-- `img/templos/PZ2-4.webp` para PARROQUIA NTRA
-- `img/templos/PZ2-5.webp` para PARROQUIA NTRA
-- `img/templos/PZ2-6.webp` para PARROQUIA SAN JUDAS
-- `img/templos/PZ2-7.webp` para SAN ANTONIO MARÍA CLARET
-- `img/templos/PZ2-8.webp` para PARROQUIA NTRA
-- `img/templos/PZ2-9.webp` para PARROQUIA SAGRADO
-- `img/templos/PZ3-1.webp` para PARROQUIA NTRA
-- `img/templos/PZ3-2.webp` para PARROQUIA SAN MIGUEL
-- `img/templos/PZ3-3.webp` para PARROQUIA LA SAGRADA
-- `img/templos/PZ3-4.webp` para PARROQUIA NTRA
-- `img/templos/PZ3-5.webp` para PARROQUIA SAN PEDRO
-- `img/templos/PZ3-6.webp` para PARROQUIA SAN MARTÍN DE
-- `img/templos/PZ3-7.webp` para PARROQUIA SANTA TERESITA
+- `img/templos/PZ2-2.webp` para PARROQUIA SAN ALFONSO MARÍA DE LIGORIO
+- `img/templos/PZ2-3.webp` para PARROQUIA NTRA. SRA. DEL PERPETUO SOCORRO
+- `img/templos/PZ2-4.webp` para PARROQUIA NTRA. SRA. DE LA CONSOLACIÓN
+- `img/templos/PZ2-5.webp` para PARROQUIA NTRA. SRA. DEL ROSARIO
+- `img/templos/PZ2-6.webp` para PARROQUIA SAN JUDAS TADEO
+- `img/templos/PZ2-7.webp` para PARROQUIA SAN ANTONIO MARÍA CLARET
+- `img/templos/PZ2-8.webp` para PARROQUIA NTRA. SRA. DE LAS MERCEDES
+- `img/templos/PZ2-9.webp` para PARROQUIA SAGRADO CORAZÓN DE JESÚS
+- `img/templos/PZ3-1.webp` para PARROQUIA NTRA. SRA. DE LOURDES (MARACAIBO)
+- `img/templos/PZ3-2.webp` para PARROQUIA SAN MIGUEL ARCÁNGEL
+- `img/templos/PZ3-3.webp` para PARROQUIA LA SAGRADA FAMILIA
+- `img/templos/PZ3-4.webp` para PARROQUIA NTRA. SRA. DEL CARMEN (MARACAIBO)
+- `img/templos/PZ3-5.webp` para PARROQUIA SAN PEDRO APÓSTOL
+- `img/templos/PZ3-6.webp` para PARROQUIA SAN MARTÍN DE PORRES
+- `img/templos/PZ3-7.webp` para PARROQUIA SANTA TERESITA DEL NIÑO JESÚS
 - `img/templos/PZ3-8.webp` para PARROQUIA NIÑA MARÍA
-- `img/templos/PZ3-9.webp` para PARROQUIA SAN IGNACIO DE
-- `img/templos/PZ3-10.webp` para SAN TARSICIO
-- `img/templos/PZ4-1.webp` para PARROQUIA SANTA MÓNICA
-- `img/templos/PZ4-2.webp` para PARROQUIA NTRA
-- `img/templos/PZ4-3.webp` para PARROQUIA SAN PABLO
-- `img/templos/PZ4-4.webp` para PARROQUIA NUESTRO SEÑOR
+- `img/templos/PZ3-9.webp` para PARROQUIA SAN IGNACIO DE LOYOLA
+- `img/templos/PZ3-10.webp` para PARROQUIA SAN TARSICIO
+- `img/templos/PZ4-1.webp` para PARROQUIA SANTA MÓNICA (LA CONCEPCIÓN)
+- `img/templos/PZ4-2.webp` para PARROQUIA NTRA. SRA. DE COROMOTO
+- `img/templos/PZ4-3.webp` para PARROQUIA SAN PABLO APÓSTOL
+- `img/templos/PZ4-4.webp` para PARROQUIA NUESTRO SEÑOR JESUCRISTO REY
 - `img/templos/PZ4-5.webp` para PARROQUIA EL BUEN PASTOR
-- `img/templos/PZ4-6.webp` para PARROQUIA NTRA
-- `img/templos/PZ4-7.webp` para PARROQUIA LA RESURRECCIÓN
-- `img/templos/PZ4-8.webp` para PARROQUIA SAN ISIDRO
-- `img/templos/PZ5-1.webp` para PARROQUIA NTRA
-- `img/templos/PZ5-2.webp` para PARROQUIA JESÚS
-- `img/templos/PZ5-3.webp` para PARROQUIA SANTÍSIMO
-- `img/templos/PZ4-9.webp` para PARROQUIA SANTÍSIMO
+- `img/templos/PZ4-6.webp` para PARROQUIA NTRA. SRA. DE LA PAZ
+- `img/templos/PZ4-7.webp` para PARROQUIA LA RESURRECCIÓN DEL SEÑOR
+- `img/templos/PZ4-8.webp` para PARROQUIA SAN ISIDRO LABRADOR
+- `img/templos/PZ4-9.webp` para PARROQUIA SANTÍSIMO SACRAMENTO
 - `img/templos/PZ4-10.webp` para PARROQUIA SANTA INÉS
-- `img/templos/PZ4-11.webp` para PARROQUIA S
-- `img/templos/PZ5-4.webp` para PARROQUIA SANTÍSIMO
-- `img/templos/PZ5-5.webp` para PARROQUIA SAN JUAN
-- `img/templos/PZ5-6.webp` para PARROQUIA SANTO
-- `img/templos/PZ5-7.webp` para PARROQUIA SAN FELIPE
-- `img/templos/PZ5-8.webp` para PARROQUIA NTRA
-- `img/templos/PZ5-9.webp` para PARROQUIA
-- `img/templos/PZ5-10.webp` para PARROQUIA SANTA
-- `img/templos/PZ6-1.webp` para PARROQUIA NTRA
-- `img/templos/PZ6-2.webp` para PARROQUIA SAN RAMÓN
-- `img/templos/PZ6-3.webp` para PARROQUIA LA SANTÍSIMA
-- `img/templos/PZ6-4.webp` para PARROQUIA NTRA
-- `img/templos/PZ6-5.webp` para PARROQUIA SANTA ROSA DE
-- `img/templos/PZ6-6.webp` para PARROQUIA SAN
+- `img/templos/PZ4-11.webp` para PARROQUIA SAN JUAN CRISÓSTOMO Y SAN JUAN PABLO II (Parroquia Universitaria)
+- `img/templos/PZ5-1.webp` para PARROQUIA NTRA. SRA. DE GUADALUPE
+- `img/templos/PZ5-2.webp` para PARROQUIA JESÚS NAZARENO
+- `img/templos/PZ5-3.webp` para PARROQUIA SANTÍSIMO SALVADOR
+- `img/templos/PZ5-4.webp` para PARROQUIA SANTÍSIMO CRISTO DE SAN FRANCISCO
+- `img/templos/PZ5-5.webp` para PARROQUIA SAN JUAN BAUTISTA
+- `img/templos/PZ5-6.webp` para PARROQUIA SANTO DOMINGO DE GUZMÁN
+- `img/templos/PZ5-7.webp` para PARROQUIA SAN FELIPE NERI
+- `img/templos/PZ5-8.webp` para PARROQUIA NTRA. SRA. DE LA DEL COBRE
+- `img/templos/PZ5-9.webp` para PARROQUIA TRANSFIGURACIÓN DEL SEÑOR
+- `img/templos/PZ5-10.webp` para PARROQUIA SANTA MARIANA DE JESÚS
+- `img/templos/PZ5-11.webp` para PARROQUIA PURÍSIMA MADRE DE DIOS Y SAN BENITO DE PALERMO
+- `img/templos/PZ6-1.webp` para PARROQUIA NTRA. SRA. DE FÁTIMA
+- `img/templos/PZ6-2.webp` para PARROQUIA SAN RAMÓN NONATO
+- `img/templos/PZ6-3.webp` para PARROQUIA LA SANTÍSIMA TRINIDAD
+- `img/templos/PZ6-4.webp` para PARROQUIA NTRA. SRA. DE LA CANDELARIA
+- `img/templos/PZ6-5.webp` para PARROQUIA SANTA ROSA DE LIMA / Santa Rita de Casia
+- `img/templos/PZ6-6.webp` para PARROQUIA SAN BARTOLOMÉ (Ziruma)
 - `img/templos/PZ6-7.webp` para PARROQUIA SAN ONOFRE
-- `img/templos/PZ6-8.webp` para PARROQUIA SAN JUAN
-- `img/templos/PZ7-1.webp` para PARROQUIA SAN RAFAEL
-- `img/templos/PZ7-3.webp` para PARROQUIA NTRA
-- `img/templos/PZ7-6.webp` para PARROQUIA MARÍA
-- `img/templos/PZ7-7.webp` para PARROQUIA LA
-- `img/templos/PZ7-9.webp` para PARROQUIA NTRA
-- `img/templos/PZ7-10.webp` para PARROQUIA JESÚS
-- `img/templos/PZ7-2.webp` para PARROQUIA SAN
-- `img/templos/PZ7-8.webp` para PARROQUIA SAN JOSÉ DE
-- `img/templos/PZ7-4.webp` para PARROQUIA EL SAGRADO
-- `img/templos/PZ7-5.webp` para PARROQUIA SANTA MARÍA
-- `img/templos/PZ7-11.webp` para P
-- `img/templos/PZ8-1.webp` para PARROQUIA LA
-- `img/templos/PZ8-2.webp` para PARROQUIA NTRA
-- `img/templos/PZ8-3.webp` para PARROQUIA NTRA
-- `img/templos/PZ8-4.webp` para SAN ANTONIO DE PADUA Y
-- `img/templos/PZ8-5.webp` para PARROQUIA PURÍSIMA
+- `img/templos/PZ6-8.webp` para PARROQUIA SAN JUAN BOSCO (Sede Seminario Propedéutico)
+- `img/templos/PZ7-1.webp` para PARROQUIA SAN RAFAEL ARCÁNGEL (El Moján)
+- `img/templos/PZ7-3.webp` para PARROQUIA NTRA. SRA. DE LOURDES (Isla de Toas)
+- `img/templos/PZ7-6.webp` para PARROQUIA MARÍA AUXILIADORA (Santa Cruz de Mara)
+- `img/templos/PZ7-7.webp` para PARROQUIA LA INMACULADA CONCEPCIÓN (Carrasquero)
+- `img/templos/PZ7-9.webp` para PARROQUIA NTRA. SEÑORA DE COROMOTO Y SAN JOSÉ OBRERO (La Sierrita)
+- `img/templos/PZ7-10.webp` para PARROQUIA JESÚS REDENTOR (Tamare)
+- `img/templos/PZ8-1.webp` para PARROQUIA LA INMACULADA CONCEPCIÓN (La Cañada de Urdaneta)
+- `img/templos/PZ8-2.webp` para PARROQUIA NTRA. SRA. DEL CARMEN (El Carmelo, La Cañada de Urdaneta)
+- `img/templos/PZ8-3.webp` para PARROQUIA NTRA. SRA. DE CHIQUINQUIRÁ (La Ensenada)
+- `img/templos/PZ8-4.webp` para PARROQUIA SAN ANTONIO DE PADUA Y NTRA. SRA. VIRGEN DE LOS PARRALES
+- `img/templos/PZ9-1.webp` para PARROQUIA SAN BARTOLOMÉ APÓSTOL (Sinamaica)
+- `img/templos/PZ9-2.webp` para PARROQUIA SAN JOSÉ DE PARAGUAIPOA
+- `img/templos/PZ9-3.webp` para PARROQUIA EL SAGRADO CORAZÓN DE JESÚS (Guarero)
+- `img/templos/PZ9-4.webp` para PARROQUIA SANTA MARÍA (Guana)
+- `img/templos/PZ9-5.webp` para Parroquia Personal Eclesiástica Ntra. Sra. del Carmen (Añú)
+- `img/templos/RZ6-10.webp` para RECTORÍA SAN FRANCISCO DE ASÍS
+- `img/templos/RZ5-13.webp` para RECTORÍA EL DIVINO NIÑO
+- `img/templos/RZ4-12.webp` para RECTORÍA SANTO TOMÁS MORO
+- `img/templos/RZ2-10.webp` para RECTORÍA HOGAR CLÍNICA SAN RAFAEL
+- `img/templos/RZ5-12.webp` para RECTORÍA SAN FRANCISCO JAVIER
+- `img/templos/RZ7-12.webp` para RECTORÍA LA SANTÍSIMA CRUZ DE MARA
+- `img/templos/RZ5-11.webp` para RECTORÍA JESÚS LA BUENA ESPERANZA
+- `img/templos/RZ6-SP.webp` para RECTORÍA SAN ANTONIO DE PADUA
