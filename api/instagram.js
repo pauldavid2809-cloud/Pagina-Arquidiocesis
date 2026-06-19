@@ -13,11 +13,93 @@ export default async function handler(req, res) {
 
 
   const userId = process.env.IG_USER_ID;
-  const token  = process.env.IG_ACCESS_TOKEN;
   const groqKey = process.env.GROQ_API_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
+
+  let token = process.env.IG_ACCESS_TOKEN;
+  let usingDatabase = false;
+  let tokenRecord = null;
+
+  // 1. Attempt to fetch token from Supabase config table
+  if (supabaseUrl && supabaseAnonKey) {
+    try {
+      const dbUrl = `${supabaseUrl}/rest/v1/instagram_config?key=eq.access_token`;
+      const dbRes = await fetch(dbUrl, {
+        headers: {
+          'apikey': supabaseAnonKey,
+          'Authorization': `Bearer ${supabaseAnonKey}`
+        }
+      });
+      if (dbRes.ok) {
+        const dbData = await dbRes.json();
+        if (dbData && dbData.length > 0) {
+          tokenRecord = dbData[0];
+          token = tokenRecord.value;
+          usingDatabase = true;
+        }
+      }
+    } catch (err) {
+      console.error('Error fetching Instagram token from Supabase, falling back to process.env:', err);
+    }
+  }
 
   if (!userId || !token) {
     return res.status(500).json({ error: 'Instagram credentials not configured' });
+  }
+
+  // 2. Dynamic automatic renewal of token if it is older than 30 days or forced
+  const forceRefresh = req.query.force_refresh === 'true';
+  let needsRefresh = false;
+
+  if (usingDatabase && tokenRecord) {
+    const updatedAt = tokenRecord.updated_at ? new Date(tokenRecord.updated_at) : new Date(0);
+    const ageDays = (new Date() - updatedAt) / (1000 * 60 * 60 * 24);
+    if (ageDays > 30 || forceRefresh) {
+      needsRefresh = true;
+    }
+  }
+
+  if (needsRefresh) {
+    try {
+      const refreshUrl = `https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${token}`;
+      const refreshRes = await fetch(refreshUrl);
+      if (refreshRes.ok) {
+        const refreshData = await refreshRes.json();
+        const newToken = refreshData.access_token;
+        if (newToken) {
+          // Update the token in Supabase
+          const updateUrl = `${supabaseUrl}/rest/v1/instagram_config?key=eq.access_token`;
+          const updateRes = await fetch(updateUrl, {
+            method: 'PATCH',
+            headers: {
+              'apikey': supabaseAnonKey,
+              'Authorization': `Bearer ${supabaseAnonKey}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              value: newToken,
+              updated_at: new Date().toISOString()
+            })
+          });
+          if (updateRes.ok) {
+            token = newToken;
+            console.log('Instagram access token successfully rotated in database.');
+          } else {
+            console.error('Failed to save refreshed token to Supabase:', updateRes.statusText);
+          }
+        }
+      } else {
+        const errData = await refreshRes.json().catch(() => ({}));
+        console.error('Instagram token refresh API failed:', errData.error?.message || refreshRes.statusText);
+      }
+    } catch (err) {
+      console.error('Error auto-rotating Instagram token:', err);
+    }
+  }
+
+  if (forceRefresh) {
+    return res.status(200).json({ success: true, message: 'Instagram token refresh executed successfully.' });
   }
 
   const limit  = Math.min(parseInt(req.query.limit) || 24, 50);

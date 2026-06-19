@@ -839,6 +839,9 @@
                         <button class="sidebar-menu-btn w-full text-left px-4 py-3 rounded-xl font-label text-[14px] flex items-center gap-3" onclick="switchDashboardTab('admin', 'tab-admin-parroquias', this)">
                             <i class="ti ti-building-church text-[18px]"></i> Control Parroquias
                         </button>
+                        <button class="sidebar-menu-btn w-full text-left px-4 py-3 rounded-xl font-label text-[14px] flex items-center gap-3" onclick="switchDashboardTab('admin', 'tab-admin-instagram', this)">
+                            <i class="ti ti-brand-instagram text-[18px]"></i> Ajustes Instagram
+                        </button>
                     </aside>
                     
                     <div class="dashboard-content flex-1 p-6 md:p-10 bg-white/30">
@@ -998,6 +1001,45 @@
                                         <!-- Dynamically injected -->
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab: Instagram configuration for admin -->
+                        <div id="tab-admin-instagram" class="dashboard-tab-content" style="display: none;">
+                            <h3 class="font-display text-[20px] font-bold text-crimson-deep mb-2">Ajustes e Integración de Instagram</h3>
+                            <p class="font-body text-[14px] text-slate-warm mb-6">Administre la automatización de la sincronización del feed de noticias de la web oficial de la Arquidiócesis. El sistema renueva de forma automática y transparente el token de larga duración de la Graph API en la base de datos cada 30 días, evitando la necesidad de intervención manual o caducidad del feed.</p>
+                            
+                            <div class="bg-white/60 border border-outline-variant/20 p-6 rounded-2xl shadow-sm mb-6 flex flex-col gap-6">
+                                <h4 class="font-display text-[16px] font-bold text-crimson-deep border-b border-outline-variant/20 pb-2 mb-2 flex items-center gap-2">
+                                    <i class="ti ti-info-circle text-[18px]"></i> Estado del Token de Acceso
+                                </h4>
+                                <div id="ig-status-text">
+                                    <p class="font-body text-[13px] text-slate-warm">Cargando estado desde la base de datos...</p>
+                                </div>
+                                
+                                <div class="flex gap-4">
+                                    <button onclick="forceInstagramRefresh()" id="btn-force-ig-refresh" class="bg-crimson-deep hover:bg-primary text-white px-4 py-2.5 rounded-xl font-bold font-label text-[13px] transition-all flex items-center gap-1.5 shadow-md active:scale-95">
+                                        <i class="ti ti-refresh"></i> Forzar Renovación de Token Ahora
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white/60 border border-outline-variant/20 p-6 rounded-2xl shadow-sm flex flex-col gap-4">
+                                <h4 class="font-display text-[16px] font-bold text-crimson-deep border-b border-outline-variant/20 pb-2 mb-2 flex items-center gap-2">
+                                    <i class="ti ti-key text-[18px]"></i> Configurar Nuevo Token de Larga Duración
+                                </h4>
+                                <p class="font-body text-[13px] text-slate-warm">Si el token actual caducó por completo (más de 60 días de inactividad de la web) o desea cambiar de cuenta, genere un token de acceso de larga duración (válido por 60 días) en el panel de Facebook Developers y péguelo a continuación para reiniciar la rotación automática:</p>
+                                
+                                <div class="flex flex-col gap-2">
+                                    <label for="new-ig-token" class="font-label text-[13px] font-bold text-slate-warm">Nuevo Token de Acceso de Instagram</label>
+                                    <textarea id="new-ig-token" rows="3" class="w-full bg-warm-ivory/40 border border-outline-variant/60 focus:border-crimson-deep focus:ring-0 outline-none p-4 transition-colors font-mono text-[13px] rounded-xl" placeholder="Pegue el nuevo token de acceso aquí (ej. IGQVJ...)"></textarea>
+                                </div>
+
+                                <div class="flex justify-end">
+                                    <button onclick="saveInstagramToken()" id="btn-save-ig-token" class="bg-gold-antique hover:brightness-105 text-crimson-deep px-5 py-2.5 rounded-xl font-bold font-label text-[13px] transition-all flex items-center gap-1.5 shadow-md active:scale-95">
+                                        <i class="ti ti-device-floppy"></i> Guardar Nuevo Token
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
@@ -2718,6 +2760,10 @@
 
         if (role === 'admin' && tabId !== 'tab-admin-manage') {
             lastAdminActiveTab = tabId;
+        }
+
+        if (tabId === 'tab-admin-instagram') {
+            loadInstagramSettings();
         }
     }
 
@@ -6563,6 +6609,151 @@ Arzobispo Metropolitano de Maracaibo`;
         } catch (err) {
             console.error("Error al borrar todas las solicitudes:", err);
             alert("Ocurrió un error inesperado al eliminar las solicitudes.");
+        }
+    }
+
+    // ════════════════════════════════════════════════════════
+    // INSTAGRAM TOKEN MANAGEMENT (AUTOMATED ROTATION)
+    // ════════════════════════════════════════════════════════
+    async function loadInstagramSettings() {
+        const statusContainer = document.getElementById('ig-status-text');
+        if (!statusContainer) return;
+        
+        statusContainer.innerHTML = `<p class="font-body text-[13px] text-slate-warm animate-pulse">Cargando estado del token de Instagram...</p>`;
+
+        if (!isSupabase || !supabaseClient) {
+            statusContainer.innerHTML = `
+                <div class="bg-yellow-50 text-yellow-800 p-4 rounded-xl border border-yellow-200">
+                    <strong>Modo de Desarrollo Local (Sin Base de Datos):</strong> Supabase no está configurado. La automatización del token requiere una base de datos conectada. El sistema está leyendo actualmente el token estático desde la variable de entorno <code>IG_ACCESS_TOKEN</code>.
+                </div>
+            `;
+            return;
+        }
+
+        try {
+            const { data, error } = await supabaseClient
+                .from('instagram_config')
+                .select('*');
+            
+            if (error) {
+                console.error('Error al consultar la tabla instagram_config:', error);
+                statusContainer.innerHTML = `
+                    <div class="bg-red-50 text-red-700 p-5 rounded-xl border border-red-200 flex flex-col gap-3">
+                        <div>
+                            <strong class="block text-[14px] mb-1">⚠️ Tabla "instagram_config" no encontrada en Supabase</strong>
+                            Para habilitar la renovación y almacenamiento automático del token de Instagram, debes crear la tabla en tu panel de Supabase.
+                        </div>
+                        <p class="font-body text-xs text-slate-warm">Ejecuta el siguiente comando SQL en el Editor SQL de tu panel de Supabase:</p>
+                        <pre class="bg-black/80 text-white p-3 rounded-lg font-mono text-xs overflow-x-auto select-all">CREATE TABLE instagram_config (
+    key VARCHAR(255) PRIMARY KEY,
+    value TEXT NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO instagram_config (key, value)
+VALUES ('access_token', 'PEGA_TU_TOKEN_DE_INSTAGRAM_AQUI');</pre>
+                    </div>
+                `;
+                return;
+            }
+
+            const tokenRow = data ? data.find(r => r.key === 'access_token') : null;
+            if (tokenRow) {
+                const token = tokenRow.value;
+                const masked = token.substring(0, 10) + '...' + token.substring(token.length - 10);
+                const dateStr = new Date(tokenRow.updated_at).toLocaleString();
+                
+                statusContainer.innerHTML = `
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+                        <div class="bg-warm-ivory/40 p-4 rounded-xl border border-outline-variant/30 flex flex-col justify-center">
+                            <strong class="block text-xs uppercase tracking-wider text-slate-warm mb-1">Token de Acceso Activo (Enmascarado)</strong>
+                            <span class="font-mono text-[13px] break-all font-semibold text-on-surface">${masked}</span>
+                        </div>
+                        <div class="bg-warm-ivory/40 p-4 rounded-xl border border-outline-variant/30 flex flex-col justify-center">
+                            <strong class="block text-xs uppercase tracking-wider text-slate-warm mb-1">Última Renovación Automática</strong>
+                            <span class="text-[13px] font-semibold text-on-surface">${dateStr}</span>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 text-green-700 text-xs px-4 py-3 rounded-xl border border-green-200 mt-4 flex items-center gap-2">
+                        <i class="ti ti-circle-check text-[16px]"></i> Sincronización automática activa. El token se refrescará transparentemente en la base de datos cuando se acerque a su fecha de vencimiento.
+                    </div>
+                `;
+            } else {
+                statusContainer.innerHTML = `
+                    <div class="bg-yellow-50 text-yellow-800 p-4 rounded-xl border border-yellow-200">
+                        <strong>Falta inicializar el token:</strong> La tabla existe pero no contiene el registro para <code>access_token</code>. Ingrese su token actual abajo para iniciar.
+                    </div>
+                `;
+            }
+        } catch (err) {
+            console.error("Error al cargar configuración de Instagram:", err);
+            statusContainer.innerHTML = `<p class="text-red-600 text-sm">Error al cargar estado: ${err.message}</p>`;
+        }
+    }
+
+    async function saveInstagramToken() {
+        const tokenInput = document.getElementById('new-ig-token').value.trim();
+        if (!tokenInput) {
+            alert('Por favor ingrese un token de acceso válido.');
+            return;
+        }
+
+        if (!isSupabase || !supabaseClient) {
+            alert('Supabase no está conectado. No se puede guardar en la base de datos.');
+            return;
+        }
+
+        const btn = document.getElementById('btn-save-ig-token');
+        btn.disabled = true;
+        btn.innerHTML = `<i class="ti ti-loader animate-spin"></i> Guardando...`;
+
+        try {
+            const { error } = await supabaseClient
+                .from('instagram_config')
+                .upsert({
+                    key: 'access_token',
+                    value: tokenInput,
+                    updated_at: new Date().toISOString()
+                });
+
+            if (error) throw error;
+
+            showNotification('Token de Instagram guardado exitosamente.', 'success');
+            await loadInstagramSettings();
+        } catch (err) {
+            console.error(err);
+            alert('Error al guardar el token: ' + err.message);
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = `<i class="ti ti-device-floppy"></i> Guardar Nuevo Token`;
+        }
+    }
+
+    async function forceInstagramRefresh() {
+        if (!confirm('¿Desea forzar la renovación del token de Instagram ahora mismo?\n\nEsto enviará una solicitud de actualización a la Graph API de Instagram utilizando el token actual guardado y actualizará el registro en la base de datos.')) {
+            return;
+        }
+
+        const btn = document.getElementById('btn-force-ig-refresh');
+        btn.disabled = true;
+        btn.innerHTML = `<i class="ti ti-loader animate-spin"></i> Solicitando actualización...`;
+
+        try {
+            const response = await fetch('/api/instagram?force_refresh=true');
+            const data = await response.json().catch(() => ({}));
+            
+            if (response.ok && data.success) {
+                showNotification('El token de Instagram se renovó y guardó con éxito.', 'success');
+                await loadInstagramSettings();
+            } else {
+                alert('No se pudo renovar el token: ' + (data.error || response.statusText || 'Error desconocido.'));
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Error de conexión al forzar la renovación: ' + err.message);
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = `<i class="ti ti-refresh"></i> Forzar Renovación de Token Ahora`;
         }
     }
 
