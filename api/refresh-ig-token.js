@@ -13,14 +13,14 @@ export default async function handler(req, res) {
   }
 
   const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseServiceKey) {
-    console.error('Supabase environment variables are missing (SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY)');
+    console.error('Supabase environment variables are missing (SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY or SUPABASE_ANON_KEY)');
     return res.status(500).json({ error: 'Supabase configuration is missing on the server' });
   }
 
-  // Initialize Supabase Client with Service Role Key (bypasses RLS for secure backend updates)
+  // Initialize Supabase Client (uses Service Role Key if available, falls back to Anon Key)
   const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
   try {
