@@ -441,7 +441,7 @@ const zoneColors = {
 function cardHTML(p, isRect=false) {
   const vicRow  = p.vicario   ? `<div class="meta-row-item"><span class="material-symbols-outlined meta-icon-item" style="font-size:1rem">supervisor_account</span><span><span class="meta-lbl">Vicario:</span><span class="meta-val"> ${p.vicario}</span></span></div>` : '';
   const dirRow  = p.direccion ? `<div class="meta-row-item"><span class="material-symbols-outlined meta-icon-item" style="font-size:1rem">location_on</span><span class="meta-val">${p.direccion}</span></div>` : '';
-  const telRow  = p.tels.length ? `<div class="meta-row-item"><span class="material-symbols-outlined meta-icon-item" style="font-size:1rem">phone</span><span class="meta-val">${p.tels.map(t=>`<a href="tel:${t.replace(/\D/g,'')}" style="color:inherit">${t}</a>`).join(' · ')}</span></div>` : '';
+  const telRow  = '';
   const mailRow = p.email ? `<div class="meta-row-item"><span class="material-symbols-outlined meta-icon-item" style="font-size:1rem">mail</span><a href="mailto:${p.email}" class="meta-val hover:underline">${p.email}</a></div>` : '';
   const filRow  = p.filiales && p.filiales.length ? `<div class="filiales-row"><strong>Filiales:</strong> ${p.filiales.join(' · ')}</div>` : '';
   const webBtn  = p.web ? `<a href="${p.web}" target="_blank" class="btn-web-link"><span class="material-symbols-outlined" style="font-size:0.9rem">open_in_new</span> Sitio web</a>` : '';
