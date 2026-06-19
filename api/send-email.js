@@ -28,7 +28,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing parameters: to, subject, and html are required' });
   }
 
-  const resendApiKey = process.env.RESEND_API_KEY;
+  const resendApiKey = process.env.RESEND_API_KEY; // Trigger Vercel rebuild for new env vars
 
   // If no API key is configured, emulate success for local development and testing
   if (!resendApiKey) {
