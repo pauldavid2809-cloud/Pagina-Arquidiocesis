@@ -1,10 +1,17 @@
 {
+  "crons": [
+    {
+      "path": "/api/refresh-ig-token",
+      "schedule": "0 0 1,15 * *"
+    }
+  ],
   "rewrites": [
     { "source": "/api/instagram", "destination": "/api/instagram" },
     { "source": "/api/send-email", "destination": "/api/send-email" },
     { "source": "/api/generate-document", "destination": "/api/generate-document" },
     { "source": "/api/config", "destination": "/api/config" },
-    { "source": "/api/login", "destination": "/api/login" }
+    { "source": "/api/login", "destination": "/api/login" },
+    { "source": "/api/refresh-ig-token", "destination": "/api/refresh-ig-token" }
   ],
   "headers": [
     {
