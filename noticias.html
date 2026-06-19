@@ -155,13 +155,28 @@
     position: relative;
     aspect-ratio: 16/10;
     overflow: hidden;
+    background-size: cover;
+    background-position: center;
   }
 
   .featured-img img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.7s ease;
+  }
+
+  .img-backdrop {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(251, 249, 244, 0.35);
   }
 
   .news-featured:hover .featured-img img {
@@ -266,12 +281,16 @@
   .card-img {
     height: 200px;
     overflow: hidden;
+    background-size: cover;
+    background-position: center;
   }
 
   .card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     transition: transform 0.6s ease;
   }
 
@@ -578,8 +597,10 @@
     const excerpt = post.ai_excerpt || info.excerpt;
     document.getElementById('featured').innerHTML = `
     <a href="${post.permalink}" target="_blank" class="news-featured">
-      <div class="featured-img">
-        <img src="${post.media_url}" alt="${title}" loading="eager" onerror="this.src='https://placehold.co/900x600/003366/FFCC00?text=Arquidi%C3%B3cesis'">
+      <div class="featured-img" style="background-image: url('${post.media_url}');">
+        <div class="img-backdrop">
+          <img src="${post.media_url}" alt="${title}" loading="eager" onerror="this.src='https://placehold.co/900x600/003366/FFCC00?text=Arquidi%C3%B3cesis'">
+        </div>
         <span class="badge-featured">Última noticia</span>
       </div>
       <div class="featured-body">
@@ -607,7 +628,11 @@
       const excerpt = p.ai_excerpt || info.excerpt;
       return `
       <article class="news-card" onclick="window.open('${p.permalink}','_blank')">
-        <div class="card-img"><img src="${p.media_url}" alt="${title}" loading="lazy" onerror="this.src='https://placehold.co/600x400/003366/FFCC00?text=Arquidi%C3%B3cesis'"></div>
+        <div class="card-img" style="background-image: url('${p.media_url}');">
+          <div class="img-backdrop">
+            <img src="${p.media_url}" alt="${title}" loading="lazy" onerror="this.src='https://placehold.co/600x400/003366/FFCC00?text=Arquidi%C3%B3cesis'">
+          </div>
+        </div>
         <div class="card-body">
           <div class="news-date">${formatDate(p.timestamp)}</div>
           <h4>${title}</h4>

@@ -355,8 +355,10 @@ Hacer una Donación
                 const tag = getTag(p.caption);
                 return `
                 <article class="group cursor-pointer reveal active" onclick="window.open('${p.permalink}','_blank')">
-                    <div class="aspect-[4/3] overflow-hidden rounded-xl mb-4 shadow-lg">
-                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="${p.media_url}" alt="${title}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x220/7A1A22/ffffff?text=Actualidad'">
+                    <div class="aspect-[4/3] overflow-hidden rounded-xl mb-4 shadow-lg bg-cover bg-center" style="background-image: url('${p.media_url}');">
+                        <div class="w-full h-full flex items-center justify-center backdrop-blur-md bg-[#FBF9F4]/35">
+                            <img class="max-w-full max-h-full object-contain w-auto h-auto group-hover:scale-105 transition-transform duration-700" src="${p.media_url}" alt="${title}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x220/7A1A22/ffffff?text=Actualidad'">
+                        </div>
                     </div>
                     <span class="font-label text-xs text-gold-antique uppercase tracking-widest">${tag}</span>
                     <h4 class="font-headline text-[24px] font-semibold text-crimson-deep mt-2 group-hover:text-gold-antique transition-colors line-clamp-2">${title}</h4>
