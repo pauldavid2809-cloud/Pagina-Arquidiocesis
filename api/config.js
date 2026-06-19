@@ -9,9 +9,10 @@ export default function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // TEMPORAL: Exponer token para auditoría
+  // Return public Supabase credentials configured in environment variables
   return res.status(200).json({
-    el_secreto: process.env.IG_ACCESS_TOKEN || ''
+    supabaseUrl: process.env.SUPABASE_URL || '',
+    supabaseAnonKey: process.env.SUPABASE_ANON_KEY || ''
   });
 }
 
