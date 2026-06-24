@@ -113,6 +113,9 @@
         <a href="#historia" class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-full font-label text-sm transition-all">
           <span class="material-symbols-outlined text-[16px]">history_edu</span> Historia
         </a>
+        <a href="#obispos" class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-full font-label text-sm transition-all">
+          <span class="material-symbols-outlined text-[16px]">groups</span> Sucesión Apostólica
+        </a>
       </div>
     </div>
   </div>
@@ -203,54 +206,78 @@
     </div>
   </section>
 
-  <!-- ─── TRADICIÓN Y DEVOCIÓN BENTO GRID ───────────────────── -->
+  <!-- ─── HISTORIA DE LA ARQUIDIÓCESIS ──────────────────────── -->
   <section class="reveal space-y-8" id="historia">
     <div class="text-center max-w-2xl mx-auto">
-      <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Raíces e Identidad</span>
-      <h2 class="font-headline text-3xl md:text-4xl font-bold text-crimson-deep mt-2">Tradición y Devoción</h2>
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Memoria y Tradición</span>
+      <h2 class="font-headline text-3xl md:text-4xl font-bold text-crimson-deep mt-2">Nuestra Historia</h2>
       <div class="h-1 w-20 bg-gold-antique mx-auto mt-4"></div>
-      <p class="font-body text-slate-warm mt-4">Un legado que se extiende desde la antigua Diócesis del Zulia hasta la elevación a Arquidiócesis Metropolitana.</p>
+      <p class="font-body text-slate-warm mt-4">Un camino de fe que se ha entrelazado con la historia y el sentir del pueblo zuliano desde finales del siglo XIX.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+      <!-- Detailed History text (7 cols) -->
+      <div class="lg:col-span-7 space-y-6 font-body text-slate-warm leading-relaxed">
+        <p>
+          La historia de la Iglesia en el Zulia está profundamente ligada al dinamismo cultural y geográfico de su región. Durante la época colonial y gran parte del siglo XIX, las tierras zulianas formaban parte de la inmensa Diócesis de Mérida. Sin embargo, el rápido crecimiento poblacional y la importancia comercial y política del Puerto de Maracaibo hacían evidente la necesidad de una sede eclesiástica propia.
+        </p>
+        <p>
+          Atendiendo a esta realidad, el <strong class="text-on-surface">28 de julio de 1897</strong>, el Papa León XIII erigió canónicamente la <strong class="text-on-surface">Diócesis del Zulia</strong> mediante la bula <em>"Supremi Apostolatus Officium"</em>. Como primer obispo fue designado **Monseñor Francisco Marvez**, quien tomó posesión a principios de 1898 y comenzó la ardua tarea de organizar administrativamente la nueva circunscripción, erigiendo las primeras parroquias foráneas y organizando el cabildo catedralicio.
+        </p>
+        <p>
+          A lo largo de las décadas, la Diócesis consolidó su presencia. En 1920, bajo el largo pastoreo de **Monseñor Marcos Sergio Godoy**, se fundaron importantes medios de comunicación católica, como el diario <em>"La Columna"</em> y la emisora <em>"La Voz de la Fe"</em>, convirtiendo a la diócesis en una pionera de la evangelización radial en Venezuela. También se promovió activamente la educación con la llegada de congregaciones como los Hermanos Maristas y los Jesuitas. El 2 de enero de <strong class="text-on-surface">1953</strong>, para reflejar mejor su centralidad urbana, pasó a denominarse **Diócesis de Maracaibo**.
+        </p>
+        <p>
+          El gran hito de consolidación ocurrió el <strong class="text-on-surface">30 de abril de 1966</strong>, cuando el Papa San Pablo VI la elevó al rango de <strong class="text-on-surface">Arquidiócesis Metropolitana</strong>. Su primer Arzobispo, **Monseñor Domingo Roa Pérez**, impulsó una de las épocas de mayor florecimiento vocacional, educativo y social en la región, creando decenas de parroquias y fundando escuelas arquidiocesanas para llevar educación de calidad a los sectores más vulnerables. Hoy en día, caminamos con alegría bajo el pastoreo de Mons. José Luis Azuaje, comprometidos con la sinodalidad y la evangelización activa.
+        </p>
+      </div>
 
-      <!-- Historia Crónica Card (large) -->
-      <div class="md:col-span-8 bg-surface-container-low p-8 rounded-xl flex flex-col justify-between bento-card border border-outline-variant/30">
-        <div>
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-crimson-deep/10 rounded-full flex items-center justify-center">
-              <span class="material-symbols-outlined text-crimson-deep">history_edu</span>
-            </div>
-            <h3 class="font-headline text-xl font-bold text-crimson-deep">Crónica de Nuestra Fe</h3>
+      <!-- Timeline visual (5 cols) -->
+      <div class="lg:col-span-5 bg-surface-container-low border border-outline-variant/30 rounded-xl p-8 space-y-6">
+        <h3 class="font-headline text-lg font-bold text-crimson-deep border-b border-outline-variant/20 pb-3">Hitos Cronológicos</h3>
+        
+        <div class="space-y-6 relative before:absolute before:inset-y-0 before:left-3 before:w-0.5 before:bg-gold-antique/30">
+          
+          <!-- Hito 1 -->
+          <div class="relative pl-8">
+            <div class="absolute left-1.5 top-2 w-3.5 h-3.5 rounded-full bg-gold-antique border-4 border-surface-container-low"></div>
+            <div class="font-display text-xl font-bold text-crimson-deep">1897</div>
+            <div class="font-label text-xs uppercase tracking-wider text-slate-warm/70 mt-0.5">Erección de la Diócesis</div>
+            <p class="font-body text-xs text-slate-warm mt-1">El Papa León XIII erige la Diócesis del Zulia, independizándola de Mérida, y nombra a Mons. Francisco Marvez.</p>
           </div>
-          <div class="space-y-3 font-body text-slate-warm leading-relaxed">
-            <p>
-              La historia de nuestra Iglesia local se remonta al <strong class="text-on-surface">28 de julio de 1897</strong>, cuando el Papa León XIII erigió la antigua <strong class="text-on-surface">Diócesis del Zulia</strong>, separando su territorio de la Diócesis de Mérida.
-            </p>
-            <p>
-              El 2 de enero de <strong class="text-on-surface">1953</strong>, cambió su nombre a Diócesis de Maracaibo. Gracias al profundo crecimiento en la fe y al dinamismo pastoral de la región occidental, el 30 de abril de <strong class="text-on-surface">1966</strong> el Papa San Pablo VI elevó la sede al rango de <strong class="text-on-surface">Arquidiócesis Metropolitana</strong>, siendo Monseñor Domingo Roa Pérez su primer Arzobispo.
-            </p>
-            <p>
-              Hoy en día, la Arquidiócesis congrega a cientos de miles de fieles y abarca una rica estructura parroquial, liderada por nuestro Arzobispo, impulsando la nueva evangelización y labor social en el estado Zulia.
-            </p>
+
+          <!-- Hito 2 -->
+          <div class="relative pl-8">
+            <div class="absolute left-1.5 top-2 w-3.5 h-3.5 rounded-full bg-gold-antique border-4 border-surface-container-low"></div>
+            <div class="font-display text-xl font-bold text-crimson-deep">1953</div>
+            <div class="font-label text-xs uppercase tracking-wider text-slate-warm/70 mt-0.5">Diócesis de Maracaibo</div>
+            <p class="font-body text-xs text-slate-warm mt-1">La diócesis cambia oficialmente su nombre para centrarse en la capital zuliana y su pujanza pastoral.</p>
           </div>
-        </div>
-        <!-- Timeline stats -->
-        <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-outline-variant/20">
-          <div class="text-center">
-            <div class="font-display text-2xl font-bold text-gold-antique">1897</div>
-            <div class="font-label text-xs uppercase tracking-widest text-slate-warm/60 mt-1">Erección Diócesis Zulia</div>
+
+          <!-- Hito 3 -->
+          <div class="relative pl-8">
+            <div class="absolute left-1.5 top-2 w-3.5 h-3.5 rounded-full bg-gold-antique border-4 border-surface-container-low"></div>
+            <div class="font-display text-xl font-bold text-crimson-deep">1966</div>
+            <div class="font-label text-xs uppercase tracking-wider text-slate-warm/70 mt-0.5">Elevación Metropolitana</div>
+            <p class="font-body text-xs text-slate-warm mt-1">San Pablo VI eleva la sede a Arquidiócesis Metropolitana, con Mons. Domingo Roa Pérez como primer Arzobispo.</p>
           </div>
-          <div class="text-center">
-            <div class="font-display text-2xl font-bold text-gold-antique">1953</div>
-            <div class="font-label text-xs uppercase tracking-widest text-slate-warm/60 mt-1">Renombre Maracaibo</div>
+
+          <!-- Hito 4 -->
+          <div class="relative pl-8">
+            <div class="absolute left-1.5 top-2 w-3.5 h-3.5 rounded-full bg-gold-antique border-4 border-surface-container-low"></div>
+            <div class="font-display text-xl font-bold text-crimson-deep">2026</div>
+            <div class="font-label text-xs uppercase tracking-wider text-slate-warm/70 mt-0.5">Evangelización Digital</div>
+            <p class="font-body text-xs text-slate-warm mt-1">Más de 2.3 millones de fieles, 72 parroquias y un compromiso firme con la sinodalidad y ambientes seguros.</p>
           </div>
-          <div class="text-center">
-            <div class="font-display text-2xl font-bold text-gold-antique">1966</div>
-            <div class="font-label text-xs uppercase tracking-widest text-slate-warm/60 mt-1">Elevación Arquidiócesis</div>
-          </div>
+
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ─── RAÍCES Y DEVOCIÓN ─────────────────────────────────── -->
+  <section class="reveal space-y-8" id="identidad">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 
       <!-- La Chinita Card -->
       <div class="md:col-span-4 bg-crimson-deep text-white p-8 rounded-xl bento-card flex flex-col justify-end relative overflow-hidden group min-h-[280px]">
@@ -272,37 +299,184 @@
       </div>
 
       <!-- Territorio Card -->
-      <div class="md:col-span-5 bg-warm-ivory p-8 rounded-xl bento-card border border-outline-variant/30">
+      <div class="md:col-span-4 bg-warm-ivory p-8 rounded-xl bento-card border border-outline-variant/30">
         <div class="flex items-center gap-3 mb-4">
           <span class="material-symbols-outlined text-gold-antique text-2xl">map</span>
           <h3 class="font-headline text-xl font-bold text-crimson-deep">Nuestro Territorio</h3>
         </div>
-        <p class="font-body text-slate-warm mb-4">
-          La Arquidiócesis abarca un vasto y diverso territorio que incluye los municipios <strong class="text-on-surface">Maracaibo, San Francisco, Jesús Enrique Lossada, Mara, Almirante Padilla</strong> y <strong class="text-on-surface">La Cañada de Urdaneta</strong>.
+        <p class="font-body text-slate-warm mb-3 text-sm">
+          La Arquidiócesis abarca un vasto territorio que incluye los municipios <strong class="text-on-surface">Maracaibo, San Francisco, Jesús Enrique Lossada, Mara, Almirante Padilla</strong> y <strong class="text-on-surface">La Cañada de Urdaneta</strong>.
         </p>
-        <p class="font-body text-slate-warm text-sm mb-5">
+        <p class="font-body text-slate-warm text-xs mb-4">
           Nuestro pueblo fiel se caracteriza por una profunda devoción mariana, alegría inconfundible y un fuerte apego a sus tradiciones, incluyendo las etnias indígenas Wayúu y Añú.
         </p>
-        <div class="flex flex-wrap gap-2">
-          <span class="bg-surface-container px-3 py-1 rounded-full font-label text-xs text-slate-warm border border-outline-variant/30">Wayúu</span>
-          <span class="bg-surface-container px-3 py-1 rounded-full font-label text-xs text-slate-warm border border-outline-variant/30">Añú</span>
-          <span class="bg-surface-container px-3 py-1 rounded-full font-label text-xs text-slate-warm border border-outline-variant/30">Maracaibo</span>
-          <span class="bg-surface-container px-3 py-1 rounded-full font-label text-xs text-slate-warm border border-outline-variant/30">San Francisco</span>
-          <span class="bg-surface-container px-3 py-1 rounded-full font-label text-xs text-slate-warm border border-outline-variant/30">Mara</span>
-          <span class="bg-surface-container px-3 py-1 rounded-full font-label text-xs text-slate-warm border border-outline-variant/30">La Cañada</span>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="bg-surface-container px-2.5 py-0.5 rounded-full font-label text-[10px] text-slate-warm border border-outline-variant/30">Wayúu</span>
+          <span class="bg-surface-container px-2.5 py-0.5 rounded-full font-label text-[10px] text-slate-warm border border-outline-variant/30">Añú</span>
+          <span class="bg-surface-container px-2.5 py-0.5 rounded-full font-label text-[10px] text-slate-warm border border-outline-variant/30">Zulia</span>
         </div>
       </div>
 
       <!-- Map image card -->
-      <div class="md:col-span-7 rounded-xl overflow-hidden bento-card relative min-h-[240px]">
+      <div class="md:col-span-4 rounded-xl overflow-hidden bento-card relative min-h-[280px] border border-outline-variant/30">
         <img
-          class="w-full h-full object-contain bg-white p-2"
+          class="w-full h-full object-cover bg-white p-2"
           src="img/mapa_arquidiocesis.webp"
           alt="Mapa de la Arquidiócesis de Maracaibo"
           onerror="this.src='https://placehold.co/800x480/e6e6e6/888?text=Mapa+Arquidiócesis'"
         >
         <div class="absolute inset-0 bg-crimson-deep/5 pointer-events-none"></div>
       </div>
+    </div>
+  </section>
+
+  <!-- ─── SUCESIÓN APOSTÓLICA (OBISPOS Y ARZOBISPOS) ─────────── -->
+  <section class="reveal space-y-8" id="obispos">
+    <div class="text-center max-w-2xl mx-auto">
+      <span class="font-label text-sm text-gold-antique tracking-widest uppercase">Pastores de la Grey Zuliana</span>
+      <h2 class="font-headline text-3xl md:text-4xl font-bold text-crimson-deep mt-2">Sucesión Apostólica</h2>
+      <div class="h-1 w-20 bg-gold-antique mx-auto mt-4"></div>
+      <p class="font-body text-slate-warm mt-4">Conozca a los obispos y arzobispos que han guiado los pasos de nuestra Iglesia local a lo largo del tiempo.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- 1. Mons. Francisco Marvez -->
+      <div class="bg-surface-container-low border border-outline-variant/30 rounded-xl overflow-hidden bento-card flex flex-col justify-between">
+        <div class="p-6 space-y-4">
+          <div class="aspect-[3/4] rounded-lg overflow-hidden relative bg-surface-container-high border border-outline-variant/20">
+            <img src="img/obispo_marvez.png" alt="Retrato de Mons. Francisco Marvez" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/300x400/7A1A22/ffffff?text=Mons.+Francisco+Marvez';">
+          </div>
+          <div>
+            <span class="bg-gold-antique/10 text-gold-antique border border-gold-antique/30 px-2.5 py-1 rounded-full font-label text-[10px] tracking-wider uppercase inline-block">1898 – 1904</span>
+            <h3 class="font-headline text-lg font-bold text-crimson-deep mt-2">Mons. Francisco Marvez</h3>
+            <span class="font-label text-xs text-slate-warm/75 uppercase tracking-wider block mt-0.5">I Obispo del Zulia</span>
+          </div>
+          <p class="font-body text-sm text-slate-warm leading-relaxed">
+            Primer pastor eclesiástico del Zulia. Organizó la administración de la nueva diócesis y sentó las bases institucionales de la Catedral de Maracaibo.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2. Mons. Arturo Celestino Álvarez -->
+      <div class="bg-surface-container-low border border-outline-variant/30 rounded-xl overflow-hidden bento-card flex flex-col justify-between">
+        <div class="p-6 space-y-4">
+          <div class="aspect-[3/4] rounded-lg overflow-hidden relative bg-surface-container-high border border-outline-variant/20">
+            <img src="img/obispo_alvarez.png" alt="Retrato de Mons. Arturo Celestino Álvarez" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/300x400/7A1A22/ffffff?text=Mons.+Arturo+C.+Álvarez';">
+          </div>
+          <div>
+            <span class="bg-gold-antique/10 text-gold-antique border border-gold-antique/30 px-2.5 py-1 rounded-full font-label text-[10px] tracking-wider uppercase inline-block">1910 – 1919</span>
+            <h3 class="font-headline text-lg font-bold text-crimson-deep mt-2">Mons. Arturo C. Álvarez</h3>
+            <span class="font-label text-xs text-slate-warm/75 uppercase tracking-wider block mt-0.5">II Obispo del Zulia</span>
+          </div>
+          <p class="font-body text-sm text-slate-warm leading-relaxed">
+            Recordado por su profunda espiritualidad, caridad evangélica y devoción a los necesitados. Su causa de beatificación se encuentra actualmente abierta.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3. Mons. Marcos Sergio Godoy -->
+      <div class="bg-surface-container-low border border-outline-variant/30 rounded-xl overflow-hidden bento-card flex flex-col justify-between">
+        <div class="p-6 space-y-4">
+          <div class="aspect-[3/4] rounded-lg overflow-hidden relative bg-surface-container-high border border-outline-variant/20">
+            <img src="img/obispo_godoy.png" alt="Retrato de Mons. Marcos Sergio Godoy" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/300x400/7A1A22/ffffff?text=Mons.+Marcos+S.+Godoy';">
+          </div>
+          <div>
+            <span class="bg-gold-antique/10 text-gold-antique border border-gold-antique/30 px-2.5 py-1 rounded-full font-label text-[10px] tracking-wider uppercase inline-block">1920 – 1957</span>
+            <h3 class="font-headline text-lg font-bold text-crimson-deep mt-2">Mons. Marcos Sergio Godoy</h3>
+            <span class="font-label text-xs text-slate-warm/75 uppercase tracking-wider block mt-0.5">III Obispo del Zulia</span>
+          </div>
+          <p class="font-body text-sm text-slate-warm leading-relaxed">
+            Lideró por 37 años. Fundó el diario "La Columna", la radio "La Voz de la Fe", y coordinó la solemne Coronación Canónica de la Virgen de Chiquinquirá en 1942.
+          </p>
+        </div>
+      </div>
+
+      <!-- 4. Mons. José Rafael Pulido Méndez -->
+      <div class="bg-surface-container-low border border-outline-variant/30 rounded-xl overflow-hidden bento-card flex flex-col justify-between">
+        <div class="p-6 space-y-4">
+          <div class="aspect-[3/4] rounded-lg overflow-hidden relative bg-surface-container-high border border-outline-variant/20">
+            <img src="img/obispo_pulido.png" alt="Retrato de Mons. José Rafael Pulido Méndez" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/300x400/7A1A22/ffffff?text=Mons.+José+R.+Pulido';">
+          </div>
+          <div>
+            <span class="bg-gold-antique/10 text-gold-antique border border-gold-antique/30 px-2.5 py-1 rounded-full font-label text-[10px] tracking-wider uppercase inline-block">1958 – 1961</span>
+            <h3 class="font-headline text-lg font-bold text-crimson-deep mt-2">Mons. José R. Pulido M.</h3>
+            <span class="font-label text-xs text-slate-warm/75 uppercase tracking-wider block mt-0.5">IV Obispo del Zulia</span>
+          </div>
+          <p class="font-body text-sm text-slate-warm leading-relaxed">
+            Distinguido intelectual y canonista. Consolidó las bases administrativas de la diócesis antes de ser designado Arzobispo coadjutor de Mérida.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5. Mons. Domingo Roa Pérez -->
+      <div class="bg-surface-container-low border border-outline-variant/30 rounded-xl overflow-hidden bento-card flex flex-col justify-between">
+        <div class="p-6 space-y-4">
+          <div class="aspect-[3/4] rounded-lg overflow-hidden relative bg-surface-container-high border border-outline-variant/20">
+            <img src="img/obispo_roa.png" alt="Retrato de Mons. Domingo Roa Pérez" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/300x400/7A1A22/ffffff?text=Mons.+Domingo+Roa+Pérez';">
+          </div>
+          <div>
+            <span class="bg-gold-antique/10 text-gold-antique border border-gold-antique/30 px-2.5 py-1 rounded-full font-label text-[10px] tracking-wider uppercase inline-block">1961 – 1992</span>
+            <h3 class="font-headline text-lg font-bold text-crimson-deep mt-2">Mons. Domingo Roa Pérez</h3>
+            <span class="font-label text-xs text-slate-warm/75 uppercase tracking-wider block mt-0.5">V Obispo y I Arzobispo</span>
+          </div>
+          <p class="font-body text-sm text-slate-warm leading-relaxed">
+            Primer Arzobispo metropolitano. Promotor del Concilio Vaticano II en el Zulia, incansable defensor de la educación católica popular y de las vocaciones sacerdotales.
+          </p>
+        </div>
+      </div>
+
+      <!-- 6. Mons. Ramón Ovidio Pérez Morales -->
+      <div class="bg-surface-container-low border border-outline-variant/30 rounded-xl overflow-hidden bento-card flex flex-col justify-between">
+        <div class="p-6 space-y-4">
+          <div class="aspect-[3/4] rounded-lg overflow-hidden relative bg-surface-container-high border border-outline-variant/20">
+            <img src="img/obispo_perez.png" alt="Retrato de Mons. Ramón Ovidio Pérez Morales" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/300x400/7A1A22/ffffff?text=Mons.+Raimundo+Ovidio+Pérez';">
+          </div>
+          <div>
+            <span class="bg-gold-antique/10 text-gold-antique border border-gold-antique/30 px-2.5 py-1 rounded-full font-label text-[10px] tracking-wider uppercase inline-block">1992 – 1999</span>
+            <h3 class="font-headline text-lg font-bold text-crimson-deep mt-2">Mons. Ramón Ovidio Pérez</h3>
+            <span class="font-label text-xs text-slate-warm/75 uppercase tracking-wider block mt-0.5">II Arzobispo de Maracaibo</span>
+          </div>
+          <p class="font-body text-sm text-slate-warm leading-relaxed">
+            Reconocido teólogo y comunicador. Gran impulsor del Concilio Plenario de Venezuela, fortaleciendo la comunión eclesial y la formación doctrinal de los laicos.
+          </p>
+        </div>
+      </div>
+
+      <!-- 7. Mons. Ubaldo Ramón Santana Sequera -->
+      <div class="bg-surface-container-low border border-outline-variant/30 rounded-xl overflow-hidden bento-card flex flex-col justify-between">
+        <div class="p-6 space-y-4">
+          <div class="aspect-[3/4] rounded-lg overflow-hidden relative bg-surface-container-high border border-outline-variant/20">
+            <img src="img/obispo_santana.png" alt="Retrato de Mons. Ubaldo Ramón Santana Sequera" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/300x400/7A1A22/ffffff?text=Mons.+Ubaldo+Santana';">
+          </div>
+          <div>
+            <span class="bg-gold-antique/10 text-gold-antique border border-gold-antique/30 px-2.5 py-1 rounded-full font-label text-[10px] tracking-wider uppercase inline-block">2001 – 2018</span>
+            <h3 class="font-headline text-lg font-bold text-crimson-deep mt-2">Mons. Ubaldo Santana S.</h3>
+            <span class="font-label text-xs text-slate-warm/75 uppercase tracking-wider block mt-0.5">III Arzobispo de Maracaibo</span>
+          </div>
+          <p class="font-body text-sm text-slate-warm leading-relaxed">
+            Estructuró las actuales zonas pastorales, dinamizó la Pastoral Juvenil y presidió la Conferencia Episcopal Venezolana. Actualmente es Arzobispo Emérito.
+          </p>
+        </div>
+      </div>
+
+      <!-- 8. Mons. José Luis Azuaje Ayala -->
+      <div class="bg-surface-container-low border border-outline-variant/30 rounded-xl overflow-hidden bento-card flex flex-col justify-between">
+        <div class="p-6 space-y-4">
+          <div class="aspect-[3/4] rounded-lg overflow-hidden relative bg-surface-container-high border border-outline-variant/20">
+            <img src="img/arzobispo.webp" alt="Retrato de Mons. José Luis Azuaje Ayala" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/300x400/7A1A22/ffffff?text=Mons.+José+Luis+Azuaje';">
+          </div>
+          <div>
+            <span class="bg-crimson-deep text-white px-2.5 py-1 rounded-full font-label text-[10px] tracking-wider uppercase inline-block">2018 – Act.</span>
+            <h3 class="font-headline text-lg font-bold text-crimson-deep mt-2">Mons. José Luis Azuaje</h3>
+            <span class="font-label text-xs text-slate-warm/75 uppercase tracking-wider block mt-0.5">IV Arzobispo de Maracaibo</span>
+          </div>
+          <p class="font-body text-sm text-slate-warm leading-relaxed">
+            Actual pastor de la grey. Impulsa la sinodalidad, la comisión de Ambientes Seguros (CAPAS), la labor caritativa nacional (Cáritas) y la renovación digital.
+          </p>
+        </div>
+      </div>
+
     </div>
   </section>
 
