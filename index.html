@@ -14,6 +14,101 @@
 <script src="js/stitch-config.js"></script>
 <!-- Core Styles -->
 <link href="css/stitch-core.css" rel="stylesheet">
+<!-- Leaflet Map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  /* ── Emergency Section ────────────────────────────────── */
+  @keyframes pulse-ring {
+    0%   { transform: scale(1);   opacity: 0.8; }
+    100% { transform: scale(1.9); opacity: 0; }
+  }
+  @keyframes emergency-ticker {
+    0%   { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  @keyframes shake-gentle {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-3px) rotate(-0.5deg); }
+    40% { transform: translateX(3px)  rotate(0.5deg); }
+    60% { transform: translateX(-2px); }
+    80% { transform: translateX(2px); }
+  }
+  @keyframes fade-in-up {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  @keyframes glow-pulse {
+    0%,100% { box-shadow: 0 0 20px rgba(220,38,38,0.3); }
+    50%     { box-shadow: 0 0 50px rgba(220,38,38,0.7), 0 0 100px rgba(220,38,38,0.3); }
+  }
+
+  .emergency-ticker-wrap {
+    overflow: hidden; white-space: nowrap; background: #b91c1c;
+    padding: 10px 0; border-bottom: 2px solid rgba(255,255,255,0.15);
+  }
+  .emergency-ticker-track {
+    display: inline-block;
+    animation: emergency-ticker 35s linear infinite;
+    font-family: 'Poppins', sans-serif; font-size: 0.82rem;
+    font-weight: 700; letter-spacing: 0.06em; color: #fff;
+    text-transform: uppercase;
+  }
+  .ticker-dot { display: inline-block; width: 8px; height: 8px;
+    background: #fcd34d; border-radius: 50%; margin: 0 20px; vertical-align: middle; }
+
+  .acopio-map-wrap {
+    position: relative; border-radius: 1rem; overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    border: 3px solid rgba(197,155,39,0.4);
+  }
+  #acopioMap { height: 480px; width: 100%; }
+  @media(max-width:768px) { #acopioMap { height: 320px; } }
+
+  .acopio-card {
+    background: rgba(255,255,255,0.93);
+    border-radius: 1rem;
+    border: 1px solid rgba(197,155,39,0.2);
+    border-left: 4px solid #7A1A22;
+    padding: 1.1rem 1.25rem;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    cursor: default;
+    animation: fade-in-up 0.5s ease forwards;
+    backdrop-filter: blur(4px);
+  }
+  .acopio-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(122,26,34,0.18);
+    border-left-color: #C59B27;
+    background: #fff;
+  }
+  .acopio-card-number {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #7A1A22; color: #fff;
+    font-size: 0.72rem; font-weight: 800; font-family: 'Poppins', sans-serif;
+    flex-shrink: 0; margin-right: 10px;
+  }
+
+  .pulse-dot {
+    width: 12px; height: 12px; background: #dc2626;
+    border-radius: 50%; display: inline-block; position: relative;
+    flex-shrink: 0;
+  }
+  .pulse-dot::before {
+    content: ''; position: absolute; inset: -4px;
+    border-radius: 50%; background: rgba(220,38,38,0.35);
+    animation: pulse-ring 1.5s ease-out infinite;
+  }
+
+  .leaflet-popup-content-wrapper { border-radius: 0.75rem !important; box-shadow: 0 8px 30px rgba(0,0,0,0.2) !important; }
+  .leaflet-popup-content { margin: 12px 14px !important; }
+  .acopio-popup-title { font-family:'DM Sans',sans-serif; color:#7A1A22; font-size:0.88rem; font-weight:700; line-height:1.35; margin-bottom:4px; }
+  .acopio-popup-sub { font-size:0.75rem; color:#4A4543; }
+  .acopio-popup-badge { display:inline-block; background:#7A1A22; color:#fff;
+    font-size:0.6rem; font-weight:700; padding:2px 8px; border-radius:50px;
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px; }
+</style>
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
@@ -75,6 +170,118 @@ Tribunal Eclesiástico
 <div class="absolute top-0 left-0 w-full h-1/2 bg-gold-antique animate-bounce"></div>
 </div>
 </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECCIÓN DE EMERGENCIA — TERREMOTO VENEZUELA 24 JUNIO 2026
+════════════════════════════════════════════════════════════════ -->
+
+<!-- Ticker de Alerta -->
+<div class="emergency-ticker-wrap">
+  <span class="emergency-ticker-track">
+    ⚠️ ALERTA SÍSMICA &nbsp;<span class="ticker-dot"></span>&nbsp; VENEZUELA · 24 DE JUNIO 2026 &nbsp;<span class="ticker-dot"></span>&nbsp; DOBLETE SÍSMICO 7.2 y 7.5 Mw &nbsp;<span class="ticker-dot"></span>&nbsp; LA ARQUIDIÓCESIS DE MARACAIBO ACTIVA SUS CENTROS DE ACOPIO &nbsp;<span class="ticker-dot"></span>&nbsp; 26 PARROQUIAS RECIBEN DONACIONES DE PRIMERA NECESIDAD &nbsp;<span class="ticker-dot"></span>&nbsp; ÚNETE A LA SOLIDARIDAD CRISTIANA &nbsp;<span class="ticker-dot"></span>&nbsp; ⚠️ ALERTA SÍSMICA &nbsp;<span class="ticker-dot"></span>&nbsp; VENEZUELA · 24 DE JUNIO 2026 &nbsp;<span class="ticker-dot"></span>&nbsp; DOBLETE SÍSMICO 7.2 y 7.5 Mw &nbsp;<span class="ticker-dot"></span>&nbsp; LA ARQUIDIÓCESIS DE MARACAIBO ACTIVA SUS CENTROS DE ACOPIO
+  </span>
+</div>
+
+<!-- Sección Principal de Emergencia -->
+<section id="centros-acopio" style="background: linear-gradient(135deg, #1a0508 0%, #3d0b10 40%, #1a0508 100%); position: relative; overflow: hidden; padding: 5rem 0 6rem;">
+  <!-- Decorative elements -->
+  <div style="position:absolute;top:-80px;right:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(197,155,39,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-100px;left:-60px;width:400px;height:400px;background:radial-gradient(circle,rgba(220,38,38,0.15) 0%,transparent 70%);pointer-events:none;"></div>
+  <!-- Cross watermark -->
+  <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:30rem;color:rgba(255,255,255,0.018);pointer-events:none;user-select:none;font-family:'DM Sans',sans-serif;font-weight:300;line-height:1;">✝</div>
+
+  <div style="max-width:1320px;margin:0 auto;padding:0 2rem;">
+
+    <!-- Header Badge + Title -->
+    <div style="text-align:center;margin-bottom:3rem;" class="reveal">
+      <div style="display:inline-flex;align-items:center;gap:12px;background:rgba(220,38,38,0.25);border:1px solid rgba(220,38,38,0.5);padding:8px 20px;border-radius:50px;margin-bottom:1.5rem;backdrop-filter:blur(8px);">
+        <span class="pulse-dot"></span>
+        <span style="color:#fca5a5;font-family:'Poppins',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">Respuesta de Emergencia · En Curso</span>
+      </div>
+      <h2 style="font-family:'DM Sans',sans-serif;font-size:clamp(2rem,5vw,3.5rem);color:#fff;font-weight:700;line-height:1.1;margin-bottom:1rem;animation:shake-gentle 0.6s ease 0.3s both;">
+        Terremoto en Venezuela
+        <span style="display:block;font-style:italic;font-weight:300;font-size:0.65em;color:rgba(255,255,255,0.75);margin-top:0.3rem;">24 de junio, 2026 — La Iglesia responde</span>
+      </h2>
+      <div style="width:80px;height:3px;background:linear-gradient(90deg,#C59B27,#fcd34d);margin:0 auto 1.5rem;border-radius:2px;"></div>
+      <p style="color:rgba(255,255,255,0.75);font-family:'Poppins',sans-serif;font-size:1rem;max-width:720px;margin:0 auto;line-height:1.75;">
+        Un doblete sísmico de magnitudes <strong style="color:#fcd34d;">7.2 y 7.5 Mw</strong> sacudió Venezuela causando graves daños estructurales y una crisis humanitaria.
+        La Arquidiócesis de Maracaibo, respondiendo con el amor de Cristo, ha activado <strong style="color:#fcd34d;">26 centros de acopio parroquiales</strong> 
+        para recibir <strong style="color:#fcd34d;">alimentos, medicinas, agua y artículos de primera necesidad</strong> destinados a las familias afectadas.
+      </p>
+    </div>
+
+    <!-- Stats de Emergencia -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.25rem;margin-bottom:3.5rem;" class="reveal">
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:1rem;padding:1.5rem;text-align:center;backdrop-filter:blur(8px);">
+        <div style="font-family:'DM Sans',sans-serif;font-size:2.5rem;font-weight:800;color:#fcd34d;line-height:1;">26</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-top:4px;">Centros de Acopio</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:1rem;padding:1.5rem;text-align:center;backdrop-filter:blur(8px);">
+        <div style="font-family:'DM Sans',sans-serif;font-size:2.5rem;font-weight:800;color:#fcd34d;line-height:1;">7.5</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-top:4px;">Magnitud Máxima Mw</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:1rem;padding:1.5rem;text-align:center;backdrop-filter:blur(8px);">
+        <div style="font-family:'DM Sans',sans-serif;font-size:2.5rem;font-weight:800;color:#fcd34d;line-height:1;">24</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-top:4px;">Junio 2026</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:1rem;padding:1.5rem;text-align:center;backdrop-filter:blur(8px);">
+        <div style="font-family:'DM Sans',sans-serif;font-size:2.5rem;font-weight:800;color:#4ade80;line-height:1;">✓</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-top:4px;">Centros Activos</div>
+      </div>
+    </div>
+
+    <!-- Mapa Interactivo -->
+    <div style="margin-bottom:3.5rem;" class="reveal">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;">
+        <span class="material-symbols-outlined" style="color:#C59B27;font-size:1.6rem;">location_on</span>
+        <h3 style="font-family:'DM Sans',sans-serif;color:#fff;font-size:1.4rem;font-weight:700;">Mapa de Centros de Acopio</h3>
+        <span style="background:#C59B27;color:#1a0508;font-size:0.65rem;font-weight:800;padding:3px 10px;border-radius:50px;letter-spacing:0.08em;text-transform:uppercase;">Interactivo</span>
+      </div>
+      <div class="acopio-map-wrap">
+        <div id="acopioMap"></div>
+      </div>
+      <p style="color:rgba(255,255,255,0.5);font-size:0.78rem;margin-top:0.75rem;text-align:center;font-family:'Poppins',sans-serif;">
+        Haz clic en cada marcador para ver información de la parroquia · Mapa centrado en la Arquidiócesis de Maracaibo
+      </p>
+    </div>
+
+    <!-- Grid de Parroquias -->
+    <div class="reveal">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span class="material-symbols-outlined" style="color:#C59B27;font-size:1.6rem;">church</span>
+          <h3 style="font-family:'DM Sans',sans-serif;color:#fff;font-size:1.4rem;font-weight:700;">Parroquias Centro de Acopio</h3>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);padding:8px 16px;border-radius:50px;border:1px solid rgba(255,255,255,0.15);">
+          <span class="material-symbols-outlined" style="color:#4ade80;font-size:1rem;">inventory</span>
+          <span style="color:rgba(255,255,255,0.8);font-size:0.8rem;font-weight:600;font-family:'Poppins',sans-serif;">Reciben: Alimentos · Agua · Medicinas · Ropa</span>
+        </div>
+      </div>
+
+      <div id="acopio-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;"></div>
+    </div>
+
+    <!-- Llamada a la Acción -->
+    <div style="text-align:center;margin-top:3.5rem;padding:2.5rem;background:rgba(197,155,39,0.1);border:1px solid rgba(197,155,39,0.3);border-radius:1.5rem;backdrop-filter:blur(8px);" class="reveal">
+      <span class="material-symbols-outlined" style="font-size:3rem;color:#C59B27;font-variation-settings:'FILL' 1;display:block;margin-bottom:1rem;">volunteer_activism</span>
+      <h3 style="font-family:'DM Sans',sans-serif;color:#fff;font-size:1.6rem;font-weight:700;margin-bottom:0.75rem;">Únete a la Solidaridad Cristiana</h3>
+      <p style="color:rgba(255,255,255,0.7);max-width:560px;margin:0 auto 1.75rem;font-family:'Poppins',sans-serif;font-size:0.95rem;line-height:1.7;">
+        Dirígete al centro de acopio más cercano con tu donación. Cada gesto de amor es una respuesta concreta al llamado de Cristo a servir al prójimo.
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="donaciones.html" style="background:#C59B27;color:#1a0508;padding:14px 32px;border-radius:0.75rem;font-family:'Poppins',sans-serif;font-weight:700;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s;" onmouseover="this.style.background='#d4a832'" onmouseout="this.style.background='#C59B27'">
+          <span class="material-symbols-outlined" style="font-size:1.1rem;">payments</span>
+          Hacer una Donación
+        </a>
+        <a href="directorio.html" style="background:rgba(255,255,255,0.1);color:#fff;padding:14px 32px;border-radius:0.75rem;font-family:'Poppins',sans-serif;font-weight:700;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,0.3);transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
+          <span class="material-symbols-outlined" style="font-size:1.1rem;">map</span>
+          Ver Directorio Parroquial
+        </a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- Impact Stats Bar -->
@@ -481,4 +688,154 @@ Hacer una Donación
     }
   }
 </script>
-</body></html>
+
+<script>
+// ── Centros de Acopio — Datos y Mapa ────────────────────────────
+(function initAcopioSection() {
+
+  const ACOPIO_PARISHES = [
+    { num:1,  name: "Parroquia San Pablo",                            lat: 10.6694, lng: -71.6125, zona: "Maracaibo Centro" },
+    { num:2,  name: "Parroquia Nuestro Señor Jesucristo Rey",         lat: 10.6820, lng: -71.6050, zona: "Maracaibo Norte" },
+    { num:3,  name: "Basílica Santuario Ntra. Sra. de Chiquinquirá",  lat: 10.6567, lng: -71.6134, zona: "Maracaibo Centro" },
+    { num:4,  name: "Parroquia San Alfonso",                          lat: 10.6750, lng: -71.6320, zona: "Maracaibo Oeste" },
+    { num:5,  name: "Parroquia Ntra. Sra. de Lourdes",               lat: 10.6970, lng: -71.6180, zona: "Maracaibo Norte" },
+    { num:6,  name: "Parroquia San Juan Bosco",                       lat: 10.6610, lng: -71.6410, zona: "Maracaibo Suroeste" },
+    { num:7,  name: "Parroquia Inmaculada Concepción (La Cañada)",    lat: 10.3900, lng: -71.4750, zona: "La Cañada de Urdaneta" },
+    { num:8,  name: "Parroquia Ntra. Sra. de la Candelaria",         lat: 10.6880, lng: -71.6280, zona: "Maracaibo Norte" },
+    { num:9,  name: "Parroquia San Rafael Arcángel",                  lat: 10.6730, lng: -71.5960, zona: "Maracaibo Este" },
+    { num:10, name: "Parroquia Santo Domingo de Guzmán",              lat: 10.6520, lng: -71.6055, zona: "Maracaibo Centro" },
+    { num:11, name: "Parroquia Claret",                               lat: 10.6640, lng: -71.6380, zona: "Maracaibo Oeste" },
+    { num:12, name: "Parroquia Ntra. Sra. del Carmen (La Cañada)",   lat: 10.3950, lng: -71.4680, zona: "La Cañada de Urdaneta" },
+    { num:13, name: "Parroquia Ntra. Sra. de Chiquinquirá (La Cañada)", lat: 10.3870, lng: -71.4810, zona: "La Cañada de Urdaneta" },
+    { num:14, name: "Parroquia San Bartolomé Apóstol de Ziruma",     lat: 10.7480, lng: -71.5750, zona: "Ziruma" },
+    { num:15, name: "Parroquia San Pedro Apóstol",                    lat: 10.6490, lng: -71.5880, zona: "Maracaibo Este" },
+    { num:16, name: "Parroquia Santa Mónica",                         lat: 10.6780, lng: -71.6200, zona: "Maracaibo Norte" },
+    { num:17, name: "Parroquia San Juan Bautista",                    lat: 10.6430, lng: -71.6290, zona: "Maracaibo Sur" },
+    { num:18, name: "Parroquia Niña María",                           lat: 10.6560, lng: -71.6480, zona: "Maracaibo Suroeste" },
+    { num:19, name: "Parroquia San José de Paraguaipoa",              lat: 11.3500, lng: -71.9700, zona: "Alta Guajira" },
+    { num:20, name: "Parroquia Santísima Trinidad",                   lat: 10.6670, lng: -71.6040, zona: "Maracaibo Centro" },
+    { num:21, name: "Parroquia San Miguel Arcángel",                  lat: 10.6900, lng: -71.6360, zona: "Maracaibo Norte" },
+    { num:22, name: "Parroquia Ntra. Sra. del Perpetuo Socorro",      lat: 10.6820, lng: -71.5990, zona: "Maracaibo Norte" },
+    { num:23, name: "Parroquia Caridad del Cobre",                    lat: 10.6590, lng: -71.6160, zona: "Maracaibo Centro" },
+    { num:24, name: "Parroquia San Tarcisio",                         lat: 10.6480, lng: -71.6350, zona: "Maracaibo Sur" },
+    { num:25, name: "Parroquia Ntra. Sra. de la Asunción",           lat: 10.5990, lng: -71.6550, zona: "Maracaibo Sur" },
+    { num:26, name: "Parroquia San Isidro Labrador",                  lat: 10.7100, lng: -71.6440, zona: "Maracaibo Norte" },
+  ];
+
+  // ── Build Parish Card Grid ──────────────────────────────────
+  const grid = document.getElementById('acopio-grid');
+  if (grid) {
+    ACOPIO_PARISHES.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'acopio-card';
+      card.style.animationDelay = (i * 35) + 'ms';
+      card.innerHTML = `
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <span class="acopio-card-number">${p.num}</span>
+          <div style="flex:1;">
+            <div style="font-family:'DM Sans',sans-serif;font-weight:700;color:#7A1A22;font-size:0.9rem;line-height:1.3;margin-bottom:4px;">${p.name}</div>
+            <div style="display:flex;align-items:center;gap:5px;">
+              <span class="material-symbols-outlined" style="font-size:0.85rem;color:#C59B27;">location_on</span>
+              <span style="font-size:0.75rem;color:#6b7280;font-family:'Poppins',sans-serif;">${p.zona}</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(197,155,39,0.15);display:flex;align-items:center;gap:6px;">
+          <span class="material-symbols-outlined" style="font-size:0.9rem;color:#4ade80;">check_circle</span>
+          <span style="font-size:0.72rem;color:#4b7a50;font-weight:600;font-family:'Poppins',sans-serif;text-transform:uppercase;letter-spacing:0.06em;">Centro activo · Acepta donaciones</span>
+        </div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  // ── Initialize Leaflet Map ──────────────────────────────────
+  function initMap() {
+    if (!document.getElementById('acopioMap') || typeof L === 'undefined') return;
+
+    const map = L.map('acopioMap', {
+      center: [10.6614, -71.6130],
+      zoom: 11,
+      scrollWheelZoom: false,
+      zoomControl: true,
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Custom marker icon
+    function makeIcon(num) {
+      return L.divIcon({
+        className: '',
+        html: `<div style="
+          width:34px;height:34px;border-radius:50% 50% 50% 0;
+          background:linear-gradient(135deg,#7A1A22,#b91c1c);
+          border:3px solid #fff;
+          box-shadow:0 3px 14px rgba(122,26,34,0.5);
+          display:flex;align-items:center;justify-content:center;
+          transform:rotate(-45deg);
+          position:relative;
+        ">
+          <span style="
+            transform:rotate(45deg);
+            color:#fff;font-weight:800;font-size:0.62rem;
+            font-family:'Poppins',sans-serif;
+          ">${num}</span>
+        </div>`,
+        iconSize: [34, 34],
+        iconAnchor: [17, 34],
+        popupAnchor: [0, -36]
+      });
+    }
+
+    ACOPIO_PARISHES.forEach(p => {
+      const marker = L.marker([p.lat, p.lng], { icon: makeIcon(p.num) }).addTo(map);
+      marker.bindPopup(`
+        <div>
+          <span class="acopio-popup-badge">Centro de Acopio #${p.num}</span>
+          <div class="acopio-popup-title">${p.name}</div>
+          <div class="acopio-popup-sub">📍 ${p.zona}</div>
+          <div style="margin-top:6px;font-size:0.72rem;color:#4b7a50;font-weight:600;">✓ Acepta alimentos · agua · medicinas · ropa</div>
+        </div>
+      `, { maxWidth: 220 });
+    });
+
+    // Add a special marker for the earthquake epicenter (reference)
+    const epicenterIcon = L.divIcon({
+      className: '',
+      html: `<div style="
+        width:44px;height:44px;border-radius:50%;
+        background:rgba(220,38,38,0.85);
+        border:3px solid #fcd34d;
+        display:flex;align-items:center;justify-content:center;
+        animation:pulse-ring 1.5s ease-out infinite;
+        box-shadow:0 0 20px rgba(220,38,38,0.6);
+        font-size:1.2rem;
+      ">⚡</div>`,
+      iconSize: [44, 44],
+      iconAnchor: [22, 22],
+      popupAnchor: [0, -24]
+    });
+    L.marker([10.2500, -68.5000], { icon: epicenterIcon })
+      .addTo(map)
+      .bindPopup(`
+        <div>
+          <span class="acopio-popup-badge" style="background:#dc2626;">⚡ Zona Epicentral</span>
+          <div class="acopio-popup-title">Terremoto 7.2 — 7.5 Mw</div>
+          <div class="acopio-popup-sub">24 de junio, 2026 · Yaracuy / Carabobo</div>
+        </div>
+      `);
+  }
+
+  // Wait for Leaflet to load
+  if (typeof L !== 'undefined') {
+    initMap();
+  } else {
+    window.addEventListener('load', initMap);
+  }
+
+})();
+</script>
+</body></html>
