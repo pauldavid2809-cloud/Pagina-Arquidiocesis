@@ -285,8 +285,8 @@
         const expiraDisplay = sem.expira === '07/27' ? 'Julio de 2027 (07/27)' : sem.expira;
         
         const photoHtml = sem.foto 
-            ? `<img src="${sem.foto}" alt="${sem.nombre}" class="w-full h-full object-cover rounded-lg border border-[#C59B27]/30 shadow-sm" onerror="this.onerror=null; this.src='https://placehold.co/120x150/7A1A22/ffffff?text=Seminarista';">`
-            : `<div class="w-full h-full bg-warm-ivory flex items-center justify-center rounded-lg border border-[#C59B27]/30 text-gold-antique"><i class="ti ti-user text-[48px]"></i></div>`;
+            ? `<img src="${sem.foto}" alt="${sem.nombre}" class="w-full h-full object-cover rounded-lg border border-[#C59B27]/30 shadow-sm bg-white" onerror="this.onerror=null; this.src='https://placehold.co/120x150/7A1A22/ffffff?text=Seminarista';">`
+            : `<div class="w-full h-full bg-white flex items-center justify-center rounded-lg border border-[#C59B27]/30 text-gold-antique"><i class="ti ti-user text-[48px]"></i></div>`;
 
         resultDiv.innerHTML = `
             <div class="validation-card overflow-hidden animate-fadeIn">
@@ -302,7 +302,7 @@
                     
                     <div class="flex flex-col md:flex-row gap-6 mb-6">
                         <!-- Photo container -->
-                        <div class="w-[120px] h-[150px] mx-auto md:mx-0 shrink-0">
+                        <div class="w-[120px] h-[150px] mx-auto md:mx-0 shrink-0 bg-white rounded-lg">
                             ${photoHtml}
                         </div>
                         
@@ -333,58 +333,6 @@
                                 <strong class="text-slate-warm">${sem.institucion}</strong>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Facsímil Impreso Premium -->
-                    <div class="mt-8 border-[12px] border-double border-[#C59B27]/40 bg-[#fffdf9] text-[#2b2518] p-8 rounded-lg relative overflow-hidden shadow-inner text-[12px] leading-relaxed" style="font-family: Arial, sans-serif;">
-                        <!-- Background Watermark -->
-                        <div class="absolute inset-0 flex items-center justify-center opacity-[0.025] pointer-events-none z-0">
-                            <img src="data:image/webp;base64,${logoBase64}" alt="Watermark" class="w-full max-w-[220px] object-contain">
-                        </div>
-
-                        <div class="relative z-10 flex flex-col justify-between h-full">
-                            <header class="text-center mb-6">
-                                <img src="data:image/webp;base64,${logoBase64}" alt="Logo" class="mx-auto mb-2" style="width: 50px; height: 50px;" onerror="this.src='https://placehold.co/50x50/7A1A22/ffffff?text=AM'">
-                                <h4 class="font-bold text-[13px] text-[#7A1A22] uppercase tracking-[0.12em] border-b-2 border-[#C59B27]/30 pb-2.5 mb-1.5" style="font-family: Arial, sans-serif;">Arquidiócesis de Maracaibo</h4>
-                                <h5 class="text-[10px] italic text-slate-500 font-medium mt-1">${sem.institucion}</h5>
-                            </header>
-                            
-                            <article class="text-justify px-2 mb-6 font-serif" style="font-family: Georgia, serif; font-size: 13px; line-height: 1.6;">
-                                <h6 class="text-center font-bold text-[12px] text-[#7A1A22] mb-5 uppercase tracking-wider" style="font-family: Arial, sans-serif;">Certificación Académica Estudiantil</h6>
-                                <p class="text-slate-800">
-                                    Por medio de la presente, la Rectoría del <strong>Seminario Mayor Arquidiocesano "Santo Tomás de Aquino"</strong> hace constar que el ciudadano <strong>${sem.nombre}</strong>, titular de la Cédula de Identidad <strong>${sem.cedula}</strong>, es alumno regular de esta casa de formación sacerdotal, cursando actualmente estudios correspondientes a la etapa de <strong>${sem.etapa}</strong>.
-                                </p>
-                                <p class="mt-3 text-slate-800">
-                                    Esta credencial digital certifica su condición estudiantil ante las autoridades eclesiásticas y civiles competentes, con validez legal hasta el día de su vencimiento en <strong>${expiraDisplay}</strong>.
-                                </p>
-                            </article>
-                            
-                            <footer class="mt-4">
-                                <div class="flex justify-between items-end gap-4 px-2 mb-4">
-                                    <div class="text-center flex-1">
-                                        <div class="border-t border-slate-300 pt-1.5 text-[10px] font-bold text-[#4a3e26]">${sem.rector}</div>
-                                        <div class="text-[8.5px] text-slate-400 uppercase tracking-wider font-semibold">Rector del Seminario</div>
-                                    </div>
-                                    <div class="text-center shrink-0" style="width: 75px;">
-                                        <div style="border: 2px dashed #C59B27; color: #C59B27; font-size: 7.5px; border-radius: 50%; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; text-transform: uppercase; font-weight: bold; transform: rotate(-8deg); margin: 0 auto; line-height: 1.2; padding: 2px; background: rgba(255, 255, 255, 0.85);">
-                                            <span>Sello<br>Seminario<br>Mayor</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="border-t border-[#C59B27]/20 pt-3 flex justify-between items-center text-[8.5px] text-slate-400">
-                                    <div>Código de Control: <strong class="font-mono text-[9px] text-[#7A1A22]">${sem.id}</strong></div>
-                                    <div class="opacity-75">Validez académica mediante verificación digital diocesana.</div>
-                                </div>
-                            </footer>
-                        </div>
-                    </div>
-
-                    <!-- Printing / Download Button -->
-                    <div class="mt-6 flex justify-center gap-3">
-                        <button onclick="window.print()" class="bg-slate-warm/15 hover:bg-slate-warm/25 text-slate-warm px-4 py-2 rounded-lg font-bold font-label text-[12px] transition-all flex items-center gap-1.5 uppercase tracking-wide">
-                            <i class="ti ti-printer text-[16px]"></i> Imprimir Certificado
-                        </button>
                     </div>
 
                     <div class="mt-6 text-center text-[11px] text-slate-400 font-mono">
