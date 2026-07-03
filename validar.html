@@ -288,6 +288,53 @@
             ? `<img src="${sem.foto}" alt="${sem.nombre}" class="w-full h-full object-cover rounded-xl border border-slate-200 shadow-sm bg-white" onerror="this.onerror=null; this.src='https://placehold.co/120x120/7A1A22/ffffff?text=Seminarista';">`
             : `<div class="w-full h-full bg-white flex items-center justify-center rounded-xl border border-slate-200 text-gold-antique"><i class="ti ti-user text-[48px]"></i></div>`;
 
+        let gridHtml = `
+            <div>
+                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Código de Control:</span>
+                <strong class="text-[#7A1A22] font-mono text-[14px]">${sem.id}</strong>
+            </div>
+            <div>
+                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Fecha de Expiración:</span>
+                <strong class="text-slate-warm">${expiraDisplay}</strong>
+            </div>
+            <div>
+                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Nombre Completo:</span>
+                <strong class="text-slate-warm text-[14px]">${sem.nombre}</strong>
+            </div>
+            <div>
+                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Cédula de Identidad:</span>
+                <strong class="text-slate-warm font-mono">${sem.cedula}</strong>
+            </div>
+        `;
+
+        if (sem.cargo) {
+            gridHtml += `
+                <div>
+                    <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Condición:</span>
+                    <strong class="text-white bg-[#7A1A22] px-2 py-0.5 rounded text-[11px] font-bold inline-block mt-0.5">${sem.etapa}</strong>
+                </div>
+                <div>
+                    <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Cargo / Función:</span>
+                    <strong class="text-slate-warm text-[13px] font-semibold">${sem.cargo}</strong>
+                </div>
+                <div class="sm:col-span-2">
+                    <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Institución:</span>
+                    <strong class="text-slate-warm">${sem.institucion}</strong>
+                </div>
+            `;
+        } else {
+            gridHtml += `
+                <div>
+                    <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Etapa Formativa:</span>
+                    <strong class="text-white bg-[#7A1A22] px-2 py-0.5 rounded text-[11px] font-bold inline-block mt-0.5">${sem.etapa}</strong>
+                </div>
+                <div>
+                    <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Institución:</span>
+                    <strong class="text-slate-warm">${sem.institucion}</strong>
+                </div>
+            `;
+        }
+
         resultDiv.innerHTML = `
             <div class="validation-card overflow-hidden animate-fadeIn">
                 <div class="verified-badge p-6 flex items-center justify-center gap-3 font-label font-bold text-[14px] uppercase tracking-wider">
@@ -297,7 +344,7 @@
                 <div class="p-8">
                     <div class="border-b border-slate-100 pb-4 mb-6">
                         <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-label block">Registro de Seminario Mayor</span>
-                        <h3 class="font-display text-[22px] font-bold text-slate-warm mt-1">Carnet de Identificación Estudiantil</h3>
+                        <h3 class="font-display text-[22px] font-bold text-slate-warm mt-1">${sem.cargo ? 'Credencial de Autoridad / Formador' : 'Carnet de Identificación Estudiantil'}</h3>
                     </div>
                     
                     <div class="flex flex-col md:flex-row gap-6 mb-6">
@@ -308,30 +355,7 @@
                         
                         <!-- Grid details -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-body text-[13px] flex-grow">
-                            <div>
-                                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Código de Control:</span>
-                                <strong class="text-[#7A1A22] font-mono text-[14px]">${sem.id}</strong>
-                            </div>
-                            <div>
-                                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Fecha de Expiración:</span>
-                                <strong class="text-slate-warm">${expiraDisplay}</strong>
-                            </div>
-                            <div>
-                                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Nombre Completo:</span>
-                                <strong class="text-slate-warm text-[14px]">${sem.nombre}</strong>
-                            </div>
-                            <div>
-                                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Cédula de Identidad:</span>
-                                <strong class="text-slate-warm font-mono">${sem.cedula}</strong>
-                            </div>
-                            <div>
-                                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Etapa Formativa:</span>
-                                <strong class="text-white bg-[#7A1A22] px-2 py-0.5 rounded text-[11px] font-bold inline-block mt-0.5">${sem.etapa}</strong>
-                            </div>
-                            <div>
-                                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Institución:</span>
-                                <strong class="text-slate-warm">${sem.institucion}</strong>
-                            </div>
+                            ${gridHtml}
                         </div>
                     </div>
 
