@@ -1,35 +1,5 @@
 [
   {
-    "id": "SEM-V-30.948.771",
-    "nombre": "PETIT HANSEN, CESAR DAVID",
-    "cedula": "V-30.948.771",
-    "etapa": "Teología",
-    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
-    "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-30.948.771.png"
-  },
-  {
-    "id": "SEM-V-25.906.935",
-    "nombre": "MÁRQUEZ COLINA, RICARDO ANDRÉS",
-    "cedula": "V-25.906.935",
-    "etapa": "Teología",
-    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
-    "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-25.906.935.png"
-  },
-  {
-    "id": "SEM-V-33.597.365",
-    "nombre": "SIERRA NAVA, JOSÉ MIGUEL",
-    "cedula": "V-33.597.365",
-    "etapa": "Filosofía",
-    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
-    "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-33.597.365.png"
-  },
-  {
     "id": "SEM-V-29.539.180",
     "nombre": "RUBIO MEDINA, ALEJANDRO MOISÉS",
     "cedula": "V-29.539.180",
@@ -40,74 +10,14 @@
     "foto": "img/seminaristas/V-29.539.180.png"
   },
   {
-    "id": "SEM-V-28.509.786",
-    "nombre": "TORREALBA GARCÍA, NIXÓN LUIS",
-    "cedula": "V-28.509.786",
-    "etapa": "Teología",
-    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
-    "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-28.509.786.png"
-  },
-  {
-    "id": "SEM-V-30.747.810",
-    "nombre": "BARBOZA GONZÁLEZ, ELIO ENRIQUE",
-    "cedula": "V-30.747.810",
-    "etapa": "Teología",
-    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
-    "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-30.747.810.png"
-  },
-  {
-    "id": "SEM-V-29.818.694",
-    "nombre": "REYES GUTIERREZ, JORGE LUIS",
-    "cedula": "V-29.818.694",
+    "id": "SEM-V-27.744.874",
+    "nombre": "FERNÁNDEZ LUZARDO, ALFENYER ALFONSO",
+    "cedula": "V-27.744.874",
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
-    "foto": "img/seminaristas/V-29.818.694.png"
-  },
-  {
-    "id": "SEM-V-19.549.945",
-    "nombre": "MACHADO VILLALOBOS, ÁNGEL DE JESÚS",
-    "cedula": "V-19.549.945",
-    "etapa": "Teología",
-    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
-    "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-19.549.945.png"
-  },
-  {
-    "id": "SEM-V-26.541.702",
-    "nombre": "SIERRA LOPEZ, YORVI JOSÉ",
-    "cedula": "V-26.541.702",
-    "etapa": "Filosofía",
-    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
-    "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-26.541.702.png"
-  },
-  {
-    "id": "SEM-V-25.788.670",
-    "nombre": "CASTILLO PIRELA, JOSÉ ELOY",
-    "cedula": "V-25.788.670",
-    "etapa": "Filosofía",
-    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
-    "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-25.788.670.png"
-  },
-  {
-    "id": "SEM-V-31.055.024",
-    "nombre": "VARGAS QUINTERO, OSMAN JOSÉ",
-    "cedula": "V-31.055.024",
-    "etapa": "Filosofía",
-    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
-    "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-31.055.024.png"
+    "foto": "img/seminaristas/V-27.744.874.png"
   },
   {
     "id": "SEM-V-30.412.472",
@@ -120,34 +30,44 @@
     "foto": "img/seminaristas/V-30.412.472.png"
   },
   {
-    "id": "SEM-V-30.200.757",
-    "nombre": "TUDARES LABARCA, JESÚS DAVID",
-    "cedula": "V-30.200.757",
-    "etapa": "Teología",
+    "id": "SEM-V-31.390.290",
+    "nombre": "CELIS PRIETO, ARMANDO DE JESÚS",
+    "cedula": "V-31.390.290",
+    "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
-    "foto": "img/seminaristas/V-30.200.757.png"
+    "foto": "img/seminaristas/V-31.390.290.png"
   },
   {
-    "id": "SEM-V-13.950.483",
-    "nombre": "GARCÍA MONTILLA, RIXIO RAMÓN",
-    "cedula": "V-13.950.483",
+    "id": "SEM-V-30.948.771",
+    "nombre": "PETIT HANSEN, CESAR DAVID",
+    "cedula": "V-30.948.771",
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
-    "foto": "img/seminaristas/V-13.950.483.png"
+    "foto": "img/seminaristas/V-30.948.771.png"
   },
   {
-    "id": "SEM-V-26.025.655",
-    "nombre": "MORILLO MEDINA, RICARDO JOSÉ",
-    "cedula": "V-26.025.655",
+    "id": "SEM-V-16.687.898",
+    "nombre": "ARAUJO GUEDEZ, DANY JOSÉ",
+    "cedula": "V-16.687.898",
+    "etapa": "Filosofía",
+    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
+    "rector": "Pbro. Jorge Dos Passos",
+    "expira": "07/27",
+    "foto": "img/seminaristas/V-16.687.898.png"
+  },
+  {
+    "id": "SEM-V-30.747.810",
+    "nombre": "BARBOZA GONZÁLEZ, ELIO ENRIQUE",
+    "cedula": "V-30.747.810",
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
-    "foto": "img/seminaristas/V-26.025.655.png"
+    "foto": "img/seminaristas/V-30.747.810.png"
   },
   {
     "id": "SEM-V-29.950.931",
@@ -160,14 +80,34 @@
     "foto": "img/seminaristas/V-29.950.931.png"
   },
   {
-    "id": "SEM-V-31.390.290",
-    "nombre": "CELIS PRIETO, ARMANDO DE JESÚS",
-    "cedula": "V-31.390.290",
+    "id": "SEM-V-16.296.029",
+    "nombre": "BARBOZA PÉREZ, ISRAEL JUNIOR",
+    "cedula": "V-16.296.029",
+    "etapa": "Teología",
+    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
+    "rector": "Pbro. Jorge Dos Passos",
+    "expira": "07/27",
+    "foto": "img/seminaristas/V-16.296.029.png"
+  },
+  {
+    "id": "SEM-V-30.200.757",
+    "nombre": "TUDARES LABARCA, JESÚS DAVID",
+    "cedula": "V-30.200.757",
+    "etapa": "Teología",
+    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
+    "rector": "Pbro. Jorge Dos Passos",
+    "expira": "07/27",
+    "foto": "img/seminaristas/V-30.200.757.png"
+  },
+  {
+    "id": "SEM-V-29.818.694",
+    "nombre": "REYES GUTIERREZ, JORGE LUIS",
+    "cedula": "V-29.818.694",
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
-    "foto": "img/seminaristas/V-31.390.290.png"
+    "foto": "img/seminaristas/V-29.818.694.png"
   },
   {
     "id": "SEM-V-26.639.320",
@@ -178,6 +118,46 @@
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
     "foto": "img/seminaristas/V-26.639.320.png"
+  },
+  {
+    "id": "SEM-V-28.743.500",
+    "nombre": "HERNÁNDEZ MIQUILENA, JOSSUÉ ALEJANDRO",
+    "cedula": "V-28.743.500",
+    "etapa": "Teología",
+    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
+    "rector": "Pbro. Jorge Dos Passos",
+    "expira": "07/27",
+    "foto": "img/seminaristas/V-28.743.500.png"
+  },
+  {
+    "id": "SEM-V-30.929.782",
+    "nombre": "ACOSTA BASABE, JOSÉ FRANCISCO",
+    "cedula": "V-30.929.782",
+    "etapa": "Teología",
+    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
+    "rector": "Pbro. Jorge Dos Passos",
+    "expira": "07/27",
+    "foto": "img/seminaristas/V-30.929.782.png"
+  },
+  {
+    "id": "SEM-V-25.788.670",
+    "nombre": "CASTILLO PIRELA, JOSÉ ELOY",
+    "cedula": "V-25.788.670",
+    "etapa": "Filosofía",
+    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
+    "rector": "Pbro. Jorge Dos Passos",
+    "expira": "07/27",
+    "foto": "img/seminaristas/V-25.788.670.png"
+  },
+  {
+    "id": "SEM-V-33.597.365",
+    "nombre": "SIERRA NAVA, JOSÉ MIGUEL",
+    "cedula": "V-33.597.365",
+    "etapa": "Filosofía",
+    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
+    "rector": "Pbro. Jorge Dos Passos",
+    "expira": "07/27",
+    "foto": "img/seminaristas/V-33.597.365.png"
   },
   {
     "id": "SEM-V-18.576.312",
@@ -200,34 +180,34 @@
     "foto": "img/seminaristas/V-23.567.447.png"
   },
   {
-    "id": "SEM-V-27.744.874",
-    "nombre": "FERNÁNDEZ LUZARDO, ALFENYER ALFONSO",
-    "cedula": "V-27.744.874",
+    "id": "SEM-V-29.816.083",
+    "nombre": "SOTO VILLASMIL, MARIO JOSÉ",
+    "cedula": "V-29.816.083",
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
-    "foto": "img/seminaristas/V-27.744.874.png"
+    "foto": "img/seminaristas/V-29.816.083.png"
   },
   {
-    "id": "SEM-V-28.743.500",
-    "nombre": "HERNÁNDEZ MIQUILENA, JOSSUÉ ALEJANDRO",
-    "cedula": "V-28.743.500",
+    "id": "SEM-V-28.509.786",
+    "nombre": "TORREALBA GARCÍA, NIXÓN LUIS",
+    "cedula": "V-28.509.786",
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
-    "foto": "img/seminaristas/V-28.743.500.png"
+    "foto": "img/seminaristas/V-28.509.786.png"
   },
   {
-    "id": "SEM-V-16.296.029",
-    "nombre": "BARBOZA PÉREZ, ISRAEL JUNIOR",
-    "cedula": "V-16.296.029",
-    "etapa": "Teología",
+    "id": "SEM-V-31.055.024",
+    "nombre": "VARGAS QUINTERO, OSMAN JOSÉ",
+    "cedula": "V-31.055.024",
+    "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
-    "foto": "img/seminaristas/V-16.296.029.png"
+    "foto": "img/seminaristas/V-31.055.024.png"
   },
   {
     "id": "SEM-V-30.413.000",
@@ -240,24 +220,44 @@
     "foto": "img/seminaristas/V-30.413.000.png"
   },
   {
-    "id": "SEM-V-16.687.898",
-    "nombre": "ARAUJO GUEDEZ, DANY JOSÉ",
-    "cedula": "V-16.687.898",
+    "id": "SEM-V-29.646.693",
+    "nombre": "MERCADO OSORIO, RANCES ISAAC",
+    "cedula": "V-29.646.693",
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
-    "foto": "img/seminaristas/V-16.687.898.png"
+    "foto": "img/seminaristas/V-29.646.693.png"
   },
   {
-    "id": "SEM-V-30.929.782",
-    "nombre": "ACOSTA BASABE, JOSÉ FRANCISCO",
-    "cedula": "V-30.929.782",
+    "id": "SEM-V-26.025.655",
+    "nombre": "MORILLO MEDINA, RICARDO JOSÉ",
+    "cedula": "V-26.025.655",
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
-    "foto": "img/seminaristas/V-30.929.782.png"
+    "foto": "img/seminaristas/V-26.025.655.png"
+  },
+  {
+    "id": "SEM-V-25.906.935",
+    "nombre": "MÁRQUEZ COLINA, RICARDO ANDRÉS",
+    "cedula": "V-25.906.935",
+    "etapa": "Teología",
+    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
+    "rector": "Pbro. Jorge Dos Passos",
+    "expira": "07/27",
+    "foto": "img/seminaristas/V-25.906.935.png"
+  },
+  {
+    "id": "SEM-V-13.950.483",
+    "nombre": "GARCÍA MONTILLA, RIXIO RAMÓN",
+    "cedula": "V-13.950.483",
+    "etapa": "Teología",
+    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
+    "rector": "Pbro. Jorge Dos Passos",
+    "expira": "07/27",
+    "foto": "img/seminaristas/V-13.950.483.png"
   },
   {
     "id": "SEM-V-24.910.923",
@@ -270,6 +270,16 @@
     "foto": "img/seminaristas/V-24.910.923.png"
   },
   {
+    "id": "SEM-V-26.541.702",
+    "nombre": "SIERRA LOPEZ, YORVI JOSÉ",
+    "cedula": "V-26.541.702",
+    "etapa": "Filosofía",
+    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
+    "rector": "Pbro. Jorge Dos Passos",
+    "expira": "07/27",
+    "foto": "img/seminaristas/V-26.541.702.png"
+  },
+  {
     "id": "SEM-V-24.909.124",
     "nombre": "SUÁREZ SUÁREZ, YORBY JAVIER",
     "cedula": "V-24.909.124",
@@ -280,23 +290,13 @@
     "foto": "img/seminaristas/V-24.909.124.png"
   },
   {
-    "id": "SEM-V-29.646.693",
-    "nombre": "MERCADO OSORIO, RANCES ISAAC",
-    "cedula": "V-29.646.693",
-    "etapa": "Filosofía",
+    "id": "SEM-V-19.549.945",
+    "nombre": "MACHADO VILLALOBOS, ÁNGEL DE JESÚS",
+    "cedula": "V-19.549.945",
+    "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
-    "foto": "img/seminaristas/V-29.646.693.png"
-  },
-  {
-    "id": "SEM-V-29.816.083",
-    "nombre": "SOTO VILLASMIL, MARIO JOSÉ",
-    "cedula": "V-29.816.083",
-    "etapa": "Filosofía",
-    "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
-    "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-29.816.083.png"
+    "foto": "img/seminaristas/V-19.549.945.png"
   }
 ]
