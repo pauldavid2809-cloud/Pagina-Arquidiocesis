@@ -140,7 +140,8 @@
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "08/2027",
     "foto": "img/seminaristas/V-28.743.500.png",
-    "parroquia": "PARROQUIA SAN JUAN BAUTISTA"
+    "parroquia": "PARROQUIA SAN JUAN BAUTISTA",
+    "diocesis_procedencia": "Arquidiócesis de Coro"
   },
   {
     "id": "SEM-V-30.929.782",
@@ -162,7 +163,8 @@
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "08/2027",
     "foto": "img/seminaristas/V-25.788.670.png",
-    "parroquia": "PARROQUIA NTRA. SRA. DEL ROSARIO"
+    "parroquia": "PARROQUIA NTRA. SRA. DEL ROSARIO",
+    "diocesis_procedencia": "Diócesis de Cabimas"
   },
   {
     "id": "SEM-V-33.597.365",
@@ -261,7 +263,8 @@
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "08/2027",
     "foto": "img/seminaristas/V-26.025.655.png",
-    "parroquia": "PARROQUIA MARÍA AUXILIADORA"
+    "parroquia": "PARROQUIA MARÍA AUXILIADORA",
+    "diocesis_procedencia": "Diócesis de Cabimas"
   },
   {
     "id": "SEM-V-25.906.935",
@@ -294,7 +297,8 @@
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "08/2027",
     "foto": "img/seminaristas/V-24.910.923.png",
-    "parroquia": "PARROQUIA SAN TIMOTEO"
+    "parroquia": "PARROQUIA SAN TIMOTEO",
+    "diocesis_procedencia": "Diócesis de Cabimas"
   },
   {
     "id": "SEM-V-26.541.702",
@@ -316,7 +320,8 @@
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "08/2027",
     "foto": "img/seminaristas/V-24.909.124.png",
-    "parroquia": "PARROQUIA SAN RAFAEL ARCÁNGEL"
+    "parroquia": "PARROQUIA SAN RAFAEL ARCÁNGEL",
+    "diocesis_procedencia": "Diócesis de Cabimas"
   },
   {
     "id": "SEM-V-19.549.945",
