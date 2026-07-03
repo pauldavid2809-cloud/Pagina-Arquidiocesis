@@ -282,7 +282,7 @@
 
     function showValidSeminarian(sem) {
         const resultDiv = document.getElementById('validation-result');
-        const expiraDisplay = sem.expira === '07/27' ? 'Julio de 2027 (07/27)' : sem.expira;
+        const expiraDisplay = sem.expira === '08/2027' ? 'Agosto de 2027 (08/2027)' : (sem.expira === '07/27' ? 'Julio de 2027 (07/27)' : sem.expira);
         
         const photoHtml = sem.foto 
             ? `<img src="${sem.foto}" alt="${sem.nombre}" class="w-full h-full object-cover rounded-xl border border-slate-200 shadow-sm bg-white" onerror="this.onerror=null; this.src='https://placehold.co/120x120/7A1A22/ffffff?text=Seminarista';">`
@@ -329,6 +329,10 @@
                     <strong class="text-white bg-[#7A1A22] px-2 py-0.5 rounded text-[11px] font-bold inline-block mt-0.5">${sem.etapa}</strong>
                 </div>
                 <div>
+                    <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Parroquia de Origen:</span>
+                    <strong class="text-slate-warm">${sem.parroquia || 'No registrada'}</strong>
+                </div>
+                <div class="sm:col-span-2">
                     <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Institución:</span>
                     <strong class="text-slate-warm">${sem.institucion}</strong>
                 </div>

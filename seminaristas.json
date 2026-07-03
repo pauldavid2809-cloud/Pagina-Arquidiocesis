@@ -6,8 +6,9 @@
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-29.539.180.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-29.539.180.png",
+    "parroquia": "PARROQUIA NTRA. SRA. DE LA PAZ"
   },
   {
     "id": "SEM-V-27.744.874",
@@ -16,8 +17,9 @@
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-27.744.874.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-27.744.874.png",
+    "parroquia": "PARROQUIA NTRA. SRA. DE COROMOTO"
   },
   {
     "id": "SEM-V-30.412.472",
@@ -26,8 +28,9 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-30.412.472.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-30.412.472.png",
+    "parroquia": "PARROQUIA SANTO DOMINGO DE GUZMAN"
   },
   {
     "id": "SEM-V-31.390.290",
@@ -36,8 +39,9 @@
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-31.390.290.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-31.390.290.png",
+    "parroquia": "PARROQUIA SAN JUDAS TADEO"
   },
   {
     "id": "SEM-V-30.948.771",
@@ -47,17 +51,19 @@
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
     "expira": "07/27",
-    "foto": "img/seminaristas/V-30.948.771.png"
+    "foto": "img/seminaristas/V-30.948.771.png",
+    "parroquia": "Por definir"
   },
   {
     "id": "SEM-V-16.687.898",
-    "nombre": "ARAUJO GUEDEZ, DANY JOSÉ",
+    "nombre": "ARAUJO GUEDEZ, DANY RAFAEL",
     "cedula": "V-16.687.898",
-    "etapa": "Filosofía",
+    "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-16.687.898.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-16.687.898.png",
+    "parroquia": "PARROQUIA SAN ANTONIO DE PADUA"
   },
   {
     "id": "SEM-V-30.747.810",
@@ -66,18 +72,20 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-30.747.810.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-30.747.810.png",
+    "parroquia": "PARROQUIA NTRA. SRA. DE GUADALUPE"
   },
   {
     "id": "SEM-V-29.950.931",
     "nombre": "GARCÍA HERNÁNDEZ, GREGORI JOSÉ",
     "cedula": "V-29.950.931",
-    "etapa": "Filosofía",
+    "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-29.950.931.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-29.950.931.png",
+    "parroquia": "PARROQUIA SAN ISIDRO LABRADOR"
   },
   {
     "id": "SEM-V-16.296.029",
@@ -86,8 +94,9 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-16.296.029.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-16.296.029.png",
+    "parroquia": "PARROQUIA LA ASUNCIÓN"
   },
   {
     "id": "SEM-V-30.200.757",
@@ -96,8 +105,9 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-30.200.757.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-30.200.757.png",
+    "parroquia": "PARROQUIA EL BUEN PASTOR"
   },
   {
     "id": "SEM-V-29.818.694",
@@ -106,8 +116,9 @@
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-29.818.694.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-29.818.694.png",
+    "parroquia": "PARROQUIA SAN JUAN BOSCO"
   },
   {
     "id": "SEM-V-26.639.320",
@@ -116,8 +127,9 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-26.639.320.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-26.639.320.png",
+    "parroquia": "PARROQUIA SANTO ANTONIO DE PADUA"
   },
   {
     "id": "SEM-V-28.743.500",
@@ -126,8 +138,9 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-28.743.500.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-28.743.500.png",
+    "parroquia": "PARROQUIA SAN JUAN BAUTISTA"
   },
   {
     "id": "SEM-V-30.929.782",
@@ -136,8 +149,9 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-30.929.782.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-30.929.782.png",
+    "parroquia": "PARROQUIA NTRA. SRA. DE GUADALUPE"
   },
   {
     "id": "SEM-V-25.788.670",
@@ -146,8 +160,9 @@
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-25.788.670.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-25.788.670.png",
+    "parroquia": "PARROQUIA NTRA. SRA. DEL ROSARIO"
   },
   {
     "id": "SEM-V-33.597.365",
@@ -156,8 +171,9 @@
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-33.597.365.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-33.597.365.png",
+    "parroquia": "PARROQUIA SAN ANTONIO DE PADUA"
   },
   {
     "id": "SEM-V-18.576.312",
@@ -166,18 +182,20 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-18.576.312.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-18.576.312.png",
+    "parroquia": "PARROQUIA NTRA. SRA. DE LA MILAGROSA"
   },
   {
-    "id": "SEM-V-23.567.447",
-    "nombre": "POLACO FERNÁNDEZ, LUIS CARLOS",
-    "cedula": "V-23.567.447",
+    "id": "SEM-V-32.567.447",
+    "nombre": "POLANCO FERNÁNDEZ, LUIS CARLOS",
+    "cedula": "V-32.567.447",
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-23.567.447.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-32.567.447.png",
+    "parroquia": "PARROQUIA SAN BARTOLOMÉ"
   },
   {
     "id": "SEM-V-29.816.083",
@@ -186,8 +204,9 @@
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-29.816.083.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-29.816.083.png",
+    "parroquia": "PARROQUIA EL BUEN PASTOR"
   },
   {
     "id": "SEM-V-28.509.786",
@@ -196,8 +215,9 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-28.509.786.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-28.509.786.png",
+    "parroquia": "PARROQUIA EL BUEN PASTOR"
   },
   {
     "id": "SEM-V-31.055.024",
@@ -206,8 +226,9 @@
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-31.055.024.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-31.055.024.png",
+    "parroquia": "PARROQUIA SAN ISIDRO LABRADOR"
   },
   {
     "id": "SEM-V-30.413.000",
@@ -216,8 +237,9 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-30.413.000.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-30.413.000.png",
+    "parroquia": "PARROQUIA LA TRASNFIGURACIÓN"
   },
   {
     "id": "SEM-V-29.646.693",
@@ -226,8 +248,9 @@
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-29.646.693.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-29.646.693.png",
+    "parroquia": "PARROQUIA SANTISIMO SACRAMENTO"
   },
   {
     "id": "SEM-V-26.025.655",
@@ -236,8 +259,9 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-26.025.655.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-26.025.655.png",
+    "parroquia": "PARROQUIA MARÍA AUXILIADORA"
   },
   {
     "id": "SEM-V-25.906.935",
@@ -246,8 +270,9 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-25.906.935.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-25.906.935.png",
+    "parroquia": "PARROQUIA NTRA. SRA. DEL ROSARIO"
   },
   {
     "id": "SEM-V-13.950.483",
@@ -256,8 +281,9 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-13.950.483.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-13.950.483.png",
+    "parroquia": "PARROQUIA SAN MARTÍN DE PORRES"
   },
   {
     "id": "SEM-V-24.910.923",
@@ -266,8 +292,9 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-24.910.923.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-24.910.923.png",
+    "parroquia": "PARROQUIA SAN TIMOTEO"
   },
   {
     "id": "SEM-V-26.541.702",
@@ -276,8 +303,9 @@
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-26.541.702.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-26.541.702.png",
+    "parroquia": "PARROQUIA SAN RAFAEL DEL MOJÁN"
   },
   {
     "id": "SEM-V-24.909.124",
@@ -286,8 +314,9 @@
     "etapa": "Filosofía",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-24.909.124.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-24.909.124.png",
+    "parroquia": "PARROQUIA SAN RAFAEL ARCÁNGEL"
   },
   {
     "id": "SEM-V-19.549.945",
@@ -296,18 +325,20 @@
     "etapa": "Teología",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "07/27",
-    "foto": "img/seminaristas/V-19.549.945.png"
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-19.549.945.png",
+    "parroquia": "Por definir"
   },
   {
-    "id": "SEM-V-18.200.259",
+    "id": "SEM-V-18.200.859",
     "nombre": "PBRO. JOSÉ VARELA",
-    "cedula": "V-18.200.259",
+    "cedula": "V-18.200.859",
     "etapa": "Padre Formador",
     "cargo": "Vicerrector de Disciplina",
     "institucion": "Seminario Mayor Arquidiocesano \"Santo Tomás de Aquino\"",
     "rector": "Pbro. Jorge Dos Passos",
-    "expira": "Indefinido",
-    "foto": ""
+    "expira": "08/2027",
+    "foto": "img/seminaristas/V-18.200.859.png",
+    "parroquia": "No registrada"
   }
 ]
