@@ -759,6 +759,16 @@ Hacer una Donación
         }
 
         async function loadEditorial() {
+            // 1. Base de datos (noticias creadas desde el panel /admin-noticias)
+            try {
+                const res = await fetch('/api/noticias');
+                if (res.ok) {
+                    const data = await res.json();
+                    const items = (data.data || []).filter(p => p && p.title && p.media_url);
+                    if (items.length) return items;
+                }
+            } catch { /* API no disponible */ }
+            // 2. Respaldo: archivo editable noticias.json
             try {
                 const res = await fetch('noticias.json', { cache: 'no-cache' });
                 if (!res.ok) return [];
