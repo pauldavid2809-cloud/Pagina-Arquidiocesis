@@ -37,7 +37,7 @@ const StitchLayout = (() => {
           <div class="w-11 h-11 shrink-0">
             <img alt="Arquidiócesis de Maracaibo" class="w-full h-full object-contain" 
                  src="img/logo-arquidiocesis.webp" 
-                 onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuBwA_WLOeM2SqpiNB8tqTn3YKrqPWYr_y8RGFGLuh89XZeUat7tXojr9Bcoz5zQHK3SvDEIvv0rNwEp9FIQQjF7eosV8uHZfxKpBz5D7m4Kl7M2AMbnXoGNdZLgycD6e7MPn_XxoIplHPL8IZ3GEVy7Wt03s8oyryyWvn3ItI1mhwxcEgb89RxGEny8RLhS4_fuuFX5tI5C5KtIuEgwiV_lPCxSBNSJjJAu8Q7YvoFT-HobMp4Tk4cOdePtiY8UODTXhw'">
+                 onerror="this.onerror=null;this.src='img/logo-arquidiocesis.png'">
           </div>
           <div class="flex flex-col">
             <span class="font-display text-[18px] font-bold text-crimson-deep leading-none tracking-tight">ARQUIDIÓCESIS</span>
@@ -63,7 +63,7 @@ const StitchLayout = (() => {
           <a class="hidden md:inline-flex items-center justify-center w-10 h-10 hover:bg-warm-ivory rounded-full transition-all" href="donaciones.html" title="Donaciones">
             <span class="material-symbols-outlined text-crimson-deep text-xl">volunteer_activism</span>
           </a>
-          <button class="lg:hidden p-2 text-crimson-deep hover:bg-warm-ivory rounded-lg transition-colors" onclick="StitchLayout.toggleMobile()" aria-label="Abrir menú">
+          <button id="mobile-toggle-btn" class="lg:hidden p-2 text-crimson-deep hover:bg-warm-ivory rounded-lg transition-colors" onclick="StitchLayout.toggleMobile()" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-overlay">
             <span class="material-symbols-outlined text-2xl">menu</span>
           </button>
         </div>
@@ -200,6 +200,9 @@ const StitchLayout = (() => {
     const drawer   = document.getElementById('mobile-drawer');
     if (!overlay) return;
 
+    const toggleBtn = document.getElementById('mobile-toggle-btn');
+    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', String(mobileOpen));
+
     if (mobileOpen) {
       overlay.classList.remove('pointer-events-none');
       backdrop.classList.replace('bg-black/0', 'bg-black/40');
@@ -237,6 +240,51 @@ const StitchLayout = (() => {
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && mobileOpen) toggleMobile();
     });
+  }
+
+  /* ── Accesibilidad ───────────────────────────────────── */
+  // Nombres legibles para controles que solo tienen un icono
+  const ICON_LABELS = {
+    search: 'Buscar', menu: 'Abrir menú', close: 'Cerrar', map: 'Ver mapa',
+    mail: 'Correo electrónico', call: 'Llamar', phone: 'Teléfono',
+    open_in_new: 'Abrir en una pestaña nueva', volunteer_activism: 'Donaciones',
+    arrow_forward: 'Ver más', east: 'Ver más', photo_camera: 'Ver en Instagram',
+    location_on: 'Ubicación', share: 'Compartir', download: 'Descargar'
+  };
+
+  function initAccessibility() {
+    // 1. Dar un nombre accesible a enlaces/botones que solo contienen un icono
+    document.querySelectorAll('a, button').forEach(el => {
+      if (el.getAttribute('aria-label') || el.getAttribute('title')) return;
+      const icon = el.querySelector('.material-symbols-outlined');
+      if (!icon) return;
+      const rest = el.textContent.replace(icon.textContent, '').trim();
+      if (!rest) {
+        const key = icon.textContent.trim();
+        el.setAttribute('aria-label', ICON_LABELS[key] || key.replace(/_/g, ' '));
+      }
+    });
+    // 2. Ocultar los iconos decorativos a los lectores de pantalla
+    document.querySelectorAll('.material-symbols-outlined:not([aria-hidden])').forEach(ic => {
+      ic.setAttribute('aria-hidden', 'true');
+    });
+  }
+
+  // Enlace "saltar al contenido" para navegación por teclado
+  function injectSkipLink() {
+    if (document.querySelector('.skip-link')) return;
+    const main = document.querySelector('main');
+    if (main && !main.id) main.id = 'contenido';
+    const target = (main && main.id) ? main.id : '';
+    if (!target) return;
+    const a = document.createElement('a');
+    a.href = '#' + target;
+    a.className = 'skip-link';
+    a.textContent = 'Saltar al contenido principal';
+    a.style.cssText = 'position:absolute;left:8px;top:-48px;z-index:100;background:#7A1A22;color:#fff;padding:10px 18px;border-radius:0 0 8px 8px;font-family:Poppins,sans-serif;font-size:14px;font-weight:600;transition:top .2s;';
+    a.addEventListener('focus', () => { a.style.top = '0'; });
+    a.addEventListener('blur', () => { a.style.top = '-48px'; });
+    document.body.insertAdjacentElement('afterbegin', a);
   }
 
   /* ── Scroll Reveal Animation ─────────────────────────── */
@@ -286,6 +334,8 @@ const StitchLayout = (() => {
     // Initialize interactions
     initScrollEffects();
     initRevealAnimations();
+    injectSkipLink();
+    initAccessibility();
   }
 
   /* ── Public API ──────────────────────────────────────── */

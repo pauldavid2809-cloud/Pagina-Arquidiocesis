@@ -4,14 +4,14 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Inicio | Arquidiócesis de Maracaibo</title>
 <meta content="Portal oficial de la Arquidiócesis de Maracaibo. Encuentro, transparencia y servicio pastoral para el pueblo de Dios en el Zulia." name="description">
+<link rel="canonical" href="https://pagina-arquidiocesis.vercel.app/">
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script src="js/stitch-config.js"></script>
+<link href="css/tailwind.css" rel="stylesheet">
 <!-- Core Styles -->
 <link href="css/stitch-core.css" rel="stylesheet">
 <!-- Leaflet Map -->
@@ -123,6 +123,29 @@
 <meta property="twitter:title" content="Inicio | Arquidiócesis de Maracaibo">
 <meta property="twitter:description" content="Portal oficial de la Arquidiócesis de Maracaibo. Encuentro, transparencia y servicio pastoral para el pueblo de Dios en el Zulia.">
 <meta property="twitter:image" content="https://pagina-arquidiocesis.vercel.app/img/logo-arquidiocesis.png">
+<!-- Datos estructurados (SEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CatholicChurch",
+  "name": "Arquidiócesis de Maracaibo",
+  "alternateName": "Arquidiócesis Metropolitana de Maracaibo",
+  "url": "https://pagina-arquidiocesis.vercel.app/",
+  "logo": "https://pagina-arquidiocesis.vercel.app/img/logo-arquidiocesis.png",
+  "image": "https://pagina-arquidiocesis.vercel.app/img/catedral.jpg",
+  "description": "Portal oficial de la Arquidiócesis de Maracaibo. Encuentro, transparencia y servicio pastoral para el pueblo de Dios en el Zulia.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. 4 con calle 95, frente a la Plaza Bolívar",
+    "addressLocality": "Maracaibo",
+    "addressRegion": "Zulia",
+    "addressCountry": "VE"
+  },
+  "sameAs": [
+    "https://www.instagram.com/arquimcbo/"
+  ]
+}
+</script>
 </head>
 <body class="bg-background text-on-surface font-body">
 <!-- Navbar injected by JS -->
@@ -611,7 +634,7 @@ Ir a Cancillería <span class="material-symbols-outlined text-sm">arrow_forward<
 <!-- News Card 1 (Fallback — replaced dynamically by Instagram API) -->
 <article class="group cursor-pointer reveal">
 <div class="aspect-[4/3] overflow-hidden rounded-xl mb-4 shadow-lg">
-<img alt="Ordenación sacerdotal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLvYEwkdKZfxieIsOJr5yUphrHSw9FheJq8jKPFQUqXoyLtuR_XOtdD-E2u_5BT46-k0glbydsU7DlODLv9j2IQBR9LZ9rdeKaisiSsm8Y6S6HcZhLX3ePZu1RiwZjtacjAJpLCMf0ooWuLkgTkFUTL6BtWPmtkv7A44jIPt9pTQ0pKaj14m0EhuArafHbkcPRV7etnSfz4SVZkpsDcEjpMjGs5OyFyUjfJKwV5nrphc5la2ghbOnX2H8fc">
+<img alt="Ordenación sacerdotal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="img/eucaristia.webp" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/7A1A22/ffffff?text=Actualidad'">
 </div>
 <span class="font-label text-xs text-gold-antique uppercase tracking-widest">Ministerio</span>
 <h4 class="font-headline text-[24px] font-semibold text-crimson-deep mt-2 group-hover:text-gold-antique transition-colors line-clamp-2">Solemne Ordenación Sacerdotal en la Catedral Metropolitana</h4>
@@ -619,7 +642,7 @@ Ir a Cancillería <span class="material-symbols-outlined text-sm">arrow_forward<
 </article>
 <article class="group cursor-pointer reveal">
 <div class="aspect-[4/3] overflow-hidden rounded-xl mb-4 shadow-lg">
-<img alt="Pastoral juvenil" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLt6LTrK2adr0k6Yrz0FPMwJ0alG8DaRa8Oe01aGO7fQajA-BTAB8YBDtyFtZ0spXAxdeLtLsZvDuwbMCNxfXx_Z5kigtwqQ9PaAIJCJJ5F_zRjqU1dnVEERItxUW7p4Fd3NyNdLfUFHh-pI8F7CD8A3FykrsC922zs3UfmW0QNByJUFYsIdGQIcfMMMCrD6WrTyCENkgVbiCMXuvMOrBOQwqEBQcGBv_W5Vbkz93yxUktRdt-X32M7kBmI">
+<img alt="Pastoral juvenil" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="img/jovenes.webp" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/7A1A22/ffffff?text=Actualidad'">
 </div>
 <span class="font-label text-xs text-gold-antique uppercase tracking-widest">Juventud</span>
 <h4 class="font-headline text-[24px] font-semibold text-crimson-deep mt-2 group-hover:text-gold-antique transition-colors line-clamp-2">Encuentro Diocesano de Pastoral Juvenil</h4>
@@ -627,7 +650,7 @@ Ir a Cancillería <span class="material-symbols-outlined text-sm">arrow_forward<
 </article>
 <article class="group cursor-pointer reveal">
 <div class="aspect-[4/3] overflow-hidden rounded-xl mb-4 shadow-lg">
-<img alt="Cáritas Maracaibo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLtt0E7LYOkquWJt-TVYI4Ct2Em2GtrSSg97gwT9b90wtrW0IulFjp0Vei8kWi49-XrSt6UZlplN1s8osgPEXSA4yjUzb6Wo-YkwW3_ATF3KNSx6wkhsfSU12zvtXp7K-tHDq5Huixj7ASLnCAlhjxaWmNIveRqqh7ZCICp9izbNtkMpvtEXJrBsr_O5RzfSvQLSvBgZxhMmqB5R2vy_obLm_rK9Zj5Qv0ygKeDPQZCHlop4hMdZ8rhRAw">
+<img alt="Cáritas Maracaibo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="img/caritas.webp" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/7A1A22/ffffff?text=Actualidad'">
 </div>
 <span class="font-label text-xs text-gold-antique uppercase tracking-widest">Solidaridad</span>
 <h4 class="font-headline text-[24px] font-semibold text-crimson-deep mt-2 group-hover:text-gold-antique transition-colors line-clamp-2">Cáritas Maracaibo entregó kits de alimentación</h4>
@@ -670,9 +693,9 @@ Hacer una Donación
         if (!newsGrid) return;
 
         const FALLBACK_NEWS = [
-            { id:"1", timestamp:"2026-05-28T10:00:00Z", caption:"Ordenación sacerdotal en la Catedral Metropolitana. Mons. José Luis Azuaje presidió la Eucaristía en la que tres nuevos presbíteros fueron ordenados para servir a la Iglesia de Maracaibo.", media_url:"https://lh3.googleusercontent.com/aida/AP1WRLvYEwkdKZfxieIsOJr5yUphrHSw9FheJq8jKPFQUqXoyLtuR_XOtdD-E2u_5BT46-k0glbydsU7DlODLv9j2IQBR9LZ9rdeKaisiSsm8Y6S6HcZhLX3ePZu1RiwZjtacjAJpLCMf0ooWuLkgTkFUTL6BtWPmtkv7A44jIPt9pTQ0pKaj14m0EhuArafHbkcPRV7etnSfz4SVZkpsDcEjpMjGs5OyFyUjfJKwV5nrphc5la2ghbOnX2H8fc", permalink:"https://www.instagram.com/arquimcbo/" },
-            { id:"2", timestamp:"2026-05-25T15:30:00Z", caption:"Encuentro Diocesano de Pastoral Juvenil. Jóvenes delegados de todas las arciprestazgos compartieron una tarde de reflexión y comunión.", media_url:"https://lh3.googleusercontent.com/aida/AP1WRLt6LTrK2adr0k6Yrz0FPMwJ0alG8DaRa8Oe01aGO7fQajA-BTAB8YBDtyFtZ0spXAxdeLtLsZvDuwbMCNxfXx_Z5kigtwqQ9PaAIJCJJ5F_zRjqU1dnVEERItxUW7p4Fd3NyNdLfUFHh-pI8F7CD8A3FykrsC922zs3UfmW0QNByJUFYsIdGQIcfMMMCrD6WrTyCENkgVbiCMXuvMOrBOQwqEBQcGBv_W5Vbkz93yxUktRdt-X32M7kBmI", permalink:"https://www.instagram.com/arquimcbo/" },
-            { id:"5", timestamp:"2026-05-15T11:00:00Z", caption:"Cáritas Maracaibo entregó kits de alimentación a familias vulnerables. Seguimos comprometidos con el servicio caritativo a los más necesitados.", media_url:"https://lh3.googleusercontent.com/aida/AP1WRLtt0E7LYOkquWJt-TVYI4Ct2Em2GtrSSg97gwT9b90wtrW0IulFjp0Vei8kWi49-XrSt6UZlplN1s8osgPEXSA4yjUzb6Wo-YkwW3_ATF3KNSx6wkhsfSU12zvtXp7K-tHDq5Huixj7ASLnCAlhjxaWmNIveRqqh7ZCICp9izbNtkMpvtEXJrBsr_O5RzfSvQLSvBgZxhMmqB5R2vy_obLm_rK9Zj5Qv0ygKeDPQZCHlop4hMdZ8rhRAw", permalink:"https://www.instagram.com/arquimcbo/" }
+            { id:"1", timestamp:"2026-05-28T10:00:00Z", caption:"Ordenación sacerdotal en la Catedral Metropolitana. Mons. José Luis Azuaje presidió la Eucaristía en la que tres nuevos presbíteros fueron ordenados para servir a la Iglesia de Maracaibo.", media_url:"img/eucaristia.webp", permalink:"https://www.instagram.com/arquimcbo/" },
+            { id:"2", timestamp:"2026-05-25T15:30:00Z", caption:"Encuentro Diocesano de Pastoral Juvenil. Jóvenes delegados de todas las arciprestazgos compartieron una tarde de reflexión y comunión.", media_url:"img/jovenes.webp", permalink:"https://www.instagram.com/arquimcbo/" },
+            { id:"5", timestamp:"2026-05-15T11:00:00Z", caption:"Cáritas Maracaibo entregó kits de alimentación a familias vulnerables. Seguimos comprometidos con el servicio caritativo a los más necesitados.", media_url:"img/caritas.webp", permalink:"https://www.instagram.com/arquimcbo/" }
         ];
 
         function parseCaption(caption) {
@@ -718,7 +741,7 @@ Hacer una Donación
             const latest3 = posts.slice(0, 3);
             newsGrid.innerHTML = latest3.map(p => {
                 const info = parseCaption(p.caption);
-                const title = p.ai_title || info.title;
+                const title = p.title || p.ai_title || info.title;
                 const excerpt = p.ai_excerpt || info.excerpt;
                 const tag = getTag(p.caption);
                 return `
@@ -735,17 +758,35 @@ Hacer una Donación
             }).join('');
         }
 
+        async function loadEditorial() {
+            try {
+                const res = await fetch('noticias.json', { cache: 'no-cache' });
+                if (!res.ok) return [];
+                const data = await res.json();
+                return Array.isArray(data) ? data.filter(p => p && p.media_url) : [];
+            } catch { return []; }
+        }
+
         async function fetchHomeNews() {
+            let igPosts = [];
             try {
                 const res = await fetch('/api/instagram?limit=6');
-                if (!res.ok) throw new Error('API offline');
-                const data = await res.json();
-                const posts = (data.data || []).map(p => ({...p, media_url: p.media_url || p.thumbnail_url || ''})).filter(p => p.media_url);
-                if (posts.length === 0) throw new Error('No posts');
-                renderHomeNews(posts);
-            } catch (e) {
-                renderHomeNews(FALLBACK_NEWS);
-            }
+                if (res.ok) {
+                    const data = await res.json();
+                    igPosts = (data.data || []).map(p => ({...p, media_url: p.media_url || p.thumbnail_url || ''})).filter(p => p.media_url);
+                }
+            } catch (e) { /* proxy no disponible */ }
+
+            const editorial = await loadEditorial();
+            const seen = new Set();
+            let merged = [...editorial, ...igPosts].filter(p => {
+                if (!p.id) return true;
+                if (seen.has(p.id)) return false;
+                seen.add(p.id); return true;
+            });
+            merged.sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
+
+            renderHomeNews(merged.length ? merged : FALLBACK_NEWS);
         }
 
         fetchHomeNews();

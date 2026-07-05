@@ -4,14 +4,14 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Noticias | Arquidiócesis de Maracaibo</title>
 <meta content="Actualidad y noticias de la Arquidiócesis de Maracaibo. Infórmese sobre ordenaciones sacerdotales, actividades caritativas y la vida de nuestra Iglesia." name="description">
+<link rel="canonical" href="https://pagina-arquidiocesis.vercel.app/noticias.html">
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script src="js/stitch-config.js"></script>
+<link href="css/tailwind.css" rel="stylesheet">
 <!-- Core Styles -->
 <link href="css/stitch-core.css" rel="stylesheet">
 <style>
@@ -593,7 +593,7 @@
 
   function renderFeatured(post) {
     const info = parseCaption(post.caption);
-    const title = post.ai_title || info.title;
+    const title = post.title || post.ai_title || info.title;
     const excerpt = post.ai_excerpt || info.excerpt;
     document.getElementById('featured').innerHTML = `
     <a href="${post.permalink}" target="_blank" class="news-featured">
@@ -624,8 +624,9 @@
     }
     document.getElementById('newsGrid').innerHTML = posts.map(p => {
       const info = parseCaption(p.caption);
-      const title = p.ai_title || info.title;
+      const title = p.title || p.ai_title || info.title;
       const excerpt = p.ai_excerpt || info.excerpt;
+      const isIg = p.permalink && p.permalink.includes('instagram');
       return `
       <article class="news-card" onclick="window.open('${p.permalink}','_blank')">
         <div class="card-img" style="background-image: url('${p.media_url}');">
@@ -640,8 +641,8 @@
         </div>
         <div class="card-footer">
           <a href="${p.permalink}" target="_blank" onclick="event.stopPropagation()">
-            Ver en Instagram
-            <span class="material-symbols-outlined" style="font-size:14px;">photo_camera</span>
+            ${isIg ? 'Ver en Instagram' : 'Leer más'}
+            <span class="material-symbols-outlined" style="font-size:14px;">${isIg ? 'photo_camera' : 'arrow_forward'}</span>
           </a>
         </div>
       </article>`;
@@ -681,25 +682,50 @@
     }
   }
 
-  async function fetchInstagram() {
+  // Fuente editorial propia de la Arquidiócesis (editable en noticias.json)
+  async function loadEditorial() {
     try {
-      const url = `/api/instagram?limit=${POSTS_LIMIT}`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`API proxy: ${res.status}`);
+      const res = await fetch('noticias.json', { cache: 'no-cache' });
+      if (!res.ok) return [];
       const data = await res.json();
-      allPosts = (data.data||[]).map(p=>({...p,media_url:p.media_url||p.thumbnail_url||''})).filter(p=>p.media_url);
-      if (!allPosts.length) throw new Error('No se recibieron posts');
-      buildMonthPills(allPosts); 
-      renderFeatured(allPosts[0]); 
-      renderGrid(allPosts.slice(1));
-      document.getElementById('countNum').textContent = allPosts.length - 1;
+      return Array.isArray(data) ? data.filter(p => p && p.media_url) : [];
+    } catch { return []; }
+  }
+
+  async function loadNews() {
+    // 1. Instagram en vivo (si el proxy está disponible)
+    let igPosts = [];
+    try {
+      const res = await fetch(`/api/instagram?limit=${POSTS_LIMIT}`);
+      if (res.ok) {
+        const data = await res.json();
+        igPosts = (data.data||[]).map(p=>({...p,media_url:p.media_url||p.thumbnail_url||''})).filter(p=>p.media_url);
+      }
     } catch (err) {
-      console.warn('Proxy API no disponible, usando posts de demostración:', err.message);
-      allPosts = DEMO_POSTS;
-      buildMonthPills(allPosts);
-      renderFeatured(allPosts[0]);
-      renderGrid(allPosts.slice(1));
+      console.warn('Proxy API de Instagram no disponible:', err.message);
     }
+
+    // 2. Noticias editoriales propias
+    const editorial = await loadEditorial();
+
+    // 3. Combinar (editoriales + Instagram), sin duplicar por id, más recientes primero
+    const seen = new Set();
+    let merged = [...editorial, ...igPosts].filter(p => {
+      if (!p.id) return true;
+      if (seen.has(p.id)) return false;
+      seen.add(p.id); return true;
+    });
+    merged.sort((a,b) => new Date(b.timestamp||0) - new Date(a.timestamp||0));
+
+    // 4. Respaldo final: posts de demostración
+    if (!merged.length) merged = DEMO_POSTS;
+
+    allPosts = merged;
+    buildMonthPills(allPosts);
+    renderFeatured(allPosts[0]);
+    renderGrid(allPosts.slice(1));
+    const cn = document.getElementById('countNum');
+    if (cn) cn.textContent = Math.max(allPosts.length - 1, 0);
   }
 
   document.getElementById('searchInput').addEventListener('input', e => { 
@@ -714,7 +740,7 @@
     applyFilters(); 
   });
 
-  fetchInstagram();
+  loadNews();
 </script>
 
 </body></html>

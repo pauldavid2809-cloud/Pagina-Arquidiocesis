@@ -1,49 +1,29 @@
-# Exclude Python scripts and database dumps
+# === Artefactos de desarrollo (no se despliegan) ===
+_dev-archivo/
+scratch/
+imagenes_originales/
+node_modules/
+tailwind-input.css
+css/tailwind-input.css
+
+# Scripts y volcados de datos
 *.py
 *.sql
 
-# Exclude development text and binary files
+# Documentos y textos fuente
 *.txt
+*.docx
 *.pdf
 !vos-estis-lux-mundi.pdf
-*.docx
-imagenes_originales/
 
-# Exclude duplicate code backups and temporary layouts
+# Backups / duplicados que puedan quedar en la raíz
 code.html
 static_cards.html
-
-# Exclude specific development scripts and helpers
-rebuild_directorio.py
+ambientes_backup.html
+ambientes_good.html
 generate_static.js
-explore_pdf.py
-extract.py
 patch.js
-add_ambientes.py
-add_noticias_nav.py
-alquimista2.py
-apply_dropdown.py
-apply_stitch_layout.py
-build_arq.py
-check_parishes.py
-debug_check.py
-extract_priests.py
-find_vicarios.py
-fix_design.py
-fix_onerror.py
-gen_complete_list.py
-list_images.py
-list_parishes.py
-parse_directory.py
-patch_html.py
-swap_menu.py
-update_arq.py
-update_logo_fonts.py
-update_menu.py
-update_tribunal_link.py
-upgrade_design.py
 
-# Exclude scratch space and environment configs
-scratch/
+# Configuración local
 .env*
 .gemini/

@@ -4,14 +4,14 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Directorio Parroquial | Arquidiócesis de Maracaibo</title>
 <meta content="Directorio eclesiástico oficial de la Arquidiócesis de Maracaibo. Encuentre el contacto de parroquias, templos, vicarios y clero diocesano." name="description">
+<link rel="canonical" href="https://pagina-arquidiocesis.vercel.app/directorio.html">
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script src="js/stitch-config.js"></script>
+<link href="css/tailwind.css" rel="stylesheet">
 <!-- Core Styles -->
 <link href="css/stitch-core.css" rel="stylesheet">
 <!-- Leaflet Map -->
@@ -488,6 +488,7 @@ function removeAccents(str) {
 function filterAll() {
   const q = removeAccents(document.getElementById('searchInput').value.toLowerCase().trim());
   const z = document.getElementById('zoneFilter').value;
+  if (window.__mapReady) updateMapMarkers(q, z);
   if (z === 'RZ') { showTab('rectorias'); return; }
   showTab('parroquias');
   const cards = document.querySelectorAll('#parishGrid .parish-bento');
@@ -554,6 +555,9 @@ Object.entries(zoneNames).forEach(([k,v])=>{
 });
 
 /* Markers */
+const markerLayer = L.layerGroup().addTo(map);
+const parishMarkers = [];
+const rectoriaCodes = new Set(rectorias.map(r => r.code));
 const allP = [...parishes,...rectorias];
 allP.forEach(p=>{
   const c = coords[p.code]; if(!c) return;
@@ -564,12 +568,39 @@ allP.forEach(p=>{
     iconSize:[14,14], iconAnchor:[7,7]
   });
   const shortName = p.name.replace(/^PARROQUIA\s*/i,'').replace(/^RECTORÍA\s*/i,'');
-  L.marker(c,{icon}).addTo(map).bindPopup(
+  const marker = L.marker(c,{icon}).bindPopup(
     `<div class="popup-title">${shortName}</div>`+
     `<div class="popup-sub">${p.parroco||'Sin párroco asignado'}</div>`+
     `<a class="popup-cta" href="https://www.google.com/maps?q=${c[0]},${c[1]}" target="_blank">Abrir en Google Maps →</a>`
   );
+  marker.addTo(markerLayer);
+  parishMarkers.push({
+    marker,
+    zone: p.zone,
+    isRect: rectoriaCodes.has(p.code),
+    name: removeAccents(p.name.toLowerCase()),
+    details: removeAccents(((p.parroco||'')+' '+(p.direccion||'')).toLowerCase())
+  });
 });
+
+/* Sincroniza los marcadores del mapa con el buscador y el filtro de zona */
+function updateMapMarkers(q, z) {
+  parishMarkers.forEach(pm => {
+    const textMatch = !q || pm.name.includes(q) || pm.details.includes(q);
+    let zoneMatch;
+    if (z === 'all') zoneMatch = true;
+    else if (z === 'RZ') zoneMatch = pm.isRect;
+    else zoneMatch = (!pm.isRect && pm.zone === z);
+    if (textMatch && zoneMatch) markerLayer.addLayer(pm.marker);
+    else markerLayer.removeLayer(pm.marker);
+  });
+}
+window.__mapReady = true;
+// Aplica cualquier filtro activo al mapa (p. ej. si la URL trae ?q=)
+updateMapMarkers(
+  removeAccents(document.getElementById('searchInput').value.toLowerCase().trim()),
+  document.getElementById('zoneFilter').value
+);
 
 function toggleMap(){
   const el=document.getElementById('parishMap'), lg=document.getElementById('mapLegend'), btn=document.getElementById('mapToggleBtn');
