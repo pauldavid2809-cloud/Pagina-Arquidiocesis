@@ -282,105 +282,110 @@
 
     function showValidSeminarian(sem) {
         const resultDiv = document.getElementById('validation-result');
-        const expiraDisplay = sem.expira === '08/2027' ? 'Agosto de 2027 (08/2027)' : (sem.expira === '07/27' ? 'Julio de 2027 (07/27)' : sem.expira);
-        
-        const photoHtml = sem.foto 
-            ? `<img src="${sem.foto}" alt="${sem.nombre}" class="w-full h-full object-cover rounded-xl border border-slate-200 shadow-sm bg-white" onerror="this.onerror=null; this.src='https://placehold.co/120x120/7A1A22/ffffff?text=Seminarista';">`
-            : `<div class="w-full h-full bg-white flex items-center justify-center rounded-xl border border-slate-200 text-gold-antique"><i class="ti ti-user text-[48px]"></i></div>`;
 
-        let gridHtml = `
-            <div>
-                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Código de Control:</span>
-                <strong class="text-[#7A1A22] font-mono text-[14px]">${sem.id}</strong>
-            </div>
-            <div>
-                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Fecha de Expiración:</span>
-                <strong class="text-slate-warm">${expiraDisplay}</strong>
-            </div>
-            <div>
-                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Nombre Completo:</span>
-                <strong class="text-slate-warm text-[14px]">${sem.nombre}</strong>
-            </div>
-            <div>
-                <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Cédula de Identidad:</span>
-                <strong class="text-slate-warm font-mono">${sem.cedula}</strong>
-            </div>
-        `;
-
-        if (sem.cargo) {
-            gridHtml += `
-                <div>
-                    <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Condición:</span>
-                    <strong class="text-white bg-[#7A1A22] px-2 py-0.5 rounded text-[11px] font-bold inline-block mt-0.5">${sem.etapa}</strong>
-                </div>
-                <div>
-                    <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Cargo / Función:</span>
-                    <strong class="text-slate-warm text-[13px] font-semibold">${sem.cargo}</strong>
-                </div>
-                <div class="sm:col-span-2">
-                    <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Institución:</span>
-                    <strong class="text-slate-warm">${sem.institucion}</strong>
-                </div>
-            `;
-        } else {
-            gridHtml += `
-                <div>
-                    <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Etapa Formativa:</span>
-                    <strong class="text-white bg-[#7A1A22] px-2 py-0.5 rounded text-[11px] font-bold inline-block mt-0.5">${sem.etapa}</strong>
-                </div>
-                <div>
-                    <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Parroquia de Origen:</span>
-                    <strong class="text-slate-warm">${sem.parroquia || 'No registrada'}</strong>
-                </div>
-            `;
-
-            if (sem.diocesis_procedencia) {
-                gridHtml += `
-                    <div>
-                        <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Diócesis de Procedencia:</span>
-                        <strong class="text-white bg-[#C59B27] px-2 py-0.5 rounded text-[11px] font-bold inline-block mt-0.5">${sem.diocesis_procedencia}</strong>
-                    </div>
-                    <div>
-                        <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Institución:</span>
-                        <strong class="text-slate-warm">${sem.institucion}</strong>
-                    </div>
-                `;
-            } else {
-                gridHtml += `
-                    <div class="sm:col-span-2">
-                        <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">Institución:</span>
-                        <strong class="text-slate-warm">${sem.institucion}</strong>
-                    </div>
-                `;
-            }
+        // --- Expiration handling ---
+        const MESES = { '01':'Enero','02':'Febrero','03':'Marzo','04':'Abril','05':'Mayo','06':'Junio','07':'Julio','08':'Agosto','09':'Septiembre','10':'Octubre','11':'Noviembre','12':'Diciembre' };
+        let expiraDisplay = sem.expira || 'No registrada';
+        let vigente = true;
+        const expMatch = (sem.expira || '').match(/^(\d{2})\/(\d{2,4})$/);
+        if (expMatch) {
+            const mm = expMatch[1];
+            const yyyy = expMatch[2].length === 2 ? '20' + expMatch[2] : expMatch[2];
+            expiraDisplay = `${MESES[mm] || mm} de ${yyyy}`;
+            const now = new Date();
+            vigente = now < new Date(parseInt(yyyy), parseInt(mm), 1); // valid through end of expiry month
         }
+
+        const esFormador = !!sem.cargo;
+        const condicion = esFormador ? sem.etapa : `Estudiante de ${sem.etapa}`;
+        const diocesis = sem.diocesis_procedencia || 'Arquidiócesis de Maracaibo';
+
+        const photoHtml = sem.foto
+            ? `<img src="${sem.foto}" alt="Fotografía de ${sem.nombre}" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'w-full h-full flex items-center justify-center rounded-full text-[#C59B27]\\'><i class=\\'ti ti-user text-[52px]\\'></i></div>';">`
+            : `<div class="w-full h-full flex items-center justify-center rounded-full text-[#C59B27]"><i class="ti ti-user text-[52px]"></i></div>`;
+
+        const estadoBanner = vigente
+            ? `<div class="verified-badge px-6 py-4 flex items-center justify-center gap-2.5 font-label font-bold text-[13px] uppercase tracking-[0.15em]">
+                   <i class="ti ti-rosette-discount-check text-[20px]"></i> Credencial Verificada y Vigente
+               </div>`
+            : `<div class="invalid-badge px-6 py-4 flex items-center justify-center gap-2.5 font-label font-bold text-[13px] uppercase tracking-[0.15em]">
+                   <i class="ti ti-clock-x text-[20px]"></i> Credencial Auténtica · Expirada
+               </div>`;
+
+        const dato = (icono, etiqueta, valor, extra = '') => `
+            <div class="flex items-start gap-3 ${extra}">
+                <div class="w-9 h-9 shrink-0 rounded-lg bg-[#7A1A22]/[0.06] text-[#7A1A22] flex items-center justify-center">
+                    <i class="ti ${icono} text-[18px]"></i>
+                </div>
+                <div class="min-w-0">
+                    <span class="text-slate-400 block font-semibold text-[10.5px] uppercase tracking-wider font-label">${etiqueta}</span>
+                    <strong class="text-slate-warm text-[13.5px] leading-snug block">${valor}</strong>
+                </div>
+            </div>`;
+
+        let gridHtml = dato('ti-id-badge-2', 'Cédula de Identidad', `<span class="font-mono">${sem.cedula}</span>`)
+            + dato('ti-calendar-event', 'Válido hasta', `${expiraDisplay} <span class="font-mono text-[11px] text-slate-400">(${sem.expira})</span>`);
+
+        if (esFormador) {
+            gridHtml += dato('ti-briefcase', 'Cargo / Función', sem.cargo);
+            gridHtml += dato('ti-world', 'Jurisdicción', diocesis);
+        } else {
+            gridHtml += dato('ti-building-church', 'Parroquia de Origen', sem.parroquia || 'No registrada');
+            gridHtml += dato('ti-world', 'Diócesis de Procedencia', sem.diocesis_procedencia
+                ? `${sem.diocesis_procedencia} <span class="align-middle ml-1 text-[9.5px] font-bold text-white bg-[#C59B27] px-1.5 py-0.5 rounded uppercase tracking-wide">Externa</span>`
+                : 'Arquidiócesis de Maracaibo');
+        }
+
+        gridHtml += dato('ti-school', 'Institución Formadora', sem.institucion, 'sm:col-span-2');
+        gridHtml += dato('ti-user-star', 'Rector', sem.rector || 'No registrado', 'sm:col-span-2');
 
         resultDiv.innerHTML = `
             <div class="validation-card overflow-hidden animate-fadeIn">
-                <div class="verified-badge p-6 flex items-center justify-center gap-3 font-label font-bold text-[14px] uppercase tracking-wider">
-                    <i class="ti ti-shield-check text-[22px]"></i> Credencial Verificada y Activa
+                ${estadoBanner}
+
+                <!-- Institutional header -->
+                <div class="relative text-white px-8 pt-7 pb-16 text-center" style="background: linear-gradient(135deg, #131C46 0%, #1E2A66 55%, #7A1A22 160%);">
+                    <div class="absolute inset-0 opacity-[0.06] pointer-events-none" style="background-image: radial-gradient(circle at 20% 30%, #fff 1px, transparent 1.5px), radial-gradient(circle at 80% 70%, #fff 1px, transparent 1.5px); background-size: 48px 48px;"></div>
+                    <span class="relative text-[10px] font-bold text-[#E4C368] uppercase tracking-[0.25em] font-label block">Seminario Mayor Arquidiocesano</span>
+                    <h3 class="relative font-display text-[20px] md:text-[22px] font-bold mt-1 leading-tight">"Santo Tomás de Aquino" · Maracaibo</h3>
+                    <span class="relative text-[11px] text-white/70 font-body block mt-1">${esFormador ? 'Credencial Oficial de Formador' : 'Credencial Oficial de Seminarista'} · ${sem.id}</span>
                 </div>
-                
-                <div class="p-8">
-                    <div class="border-b border-slate-100 pb-4 mb-6">
-                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-label block">Registro de Seminario Mayor</span>
-                        <h3 class="font-display text-[22px] font-bold text-slate-warm mt-1">${sem.cargo ? 'Credencial de Autoridad / Formador' : 'Carnet de Identificación oficial del Seminario Mayor'}</h3>
+
+                <!-- Photo overlapping header -->
+                <div class="relative -mt-14 flex justify-center">
+                    <div class="relative">
+                        <div class="w-[124px] h-[124px] rounded-full bg-white p-1.5 shadow-lg" style="box-shadow: 0 8px 24px -6px rgba(19,28,70,0.35);">
+                            <div class="w-full h-full rounded-full bg-[#f4f1ea] ring-2 ring-[#C59B27]/70 overflow-hidden">
+                                ${photoHtml}
+                            </div>
+                        </div>
+                        <div class="absolute bottom-1 right-1 w-8 h-8 rounded-full ${vigente ? 'bg-emerald-600' : 'bg-amber-500'} text-white flex items-center justify-center border-[3px] border-white" title="${vigente ? 'Credencial vigente' : 'Credencial expirada'}">
+                            <i class="ti ${vigente ? 'ti-check' : 'ti-clock'} text-[15px]"></i>
+                        </div>
                     </div>
-                    
-                    <div class="flex flex-col md:flex-row gap-6 mb-6">
-                        <!-- Photo container -->
-                        <div class="w-[120px] h-[120px] mx-auto md:mx-0 shrink-0 bg-white rounded-xl">
-                            ${photoHtml}
-                        </div>
-                        
-                        <!-- Grid details -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-body text-[13px] flex-grow">
-                            ${gridHtml}
-                        </div>
+                </div>
+
+                <!-- Identity -->
+                <div class="text-center px-8 pt-4 pb-2">
+                    <h2 class="font-display text-[24px] md:text-[26px] font-bold text-[#131C46] leading-tight">${sem.nombre}</h2>
+                    <div class="flex items-center justify-center gap-2 mt-2.5 flex-wrap">
+                        <span class="px-3.5 py-1 text-[11px] font-bold text-white bg-[#7A1A22] rounded-full uppercase tracking-wider font-label">${condicion}</span>
+                        <span class="px-3.5 py-1 text-[11px] font-bold text-[#7A1A22] bg-[#7A1A22]/[0.07] border border-[#7A1A22]/15 rounded-full uppercase tracking-wider font-label">${diocesis}</span>
+                    </div>
+                </div>
+
+                <!-- Details -->
+                <div class="px-8 pt-5 pb-7">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 font-body bg-[#fbf9f4] border border-[#C59B27]/15 rounded-2xl p-5">
+                        ${gridHtml}
                     </div>
 
-                    <div class="mt-6 text-center text-[11px] text-slate-400 font-mono">
-                        Validación digital verificada con éxito el ${new Date().toLocaleDateString('es-ES')}
+                    <div class="mt-5 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400">
+                        <div class="flex items-center gap-1.5 font-mono">
+                            <i class="ti ti-lock-check text-[14px] text-emerald-600"></i>
+                            Verificado contra el registro oficial · ${new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' })}
+                        </div>
+                        <div class="font-mono text-slate-300">${sem.id}</div>
                     </div>
                 </div>
             </div>
