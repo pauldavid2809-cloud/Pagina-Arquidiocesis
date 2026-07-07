@@ -163,8 +163,19 @@
         document.getElementById('verif-code').value = inputCode;
 
         // Normalize input for seminarian search (remove spaces, dots, hyphens)
-        const cleanCode = inputCode.toUpperCase().replace(/[^0-9VEA-Z]/g, '');
-        const cleanNum = inputCode.replace(/[^0-9]/g, '');
+        let cleanCode = inputCode.toUpperCase().replace(/[^0-9VEA-Z]/g, '');
+        let cleanNum = inputCode.replace(/[^0-9]/g, '');
+
+        // Corrección de códigos QR impresos con errata en algunos carnets físicos
+        // (el QR codifica una cédula equivocada; el resto del carnet es correcto)
+        const QR_ERRATAS = {
+            'SEMV18200259': 'SEMV18200859', // Pbro. José Varela: QR dice ...259, cédula real ...859
+            'SEMV23567447': 'SEMV32567447'  // Luis Polanco: QR dice 23..., cédula real 32...
+        };
+        if (QR_ERRATAS[cleanCode]) {
+            cleanCode = QR_ERRATAS[cleanCode];
+            cleanNum = cleanCode.replace(/[^0-9]/g, '');
+        }
 
         // Check if it matches a seminarian in our JSON database
         let foundSem = (db.seminaristas || []).find(s => {
