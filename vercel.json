@@ -3,6 +3,10 @@
     {
       "path": "/api/refresh-ig-token",
       "schedule": "0 0 1,15 * *"
+    },
+    {
+      "path": "/api/keep-alive",
+      "schedule": "0 12 * * *"
     }
   ],
   "rewrites": [
@@ -12,7 +16,8 @@
     { "source": "/api/generate-document", "destination": "/api/generate-document" },
     { "source": "/api/config", "destination": "/api/config" },
     { "source": "/api/login", "destination": "/api/login" },
-    { "source": "/api/refresh-ig-token", "destination": "/api/refresh-ig-token" }
+    { "source": "/api/refresh-ig-token", "destination": "/api/refresh-ig-token" },
+    { "source": "/api/keep-alive", "destination": "/api/keep-alive" }
   ],
   "headers": [
     {
