@@ -91,6 +91,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://pagina-arquidiocesis.vercel.app/envios-caritas.html</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://pagina-arquidiocesis.vercel.app/portal-cancilleria.html</loc>
     <lastmod>2026-06-16</lastmod>
     <changefreq>monthly</changefreq>

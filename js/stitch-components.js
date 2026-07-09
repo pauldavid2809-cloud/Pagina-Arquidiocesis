@@ -152,6 +152,7 @@ const StitchLayout = (() => {
             <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="validar.html">Verificación de Documentos</a></li>
             <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="cancilleria.html">Cancillería</a></li>
             <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="donaciones.html">Donaciones</a></li>
+            <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="envios-caritas.html">Envíos a Cáritas</a></li>
             <li><a class="font-label text-[13px] text-slate-warm hover:text-crimson-deep underline-offset-4 hover:underline transition-all" href="noticias.html">Noticias</a></li>
           </ul>
         </div>
