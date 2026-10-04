@@ -92,6 +92,7 @@
 <div id="stitch-footer"></div>
 
 <script src="js/stitch-components.js"></script>
+<script src="js/validar-parroquias.js"></script>
 <script>
     StitchLayout.init({ activePage: 'validar' });
 </script>
@@ -161,6 +162,21 @@
 
         // Sync input field value
         document.getElementById('verif-code').value = inputCode;
+
+        // Certificados emitidos por los sistemas parroquiales (ej. Fe de Bautismo de San Benito)
+        const parroquiaCert = parroquiaDelCodigo(inputCode);
+        if (parroquiaCert) {
+            const resultDiv = document.getElementById('validation-result');
+            resultDiv.innerHTML = `
+                <div class="validation-card p-10 text-center flex flex-col items-center justify-center gap-4">
+                    <i class="ti ti-loader animate-spin text-[32px] text-crimson-deep"></i>
+                    <p class="font-body text-[14px] text-slate-warm">Consultando los libros parroquiales...</p>
+                </div>
+            `;
+            resultDiv.classList.remove('hidden');
+            await validarCertificadoParroquial(parroquiaCert, inputCode);
+            return;
+        }
 
         // Normalize input for seminarian search (remove spaces, dots, hyphens)
         let cleanCode = inputCode.toUpperCase().replace(/[^0-9VEA-Z]/g, '');
